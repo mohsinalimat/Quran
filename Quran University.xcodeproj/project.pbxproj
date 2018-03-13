@@ -688,6 +688,7 @@
 		04F0D2C3203B0E83002F7183 /* RecitationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0D2C2203B0E83002F7183 /* RecitationRepository.swift */; };
 		04F4BC7820299FCD006636D8 /* BaseMiddleMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F4BC7720299FCD006636D8 /* BaseMiddleMenu.storyboard */; };
 		04F4BC7B2029BB80006636D8 /* BMMContinuousRecitationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F4BC7A2029BB80006636D8 /* BMMContinuousRecitationViewController.swift */; };
+		58A82E4819E609E1BB1C5205 /* Pods_Quran_University.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EC5CAAE6E3FBC45A490FCD /* Pods_Quran_University.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1374,6 +1375,9 @@
 		04F0D2C2203B0E83002F7183 /* RecitationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationRepository.swift; sourceTree = "<group>"; };
 		04F4BC7720299FCD006636D8 /* BaseMiddleMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BaseMiddleMenu.storyboard; sourceTree = "<group>"; };
 		04F4BC7A2029BB80006636D8 /* BMMContinuousRecitationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMMContinuousRecitationViewController.swift; sourceTree = "<group>"; };
+		41A6BF6C8A54C90F48ADFCDF /* Pods-Quran University.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quran University.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quran University/Pods-Quran University.debug.xcconfig"; sourceTree = "<group>"; };
+		B7EC5CAAE6E3FBC45A490FCD /* Pods_Quran_University.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quran_University.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0542CD297B27396D0774224 /* Pods-Quran University.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quran University.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quran University/Pods-Quran University.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1381,6 +1385,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58A82E4819E609E1BB1C5205 /* Pods_Quran_University.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1426,6 +1431,8 @@
 			children = (
 				0415F3772002107600041C3D /* Quran University */,
 				0415F3762002107600041C3D /* Products */,
+				6AF8739B9517EA3F2EAA5666 /* Pods */,
+				3081A6B19083F2C3291B014A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2284,6 +2291,23 @@
 			path = BaseMiddleMenu;
 			sourceTree = "<group>";
 		};
+		3081A6B19083F2C3291B014A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7EC5CAAE6E3FBC45A490FCD /* Pods_Quran_University.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6AF8739B9517EA3F2EAA5666 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				41A6BF6C8A54C90F48ADFCDF /* Pods-Quran University.debug.xcconfig */,
+				F0542CD297B27396D0774224 /* Pods-Quran University.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2291,9 +2315,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0415F38A2002107600041C3D /* Build configuration list for PBXNativeTarget "Quran University" */;
 			buildPhases = (
+				599C95BD78ED5869916E12D3 /* [CP] Check Pods Manifest.lock */,
 				0415F3712002107600041C3D /* Sources */,
 				0415F3722002107600041C3D /* Frameworks */,
 				0415F3732002107600041C3D /* Resources */,
+				7F46AEFF3812FC08B2752932 /* [CP] Embed Pods Frameworks */,
+				E58DB960631A15CD8DEB3F7C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2957,6 +2984,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		599C95BD78ED5869916E12D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Quran University-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F46AEFF3812FC08B2752932 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Quran University/Pods-Quran University-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
+				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Quran University/Pods-Quran University-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E58DB960631A15CD8DEB3F7C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Quran University/Pods-Quran University-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0415F3712002107600041C3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -3168,6 +3255,7 @@
 		};
 		0415F38B2002107600041C3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41A6BF6C8A54C90F48ADFCDF /* Pods-Quran University.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -3184,6 +3272,7 @@
 		};
 		0415F38C2002107600041C3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0542CD297B27396D0774224 /* Pods-Quran University.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
