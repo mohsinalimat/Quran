@@ -2,7 +2,7 @@ import UIKit
 //import AudioKit
 //import AudioKitUI
 
-class BRMRecordCompareViewController: UIViewController {
+class BRMRecordCompareViewController: BaseViewController {
 //    @IBOutlet private var frequencyLabel: UILabel!
 //    @IBOutlet private var amplitudeLabel: UILabel!
 //    @IBOutlet private var noteNameWithSharpsLabel: UILabel!

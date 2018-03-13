@@ -287,6 +287,7 @@
                         <segue destination="YAY-ud-RTx" kind="presentation" identifier="SegueDownload" animates="NO" id="FLn-zp-iNq"/>
                         <segue destination="KNi-ft-bC4" kind="presentation" identifier="SegueDownloadBook" animates="NO" id="OmZ-9k-Uzy"/>
                         <segue destination="eYy-cl-yuO" kind="presentation" identifier="SegueRecordCompare" id="hei-io-CfY"/>
+                        <segue destination="Epn-Oa-rzP" kind="presentation" identifier="SegueListenRepeat" id="wQx-6X-fhH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5FI-9r-R6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -420,6 +421,14 @@
                                         <action selector="btnRecordCompare_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="liI-ig-AYP"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gh3-nI-Whu">
+                                    <rect key="frame" x="17" y="14" width="46" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="btnListenRepeat_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="oNC-BF-6ug"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
@@ -489,7 +498,7 @@
                 <viewControllerPlaceholder storyboardName="TopMenu" referencedIdentifier="AvailableReciter" id="cqt-hy-paV" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQp-Qy-CAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1770" y="4"/>
+            <point key="canvasLocation" x="1770" y="1"/>
         </scene>
         <!--Download-->
         <scene sceneID="DVz-ca-76U">
@@ -505,7 +514,7 @@
                 <viewControllerPlaceholder storyboardName="TopMenu" referencedIdentifier="DownloadBook" id="KNi-ft-bC4" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZZ-YW-in9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2014" y="59"/>
+            <point key="canvasLocation" x="2042" y="58"/>
         </scene>
         <!--DownloadPage-->
         <scene sceneID="0ge-Rv-KO0">
@@ -521,7 +530,7 @@
                 <viewControllerPlaceholder storyboardName="UserControl" referencedIdentifier="DropDown" id="tss-5n-Ifh" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Enj-go-dyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1742" y="470"/>
+            <point key="canvasLocation" x="1917" y="461"/>
         </scene>
         <!--RecordCompare-->
         <scene sceneID="vQa-oq-zT0">
@@ -529,7 +538,15 @@
                 <viewControllerPlaceholder storyboardName="BaseRightMenu" referencedIdentifier="RecordCompare" id="eYy-cl-yuO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcW-CB-VTt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2040" y="570"/>
+            <point key="canvasLocation" x="2106" y="563"/>
+        </scene>
+        <!--ListenRepeat-->
+        <scene sceneID="79R-Ak-1AQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BaseRightMenu" referencedIdentifier="ListenRepeat" id="Epn-Oa-rzP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y0H-8t-cj9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2091" y="615"/>
         </scene>
         <!--DualDropDown-->
         <scene sceneID="e3V-ZI-1R6">
@@ -537,7 +554,7 @@
                 <viewControllerPlaceholder storyboardName="UserControl" referencedIdentifier="DualDropDown" id="D4Y-sd-Ile" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MNy-o8-udt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1764" y="421"/>
+            <point key="canvasLocation" x="1938" y="413"/>
         </scene>
         <!--ContinuousRecitation-->
         <scene sceneID="r9s-0O-C1Z">
@@ -545,7 +562,7 @@
                 <viewControllerPlaceholder storyboardName="BaseMiddleMenu" referencedIdentifier="ContinuousRecitation" id="iRG-3r-zkA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FV5-YI-N1Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1796" y="326"/>
+            <point key="canvasLocation" x="1796" y="314"/>
         </scene>
     </scenes>
     <resources>

@@ -11,6 +11,7 @@
 		040A036D200E0A1300978E25 /* DownloadPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040A036C200E0A1300978E25 /* DownloadPage.storyboard */; };
 		040A0370200E0C3300978E25 /* DPConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A036F200E0C3300978E25 /* DPConfirmViewController.swift */; };
 		040A0376200E119C00978E25 /* DPOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A0375200E119C00978E25 /* DPOptionViewController.swift */; };
+		040A1D4D2057EDB3003913C2 /* BRMListenRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A1D4C2057EDB3003913C2 /* BRMListenRepeatViewController.swift */; };
 		0415F3792002107600041C3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415F3782002107600041C3D /* AppDelegate.swift */; };
 		0415F37B2002107600041C3D /* MLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415F37A2002107600041C3D /* MLoginViewController.swift */; };
 		0415F37E2002107600041C3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0415F37C2002107600041C3D /* Main.storyboard */; };
@@ -696,6 +697,7 @@
 		040A036C200E0A1300978E25 /* DownloadPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DownloadPage.storyboard; sourceTree = "<group>"; };
 		040A036F200E0C3300978E25 /* DPConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPConfirmViewController.swift; sourceTree = "<group>"; };
 		040A0375200E119C00978E25 /* DPOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPOptionViewController.swift; sourceTree = "<group>"; };
+		040A1D4C2057EDB3003913C2 /* BRMListenRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRMListenRepeatViewController.swift; sourceTree = "<group>"; };
 		0415F3752002107600041C3D /* Quran University.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quran University.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0415F3782002107600041C3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0415F37A2002107600041C3D /* MLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLoginViewController.swift; sourceTree = "<group>"; };
@@ -2134,6 +2136,7 @@
 			isa = PBXGroup;
 			children = (
 				047CA64D2055473E00DEED3A /* BRMRecordCompareViewController.swift */,
+				040A1D4C2057EDB3003913C2 /* BRMListenRepeatViewController.swift */,
 			);
 			path = BaseRightMenu;
 			sourceTree = "<group>";
@@ -3061,6 +3064,7 @@
 				04D5F42F204EC01B00E7F7B4 /* CauseOfRevelationBookDetailRepository.swift in Sources */,
 				04F0D2B2203AC9D1002F7183 /* TMDownloadViewController.swift in Sources */,
 				0408A3BA2015D95C00B8A4A7 /* NetworkManager.swift in Sources */,
+				040A1D4D2057EDB3003913C2 /* BRMListenRepeatViewController.swift in Sources */,
 				044F6CBC2007A4420007828A /* PageManager.swift in Sources */,
 				0495EA0B200F299600EC35D1 /* UCDropDownViewController.swift in Sources */,
 				0442BAAC201F2FE5006D5FD8 /* Script.swift in Sources */,
