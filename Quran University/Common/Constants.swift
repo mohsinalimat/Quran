@@ -1,0 +1,130 @@
+import Foundation
+import UIKit
+
+struct QuranLink {
+    static let Script = "http://media.quranlms.com/AppImages/Scripts/"
+    static let Audio = "http://media.quranlms.com/Audio/"
+    
+    static func Book(languageId: Int64, bookId: Int64, surahId: Int64) -> URL {
+        var urlAddress = ""
+        
+        switch ApplicationData.CurrentDownloadBookMode {
+        case .CauseOfRevelation:
+            urlAddress = "http://m.services.quranlms.com/RelatedData/?a=\(bookId)&l=\(languageId)"
+            
+            break;
+        case .Tafseer:
+            urlAddress = "http://m.services.quranlms.com/RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
+            
+                break;
+        case .Translation:
+            urlAddress = "http://m.services.quranlms.com/RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
+            
+            break;
+        case .WordMeaning:
+            urlAddress = "http://m.services.quranlms.com/RelatedData/?l=\(languageId)"
+            
+            break;
+        }
+        
+        return URL(string: urlAddress)!
+    }
+}
+
+struct DirectoryStructure {
+    static let Database = "Quran University/Database/"
+    static let Script = "Quran University/Image/Script/"
+    static let Audio = "Quran University/Audio/"
+    static let DefaultScript = "Quran University/Image/Script/2/"
+    static let DefaultAudio = "Quran University/Audio/1/"
+}
+
+struct BundleFileType {
+    static let SQLite = ".sqlite"
+    static let MP3 = ".mp3"
+    static let PNG = ".png"
+}
+
+struct ApplicationConstant {
+    static let QuranPageHeight = CGFloat(585)
+    static let QuranPageWidth = CGFloat(396)
+    static let AyatHighlightColor = UIColor.green.cgColor
+    static let AyatSelectionColor = UIColor.lightGray.cgColor
+    static let RowColor = UIColor(red: 248.0/255.0, green: 234.0/255.0, blue: 195.0/255.0, alpha: 1.0)
+    static let RowSelectionColor = UIColor(red: 233.0/255.0, green: 231.0/255.0, blue: 224.0/255.0, alpha: 1.0)
+    static let DatabaseFile = "QuranUniversity.sqlite"
+    static let QuranPageType = ".png"
+    static let QuranRecitationType = ".mp3"
+}
+
+struct ApplicationLabel {
+    static let ERROR = ApplicationData.CurrentLanguageMode == .English ? "Error" : "Error"
+    static let INFO = ApplicationData.CurrentLanguageMode == .English ? "Info" : "Info"
+    static let SUCCESS = ApplicationData.CurrentLanguageMode == .English ? "Success" : "Success"
+    static let CONFIRM = ApplicationData.CurrentLanguageMode == .English ? "Confirm" : "Confirm"
+    static let OK = ApplicationData.CurrentLanguageMode == .English ? "OK" : "OK"
+    static let YES = ApplicationData.CurrentLanguageMode == .English ? "YES" : "YES"
+    static let NO = ApplicationData.CurrentLanguageMode == .English ? "NO" : "NO"
+    static let ALERT = ApplicationData.CurrentLanguageMode == .English ? "Alert" : "Alert"
+}
+
+struct ApplicationHeading {
+    static let SCRIPT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Script Download" : "Script Download"
+    static let RECITATION_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Recitation Download" : "Recitation Download"
+    static let DOWNLOAD_EACH_SCRIPT = ApplicationData.CurrentLanguageMode == .English ? "Download Progress for each Script" : "Download Progress for each Script"
+    static let DOWNLOAD_TOTAL_SCRIPT = ApplicationData.CurrentLanguageMode == .English ? "Download Progress for total Script" : "Download Progress for total Script"
+    static let DOWNLOAD_EACH_RECITATION = ApplicationData.CurrentLanguageMode == .English ? "Download Progress for each Recitation" : "Download Progress for each Recitation"
+    static let DOWNLOAD_TOTAL_RECITATION = ApplicationData.CurrentLanguageMode == .English ? "Download Progress for total Recitation" : "Download Progress for total Recitation"
+    static let TAFSEER_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Tafseer Download" : "Tafseer Download"
+    static let TRANSLATION_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Translation Download" : "Translation Download"
+    static let DOWNLOAD_TOTAL_TAFSEER = ApplicationData.CurrentLanguageMode == .English ? "Download Progress for Tafseer" : "Download Progress for Tafseer"
+    static let DOWNLOAD_TOTAL_TRANSLATION = ApplicationData.CurrentLanguageMode == .English ? "Download Progress for Translation" : "Download Progress for Translation"
+    static let WORDMEANING_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Word Meaning Download" : "Word Meaning Download"
+    static let CAUSEOFREVELATION_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Cause of Revelation Download" : "Cause of Revelation Download"
+    static let DOWNLOAD_TOTAL_WORDMEANING = ApplicationData.CurrentLanguageMode == .English ? "Download Progress for Word Meaning" : "Download Progress for Word Meaning"
+    static let DOWNLOAD_TOTAL_CAUSEOFREVELATION = ApplicationData.CurrentLanguageMode == .English ? "Download Progress for Cause of Revelation" : "Download Progress for Cause of Revelation"
+}
+
+struct ApplicationErrorMessage {
+    static let DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Download interrupted due to bad Internet Connection. Please connect to internet and try again!" : "Download interrupted due to bad Internet Connection. Please connect to internet and try again!"
+    static let INVALIDDATA = ApplicationData.CurrentLanguageMode == .English ? "Invalid data found!" : "Invalid data found!"
+}
+
+struct ApplicationInfoMessage {
+    static let SELECT_SURAH = ApplicationData.CurrentLanguageMode == .English ? "Please select Surah" : "Please select Surah"
+    static let SELECT_PAGE = ApplicationData.CurrentLanguageMode == .English ? "Please select Page" : "Please select Page"
+    static let SELECT_JUZZ = ApplicationData.CurrentLanguageMode == .English ? "Please select Juzz" : "Please select Juzz"
+    static let INVALID_FROM_PAGE = ApplicationData.CurrentLanguageMode == .English ? "Invalid From Page" : "Invalid From Page"
+    static let INVALID_TO_PAGE = ApplicationData.CurrentLanguageMode == .English ? "Invalid To Page" : "Invalid To Page"
+    static let INVALID_PAGE_RANGE = ApplicationData.CurrentLanguageMode == .English ? "Invalid Page Range" : "Invalid Page Range"
+    static let SOME_SCRIPT_NOT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Some script files are not downloaded due to some error" : "Some script files are not downloaded due to some error"
+    static let SOME_RECITATION_NOT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Some recitation files are not downloaded due to some error" : "Some recitation files are not downloaded due to some error"
+    static let INTERNET_AVAILABLE = ApplicationData.CurrentLanguageMode == .English ? "Internet Available Now" : "Internet Available Now"
+    static let INTERNET_NOT_AVAILABLE = ApplicationData.CurrentLanguageMode == .English ? "Internet Not Available" : "Internet Not Available"
+    static let SELECT_AYAT = ApplicationData.CurrentLanguageMode == .English ? "Please select Ayat" : "Please select Ayat"
+    static let PAGE_SURAH_JUZZ_NOT_AVAILABLE = ApplicationData.CurrentLanguageMode == .English ? "Current Page/Surah/Juzz not available!" : "Current Page/Surah/Juzz not available!"
+    static let WANT_TO_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Do you want to download it?" : "Do you want to download it?"
+    static let INVALID_START_SURAH = ApplicationData.CurrentLanguageMode == .English ? "Invalid Start Surah" : "Invalid Start Surah"
+    static let INVALID_END_SURAH = ApplicationData.CurrentLanguageMode == .English ? "Invalid End Surah" : "Invalid End Surah"
+    static let INVALID_START_AYAT = ApplicationData.CurrentLanguageMode == .English ? "Invalid Start Ayat" : "Invalid Start Ayat"
+    static let INVALID_END_AYAT = ApplicationData.CurrentLanguageMode == .English ? "Invalid End Ayat" : "Invalid End Ayat"
+    static let AYAT_MISSING_DOWNLOAD_SCRIPT_RECITATION = ApplicationData.CurrentLanguageMode == .English ? "Some of the Ayat(s) for selected range is not available. Please download the missing Script, Recitation and try again!" : "Some of the Ayat(s) for selected range is not available. Please download the missing Script, Recitation and try again!"
+    static let SELECT_BOOK = ApplicationData.CurrentLanguageMode == .English ? "Please select Book" : "Please select Book"
+    static let SOME_BOOK_NOT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Some book files are not downloaded due to some error" : "Some book files are not downloaded due to some error"
+    
+    static var DEFAULT_RECITER_RECITATION_NOT_AVAILABLE: String {
+        return (ApplicationData.CurrentLanguageMode == .English ? "Reciter '\(ApplicationData.CurrentReciter.Name)' Recitations for this page are not available!" : "Reciter '\(ApplicationData.CurrentReciter.Name)' Recitations for this page are not available!")
+    }
+}
+
+struct ApplicationSuccessMessage {
+    static let SCRIPT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Scripts are downloaded successfully" : "Scripts are downloaded successfully"
+    static let RECITATION_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Recitations are downloaded successfully" : "Recitations are downloaded successfully"
+    static let BOOK_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Book is downloaded successfully" : "Book is downloaded successfully"
+}
+
+struct ApplicationConfirmMessage {
+    static let CANCEL_SCRIPT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Are you sure you want to cancel Script download?" : "Are you sure you want to cancel Script download?"
+    static let CANCEL_RECITATION_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Are you sure you want to cancel Recitation download?" : "Are you sure you want to cancel Recitation download?"
+    static let CANCEL_BOOK_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Are you sure you want to cancel Book download?" : "Are you sure you want to cancel Book download?"
+}

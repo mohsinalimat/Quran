@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MLoginViewController" customModule="Quran_University" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwP-N2-NN8">
+                                <rect key="frame" x="150" y="458" width="75" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="btnSignIn_TouchUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hnj-8m-9o5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnSignIn" destination="cwP-N2-NN8" id="J10-oP-JoE"/>
+                        <segue destination="VWn-eF-CVE" kind="show" identifier="SegueToMain" id="PC0-Rz-Jw1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-791" y="303"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="Zk4-8J-jAe">
+            <objects>
+                <viewController id="VWn-eF-CVE" customClass="MMainViewController" customModule="Quran_University" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8jc-y4-vyu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56n-73-bc1" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="55"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zU-xW-XiA" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="img_Menu">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.32941176470588235" green="0.22745098039215686" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnMenu_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="lab-3v-bxW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiP-E6-vD3" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                                        <rect key="frame" x="45" y="0.0" width="83" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Surah">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.3294117647" green="0.2274509804" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnSurah_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="WRP-2G-5WO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIp-h6-CO5" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                                        <rect key="frame" x="128" y="0.0" width="67" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Page">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.3294117647" green="0.2274509804" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnPage_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="H9b-EK-dGU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wq1-I2-fNs" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                                        <rect key="frame" x="195" y="0.0" width="101" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Juzz">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.3294117647" green="0.2274509804" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnJuzz_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="Qdg-uU-gJH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A5u-mb-L3s" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                                        <rect key="frame" x="296" y="0.0" width="40" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="img_Bookmark">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.3294117647" green="0.2274509804" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxc-un-GyW" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                                        <rect key="frame" x="336" y="0.0" width="39" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="img_Unlock">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.3294117647" green="0.2274509804" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnPageLock_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="NuR-fd-3ft"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                                        <color key="value" red="0.63137254901960782" green="0.4392156862745098" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                                        <color key="value" red="0.48627450980392156" green="0.24705882352941178" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pWY-1c-Aim">
+                                <rect key="frame" x="6" y="80" width="363" height="522"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="P1Z-F7-j9R" appends="YES" id="lG3-Ke-Alf"/>
+                                    <outletCollection property="gestureRecognizers" destination="kfL-2y-9Ed" appends="YES" id="KU9-0r-bUw"/>
+                                </connections>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SJS-9O-BG0" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTi-Dw-ve3">
+                                        <rect key="frame" x="2" y="8" width="62" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="img_LeftAssignment"/>
+                                        <connections>
+                                            <action selector="btnLMenu_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="hOx-YJ-Z22"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HmC-2a-kJ6">
+                                        <rect key="frame" x="74" y="1" width="226" height="57"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdr-Sw-kEL">
+                                                <rect key="frame" x="1" y="7" width="39" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_Refresh"/>
+                                                <connections>
+                                                    <action selector="btnRefresh_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="qR5-5l-8EJ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NF4-Ff-3tT">
+                                                <rect key="frame" x="40" y="7" width="35" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_Back"/>
+                                                <connections>
+                                                    <action selector="btnPrevious_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="yXO-AC-oWn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8DL-QD-EGt">
+                                                <rect key="frame" x="75" y="7" width="35" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_Stop"/>
+                                                <connections>
+                                                    <action selector="btnStop_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="hpt-WW-pjr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2HH-0o-5yO">
+                                                <rect key="frame" x="109" y="2" width="44" height="55"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_Play"/>
+                                                <connections>
+                                                    <action selector="btnPlay_TouchDown:" destination="VWn-eF-CVE" eventType="touchDown" id="IFt-ep-IwK"/>
+                                                    <action selector="btnPlay_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="rdb-OI-mQT"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlt-Vw-Vd7">
+                                                <rect key="frame" x="152" y="7" width="34" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_Pause"/>
+                                                <connections>
+                                                    <action selector="btnPause_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="s1b-Tf-URa"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBo-B8-wxj">
+                                                <rect key="frame" x="186" y="7" width="39" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_Next"/>
+                                                <connections>
+                                                    <action selector="btnNext_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="hAs-5J-2fG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hG1-C5-6Y1">
+                                        <rect key="frame" x="311" y="8" width="62" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="img_RightMenu"/>
+                                        <connections>
+                                            <action selector="btnRMenu_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="t8S-3c-MIX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                                        <color key="value" red="0.97254901960784312" green="0.85882352941176465" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                                        <color key="value" red="0.53333333333333333" green="0.38431372549019605" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.91764705882352937" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="bBF-Bn-zEV"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnBookmark" destination="A5u-mb-L3s" id="WYi-vL-BPg"/>
+                        <outlet property="btnDownload" destination="Nv8-VS-a9m" id="fwd-Em-PLx"/>
+                        <outlet property="btnJuzz" destination="Wq1-I2-fNs" id="RSQ-J2-s7o"/>
+                        <outlet property="btnLMenu" destination="mTi-Dw-ve3" id="BR1-zH-4o3"/>
+                        <outlet property="btnMenu" destination="0zU-xW-XiA" id="pQD-yU-oV3"/>
+                        <outlet property="btnNext" destination="dBo-B8-wxj" id="hHN-9P-LTf"/>
+                        <outlet property="btnPage" destination="JIp-h6-CO5" id="vZg-iM-GWn"/>
+                        <outlet property="btnPageLock" destination="Uxc-un-GyW" id="lJ1-h7-biS"/>
+                        <outlet property="btnPause" destination="xlt-Vw-Vd7" id="SWu-ND-M4j"/>
+                        <outlet property="btnPlay" destination="2HH-0o-5yO" id="KO6-Cm-4kV"/>
+                        <outlet property="btnPrevious" destination="NF4-Ff-3tT" id="GeY-Gz-cdD"/>
+                        <outlet property="btnRMenu" destination="hG1-C5-6Y1" id="kDS-Bh-fbZ"/>
+                        <outlet property="btnReciter" destination="PDl-Eu-7cD" id="dS0-tO-gu0"/>
+                        <outlet property="btnRefresh" destination="Cdr-Sw-kEL" id="dxf-90-9TP"/>
+                        <outlet property="btnSetting" destination="y2u-v7-4XT" id="6G0-UX-sQF"/>
+                        <outlet property="btnStop" destination="8DL-QD-EGt" id="w1M-tM-gct"/>
+                        <outlet property="btnSurah" destination="EiP-E6-vD3" id="7Kd-mm-UIW"/>
+                        <outlet property="ivQuranPage" destination="pWY-1c-Aim" id="4XM-uv-OBr"/>
+                        <outlet property="vBaseLeftMenu" destination="yHi-CM-4oG" id="Oy1-St-McC"/>
+                        <outlet property="vBaseRightMenu" destination="3Cb-wg-ckJ" id="qVf-53-599"/>
+                        <outlet property="vFooter" destination="SJS-9O-BG0" id="McY-uQ-maY"/>
+                        <outlet property="vHeader" destination="56n-73-bc1" id="MdY-n4-v4s"/>
+                        <outlet property="vTopMenu" destination="pzi-e7-LuZ" id="M2h-Zu-IDh"/>
+                        <segue destination="Yws-IH-IEe" kind="presentation" identifier="SegueDownloadPage" animates="NO" id="UFM-SL-3Ag"/>
+                        <segue destination="tss-5n-Ifh" kind="presentation" identifier="SegueDropDown" id="UkX-2w-mbA"/>
+                        <segue destination="D4Y-sd-Ile" kind="presentation" identifier="SegueDualDropDown" id="ubR-Mh-LgH"/>
+                        <segue destination="cqt-hy-paV" kind="presentation" identifier="SegueAvailableReciter" animates="NO" id="Xti-zO-ToE"/>
+                        <segue destination="iRG-3r-zkA" kind="presentation" identifier="SegueContinuousRecitation" animates="NO" id="1OD-BV-bFI"/>
+                        <segue destination="YAY-ud-RTx" kind="presentation" identifier="SegueDownload" animates="NO" id="FLn-zp-iNq"/>
+                        <segue destination="KNi-ft-bC4" kind="presentation" identifier="SegueDownloadBook" animates="NO" id="OmZ-9k-Uzy"/>
+                        <segue destination="eYy-cl-yuO" kind="presentation" identifier="SegueRecordCompare" id="hei-io-CfY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5FI-9r-R6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view hidden="YES" contentMode="scaleToFill" id="pzi-e7-LuZ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDl-Eu-7cD" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="17" y="13" width="214" height="45"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                            <state key="normal">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                                    <color key="value" red="0.81568627450980391" green="0.68627450980392157" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                                    <color key="value" red="0.9137254901960784" green="0.84705882352941175" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="btnReciter_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="FPJ-5J-fkJ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nv8-VS-a9m" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="314" y="13" width="42" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="img_Download"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                                    <color key="value" red="0.81568627449999997" green="0.68627450980000004" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                                    <color key="value" red="0.91372549020000005" green="0.84705882349999995" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="btnDownload_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="YGW-Ao-8ez"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2u-v7-4XT" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="252" y="13" width="42" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="img_Settings"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                                    <color key="value" red="0.81568627449999997" green="0.68627450980000004" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                                    <color key="value" red="0.91372549020000005" green="0.84705882349999995" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="btnSetting_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="Flp-zV-W9h"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.66666666666666663" green="0.50196078431372548" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <viewLayoutGuide key="safeArea" id="W0M-uM-zi6"/>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" id="yHi-CM-4oG" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4J-7c-8e8" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="9" y="10" width="211" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Teb-VJ-ht5" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="228" y="10" width="96" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQb-HX-MI3" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="332" y="10" width="37" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <viewLayoutGuide key="safeArea" id="ipA-SH-bbo"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                            <color key="value" red="0.97254901959999995" green="0.85882352939999995" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                            <color key="value" red="0.53333333329999999" green="0.38431372549999998" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" id="3Cb-wg-ckJ" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cml-Au-f2X" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="6" y="6" width="204" height="58"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iq6-b9-WKJ">
+                                    <rect key="frame" x="150" y="14" width="46" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="btnRecordCompare_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="liI-ig-AYP"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rin-vh-mvq" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="218" y="6" width="45" height="58"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XeT-vU-LGW" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="271" y="6" width="41" height="58"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70X-X7-cxl" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="320" y="6" width="49" height="58"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <viewLayoutGuide key="safeArea" id="XgB-M2-AlY"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                            <color key="value" red="0.97254901959999995" green="0.85882352939999995" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                            <color key="value" red="0.53333333329999999" green="0.38431372549999998" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <swipeGestureRecognizer direction="left" id="P1Z-F7-j9R">
+                    <connections>
+                        <action selector="sgrLeft_Performed:" destination="VWn-eF-CVE" id="MAk-QS-mvE"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="kfL-2y-9Ed">
+                    <connections>
+                        <action selector="sgrRight_Performed:" destination="VWn-eF-CVE" id="MtU-hc-X0o"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="887" y="303"/>
+        </scene>
+        <!--AvailableReciter-->
+        <scene sceneID="yZ1-Tp-nPi">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TopMenu" referencedIdentifier="AvailableReciter" id="cqt-hy-paV" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XQp-Qy-CAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1770" y="4"/>
+        </scene>
+        <!--Download-->
+        <scene sceneID="DVz-ca-76U">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TopMenu" referencedIdentifier="Download" id="YAY-ud-RTx" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5P6-6y-cLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1739" y="59"/>
+        </scene>
+        <!--DownloadBook-->
+        <scene sceneID="o9u-qN-8Y4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TopMenu" referencedIdentifier="DownloadBook" id="KNi-ft-bC4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nZZ-YW-in9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2014" y="59"/>
+        </scene>
+        <!--DownloadPage-->
+        <scene sceneID="0ge-Rv-KO0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DownloadPage" referencedIdentifier="DownloadPage" id="Yws-IH-IEe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m6h-TP-8S6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1763" y="267"/>
+        </scene>
+        <!--DropDown-->
+        <scene sceneID="YcY-dZ-eT7">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserControl" referencedIdentifier="DropDown" id="tss-5n-Ifh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Enj-go-dyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1742" y="470"/>
+        </scene>
+        <!--RecordCompare-->
+        <scene sceneID="vQa-oq-zT0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BaseRightMenu" referencedIdentifier="RecordCompare" id="eYy-cl-yuO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LcW-CB-VTt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2040" y="570"/>
+        </scene>
+        <!--DualDropDown-->
+        <scene sceneID="e3V-ZI-1R6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserControl" referencedIdentifier="DualDropDown" id="D4Y-sd-Ile" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MNy-o8-udt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1764" y="421"/>
+        </scene>
+        <!--ContinuousRecitation-->
+        <scene sceneID="r9s-0O-C1Z">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BaseMiddleMenu" referencedIdentifier="ContinuousRecitation" id="iRG-3r-zkA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FV5-YI-N1Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1796" y="326"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img_Back" width="35" height="44"/>
+        <image name="img_Bookmark" width="17" height="20"/>
+        <image name="img_Download" width="23" height="22"/>
+        <image name="img_LeftAssignment" width="62" height="44"/>
+        <image name="img_Menu" width="30" height="11"/>
+        <image name="img_Next" width="39" height="44"/>
+        <image name="img_Pause" width="34" height="44"/>
+        <image name="img_Play" width="44" height="53"/>
+        <image name="img_Refresh" width="39" height="44"/>
+        <image name="img_RightMenu" width="62" height="44"/>
+        <image name="img_Settings" width="25" height="23"/>
+        <image name="img_Stop" width="35" height="44"/>
+        <image name="img_Unlock" width="17" height="20"/>
+    </resources>
+</document>
