@@ -13,11 +13,6 @@ class WordMeaningBookRepository : BaseRepository {
             return wordMeaningBookList
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let wordMeaningBookObject = WordMeaningBook(Id: sqlite3_column_int64(stmt, 0))
             
@@ -54,11 +49,6 @@ class WordMeaningBookRepository : BaseRepository {
             return wordMeaningBookObject
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             wordMeaningBookObject = WordMeaningBook(Id: sqlite3_column_int64(stmt, 0))
             
@@ -86,11 +76,6 @@ class WordMeaningBookRepository : BaseRepository {
             print("error preparing select: \(errmsg)")
             return wordMeaningBookObject
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             wordMeaningBookObject = WordMeaningBook(Id: sqlite3_column_int64(stmt, 0))
@@ -125,11 +110,6 @@ class WordMeaningBookRepository : BaseRepository {
             print("failure binding LanguageId: \(errmsg)")
             return wordMeaningBookList
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let wordMeaningBookObject = WordMeaningBook(Id: sqlite3_column_int64(stmt, 0))
@@ -167,11 +147,6 @@ class WordMeaningBookRepository : BaseRepository {
             return wordMeaningBookObject
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             wordMeaningBookObject = WordMeaningBook(Id: sqlite3_column_int64(stmt, 0))
             
@@ -199,11 +174,6 @@ class WordMeaningBookRepository : BaseRepository {
             print("error preparing select: \(errmsg)")
             return wordMeaningBookList
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let wordMeaningBookObject = WordMeaningBook(Id: sqlite3_column_int64(stmt, 0))

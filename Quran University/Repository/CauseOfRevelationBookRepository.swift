@@ -13,11 +13,6 @@ class CauseOfRevelationBookRepository : BaseRepository {
             return causeOfRevelationBookList
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let causeOfRevelationBookObject = CauseOfRevelationBook(Id: sqlite3_column_int64(stmt, 0))
             
@@ -54,11 +49,6 @@ class CauseOfRevelationBookRepository : BaseRepository {
             return causeOfRevelationBookObject
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             causeOfRevelationBookObject = CauseOfRevelationBook(Id: sqlite3_column_int64(stmt, 0))
             
@@ -86,11 +76,6 @@ class CauseOfRevelationBookRepository : BaseRepository {
             print("error preparing select: \(errmsg)")
             return causeOfRevelationBookObject
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             causeOfRevelationBookObject = CauseOfRevelationBook(Id: sqlite3_column_int64(stmt, 0))
@@ -125,11 +110,6 @@ class CauseOfRevelationBookRepository : BaseRepository {
             print("failure binding LanguageId: \(errmsg)")
             return causeOfRevelationBookList
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let causeOfRevelationBookObject = CauseOfRevelationBook(Id: sqlite3_column_int64(stmt, 0))
@@ -167,11 +147,6 @@ class CauseOfRevelationBookRepository : BaseRepository {
             return causeOfRevelationBookObject
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             causeOfRevelationBookObject = CauseOfRevelationBook(Id: sqlite3_column_int64(stmt, 0))
             
@@ -199,11 +174,6 @@ class CauseOfRevelationBookRepository : BaseRepository {
             print("error preparing select: \(errmsg)")
             return causeOfRevelationBookList
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let causeOfRevelationBookObject = CauseOfRevelationBook(Id: sqlite3_column_int64(stmt, 0))

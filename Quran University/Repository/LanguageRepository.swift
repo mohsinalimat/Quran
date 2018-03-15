@@ -13,11 +13,6 @@ class LanguageRepository : BaseRepository {
             return languageList
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let languageObject = Language(Id: sqlite3_column_int64(stmt, 0))
             
@@ -54,11 +49,6 @@ class LanguageRepository : BaseRepository {
             return languageObject
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             languageObject = Language(Id: sqlite3_column_int64(stmt, 0))
             
@@ -86,11 +76,6 @@ class LanguageRepository : BaseRepository {
             print("error preparing select: \(errmsg)")
             return languageObject
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             languageObject = Language(Id: sqlite3_column_int64(stmt, 0))

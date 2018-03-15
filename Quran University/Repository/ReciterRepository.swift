@@ -13,11 +13,6 @@ class ReciterRepository : BaseRepository {
             return reciterList
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let reciterObject = Reciter(Id: sqlite3_column_int64(stmt, 0))
             
@@ -53,11 +48,6 @@ class ReciterRepository : BaseRepository {
             print("failure binding Id: \(errmsg)")
             return reciterObject
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             reciterObject = Reciter(Id: sqlite3_column_int64(stmt, 0))

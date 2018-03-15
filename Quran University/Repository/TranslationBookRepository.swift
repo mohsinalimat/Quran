@@ -13,11 +13,6 @@ class TranslationBookRepository : BaseRepository {
             return translationBookList
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let translationBookObject = TranslationBook(Id: sqlite3_column_int64(stmt, 0))
             
@@ -54,11 +49,6 @@ class TranslationBookRepository : BaseRepository {
             return translationBookObject
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             translationBookObject = TranslationBook(Id: sqlite3_column_int64(stmt, 0))
             
@@ -86,11 +76,6 @@ class TranslationBookRepository : BaseRepository {
             print("error preparing select: \(errmsg)")
             return translationBookObject
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             translationBookObject = TranslationBook(Id: sqlite3_column_int64(stmt, 0))
@@ -125,11 +110,6 @@ class TranslationBookRepository : BaseRepository {
             print("failure binding LanguageId: \(errmsg)")
             return translationBookList
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let translationBookObject = TranslationBook(Id: sqlite3_column_int64(stmt, 0))
@@ -167,11 +147,6 @@ class TranslationBookRepository : BaseRepository {
             return translationBookObject
         }
         
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             translationBookObject = TranslationBook(Id: sqlite3_column_int64(stmt, 0))
             
@@ -199,11 +174,6 @@ class TranslationBookRepository : BaseRepository {
             print("error preparing select: \(errmsg)")
             return translationBookList
         }
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             let translationBookObject = TranslationBook(Id: sqlite3_column_int64(stmt, 0))

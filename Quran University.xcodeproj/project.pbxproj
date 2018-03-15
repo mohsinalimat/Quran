@@ -52,6 +52,10 @@
 		0495EA10200F65E400EC35D1 /* ModalDialogueProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495EA0F200F65E400EC35D1 /* ModalDialogueProtocol.swift */; };
 		0495EA12200F873900EC35D1 /* UCDualDropDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495EA11200F873900EC35D1 /* UCDualDropDownViewController.swift */; };
 		04A35D26200CCB190090A64F /* Juzz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A35D25200CCB190090A64F /* Juzz.swift */; };
+		04AB4D33205935490081A026 /* RecitationSilence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB4D32205935490081A026 /* RecitationSilence.swift */; };
+		04AB4D35205949490081A026 /* RecitationSilenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB4D34205949490081A026 /* RecitationSilenceRepository.swift */; };
+		04AB4D3720596E150081A026 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB4D3620596E150081A026 /* Number.swift */; };
+		04AB4D3920596EA80081A026 /* NumberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB4D3820596EA80081A026 /* NumberRepository.swift */; };
 		04AE122920235A1500001FB7 /* TopMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AE122820235A1500001FB7 /* TopMenu.storyboard */; };
 		04AE122C20235A9C00001FB7 /* TMAvailableReciterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE122B20235A9C00001FB7 /* TMAvailableReciterViewController.swift */; };
 		04BBCB552032C43400D347BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCB542032C43400D347BC /* BaseViewController.swift */; };
@@ -740,6 +744,10 @@
 		0495EA0F200F65E400EC35D1 /* ModalDialogueProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDialogueProtocol.swift; sourceTree = "<group>"; };
 		0495EA11200F873900EC35D1 /* UCDualDropDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UCDualDropDownViewController.swift; sourceTree = "<group>"; };
 		04A35D25200CCB190090A64F /* Juzz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juzz.swift; sourceTree = "<group>"; };
+		04AB4D32205935490081A026 /* RecitationSilence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationSilence.swift; sourceTree = "<group>"; };
+		04AB4D34205949490081A026 /* RecitationSilenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationSilenceRepository.swift; sourceTree = "<group>"; };
+		04AB4D3620596E150081A026 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
+		04AB4D3820596EA80081A026 /* NumberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberRepository.swift; sourceTree = "<group>"; };
 		04AE122820235A1500001FB7 /* TopMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TopMenu.storyboard; sourceTree = "<group>"; };
 		04AE122B20235A9C00001FB7 /* TMAvailableReciterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMAvailableReciterViewController.swift; sourceTree = "<group>"; };
 		04BBCB542032C43400D347BC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -2151,8 +2159,10 @@
 				04D5F426204EBD5200E7F7B4 /* CauseOfRevelationBookDetail.swift */,
 				04A35D25200CCB190090A64F /* Juzz.swift */,
 				04231F03203C164F00740A9C /* Language.swift */,
+				04AB4D3620596E150081A026 /* Number.swift */,
 				04DA8D09200CF81700513A6B /* Page.swift */,
 				0442BAAD201F587D006D5FD8 /* Recitation.swift */,
+				04AB4D32205935490081A026 /* RecitationSilence.swift */,
 				0442BAA9201F2CC8006D5FD8 /* Reciter.swift */,
 				0442BAAB201F2FE5006D5FD8 /* Script.swift */,
 				0440A505200C99EB00D42754 /* Surah.swift */,
@@ -2248,8 +2258,10 @@
 				04D5F42C204EC01300E7F7B4 /* CauseOfRevelationBookRepository.swift */,
 				04F0D2BC203B0CDB002F7183 /* JuzzRepository.swift */,
 				04231EF9203C109B00740A9C /* LanguageRepository.swift */,
+				04AB4D3820596EA80081A026 /* NumberRepository.swift */,
 				04F0D2B8203B0BA2002F7183 /* PageRepository.swift */,
 				04F0D2C2203B0E83002F7183 /* RecitationRepository.swift */,
+				04AB4D34205949490081A026 /* RecitationSilenceRepository.swift */,
 				04F0D2BE203B0D6D002F7183 /* ReciterRepository.swift */,
 				04F0D2C0203B0E28002F7183 /* ScriptRepository.swift */,
 				04F0D2BA203B0C6D002F7183 /* SurahRepository.swift */,
@@ -3064,6 +3076,7 @@
 				04D5F42F204EC01B00E7F7B4 /* CauseOfRevelationBookDetailRepository.swift in Sources */,
 				04F0D2B2203AC9D1002F7183 /* TMDownloadViewController.swift in Sources */,
 				0408A3BA2015D95C00B8A4A7 /* NetworkManager.swift in Sources */,
+				04AB4D3720596E150081A026 /* Number.swift in Sources */,
 				040A1D4D2057EDB3003913C2 /* BRMListenRepeatViewController.swift in Sources */,
 				044F6CBC2007A4420007828A /* PageManager.swift in Sources */,
 				0495EA0B200F299600EC35D1 /* UCDropDownViewController.swift in Sources */,
@@ -3075,6 +3088,7 @@
 				0433258F201DAE4A000FD494 /* QUView.swift in Sources */,
 				048D662E20500257007185EC /* BookTableViewCell.swift in Sources */,
 				04AE122C20235A9C00001FB7 /* TMAvailableReciterViewController.swift in Sources */,
+				04AB4D35205949490081A026 /* RecitationSilenceRepository.swift in Sources */,
 				04CE0AE920453E1D000CD6BF /* TMDownloadBookViewController.swift in Sources */,
 				04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */,
 				040A0376200E119C00978E25 /* DPOptionViewController.swift in Sources */,
@@ -3091,6 +3105,7 @@
 				04231EFE203C10CE00740A9C /* TafseerBookDetailRepository.swift in Sources */,
 				04F0D2C1203B0E28002F7183 /* ScriptRepository.swift in Sources */,
 				04A35D26200CCB190090A64F /* Juzz.swift in Sources */,
+				04AB4D33205935490081A026 /* RecitationSilence.swift in Sources */,
 				04D5F431204EC03400E7F7B4 /* WordMeaningBookRepository.swift in Sources */,
 				040A0370200E0C3300978E25 /* DPConfirmViewController.swift in Sources */,
 				04F0D2B5203B0AA2002F7183 /* BaseRepository.swift in Sources */,
@@ -3111,6 +3126,7 @@
 				04CD817E2004EDE900E34444 /* DocumentManager.swift in Sources */,
 				0415F3792002107600041C3D /* AppDelegate.swift in Sources */,
 				0415F3812002107600041C3D /* Quran_University.xcdatamodeld in Sources */,
+				04AB4D3920596EA80081A026 /* NumberRepository.swift in Sources */,
 				04C67B1620187E8900DDAB45 /* RecitationManager.swift in Sources */,
 				04F0D2BD203B0CDB002F7183 /* JuzzRepository.swift in Sources */,
 				046A18FA20147668006FB796 /* DPDownloadViewController.swift in Sources */,

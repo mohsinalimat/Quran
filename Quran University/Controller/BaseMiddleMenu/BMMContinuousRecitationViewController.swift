@@ -48,6 +48,8 @@ class BMMContinuousRecitationViewController: BaseViewController, ModalDialoguePr
                 viewController.dataList = RecitationRepository().getRecitationList(surahId: endSurah.Id)
                 
                 break
+            default:
+                break
             }
         }
     }
@@ -98,6 +100,8 @@ class BMMContinuousRecitationViewController: BaseViewController, ModalDialoguePr
                     endAyat = RecitationRepository().getRecitation(surahId: endSurah.Id, ayatOrder: Id)
                 }
                 
+                break
+            default:
                 break
             }
             

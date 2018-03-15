@@ -50,6 +50,10 @@ enum ContinuousRecitationMode: Int32 {
     case StartAyat = 2
     case EndSurah = 3
     case EndAyat = 4
+    case AyatRecitationSilence = 5
+    case RangeRecitationSilence = 6
+    case AyatNumber = 7
+    case RangeNumber = 8
 }
 
 enum DownloadBookMode: Int32 {
