@@ -225,7 +225,7 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
     @IBAction func btnPlay_TouchUp(_ sender: Any) {
         if validateView() {
             if DocumentManager.checkFilesExistForSurahAyatOrderRange(startSurahId: startSurah.Id, endSurahId: endSurah.Id, startAyatOrderId: startAyat.AyatOrderId, endAyatOrderId: endAyat.AyatOrderId) {
-                self.delegate?.onDoneHandler?(StartSurahId: startSurah.Id, EndSurahId: endSurah.Id, StartAyatOrderId: startAyat.AyatOrderId, EndAyatOrderId: endAyat.AyatOrderId)
+                self.delegate?.onDoneHandler?(StartSurahId: startSurah.Id, EndSurahId: endSurah.Id, StartAyatOrderId: startAyat.AyatOrderId, EndAyatOrderId: endAyat.AyatOrderId, AyatRecitationSilence: ayatRecitationSilence.SilenceInSecond, AyatRepeatFor: ayatNumber.Id)
                 
                 self.dismiss(animated: true, completion: nil)
             }

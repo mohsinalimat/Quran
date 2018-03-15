@@ -70,8 +70,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                 
                 if touch.view == ivQuranPage {
                     startTouchPoint = touch.location(in: self.ivQuranPage)
-                    RecitationManager.continuousRecitationModeOn = false
-                    
+                    RecitationManager.resetPlayer()
                     RecitationManager.setPlayerMode(mode: .None)
                     AyatSelectionManager.showHideAyatSelection(startTouchPoint: startTouchPoint, lastTouchPoint: startTouchPoint, touchMoving: false)
                 }
@@ -179,9 +178,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             }
         }
     }
-    func onDoneHandler(StartSurahId: Int64, EndSurahId: Int64, StartAyatOrderId: Int64, EndAyatOrderId: Int64) {
+    func onDoneHandler(StartSurahId: Int64, EndSurahId: Int64, StartAyatOrderId: Int64, EndAyatOrderId: Int64, AyatRecitationSilence: Double, AyatRepeatFor: Int64) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25, execute: {
-            RecitationManager.setModeForContinuousRecitation(StartSurahId: StartSurahId, EndSurahId: EndSurahId, StartAyatOrderId: StartAyatOrderId, EndAyatOrderId: EndAyatOrderId)
+            RecitationManager.setModeForContinuousRecitation(StartSurahId: StartSurahId, EndSurahId: EndSurahId, StartAyatOrderId: StartAyatOrderId, EndAyatOrderId: EndAyatOrderId, AyatRecitationSilence: AyatRecitationSilence, AyatRepeatFor: AyatRepeatFor)
         })
     }
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {

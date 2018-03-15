@@ -14,7 +14,18 @@ class RecitationManager {
     static var currentRecitationIndex = 0
     static var audioPlayerInitialized = false
     static var continuousRecitationModeOn = false
+    static var ayatRecitationSilence: Double = 0.0
+    static var ayatRepeatFor: Int64 = 0
+    static var currentAyatRecitationSilence: Double = 0.0
+    static var currentAyatRepeatFor: Int64 = 0
     
+    static func resetPlayer() {
+        continuousRecitationModeOn = false
+        ayatRecitationSilence = 0.0
+        ayatRepeatFor = 0
+        currentAyatRecitationSilence = 0.0
+        currentAyatRepeatFor = 0
+    }
     static func appendRecitation(accessibilityLabel: String) {
         if !recitationList.contains(accessibilityLabel) {
             recitationList.append(accessibilityLabel)
@@ -208,7 +219,14 @@ class RecitationManager {
         }
         
         audioPlayerInitialized = false
-        currentRecitationIndex = currentRecitationIndex + 1
+        
+        if currentAyatRepeatFor > 1 {
+            currentAyatRepeatFor = currentAyatRepeatFor - 1
+        }
+        else {
+            currentAyatRepeatFor = ayatRepeatFor
+            currentRecitationIndex = currentRecitationIndex + 1
+        }
         
         if currentRecitationIndex == recitationList.count {
             if continuousRecitationModeOn {
@@ -276,11 +294,15 @@ class RecitationManager {
         playRecitation()
         setPlayerMode(mode: .Restart)
     }
-    static func setModeForContinuousRecitation(StartSurahId: Int64, EndSurahId: Int64, StartAyatOrderId: Int64, EndAyatOrderId: Int64) {
+    static func setModeForContinuousRecitation(StartSurahId: Int64, EndSurahId: Int64, StartAyatOrderId: Int64, EndAyatOrderId: Int64, AyatRecitationSilence: Double, AyatRepeatFor: Int64) {
         startSurahId = StartSurahId
         endSurahId = EndSurahId
         startAyatOrderId = StartAyatOrderId
         endAyatOrderId = EndAyatOrderId
+        ayatRecitationSilence = AyatRecitationSilence
+        ayatRepeatFor = AyatRepeatFor
+        currentAyatRecitationSilence = ayatRecitationSilence
+        currentAyatRepeatFor = ayatRepeatFor
         pageList = PageRepository().getPageList(fromSurahId: startSurahId, toSurahId: endSurahId)
         
         if pageList.count > 0 {
