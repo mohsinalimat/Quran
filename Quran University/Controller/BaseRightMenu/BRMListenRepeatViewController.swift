@@ -8,6 +8,7 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
     @IBOutlet weak var btnEndAyah: UIButton!
     @IBOutlet weak var chkAyat: BEMCheckBox!
     @IBOutlet weak var chkRange: BEMCheckBox!
+    @IBOutlet weak var chkSavePreference: BEMCheckBox!
     @IBOutlet weak var btnAyatRecitationSilence: UIButton!
     @IBOutlet weak var btnRangeRecitationSilence: UIButton!
     @IBOutlet weak var btnAyatNumber: UIButton!
@@ -35,7 +36,26 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
         ayatNumber = NumberRepository().getFirstNumber()
         rangeNumber = ayatNumber
         
-        setViewForContinuousRecitationMode()
+        let recitationPreferenceList = RecitationPreferenceRepository().getRecitationPreferenceList()
+        
+        if recitationPreferenceList.count > 0 {
+            chkSavePreference.on = true
+            
+            for recitationPreferenceObject in recitationPreferenceList {
+                if recitationPreferenceObject.RepeatFor == RecitationRepeatFor.Ayat.rawValue {
+                    ayatRecitationSilence = RecitationSilenceRepository().getRecitationSilence(silenceInSecond: recitationPreferenceObject.SilenceInSecond)
+                    ayatNumber = NumberRepository().getNumber(Id: recitationPreferenceObject.Number)
+                    chkAyat.on = true
+                }
+                else if recitationPreferenceObject.RepeatFor == RecitationRepeatFor.Range.rawValue {
+                    rangeRecitationSilence = RecitationSilenceRepository().getRecitationSilence(silenceInSecond: recitationPreferenceObject.SilenceInSecond)
+                    rangeNumber = NumberRepository().getNumber(Id: recitationPreferenceObject.Number)
+                    chkRange.on = true
+                }
+            }
+        }
+        
+        setViewForContinuousRecitationMode(setSelection: false)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueDropDown" {
@@ -151,11 +171,11 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
                 break
             }
             
-            setViewForContinuousRecitationMode()
+            setViewForContinuousRecitationMode(setSelection: true)
         }
     }
     
-    func setViewForContinuousRecitationMode() {
+    func setViewForContinuousRecitationMode(setSelection: Bool) {
         btnStartSurah.setTitle(startSurah.Name, for: .normal)
         btnStartAyah.setTitle(String(startAyat.AyatOrderId), for: .normal)
         btnEndSurah.setTitle(endSurah.Name, for: .normal)
@@ -165,18 +185,20 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
         btnAyatNumber.setTitle(ayatNumber.Name, for: .normal)
         btnRangeNumber.setTitle(rangeNumber.Name, for: .normal)
         
-        if ayatRecitationSilence.SilenceInSecond > 0 || ayatNumber.Id > 0 {
-            chkAyat.on = true
-        }
-        else {
-            chkAyat.on = false
-        }
-        
-        if rangeRecitationSilence.SilenceInSecond > 0 || rangeNumber.Id > 0 {
-            chkRange.on = true
-        }
-        else {
-            chkRange.on = false
+        if setSelection {
+            if ayatRecitationSilence.SilenceInSecond > 0 || ayatNumber.Id > 0 {
+                chkAyat.on = true
+            }
+            else {
+                chkAyat.on = false
+            }
+            
+            if rangeRecitationSilence.SilenceInSecond > 0 || rangeNumber.Id > 0 {
+                chkRange.on = true
+            }
+            else {
+                chkRange.on = false
+            }
         }
     }
     func validateView() -> Bool {
@@ -240,6 +262,34 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
         self.performSegue(withIdentifier: "SegueDropDown", sender: nil)
     }
     @IBAction func chkSavePreferences_TouchUp(_ sender: Any) {
+        if chkSavePreference.on {
+            var recitationPreferenceList = [RecitationPreference]()
+            
+            if chkAyat.on {
+                let recitationPreferenceObject = RecitationPreference()
+                
+                recitationPreferenceObject.RepeatFor = Int64(RecitationRepeatFor.Ayat.rawValue)
+                recitationPreferenceObject.SilenceInSecond = ayatRecitationSilence.SilenceInSecond
+                recitationPreferenceObject.Number = ayatNumber.Id
+                
+                recitationPreferenceList.append(recitationPreferenceObject)
+            }
+            
+            if chkRange.on {
+                let recitationPreferenceObject = RecitationPreference()
+                
+                recitationPreferenceObject.RepeatFor = Int64(RecitationRepeatFor.Range.rawValue)
+                recitationPreferenceObject.SilenceInSecond = rangeRecitationSilence.SilenceInSecond
+                recitationPreferenceObject.Number = rangeNumber.Id
+                
+                recitationPreferenceList.append(recitationPreferenceObject)
+            }
+            
+            _ = RecitationPreferenceRepository().saveRecitationPreference(recitationPreferenceList: recitationPreferenceList)
+        }
+        else {
+            _ = RecitationPreferenceRepository().deleteRecitationPreference()
+        }
     }
     @IBAction func btnPlay_TouchUp(_ sender: Any) {
         if validateView() {

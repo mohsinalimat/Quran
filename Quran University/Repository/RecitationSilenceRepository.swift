@@ -69,7 +69,39 @@ class RecitationSilenceRepository : BaseRepository {
         
         if sqlite3_bind_int64(stmt, 1, Id) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(database)!)
-            print("failure binding SurahId: \(errmsg)")
+            print("failure binding Id: \(errmsg)")
+            return recitationSilenceObject
+        }
+        
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            recitationSilenceObject = RecitationSilence(Id: sqlite3_column_int64(stmt, 0))
+            
+            recitationSilenceObject.TitlePLang = String(cString: sqlite3_column_text(stmt, 1)!) as String
+            recitationSilenceObject.TitleSLang = String(cString: sqlite3_column_text(stmt, 2)!) as String
+            recitationSilenceObject.SilenceInSecond = sqlite3_column_double(stmt, 3)
+            recitationSilenceObject.IsActive = sqlite3_column_int64(stmt, 4) == 1 ? true : false
+            recitationSilenceObject.CreatedDate = dateFormatter.date(from: (String(cString: sqlite3_column_text(stmt, 5)!) as String))!
+            recitationSilenceObject.IsDeleted = sqlite3_column_int64(stmt, 6) == 1 ? true : false
+        }
+        
+        sqlite3_finalize(stmt)
+        
+        return recitationSilenceObject
+    }
+    func getRecitationSilence(silenceInSecond: Double) -> RecitationSilence {
+        var stmt: OpaquePointer?
+        var recitationSilenceObject = RecitationSilence()
+        let queryString = "SELECT * FROM RecitationSilence WHERE SilenceInSecond = ? LIMIT 1"
+        
+        if sqlite3_prepare(database, queryString, -1, &stmt, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(database)!)
+            print("error preparing select: \(errmsg)")
+            return recitationSilenceObject
+        }
+        
+        if sqlite3_bind_double(stmt, 1, silenceInSecond) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(database)!)
+            print("failure binding SilenceInSecond: \(errmsg)")
             return recitationSilenceObject
         }
         

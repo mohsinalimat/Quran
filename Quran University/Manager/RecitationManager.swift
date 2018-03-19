@@ -184,7 +184,7 @@ class RecitationManager {
         
         if audioPlayerInitialized {
             if ayatRepeatFor > 0 {
-                var listenRepeatInfo = "R(\(currentAyatRepeatFor)/\(ayatRepeatFor))"
+                var listenRepeatInfo = "Ayat(\(currentAyatRepeatFor)/\(ayatRepeatFor))"
                 
                 if rangeRepeatFor > 0 {
                     listenRepeatInfo = listenRepeatInfo + " Range(\(currentRangeRepeatFor)/\(rangeRepeatFor))"
@@ -226,7 +226,7 @@ class RecitationManager {
         }
         
         if onAudioPlayFinish && ayatRepeatFor > 0 {
-            let listenRepeatInfo = "S(\(currentAyatRecitationSilence) sec)"
+            let listenRepeatInfo = "Ayat(\(currentAyatRecitationSilence) sec)"
             
             (ApplicationObject.MainViewController as! MMainViewController).updateListenRepeatView(info: listenRepeatInfo)
             
@@ -248,14 +248,28 @@ class RecitationManager {
                     playRecitation()
                 }
                 else {
-                    currentPageIndex = 0
-                    
-                    if ayatRepeatFor > 0 {
-                        (ApplicationObject.MainViewController as! MMainViewController).hideMenu()
+                    if rangeRepeatFor > 0 && currentRangeRepeatFor < rangeRepeatFor {
+                        let listenRepeatInfo = "Range(\(currentRangeRecitationSilence) sec)"
+                        
+                        currentRangeRepeatFor = currentRangeRepeatFor + 1
+                        
+                        (ApplicationObject.MainViewController as! MMainViewController).updateListenRepeatView(info: listenRepeatInfo)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + currentRangeRecitationSilence, execute: {
+                            startPlayRecitation()
+                        })
                     }
-                    
-                    loadPageForContinuousRecitation()
-                    setPlayerMode(mode: .Ready)
+                    else {
+                        currentRangeRepeatFor = 1
+                        currentPageIndex = 0
+                        
+                        if ayatRepeatFor > 0 || rangeRepeatFor > 0 {
+                            (ApplicationObject.MainViewController as! MMainViewController).hideMenu()
+                        }
+                        
+                        loadPageForContinuousRecitation()
+                        setPlayerMode(mode: .Ready)
+                    }
                 }
             }
             else {
@@ -305,6 +319,14 @@ class RecitationManager {
             loadPageForContinuousRecitation()
         }
         
+        if ayatRepeatFor > 0 {
+            currentAyatRepeatFor = 1
+        }
+        
+        if rangeRepeatFor > 0 {
+            currentRangeRepeatFor = 1
+        }
+        
         setPlayerMode(mode: .Stop)
         playRecitation()
         setPlayerMode(mode: .Restart)
@@ -325,13 +347,16 @@ class RecitationManager {
         pageList = PageRepository().getPageList(fromSurahId: startSurahId, toSurahId: endSurahId)
         
         if pageList.count > 0 {
-            currentPageIndex = 0
-            continuousRecitationModeOn = true
-            
-            loadPageForContinuousRecitation()
-            setPlayerMode(mode: .Ready)
-            playRecitation()
+            startPlayRecitation()
         }
+    }
+    static func startPlayRecitation() {
+        currentPageIndex = 0
+        continuousRecitationModeOn = true
+        
+        loadPageForContinuousRecitation()
+        setPlayerMode(mode: .Ready)
+        playRecitation()
     }
     static func loadPageForContinuousRecitation() {
         if currentPageIndex == 0 {

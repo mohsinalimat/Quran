@@ -386,6 +386,7 @@
                         <outlet property="btnStartSurah" destination="vBg-o3-vfs" id="JR3-Wa-AHY"/>
                         <outlet property="chkAyat" destination="bOv-Ts-ppu" id="SzA-gT-Apy"/>
                         <outlet property="chkRange" destination="hH8-A1-hUh" id="qKp-gH-FEq"/>
+                        <outlet property="chkSavePreference" destination="c6h-c3-AH5" id="vQ1-63-5iu"/>
                         <segue destination="uja-yF-lBh" kind="presentation" identifier="SegueDropDown" id="H7t-jR-f8N"/>
                     </connections>
                 </viewController>

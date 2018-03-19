@@ -63,3 +63,8 @@ enum DownloadBookMode: Int32 {
     case Tafseer = 3
     case CauseOfRevelation = 4
 }
+
+enum RecitationRepeatFor: Int32 {
+    case Ayat = 1
+    case Range = 2
+}
