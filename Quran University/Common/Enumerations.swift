@@ -43,6 +43,7 @@ enum ViewTag: Int {
     case TopMenu = 100
     case BaseLeftMenu = 200
     case BaseRightMenu = 300
+    case ListenRepeatMenu = 400
 }
 
 enum ContinuousRecitationMode: Int32 {

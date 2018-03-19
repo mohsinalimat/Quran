@@ -59,12 +59,8 @@ class RecitationManager {
             ApplicationObject.StopButton.setButtonDisabled()
             ApplicationObject.PauseButton.setButtonDisabled()
             
-            if recitationList.count > 1 {
-                ApplicationObject.NextButton.setButtonEnabled()
-            }
-            else {
-                ApplicationObject.NextButton.setButtonDisabled()
-            }
+            enableNextButton()
+            enablePreviousButton()
             
             break
         case .Play:
@@ -72,6 +68,9 @@ class RecitationManager {
             ApplicationObject.StopButton.setButtonEnabled()
             ApplicationObject.PauseButton.setButtonEnabled()
             ApplicationObject.PlayButton.setButtonDisabled()
+            
+            enableNextButton()
+            enablePreviousButton()
             
             if audioPlayerInitialized {
                 ApplicationObject.RecitationAudioPlayer.play()
@@ -101,55 +100,13 @@ class RecitationManager {
             
             break
         case .Next:
-            if currentRecitationIndex == (recitationList.count - 1) {
-                if continuousRecitationModeOn && currentPageIndex != (pageList.count - 1) {
-                    ApplicationObject.NextButton.setButtonEnabled()
-                }
-                else {
-                    ApplicationObject.NextButton.setButtonDisabled()
-                }
-            }
-            else {
-                ApplicationObject.NextButton.setButtonEnabled()
-            }
-            
-            if currentRecitationIndex == 0 {
-                if continuousRecitationModeOn && currentPageIndex != 0 {
-                    ApplicationObject.PreviousButton.setButtonEnabled()
-                }
-                else {
-                    ApplicationObject.PreviousButton.setButtonDisabled()
-                }
-            }
-            else {
-                ApplicationObject.PreviousButton.setButtonEnabled()
-            }
+            enableNextButton()
+            enablePreviousButton()
             
             break
         case .Previous:
-            if currentRecitationIndex == (recitationList.count - 1) {
-                if continuousRecitationModeOn && currentPageIndex != (pageList.count - 1) {
-                    ApplicationObject.NextButton.setButtonEnabled()
-                }
-                else {
-                    ApplicationObject.NextButton.setButtonDisabled()
-                }
-            }
-            else {
-                ApplicationObject.NextButton.setButtonEnabled()
-            }
-            
-            if currentRecitationIndex == 0 {
-                if continuousRecitationModeOn && currentPageIndex != 0 {
-                    ApplicationObject.PreviousButton.setButtonEnabled()
-                }
-                else {
-                    ApplicationObject.PreviousButton.setButtonDisabled()
-                }
-            }
-            else {
-                ApplicationObject.PreviousButton.setButtonEnabled()
-            }
+            enableNextButton()
+            enablePreviousButton()
             
             break
         case .Restart:
@@ -158,14 +115,36 @@ class RecitationManager {
             ApplicationObject.PlayButton.setButtonDisabled()
             ApplicationObject.PreviousButton.setButtonDisabled()
             
-            if recitationList.count > 1 {
+            enableNextButton()
+            enablePreviousButton()
+            
+            break
+        }
+    }
+    static func enableNextButton() {
+        if currentRecitationIndex == (recitationList.count - 1) {
+            if continuousRecitationModeOn && currentPageIndex != (pageList.count - 1) {
                 ApplicationObject.NextButton.setButtonEnabled()
             }
             else {
                 ApplicationObject.NextButton.setButtonDisabled()
             }
-            
-            break
+        }
+        else {
+            ApplicationObject.NextButton.setButtonEnabled()
+        }
+    }
+    static func enablePreviousButton() {
+        if currentRecitationIndex == 0 {
+            if continuousRecitationModeOn && currentPageIndex != 0 {
+                ApplicationObject.PreviousButton.setButtonEnabled()
+            }
+            else {
+                ApplicationObject.PreviousButton.setButtonDisabled()
+            }
+        }
+        else {
+            ApplicationObject.PreviousButton.setButtonEnabled()
         }
     }
     static func playRecitation() {
@@ -196,6 +175,12 @@ class RecitationManager {
         }
         
         if audioPlayerInitialized {
+            if ayatRepeatFor > 0 {
+                let listenRepeatInfo = "R(\(currentAyatRepeatFor)/\(ayatRepeatFor))"
+                
+                (ApplicationObject.MainViewController as! MMainViewController).updateListenRepeatView(info: listenRepeatInfo)
+            }
+            
             setPlayerMode(mode: .Play)
         }
     }
@@ -220,14 +205,28 @@ class RecitationManager {
         
         audioPlayerInitialized = false
         
-        if currentAyatRepeatFor > 1 {
-            currentAyatRepeatFor = currentAyatRepeatFor - 1
+        if currentAyatRepeatFor < ayatRepeatFor {
+            currentAyatRepeatFor = currentAyatRepeatFor + 1
         }
         else {
-            currentAyatRepeatFor = ayatRepeatFor
+            currentAyatRepeatFor = 1
             currentRecitationIndex = currentRecitationIndex + 1
         }
         
+        if ayatRepeatFor > 0 {
+            let listenRepeatInfo = "S(\(currentAyatRecitationSilence) sec)"
+            
+            (ApplicationObject.MainViewController as! MMainViewController).updateListenRepeatView(info: listenRepeatInfo)
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + currentAyatRecitationSilence, execute: {
+                continueNextRecitation()
+            })
+        }
+        else {
+            continueNextRecitation()
+        }
+    }
+    static func continueNextRecitation() {
         if currentRecitationIndex == recitationList.count {
             if continuousRecitationModeOn {
                 currentPageIndex = currentPageIndex + 1
@@ -238,6 +237,10 @@ class RecitationManager {
                 }
                 else {
                     currentPageIndex = 0
+                    
+                    if ayatRepeatFor > 0 {
+                        (ApplicationObject.MainViewController as! MMainViewController).hideMenu()
+                    }
                     
                     loadPageForContinuousRecitation()
                     setPlayerMode(mode: .Ready)
@@ -302,7 +305,7 @@ class RecitationManager {
         ayatRecitationSilence = AyatRecitationSilence
         ayatRepeatFor = AyatRepeatFor
         currentAyatRecitationSilence = ayatRecitationSilence
-        currentAyatRepeatFor = ayatRepeatFor
+        currentAyatRepeatFor = 1
         pageList = PageRepository().getPageList(fromSurahId: startSurahId, toSurahId: endSurahId)
         
         if pageList.count > 0 {

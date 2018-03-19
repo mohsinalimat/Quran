@@ -274,10 +274,12 @@
                         <outlet property="btnStop" destination="8DL-QD-EGt" id="w1M-tM-gct"/>
                         <outlet property="btnSurah" destination="EiP-E6-vD3" id="7Kd-mm-UIW"/>
                         <outlet property="ivQuranPage" destination="pWY-1c-Aim" id="4XM-uv-OBr"/>
+                        <outlet property="lblListenRepeatInfo" destination="fhE-p9-fZ6" id="kaM-G4-Mur"/>
                         <outlet property="vBaseLeftMenu" destination="yHi-CM-4oG" id="Oy1-St-McC"/>
                         <outlet property="vBaseRightMenu" destination="3Cb-wg-ckJ" id="qVf-53-599"/>
                         <outlet property="vFooter" destination="SJS-9O-BG0" id="McY-uQ-maY"/>
                         <outlet property="vHeader" destination="56n-73-bc1" id="MdY-n4-v4s"/>
+                        <outlet property="vListenRepeat" destination="Ruj-iU-cMT" id="DvF-no-Ro4"/>
                         <outlet property="vTopMenu" destination="pzi-e7-LuZ" id="M2h-Zu-IDh"/>
                         <segue destination="Yws-IH-IEe" kind="presentation" identifier="SegueDownloadPage" animates="NO" id="UFM-SL-3Ag"/>
                         <segue destination="tss-5n-Ifh" kind="presentation" identifier="SegueDropDown" id="UkX-2w-mbA"/>
@@ -361,7 +363,7 @@
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="yHi-CM-4oG" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4J-7c-8e8" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
                             <rect key="frame" x="9" y="10" width="211" height="50"/>
@@ -407,7 +409,7 @@
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="3Cb-wg-ckJ" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cml-Au-f2X" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
                             <rect key="frame" x="6" y="6" width="204" height="58"/>
@@ -478,6 +480,21 @@
                             <color key="value" red="0.53333333329999999" green="0.38431372549999998" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" id="Ruj-iU-cMT">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhE-p9-fZ6">
+                            <rect key="frame" x="16" y="7" width="343" height="56"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.67843137254901964" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="EoW-cY-jb1"/>
                 </view>
                 <swipeGestureRecognizer direction="left" id="P1Z-F7-j9R">
                     <connections>

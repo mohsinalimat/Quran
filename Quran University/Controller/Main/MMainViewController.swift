@@ -37,6 +37,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Base Right Menu Section ********** //
     @IBOutlet var vBaseRightMenu: UIView!
+    @IBOutlet var vListenRepeat: UIView!
+    @IBOutlet weak var lblListenRepeatInfo: UILabel!
     
     var startTouchPoint = CGPoint()
     var startDate = Date()
@@ -217,24 +219,42 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         vBaseRightMenu.frame = CGRect(x: x, y: y, width: width, height: height)
         
         self.view.addSubview(vBaseRightMenu)
+        
+        x = vFooter.frame.origin.x
+        y = vFooter.frame.origin.y - vListenRepeat.bounds.height
+        height = vListenRepeat.frame.size.height
+        width = vFooter.frame.size.width
+        
+        vListenRepeat.tag = ViewTag.ListenRepeatMenu.rawValue
+        vListenRepeat.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        self.view.addSubview(vListenRepeat)
     }
     func hideMenu() {
         self.view.viewWithTag(ViewTag.TopMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseLeftMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseRightMenu.rawValue)?.isHidden = true
+        self.view.viewWithTag(ViewTag.ListenRepeatMenu.rawValue)?.isHidden = true
     }
-    
-    // ********** Header Section ********** //
-    @IBAction func btnMenu_TouchUp(_ sender: UIButton) {
-        if self.view.viewWithTag(ViewTag.TopMenu.rawValue)?.isHidden == false {
+    func showMenu(tag: Int) {
+        if self.view.viewWithTag(tag)?.isHidden == false {
             hideMenu()
         }
         else {
             hideMenu()
-            btnReciter.setTitle(ApplicationData.CurrentReciter.Name, for: .normal)
             
-            self.view.viewWithTag(ViewTag.TopMenu.rawValue)?.isHidden = false
+            self.view.viewWithTag(tag)?.isHidden = false
         }
+    }
+    func updateListenRepeatView(info: String) {
+        self.view.viewWithTag(ViewTag.ListenRepeatMenu.rawValue)?.isHidden = false
+        lblListenRepeatInfo.text = info
+    }
+    
+    // ********** Header Section ********** //
+    @IBAction func btnMenu_TouchUp(_ sender: UIButton) {
+        btnReciter.setTitle(ApplicationData.CurrentReciter.Name, for: .normal)
+        showMenu(tag: ViewTag.TopMenu.rawValue)
     }
     @IBAction func btnSurah_TouchUp(_ sender: UIButton) {
         hideMenu()
@@ -328,14 +348,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Section ********** //
     @IBAction func btnLMenu_TouchUp(_ sender: UIButton) {
-        if self.view.viewWithTag(ViewTag.BaseLeftMenu.rawValue)?.isHidden == false {
-            hideMenu()
-        }
-        else {
-            hideMenu()
-            
-            self.view.viewWithTag(ViewTag.BaseLeftMenu.rawValue)?.isHidden = false
-        }
+        showMenu(tag: ViewTag.BaseLeftMenu.rawValue)
     }
     @IBAction func btnRefresh_TouchUp(_ sender: UIButton) {
         hideMenu()
@@ -378,13 +391,6 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         RecitationManager.nextRecitation()
     }
     @IBAction func btnRMenu_TouchUp(_ sender: UIButton) {
-        if self.view.viewWithTag(ViewTag.BaseRightMenu.rawValue)?.isHidden == false {
-            hideMenu()
-        }
-        else {
-            hideMenu()
-            
-            self.view.viewWithTag(ViewTag.BaseRightMenu.rawValue)?.isHidden = false
-        }
+        showMenu(tag: ViewTag.BaseRightMenu.rawValue)
     }
 }
