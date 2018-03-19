@@ -180,13 +180,13 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             }
         }
     }
-    func onDoneHandler(StartSurahId: Int64, EndSurahId: Int64, StartAyatOrderId: Int64, EndAyatOrderId: Int64, AyatRecitationSilence: Double, AyatRepeatFor: Int64) {
+    func onDoneHandler(StartSurahId: Int64, EndSurahId: Int64, StartAyatOrderId: Int64, EndAyatOrderId: Int64, AyatRecitationSilence: Double, AyatRepeatFor: Int64, RangeRecitationSilence: Double, RangeRepeatFor: Int64) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25, execute: {
-            RecitationManager.setModeForContinuousRecitation(StartSurahId: StartSurahId, EndSurahId: EndSurahId, StartAyatOrderId: StartAyatOrderId, EndAyatOrderId: EndAyatOrderId, AyatRecitationSilence: AyatRecitationSilence, AyatRepeatFor: AyatRepeatFor)
+            RecitationManager.setModeForContinuousRecitation(StartSurahId: StartSurahId, EndSurahId: EndSurahId, StartAyatOrderId: StartAyatOrderId, EndAyatOrderId: EndAyatOrderId, AyatRecitationSilence: AyatRecitationSilence, AyatRepeatFor: AyatRepeatFor, RangeRecitationSilence: RangeRecitationSilence, RangeRepeatFor: RangeRepeatFor)
         })
     }
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        RecitationManager.nextRecitation()
+        RecitationManager.nextRecitation(onAudioPlayFinish: true)
     }
     
     func setLayout() {
@@ -388,7 +388,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBAction func btnNext_TouchUp(_ sender: UIButton) {
         hideMenu()
         
-        RecitationManager.nextRecitation()
+        RecitationManager.nextRecitation(onAudioPlayFinish: false)
     }
     @IBAction func btnRMenu_TouchUp(_ sender: UIButton) {
         showMenu(tag: ViewTag.BaseRightMenu.rawValue)

@@ -300,6 +300,9 @@
                                                 <rect key="frame" x="84" y="316" width="17" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="chkSavePreferences_TouchUp:" destination="5Gx-PK-LaL" eventType="valueChanged" id="x7w-zf-fyN"/>
+                                                </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWD-Ar-dwY">
                                                 <rect key="frame" x="109" y="314" width="110" height="21"/>
@@ -381,6 +384,8 @@
                         <outlet property="btnRangeRecitationSilence" destination="xnL-aA-eXP" id="Ciq-KK-6O1"/>
                         <outlet property="btnStartAyah" destination="ynM-8D-sLF" id="LpQ-tS-ctM"/>
                         <outlet property="btnStartSurah" destination="vBg-o3-vfs" id="JR3-Wa-AHY"/>
+                        <outlet property="chkAyat" destination="bOv-Ts-ppu" id="SzA-gT-Apy"/>
+                        <outlet property="chkRange" destination="hH8-A1-hUh" id="qKp-gH-FEq"/>
                         <segue destination="uja-yF-lBh" kind="presentation" identifier="SegueDropDown" id="H7t-jR-f8N"/>
                     </connections>
                 </viewController>

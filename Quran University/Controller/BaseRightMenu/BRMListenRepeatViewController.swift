@@ -1,10 +1,13 @@
 import UIKit
+import BEMCheckBox
 
 class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
     @IBOutlet weak var btnStartSurah: UIButton!
     @IBOutlet weak var btnStartAyah: UIButton!
     @IBOutlet weak var btnEndSurah: UIButton!
     @IBOutlet weak var btnEndAyah: UIButton!
+    @IBOutlet weak var chkAyat: BEMCheckBox!
+    @IBOutlet weak var chkRange: BEMCheckBox!
     @IBOutlet weak var btnAyatRecitationSilence: UIButton!
     @IBOutlet weak var btnRangeRecitationSilence: UIButton!
     @IBOutlet weak var btnAyatNumber: UIButton!
@@ -161,6 +164,20 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
         btnRangeRecitationSilence.setTitle(rangeRecitationSilence.Name, for: .normal)
         btnAyatNumber.setTitle(ayatNumber.Name, for: .normal)
         btnRangeNumber.setTitle(rangeNumber.Name, for: .normal)
+        
+        if ayatRecitationSilence.SilenceInSecond > 0 || ayatNumber.Id > 0 {
+            chkAyat.on = true
+        }
+        else {
+            chkAyat.on = false
+        }
+        
+        if rangeRecitationSilence.SilenceInSecond > 0 || rangeNumber.Id > 0 {
+            chkRange.on = true
+        }
+        else {
+            chkRange.on = false
+        }
     }
     func validateView() -> Bool {
         var status = true
@@ -222,10 +239,27 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
         
         self.performSegue(withIdentifier: "SegueDropDown", sender: nil)
     }
+    @IBAction func chkSavePreferences_TouchUp(_ sender: Any) {
+    }
     @IBAction func btnPlay_TouchUp(_ sender: Any) {
         if validateView() {
             if DocumentManager.checkFilesExistForSurahAyatOrderRange(startSurahId: startSurah.Id, endSurahId: endSurah.Id, startAyatOrderId: startAyat.AyatOrderId, endAyatOrderId: endAyat.AyatOrderId) {
-                self.delegate?.onDoneHandler?(StartSurahId: startSurah.Id, EndSurahId: endSurah.Id, StartAyatOrderId: startAyat.AyatOrderId, EndAyatOrderId: endAyat.AyatOrderId, AyatRecitationSilence: ayatRecitationSilence.SilenceInSecond, AyatRepeatFor: ayatNumber.Id)
+                var aSilence: Double = 0.0
+                var aNumber:Int64 = 0
+                var rSilence: Double = 0.0
+                var rNumber:Int64 = 0
+                
+                if chkAyat.on {
+                    aSilence = ayatRecitationSilence.SilenceInSecond
+                    aNumber = ayatNumber.Id
+                }
+                
+                if chkRange.on {
+                    rSilence = rangeRecitationSilence.SilenceInSecond
+                    rNumber = rangeNumber.Id
+                }
+                
+                self.delegate?.onDoneHandler?(StartSurahId: startSurah.Id, EndSurahId: endSurah.Id, StartAyatOrderId: startAyat.AyatOrderId, EndAyatOrderId: endAyat.AyatOrderId, AyatRecitationSilence: aSilence, AyatRepeatFor: aNumber, RangeRecitationSilence: rSilence, RangeRepeatFor: rNumber)
                 
                 self.dismiss(animated: true, completion: nil)
             }

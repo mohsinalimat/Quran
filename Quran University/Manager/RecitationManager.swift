@@ -16,15 +16,23 @@ class RecitationManager {
     static var continuousRecitationModeOn = false
     static var ayatRecitationSilence: Double = 0.0
     static var ayatRepeatFor: Int64 = 0
+    static var rangeRecitationSilence: Double = 0.0
+    static var rangeRepeatFor: Int64 = 0
     static var currentAyatRecitationSilence: Double = 0.0
     static var currentAyatRepeatFor: Int64 = 0
+    static var currentRangeRecitationSilence: Double = 0.0
+    static var currentRangeRepeatFor: Int64 = 0
     
     static func resetPlayer() {
         continuousRecitationModeOn = false
         ayatRecitationSilence = 0.0
         ayatRepeatFor = 0
+        rangeRecitationSilence = 0.0
+        rangeRepeatFor = 0
         currentAyatRecitationSilence = 0.0
         currentAyatRepeatFor = 0
+        currentRangeRecitationSilence = 0.0
+        currentRangeRepeatFor = 0
     }
     static func appendRecitation(accessibilityLabel: String) {
         if !recitationList.contains(accessibilityLabel) {
@@ -176,7 +184,11 @@ class RecitationManager {
         
         if audioPlayerInitialized {
             if ayatRepeatFor > 0 {
-                let listenRepeatInfo = "R(\(currentAyatRepeatFor)/\(ayatRepeatFor))"
+                var listenRepeatInfo = "R(\(currentAyatRepeatFor)/\(ayatRepeatFor))"
+                
+                if rangeRepeatFor > 0 {
+                    listenRepeatInfo = listenRepeatInfo + " Range(\(currentRangeRepeatFor)/\(rangeRepeatFor))"
+                }
                 
                 (ApplicationObject.MainViewController as! MMainViewController).updateListenRepeatView(info: listenRepeatInfo)
             }
@@ -198,14 +210,14 @@ class RecitationManager {
         
         setPlayerMode(mode: .Pause)
     }
-    static func nextRecitation() {
+    static func nextRecitation(onAudioPlayFinish: Bool) {
         if recitationList.count <= 0 {
             return
         }
         
         audioPlayerInitialized = false
         
-        if currentAyatRepeatFor < ayatRepeatFor {
+        if onAudioPlayFinish && currentAyatRepeatFor < ayatRepeatFor {
             currentAyatRepeatFor = currentAyatRepeatFor + 1
         }
         else {
@@ -213,7 +225,7 @@ class RecitationManager {
             currentRecitationIndex = currentRecitationIndex + 1
         }
         
-        if ayatRepeatFor > 0 {
+        if onAudioPlayFinish && ayatRepeatFor > 0 {
             let listenRepeatInfo = "S(\(currentAyatRecitationSilence) sec)"
             
             (ApplicationObject.MainViewController as! MMainViewController).updateListenRepeatView(info: listenRepeatInfo)
@@ -297,15 +309,19 @@ class RecitationManager {
         playRecitation()
         setPlayerMode(mode: .Restart)
     }
-    static func setModeForContinuousRecitation(StartSurahId: Int64, EndSurahId: Int64, StartAyatOrderId: Int64, EndAyatOrderId: Int64, AyatRecitationSilence: Double, AyatRepeatFor: Int64) {
+    static func setModeForContinuousRecitation(StartSurahId: Int64, EndSurahId: Int64, StartAyatOrderId: Int64, EndAyatOrderId: Int64, AyatRecitationSilence: Double, AyatRepeatFor: Int64, RangeRecitationSilence: Double, RangeRepeatFor: Int64) {
         startSurahId = StartSurahId
         endSurahId = EndSurahId
         startAyatOrderId = StartAyatOrderId
         endAyatOrderId = EndAyatOrderId
         ayatRecitationSilence = AyatRecitationSilence
         ayatRepeatFor = AyatRepeatFor
+        rangeRecitationSilence = RangeRecitationSilence
+        rangeRepeatFor = RangeRepeatFor
         currentAyatRecitationSilence = ayatRecitationSilence
         currentAyatRepeatFor = 1
+        currentRangeRecitationSilence = rangeRecitationSilence
+        currentRangeRepeatFor = 1
         pageList = PageRepository().getPageList(fromSurahId: startSurahId, toSurahId: endSurahId)
         
         if pageList.count > 0 {
