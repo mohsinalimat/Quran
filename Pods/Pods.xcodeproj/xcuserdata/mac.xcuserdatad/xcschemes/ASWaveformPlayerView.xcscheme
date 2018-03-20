@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "46A1005FDC3AF8649B47B47AA4C8CB7C"
-               BuildableName = "Reachability.framework"
-               BlueprintName = "ReachabilitySwift"
+               BlueprintIdentifier = "9C8D6E4D7FDD7EE8DBC341A633832FF5"
+               BuildableName = "ASWaveformPlayerView.framework"
+               BlueprintName = "ASWaveformPlayerView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "46A1005FDC3AF8649B47B47AA4C8CB7C"
-            BuildableName = "Reachability.framework"
-            BlueprintName = "ReachabilitySwift"
+            BlueprintIdentifier = "9C8D6E4D7FDD7EE8DBC341A633832FF5"
+            BuildableName = "ASWaveformPlayerView.framework"
+            BlueprintName = "ASWaveformPlayerView"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
