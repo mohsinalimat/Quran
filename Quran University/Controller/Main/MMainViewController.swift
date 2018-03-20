@@ -313,7 +313,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBAction func btnRecordCompare_TouchUp(_ sender: Any) {
         hideMenu()
         
-        self.performSegue(withIdentifier: "SegueRecordCompare", sender: nil)
+        if RecitationManager.validatePlayer() {
+            self.performSegue(withIdentifier: "SegueRecordCompare", sender: nil)
+        }
     }
     @IBAction func btnListenRepeat_TouchUp(_ sender: Any) {
         hideMenu()

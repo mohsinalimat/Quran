@@ -34,6 +34,17 @@ class RecitationManager {
         currentRangeRecitationSilence = 0.0
         currentRangeRepeatFor = 0
     }
+    static func validatePlayer() -> Bool {
+        var status = true
+        
+        if recitationList.count <= 0 {
+            DialogueManager.showToast(viewController: ApplicationObject.MainViewController, sourceView: ApplicationObject.PlayButton, message: ApplicationInfoMessage.SELECT_AYAT)
+            
+            status = false
+        }
+        
+        return status
+    }
     static func appendRecitation(accessibilityLabel: String) {
         if !recitationList.contains(accessibilityLabel) {
             recitationList.append(accessibilityLabel)
@@ -155,10 +166,22 @@ class RecitationManager {
             ApplicationObject.PreviousButton.setButtonEnabled()
         }
     }
-    static func playRecitation() {
-        if recitationList.count <= 0 {
-            DialogueManager.showToast(viewController: ApplicationObject.MainViewController, sourceView: ApplicationObject.PlayButton, message: ApplicationInfoMessage.SELECT_AYAT)
+    
+    static func getCurrentRecitationFileURL() -> URL {
+        var fileURL = URL(fileURLWithPath: "")
+        
+        if recitationList.count > 0 {
+            let recitationName = recitationList[currentRecitationIndex]
             
+            fileURL = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: ApplicationMethods.getRecitationPath(reciterId: ApplicationData.CurrentReciter.Id, recitationName: recitationName))
+        }
+        
+        return fileURL
+    }
+    static func playRecitation() {
+        let status = validatePlayer()
+        
+        if !status {
             return
         }
         

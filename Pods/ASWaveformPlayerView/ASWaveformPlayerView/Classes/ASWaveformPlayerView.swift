@@ -18,12 +18,11 @@ public class ASWaveformPlayerView: UIView {
   
   public var allowSpacing = true
   
+  public var audioPlayer: AVPlayer!
   
   
   //MARK: Private properties
   private var playerToken: Any?
-  
-  private var audioPlayer: AVPlayer!
   
   private var audioAnalyzer = AudioAnalyzer()
   
