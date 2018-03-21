@@ -153,6 +153,7 @@ class DocumentManager {
         createDirectory(folderPath: DirectoryStructure.Database)
         createDirectory(folderPath: DirectoryStructure.DefaultScript)
         createDirectory(folderPath: DirectoryStructure.DefaultAudio)
+        createDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
         
         copyFilesFromBundleForType(sourceFileType: BundleFileType.SQLite, targetPath: DirectoryStructure.Database)
         copyFilesFromBundleForType(sourceFileType: BundleFileType.MP3, targetPath: DirectoryStructure.DefaultAudio)

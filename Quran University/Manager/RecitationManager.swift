@@ -45,6 +45,44 @@ class RecitationManager {
         
         return status
     }
+    static func getRecitationFileURL(recitationIndex: Int) -> URL {
+        var fileURL = URL(fileURLWithPath: "")
+        
+        if recitationList.count > 0 {
+            let recitationName = recitationList[recitationIndex]
+            
+            fileURL = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: ApplicationMethods.getRecitationPath(reciterId: ApplicationData.CurrentReciter.Id, recitationName: recitationName))
+        }
+        
+        return fileURL
+    }
+    static func getRecitationName(recitationIndex: Int) -> String {
+        var recitationName = ""
+        
+        if recitationList.count > 0 {
+            recitationName = recitationList[recitationIndex]
+        }
+        
+        return recitationName
+    }
+    static func getRecitation(recitationIndex: Int) -> Recitation {
+        var recitationObject = Recitation()
+        
+        if recitationList.count > 0 {
+            let recitationName = recitationList[recitationIndex]
+            let sRange = recitationName.index(recitationName.startIndex, offsetBy: 0)..<recitationName.index(recitationName.endIndex, offsetBy: -7)
+            let aRange = recitationName.index(recitationName.startIndex, offsetBy: 3)..<recitationName.index(recitationName.endIndex, offsetBy: -4)
+            let surahId = Int64(recitationName[sRange])
+            let ayatOrder = Int64(recitationName[aRange])
+            
+            recitationObject = RecitationRepository().getRecitation(surahId: surahId!, ayatOrder: ayatOrder!)
+        }
+        
+        return recitationObject
+    }
+    static func getRecitationCount() -> Int {
+        return recitationList.count
+    }
     static func appendRecitation(accessibilityLabel: String) {
         if !recitationList.contains(accessibilityLabel) {
             recitationList.append(accessibilityLabel)
@@ -167,17 +205,7 @@ class RecitationManager {
         }
     }
     
-    static func getCurrentRecitationFileURL() -> URL {
-        var fileURL = URL(fileURLWithPath: "")
-        
-        if recitationList.count > 0 {
-            let recitationName = recitationList[currentRecitationIndex]
-            
-            fileURL = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: ApplicationMethods.getRecitationPath(reciterId: ApplicationData.CurrentReciter.Id, recitationName: recitationName))
-        }
-        
-        return fileURL
-    }
+    
     static func playRecitation() {
         let status = validatePlayer()
         
@@ -354,6 +382,7 @@ class RecitationManager {
         playRecitation()
         setPlayerMode(mode: .Restart)
     }
+    
     static func setModeForContinuousRecitation(StartSurahId: Int64, EndSurahId: Int64, StartAyatOrderId: Int64, EndAyatOrderId: Int64, AyatRecitationSilence: Double, AyatRepeatFor: Int64, RangeRecitationSilence: Double, RangeRepeatFor: Int64) {
         startSurahId = StartSurahId
         endSurahId = EndSurahId

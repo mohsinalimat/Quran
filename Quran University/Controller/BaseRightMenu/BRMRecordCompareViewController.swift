@@ -1,43 +1,248 @@
-import UIKit
 import ASWaveformPlayerView
+import AVFoundation
+import UIKit
 
-class BRMRecordCompareViewController: BaseViewController {
-    @IBOutlet weak var vMicrophone: UIView!
-    @IBOutlet weak var vAyat: UIView!
+class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegate {
+    // ********** Recording Section ********** //
+    @IBOutlet weak var vRecording: UIView!
+    @IBOutlet weak var btnStopRecording: UIButton!
+    @IBOutlet weak var btnRecord: UIButton!
+    @IBOutlet weak var btnPlayRecording: UIButton!
     
-    var ayatWaveform: ASWaveformPlayerView?
+    // ********** Ayat Section ********** //
+    @IBOutlet weak var vAyat: UIView!
+    @IBOutlet weak var lblAyatName: UILabel!
+    @IBOutlet weak var btnPlayAyat: UIButton!
+    @IBOutlet weak var btnPreviousAyat: UIButton!
+    @IBOutlet weak var btnNextAyat: UIButton!
+    
+    var currentPlayMode = RecordComparePlayMode.Recording
+    var recordingWaveform: ASWaveformPlayerView!
+    var ayatWaveform: ASWaveformPlayerView!
+    var recordingSession: AVAudioSession!
+    var audioRecorder: AVAudioRecorder!
+    var recordingPlayMode = AudioPlayMode.Paused
+    var ayatPlayMode = AudioPlayMode.Paused
+    var totalRecitation = 0
+    var currentRecitationIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadAyat()
+        recordingSession = AVAudioSession.sharedInstance()
+        
+        do {
+            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try recordingSession.setActive(true)
+            
+            recordingSession.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        self.totalRecitation = RecitationManager.getRecitationCount()
+                        
+                        self.loadAyat()
+                        
+                        NotificationCenter.default.addObserver(self, selector: #selector(self.didAudioPlayToEnd), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+                    } else {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        } catch {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
-    func loadAyat() {
+    @objc func didAudioPlayToEnd() {
+        switch currentPlayMode {
+        case .Recording:
+            recordingPlayMode = AudioPlayMode.Paused
+            
+            loadRecording()
+            
+            break
+        case .Ayat:
+            ayatPlayMode = AudioPlayMode.Paused
+            
+            loadAyat()
+            
+            break
+        }
+    }
+    
+    func loadRecording() {
         do {
-            ayatWaveform = try ASWaveformPlayerView(audioURL: RecitationManager.getCurrentRecitationFileURL(),
-                                                    sampleCount: 1024,
-                                                    amplificationFactor: 2500)
+            let recordingPath = ApplicationMethods.getRecitationRecordingPath(currentRecitationIndex: currentRecitationIndex)
+            let url = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: recordingPath)
+                
+            recordingWaveform = try ASWaveformPlayerView(audioURL: url, sampleCount: 1024, amplificationFactor: 5000)
             
-            ayatWaveform?.normalColor = .lightGray
-            ayatWaveform?.progressColor = .orange
-            ayatWaveform?.allowSpacing = false
-            ayatWaveform?.translatesAutoresizingMaskIntoConstraints = false
+            recordingWaveform.normalColor = .lightGray
+            recordingWaveform.progressColor = .orange
+            recordingWaveform.allowSpacing = false
+            recordingWaveform.translatesAutoresizingMaskIntoConstraints = false
             
-            vAyat.addSubview(ayatWaveform!)
+            vRecording.subviews.forEach({ $0.removeFromSuperview() })
+            vRecording.addSubview(recordingWaveform)
             
-            NSLayoutConstraint.activate([ayatWaveform!.centerXAnchor.constraint(equalTo: vAyat.centerXAnchor),
-                                         ayatWaveform!.centerYAnchor.constraint(equalTo: vAyat.centerYAnchor),
-                                         ayatWaveform!.heightAnchor.constraint(equalToConstant: 128),
-                                         ayatWaveform!.leadingAnchor.constraint(equalTo: vAyat.leadingAnchor),
-                                         ayatWaveform!.trailingAnchor.constraint(equalTo: vAyat.trailingAnchor)])
+            NSLayoutConstraint.activate([recordingWaveform.centerXAnchor.constraint(equalTo: vRecording.centerXAnchor),
+                                         recordingWaveform.centerYAnchor.constraint(equalTo: vRecording.centerYAnchor),
+                                         recordingWaveform.heightAnchor.constraint(equalTo: vRecording.heightAnchor),
+                                         recordingWaveform.leadingAnchor.constraint(equalTo: vRecording.leadingAnchor),
+                                         recordingWaveform.trailingAnchor.constraint(equalTo: vRecording.trailingAnchor)])
         } catch {
             print(error.localizedDescription)
         }
     }
+    func startRecording() {
+        let recordingPath = ApplicationMethods.getRecitationRecordingPath(currentRecitationIndex: currentRecitationIndex)
+        let url = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: recordingPath)
+        
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+        
+        do {
+            audioRecorder = try AVAudioRecorder(url: url, settings: settings)
+            audioRecorder.delegate = self
+            audioRecorder.record()
+            
+            btnRecord.isEnabled = false
+            btnStopRecording.isEnabled = true
+        } catch {
+            finishRecording()
+        }
+    }
+    func finishRecording() {
+        audioRecorder.stop()
+        
+        audioRecorder = nil
+        btnRecord.isEnabled = true
+        btnStopRecording.isEnabled = false
+        
+        loadRecording()
+    }
+    func playPauseRecording() {
+        currentPlayMode = .Recording
+        
+        ayatWaveform.audioPlayer.pause()
+        
+        switch recordingPlayMode {
+        case .Paused:
+            recordingPlayMode = .Playing
+            
+            recordingWaveform.audioPlayer.play()
+            
+            break
+        case .Playing:
+            recordingPlayMode = .Paused
+            
+            recordingWaveform.audioPlayer.pause()
+            
+            break
+        }
+    }
+        
+    func loadAyat() {
+        do {
+            let ayatOrderId = RecitationManager.getRecitation(recitationIndex: currentRecitationIndex).AyatOrderId
+            let currentRecitationNumber = currentRecitationIndex + 1
+            
+            lblAyatName.text = "Ayat "  + String(ayatOrderId)
+            btnNextAyat.isHidden = true
+            btnPreviousAyat.isHidden = true
+            
+            if totalRecitation > 1 {
+                if currentRecitationNumber == 1 {
+                    btnNextAyat.isHidden = false
+                }
+                else if currentRecitationNumber == totalRecitation {
+                    btnPreviousAyat.isHidden = false
+                }
+                else {
+                    btnNextAyat.isHidden = false
+                    btnPreviousAyat.isHidden = false
+                }
+            }
+            
+            ayatWaveform = try ASWaveformPlayerView(audioURL: RecitationManager.getRecitationFileURL(recitationIndex: currentRecitationIndex), sampleCount: 1024, amplificationFactor: 5000)
+            
+            ayatWaveform.normalColor = .lightGray
+            ayatWaveform.progressColor = .orange
+            ayatWaveform.allowSpacing = false
+            ayatWaveform.translatesAutoresizingMaskIntoConstraints = false
+            
+            
+            
+            vAyat.subviews.forEach({ $0.removeFromSuperview() })
+            vAyat.addSubview(ayatWaveform)
+            
+            NSLayoutConstraint.activate([ayatWaveform.centerXAnchor.constraint(equalTo: vAyat.centerXAnchor),
+                                         ayatWaveform.centerYAnchor.constraint(equalTo: vAyat.centerYAnchor),
+                                         ayatWaveform.heightAnchor.constraint(equalTo: vAyat.heightAnchor),
+                                         ayatWaveform.leadingAnchor.constraint(equalTo: vAyat.leadingAnchor),
+                                         ayatWaveform.trailingAnchor.constraint(equalTo: vAyat.trailingAnchor)])
+            
+            AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.getRecitationName(recitationIndex: currentRecitationIndex))
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    func playPauseAyat() {
+        currentPlayMode = .Ayat
+        
+        if recordingWaveform != nil {
+            recordingWaveform.audioPlayer.pause()
+        }
+        
+        switch ayatPlayMode {
+        case .Paused:
+            ayatPlayMode = .Playing
+            
+            ayatWaveform.audioPlayer.play()
+            
+            break
+        case .Playing:
+            ayatPlayMode = .Paused
+            
+            ayatWaveform.audioPlayer.pause()
+            
+            break
+        }
+    }
     
+    @IBAction func btnTopClose_TouchUp(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // ********** Recording Section ********** //
+    @IBAction func btnStopRecording_TouchUp(_ sender: Any) {
+        finishRecording()
+    }
+    @IBAction func btnRecord_TouchUp(_ sender: Any) {
+        startRecording()
+    }
+    @IBAction func btnPlayRecording_TouchUp(_ sender: Any) {
+        playPauseRecording()
+    }
+    
+    // ********** Ayat Section ********** //
     @IBAction func btnPlayAyat_TouchUp(_ sender: Any) {
-        //loadAyat()
-        ayatWaveform?.audioPlayer.play()
+        playPauseAyat()
+    }
+    @IBAction func btnPreviousAyat_TouchUp(_ sender: Any) {
+        currentRecitationIndex = currentRecitationIndex - 1
+        
+        loadRecording()
+        loadAyat()
+    }
+    @IBAction func btnNextAyat_TouchUp(_ sender: Any) {
+        currentRecitationIndex = currentRecitationIndex + 1
+        
+        loadRecording()
+        loadAyat()
     }
 }

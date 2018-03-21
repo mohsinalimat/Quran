@@ -20,7 +20,6 @@ public class ASWaveformPlayerView: UIView {
   
   public var audioPlayer: AVPlayer!
   
-  
   //MARK: Private properties
   private var playerToken: Any?
   
@@ -144,11 +143,11 @@ public class ASWaveformPlayerView: UIView {
   }
   
   @objc private func handleTap(_ recognizer: UITapGestureRecognizer) {
-    if audioPlayer.rate == 0 {
-      audioPlayer.play()
-    } else {
-      audioPlayer.pause()
-    }
+//    if audioPlayer.rate == 0 {
+//      audioPlayer.play()
+//    } else {
+//      audioPlayer.pause()
+//    }
   }
   
   private func populateWithData() {

@@ -68,3 +68,13 @@ enum RecitationRepeatFor: Int32 {
     case Ayat = 1
     case Range = 2
 }
+
+enum AudioPlayMode: Int32 {
+    case Playing = 1
+    case Paused = 2
+}
+
+enum RecordComparePlayMode: Int32 {
+    case Recording = 1
+    case Ayat = 2
+}

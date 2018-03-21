@@ -80,6 +80,11 @@ class ApplicationMethods {
             return QuranLink.Audio + String(reciterId) + "/" + getSurahName(surahId: surahId) + "/" + recitationName
         }
     }
+    static func getRecitationRecordingPath(currentRecitationIndex: Int) -> String {
+        let recordingName = RecitationManager.getRecitationName(recitationIndex: currentRecitationIndex).replacingOccurrences(of: ".mp3", with: ".m4a")
+        
+        return DirectoryStructure.TempRecordingRecitation + recordingName
+    }
     static func showGeneralSetting() {
         if let wifiUrl = URL(string: UIApplicationOpenSettingsURLString) {
             if UIApplication.shared.canOpenURL(wifiUrl) {
