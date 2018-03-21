@@ -5,6 +5,8 @@ import UIKit
 class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegate {
     // ********** Recording Section ********** //
     @IBOutlet weak var vRecording: UIView!
+    @IBOutlet weak var vTimer: UIView!
+    @IBOutlet weak var lblTimer: UILabel!
     @IBOutlet weak var btnStopRecording: UIButton!
     @IBOutlet weak var btnRecord: UIButton!
     @IBOutlet weak var btnPlayRecording: UIButton!
@@ -16,15 +18,18 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
     @IBOutlet weak var btnPreviousAyat: UIButton!
     @IBOutlet weak var btnNextAyat: UIButton!
     
-    var currentPlayMode = RecordComparePlayMode.Recording
     var recordingWaveform: ASWaveformPlayerView!
     var ayatWaveform: ASWaveformPlayerView!
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var recordingPlayMode = AudioPlayMode.Paused
     var ayatPlayMode = AudioPlayMode.Paused
-    var totalRecitation = 0
+    var currentPlayMode = RecordComparePlayMode.Recording
+    var timer = Timer()
     var currentRecitationIndex = 0
+    var totalRecitation = 0
+    var second = 0
+    var minute = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,27 +74,52 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
             break
         }
     }
+    @objc func timerAction() {
+        if minute == 4 {
+            finishRecording()
+            
+            DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.MAX_RECORDING_LIMIT, okHandler: {})
+        }
+        else {
+            second += 1
+            
+            if second == 60 {
+                minute += 1
+                second = 0
+            }
+            
+            let secondString = second > 9 ? "\(second)" : "0\(second)"
+            let minuteString = minute > 9 ? "\(minute)" : "0\(minute)"
+            
+            lblTimer.text = "\(minuteString):\(secondString)"
+        }
+    }
     
     func loadRecording() {
         do {
-            let recordingPath = ApplicationMethods.getRecitationRecordingPath(currentRecitationIndex: currentRecitationIndex)
-            let url = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: recordingPath)
-                
-            recordingWaveform = try ASWaveformPlayerView(audioURL: url, sampleCount: 1024, amplificationFactor: 5000)
-            
-            recordingWaveform.normalColor = .lightGray
-            recordingWaveform.progressColor = .orange
-            recordingWaveform.allowSpacing = false
-            recordingWaveform.translatesAutoresizingMaskIntoConstraints = false
-            
             vRecording.subviews.forEach({ $0.removeFromSuperview() })
-            vRecording.addSubview(recordingWaveform)
             
-            NSLayoutConstraint.activate([recordingWaveform.centerXAnchor.constraint(equalTo: vRecording.centerXAnchor),
-                                         recordingWaveform.centerYAnchor.constraint(equalTo: vRecording.centerYAnchor),
-                                         recordingWaveform.heightAnchor.constraint(equalTo: vRecording.heightAnchor),
-                                         recordingWaveform.leadingAnchor.constraint(equalTo: vRecording.leadingAnchor),
-                                         recordingWaveform.trailingAnchor.constraint(equalTo: vRecording.trailingAnchor)])
+            let recordingPath = ApplicationMethods.getRecitationRecordingPath(currentRecitationIndex: currentRecitationIndex)
+            
+            if DocumentManager.checkFileInApplicationDirectory(targetFilePath: recordingPath) != "" {
+                let url = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: recordingPath)
+                
+                recordingWaveform = try ASWaveformPlayerView(audioURL: url, sampleCount: 1024, amplificationFactor: 2000)
+                
+                recordingWaveform.normalColor = .lightGray
+                recordingWaveform.progressColor = .orange
+                recordingWaveform.allowSpacing = false
+                recordingWaveform.translatesAutoresizingMaskIntoConstraints = false
+                
+                vRecording.addSubview(recordingWaveform)
+                
+                NSLayoutConstraint.activate([recordingWaveform.centerXAnchor.constraint(equalTo: vRecording.centerXAnchor),
+                                             recordingWaveform.centerYAnchor.constraint(equalTo: vRecording.centerYAnchor),
+                                             recordingWaveform.heightAnchor.constraint(equalTo: vRecording.heightAnchor),
+                                             recordingWaveform.leadingAnchor.constraint(equalTo: vRecording.leadingAnchor),
+                                             recordingWaveform.trailingAnchor.constraint(equalTo: vRecording.trailingAnchor)])
+            }
+            
         } catch {
             print(error.localizedDescription)
         }
@@ -110,6 +140,16 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
             audioRecorder.delegate = self
             audioRecorder.record()
             
+            minute = 0
+            second = 0
+            vRecording.isHidden = true
+            vTimer.isHidden = false
+            lblTimer.text = "00:00"
+            
+            timer.invalidate()
+            
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+            
             btnRecord.isEnabled = false
             btnStopRecording.isEnabled = true
         } catch {
@@ -118,7 +158,10 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
     }
     func finishRecording() {
         audioRecorder.stop()
+        timer.invalidate()
         
+        vRecording.isHidden = false
+        vTimer.isHidden = true
         audioRecorder = nil
         btnRecord.isEnabled = true
         btnStopRecording.isEnabled = false
@@ -127,6 +170,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
     }
     func playPauseRecording() {
         currentPlayMode = .Recording
+        ayatPlayMode = AudioPlayMode.Paused
         
         ayatWaveform.audioPlayer.pause()
         
@@ -168,7 +212,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
                 }
             }
             
-            ayatWaveform = try ASWaveformPlayerView(audioURL: RecitationManager.getRecitationFileURL(recitationIndex: currentRecitationIndex), sampleCount: 1024, amplificationFactor: 5000)
+            ayatWaveform = try ASWaveformPlayerView(audioURL: RecitationManager.getRecitationFileURL(recitationIndex: currentRecitationIndex), sampleCount: 1024, amplificationFactor: 2000)
             
             ayatWaveform.normalColor = .lightGray
             ayatWaveform.progressColor = .orange
@@ -193,6 +237,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
     }
     func playPauseAyat() {
         currentPlayMode = .Ayat
+        recordingPlayMode = AudioPlayMode.Paused
         
         if recordingWaveform != nil {
             recordingWaveform.audioPlayer.pause()

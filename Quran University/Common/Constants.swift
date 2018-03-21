@@ -113,6 +113,7 @@ struct ApplicationInfoMessage {
     static let AYAT_MISSING_DOWNLOAD_SCRIPT_RECITATION = ApplicationData.CurrentLanguageMode == .English ? "Some of the Ayat(s) for selected range is not available. Please download the missing Script, Recitation and try again!" : "Some of the Ayat(s) for selected range is not available. Please download the missing Script, Recitation and try again!"
     static let SELECT_BOOK = ApplicationData.CurrentLanguageMode == .English ? "Please select Book" : "Please select Book"
     static let SOME_BOOK_NOT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Some book files are not downloaded due to some error" : "Some book files are not downloaded due to some error"
+    static let MAX_RECORDING_LIMIT = ApplicationData.CurrentLanguageMode == .English ? "Maximum recording limit is reached" : "Maximum recording limit is reached"
     
     static var DEFAULT_RECITER_RECITATION_NOT_AVAILABLE: String {
         return (ApplicationData.CurrentLanguageMode == .English ? "Reciter '\(ApplicationData.CurrentReciter.Name)' Recitations for this page are not available!" : "Reciter '\(ApplicationData.CurrentReciter.Name)' Recitations for this page are not available!")

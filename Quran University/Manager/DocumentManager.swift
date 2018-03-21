@@ -148,6 +148,26 @@ class DocumentManager {
         
         return status
     }
+    func clearDirectory(folderPath: String) {
+        guard let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
+            fatalError("No document directory found in application bundle.")
+        }
+        
+        let folderURL = documentURL.appendingPathComponent(folderPath)
+        
+        if (try? folderURL.checkResourceIsReachable()) == nil {
+            do {
+                let filePaths = try FileManager.default.contentsOfDirectory(atPath: folderPath)
+                
+                for filePath in filePaths {
+                    try FileManager.default.removeItem(atPath: folderPath + filePath)
+                }
+            }
+            catch {
+                fatalError("No \(folderURL) directory found in application bundle.")
+            }
+        }
+    }
     
     static func initApplicationStructure() {
         createDirectory(folderPath: DirectoryStructure.Database)
