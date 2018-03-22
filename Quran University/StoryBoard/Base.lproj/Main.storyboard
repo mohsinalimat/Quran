@@ -424,20 +424,40 @@
                             <rect key="frame" x="5" y="6" width="226" height="58"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iq6-b9-WKJ">
-                                    <rect key="frame" x="150" y="14" width="46" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button"/>
-                                    <connections>
-                                        <action selector="btnRecordCompare_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="liI-ig-AYP"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gh3-nI-Whu">
-                                    <rect key="frame" x="17" y="14" width="46" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button"/>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gh3-nI-Whu">
+                                    <rect key="frame" x="9" y="2" width="70" height="54"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                    <inset key="titleEdgeInsets" minX="-28" minY="38" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="19" minY="-21" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Listen &amp; Repeat" image="icn_listen">
+                                        <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="btnListenRepeat_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="oNC-BF-6ug"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4U-c3-NpK">
+                                    <rect key="frame" x="97" y="2" width="58" height="54"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                    <inset key="titleEdgeInsets" minX="-29" minY="38" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="8" minY="-22" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Hide &amp; Show" image="icn_HidenShow">
+                                        <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Iq6-b9-WKJ">
+                                    <rect key="frame" x="172" y="2" width="47" height="54"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                    <inset key="titleEdgeInsets" minX="-16" minY="31" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="14" minY="-20" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Record &amp; Compare" image="icn_Record">
+                                        <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnRecordCompare_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="liI-ig-AYP"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -629,8 +649,11 @@
     </scenes>
     <resources>
         <image name="icn_Bookmark" width="12" height="17"/>
+        <image name="icn_HidenShow" width="29" height="23"/>
         <image name="icn_Library" width="28" height="27"/>
+        <image name="icn_Record" width="19" height="29"/>
         <image name="icn_Search" width="20" height="20"/>
+        <image name="icn_listen" width="28" height="24"/>
         <image name="img_Back" width="35" height="44"/>
         <image name="img_Bookmark" width="17" height="20"/>
         <image name="img_Download" width="23" height="22"/>
