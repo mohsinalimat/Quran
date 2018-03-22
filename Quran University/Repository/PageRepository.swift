@@ -235,10 +235,10 @@ class PageRepository : BaseRepository {
         
         return pageObject
     }
-    func getPageList(fromSurahId: Int64, toSurahId: Int64) -> [Page] {
+    func getPageList(fromSurahId: Int64, toSurahId: Int64, startAyatOrderId: Int64, endAyatOrderId: Int64) -> [Page] {
         var stmt: OpaquePointer?
         var pageList = [Page]()
-        let queryString = "SELECT StartingPageNo FROM Ayat WHERE SurahId BETWEEN ? AND ? GROUP BY StartingPageNo"
+        let queryString = "SELECT StartingPageNo FROM Ayat WHERE SurahId BETWEEN ? AND ? AND AyatOrder BETWEEN ? AND ? GROUP BY StartingPageNo"
         
         if sqlite3_prepare(database, queryString, -1, &stmt, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(database)!)
@@ -255,6 +255,18 @@ class PageRepository : BaseRepository {
         if sqlite3_bind_int64(stmt, 2, toSurahId) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(database)!)
             print("failure binding SurahId: \(errmsg)")
+            return pageList
+        }
+        
+        if sqlite3_bind_int64(stmt, 3, startAyatOrderId) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(database)!)
+            print("failure binding AyatOrder: \(errmsg)")
+            return pageList
+        }
+        
+        if sqlite3_bind_int64(stmt, 4, endAyatOrderId) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(database)!)
+            print("failure binding AyatOrder: \(errmsg)")
             return pageList
         }
         

@@ -108,9 +108,18 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         vMain.frame.origin.y = y
         vMain.frame.size.height = vMain.frame.size.height - heightAdjustment
         
-        let ayatSelection = AyatSelectionManager.getAyatSelection(recitationName: RecitationManager.getRecitationName(recitationIndex: currentRecitationIndex))
+        let ayatSelectionList = AyatSelectionManager.getAyatSelectionList(recitationName: RecitationManager.getRecitationName(recitationIndex: currentRecitationIndex))
+        var status = false
         
-        if (ayatSelection.path?.boundingBoxOfPath.intersects(vMain.frame))! {
+        for ayatSelection in ayatSelectionList {
+            if (ayatSelection.path?.boundingBoxOfPath.intersects(vMain.frame))! {
+                status = true
+                
+                break
+            }
+        }
+        
+        if status {
             vMVC = (ApplicationObject.MainViewController as! MMainViewController).vFooter!
             vMain.frame.size.height = vMain.frame.size.height + heightAdjustment
             y = vMVC.frame.origin.y - vMain.bounds.height
@@ -246,8 +255,6 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
             ayatWaveform.progressColor = .orange
             ayatWaveform.allowSpacing = false
             ayatWaveform.translatesAutoresizingMaskIntoConstraints = false
-            
-            
             
             vAyat.subviews.forEach({ $0.removeFromSuperview() })
             vAyat.addSubview(ayatWaveform)

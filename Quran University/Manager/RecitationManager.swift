@@ -396,7 +396,7 @@ class RecitationManager {
         currentAyatRepeatFor = 1
         currentRangeRecitationSilence = rangeRecitationSilence
         currentRangeRepeatFor = 1
-        pageList = PageRepository().getPageList(fromSurahId: startSurahId, toSurahId: endSurahId)
+        pageList = PageRepository().getPageList(fromSurahId: startSurahId, toSurahId: endSurahId, startAyatOrderId: startAyatOrderId, endAyatOrderId: endAyatOrderId)
         
         if pageList.count > 0 {
             startPlayRecitation()

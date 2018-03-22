@@ -314,7 +314,15 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         hideMenu()
         
         if RecitationManager.validatePlayer() {
-            self.performSegue(withIdentifier: "SegueRecordCompare", sender: nil)
+            let startAyatOrderId = RecitationManager.getRecitation(recitationIndex: 0).AyatOrderId
+            let endAyatOrderId = RecitationManager.getRecitation(recitationIndex: (RecitationManager.getRecitationCount() - 1)).AyatOrderId
+            
+            if DocumentManager.checkFilesExistForSurahAyatOrderRange(startSurahId: ApplicationData.CurrentSurah.Id, endSurahId: ApplicationData.CurrentSurah.Id, startAyatOrderId: startAyatOrderId, endAyatOrderId: endAyatOrderId) {
+                self.performSegue(withIdentifier: "SegueRecordCompare", sender: nil)
+            }
+            else {
+                DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.AYAT_MISSING_DOWNLOAD_SCRIPT_RECITATION, okHandler: {})
+            }
         }
     }
     @IBAction func btnListenRepeat_TouchUp(_ sender: Any) {

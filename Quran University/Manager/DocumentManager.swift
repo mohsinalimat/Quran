@@ -119,7 +119,7 @@ class DocumentManager {
         return documentsDirectory.appendingPathComponent(targetFilePath)
     }
     static func checkFilesExistForSurahAyatOrderRange(startSurahId: Int64, endSurahId: Int64, startAyatOrderId: Int64, endAyatOrderId: Int64) -> Bool {
-        let pageList = PageRepository().getPageList(fromSurahId: startSurahId, toSurahId: endSurahId)
+        let pageList = PageRepository().getPageList(fromSurahId: startSurahId, toSurahId: endSurahId, startAyatOrderId: startAyatOrderId, endAyatOrderId: endAyatOrderId)
         var status = true;
         
         for pageObject in pageList {
