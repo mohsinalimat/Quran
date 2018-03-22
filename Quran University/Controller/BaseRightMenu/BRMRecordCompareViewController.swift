@@ -34,6 +34,8 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
+        
         recordingSession = AVAudioSession.sharedInstance()
         
         do {
@@ -130,7 +132,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 32000,
+            AVSampleRateKey: 44100,
             AVNumberOfChannelsKey: 2,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
@@ -260,6 +262,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
     }
     
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {
+        DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
         self.dismiss(animated: true, completion: nil)
     }
     

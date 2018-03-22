@@ -148,7 +148,7 @@ class DocumentManager {
         
         return status
     }
-    func clearDirectory(folderPath: String) {
+    static func clearDirectory(folderPath: String) {
         guard let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
             fatalError("No document directory found in application bundle.")
         }
