@@ -146,4 +146,17 @@ class AyatSelectionManager {
         
         highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
     }
+    static func getAyatSelection(recitationName: String) -> CAShapeLayer {
+        var ayatSelectionObject = CAShapeLayer()
+        
+        if ayatSelectionList.count > 0 {
+            ayatSelectionList.lazy.filter { $0.isHidden == false }.forEach { ayatSelection in
+                if ayatSelection.accessibilityLabel == recitationName {
+                    ayatSelectionObject = ayatSelection
+                }
+            }
+        }
+        
+        return ayatSelectionObject
+    }
 }

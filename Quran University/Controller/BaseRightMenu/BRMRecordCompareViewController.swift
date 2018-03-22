@@ -3,6 +3,8 @@ import AVFoundation
 import UIKit
 
 class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegate {
+    @IBOutlet weak var vMain: UIView!
+    
     // ********** Recording Section ********** //
     @IBOutlet weak var vRecording: UIView!
     @IBOutlet weak var vTimer: UIView!
@@ -94,6 +96,30 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
             let minuteString = minute > 9 ? "\(minute)" : "0\(minute)"
             
             lblTimer.text = "\(minuteString):\(secondString)"
+        }
+    }
+    
+    func setViewPosition() {
+        var vMVC = (ApplicationObject.MainViewController as! MMainViewController).vHeader!
+        var y = vMVC.frame.origin.y + vMVC.bounds.height
+        let heightAdjustment = vMVC.bounds.height
+
+        vMain.center = CGPoint(x: vMVC.frame.size.width  / 2, y: vMVC.frame.size.height / 2)
+        vMain.frame.origin.y = y
+        vMain.frame.size.height = vMain.frame.size.height - heightAdjustment
+        
+        let ayatSelection = AyatSelectionManager.getAyatSelection(recitationName: RecitationManager.getRecitationName(recitationIndex: currentRecitationIndex))
+        
+        if (ayatSelection.path?.boundingBoxOfPath.intersects(vMain.frame))! {
+            vMVC = (ApplicationObject.MainViewController as! MMainViewController).vFooter!
+            vMain.frame.size.height = vMain.frame.size.height + heightAdjustment
+            y = vMVC.frame.origin.y - vMain.bounds.height
+    
+            vMain.center = CGPoint(x: vMVC.frame.size.width  / 2, y: vMVC.frame.size.height / 2)
+            vMain.frame.origin.y = y
+        }
+        else {
+            vMain.frame.size.height = vMain.frame.size.height + heightAdjustment
         }
     }
     
@@ -233,6 +259,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
                                          ayatWaveform.trailingAnchor.constraint(equalTo: vAyat.trailingAnchor)])
             
             AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.getRecitationName(recitationIndex: currentRecitationIndex))
+            setViewPosition()
         } catch {
             print(error.localizedDescription)
         }
