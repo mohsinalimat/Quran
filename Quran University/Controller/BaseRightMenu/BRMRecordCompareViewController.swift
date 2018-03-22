@@ -67,12 +67,14 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         case .Recording:
             recordingPlayMode = AudioPlayMode.Paused
             
+            btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PauseGreen"), for: .normal)
             loadRecording()
             
             break
         case .Ayat:
             ayatPlayMode = AudioPlayMode.Paused
             
+            btnPlayAyat.setImage(#imageLiteral(resourceName: "img_PauseGreen"), for: .normal)
             loadAyat()
             
             break
@@ -167,7 +169,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 44100,
+            AVSampleRateKey: 32000,
             AVNumberOfChannelsKey: 2,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
@@ -209,18 +211,21 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         currentPlayMode = .Recording
         ayatPlayMode = AudioPlayMode.Paused
         
+        btnPlayAyat.setImage(#imageLiteral(resourceName: "img_PauseGreen"), for: .normal)
         ayatWaveform.audioPlayer.pause()
         
         switch recordingPlayMode {
         case .Paused:
             recordingPlayMode = .Playing
             
+            btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PauseGreen"), for: .normal)
             recordingWaveform.audioPlayer.play()
             
             break
         case .Playing:
             recordingPlayMode = .Paused
             
+            btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
             recordingWaveform.audioPlayer.pause()
             
             break
@@ -275,6 +280,8 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         currentPlayMode = .Ayat
         recordingPlayMode = AudioPlayMode.Paused
         
+        btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PauseGreen"), for: .normal)
+        
         if recordingWaveform != nil {
             recordingWaveform.audioPlayer.pause()
         }
@@ -283,12 +290,14 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         case .Paused:
             ayatPlayMode = .Playing
             
+            btnPlayAyat.setImage(#imageLiteral(resourceName: "img_PauseGreen"), for: .normal)
             ayatWaveform.audioPlayer.play()
             
             break
         case .Playing:
             ayatPlayMode = .Paused
             
+            btnPlayAyat.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
             ayatWaveform.audioPlayer.pause()
             
             break

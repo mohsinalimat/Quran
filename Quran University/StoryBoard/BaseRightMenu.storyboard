@@ -72,65 +72,65 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBC-Ce-aSP">
-                                                <rect key="frame" x="35" y="4" width="291" height="85"/>
+                                                <rect key="frame" x="44" y="4" width="310" height="85"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4k-sr-OGo">
-                                                        <rect key="frame" x="45" y="5" width="200" height="75"/>
+                                                        <rect key="frame" x="54" y="5" width="200" height="75"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                                        <color key="textColor" red="0.44705882349999998" green="0.39607843139999999" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ce4-f8-R5G">
-                                                <rect key="frame" x="2" y="15" width="30" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ce4-f8-R5G">
+                                                <rect key="frame" x="1" y="6" width="42" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="S"/>
+                                                <state key="normal" image="img_StopRed"/>
                                                 <connections>
                                                     <action selector="btnStopRecording_TouchUp:" destination="nil-8a-iUM" eventType="touchUpInside" id="J7w-px-3np"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pr-85-nDO">
-                                                <rect key="frame" x="2" y="48" width="30" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pr-85-nDO">
+                                                <rect key="frame" x="1" y="43" width="42" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="R"/>
+                                                <state key="normal" image="img_RefreshRed"/>
                                                 <connections>
                                                     <action selector="btnRecord_TouchUp:" destination="nil-8a-iUM" eventType="touchUpInside" id="6iD-US-MZ8"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g7F-DD-7gL">
-                                                <rect key="frame" x="35" y="4" width="291" height="85"/>
+                                                <rect key="frame" x="44" y="4" width="310" height="85"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aA-4J-Ibo">
-                                                <rect key="frame" x="329" y="31" width="30" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aA-4J-Ibo">
+                                                <rect key="frame" x="318" y="24" width="42" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="P"/>
+                                                <state key="normal" image="img_PlayGreen"/>
                                                 <connections>
                                                     <action selector="btnPlayRecording_TouchUp:" destination="nil-8a-iUM" eventType="touchUpInside" id="zAN-s4-HZu"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qtU-ac-4jQ">
-                                                <rect key="frame" x="35" y="91" width="291" height="85"/>
+                                                <rect key="frame" x="44" y="91" width="310" height="85"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAq-x3-NU8">
-                                                <rect key="frame" x="329" y="118" width="30" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAq-x3-NU8">
+                                                <rect key="frame" x="318" y="111" width="42" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="P"/>
+                                                <state key="normal" image="img_PlayGreen"/>
                                                 <connections>
                                                     <action selector="btnPlayAyat_TouchUp:" destination="nil-8a-iUM" eventType="touchUpInside" id="cKl-yz-HQL"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hy5-oQ-Tm8">
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hy5-oQ-Tm8">
                                                 <rect key="frame" x="95" y="179" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="P"/>
+                                                <state key="normal" image="icn_RewindGreen"/>
                                                 <connections>
                                                     <action selector="btnPreviousAyat_TouchUp:" destination="nil-8a-iUM" eventType="touchUpInside" id="5oA-my-Z4m"/>
                                                 </connections>
@@ -139,13 +139,13 @@
                                                 <rect key="frame" x="133" y="179" width="97" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.44705882352941173" green="0.396078431372549" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sj-A1-vPN">
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sj-A1-vPN">
                                                 <rect key="frame" x="238" y="179" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="N"/>
+                                                <state key="normal" image="icn_ForwardRed"/>
                                                 <connections>
                                                     <action selector="btnNextAyat_TouchUp:" destination="nil-8a-iUM" eventType="touchUpInside" id="vgy-2H-6An"/>
                                                 </connections>
@@ -493,6 +493,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icn_ForwardRed" width="26" height="25"/>
+        <image name="icn_RewindGreen" width="26" height="25"/>
         <image name="img_Close" width="19" height="19"/>
+        <image name="img_PlayGreen" width="42" height="44"/>
+        <image name="img_RefreshRed" width="42" height="44"/>
+        <image name="img_StopRed" width="42" height="44"/>
     </resources>
 </document>
