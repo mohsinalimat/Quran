@@ -67,14 +67,14 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         case .Recording:
             recordingPlayMode = AudioPlayMode.Paused
             
-            btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PauseGreen"), for: .normal)
+            btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
             loadRecording()
             
             break
         case .Ayat:
             ayatPlayMode = AudioPlayMode.Paused
             
-            btnPlayAyat.setImage(#imageLiteral(resourceName: "img_PauseGreen"), for: .normal)
+            btnPlayAyat.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
             loadAyat()
             
             break
@@ -149,7 +149,9 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
                 recordingWaveform.progressColor = .orange
                 recordingWaveform.allowSpacing = false
                 recordingWaveform.translatesAutoresizingMaskIntoConstraints = false
+                recordingPlayMode = .Paused
                 
+                btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
                 vRecording.addSubview(recordingWaveform)
                 
                 NSLayoutConstraint.activate([recordingWaveform.centerXAnchor.constraint(equalTo: vRecording.centerXAnchor),
@@ -211,7 +213,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         currentPlayMode = .Recording
         ayatPlayMode = AudioPlayMode.Paused
         
-        btnPlayAyat.setImage(#imageLiteral(resourceName: "img_PauseGreen"), for: .normal)
+        btnPlayAyat.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
         ayatWaveform.audioPlayer.pause()
         
         switch recordingPlayMode {
@@ -234,6 +236,8 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         
     func loadAyat() {
         do {
+            vAyat.subviews.forEach({ $0.removeFromSuperview() })
+            
             let ayatOrderId = RecitationManager.getRecitation(recitationIndex: currentRecitationIndex).AyatOrderId
             let currentRecitationNumber = currentRecitationIndex + 1
             
@@ -260,8 +264,9 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
             ayatWaveform.progressColor = .orange
             ayatWaveform.allowSpacing = false
             ayatWaveform.translatesAutoresizingMaskIntoConstraints = false
+            ayatPlayMode = .Paused
             
-            vAyat.subviews.forEach({ $0.removeFromSuperview() })
+            btnPlayAyat.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
             vAyat.addSubview(ayatWaveform)
             
             NSLayoutConstraint.activate([ayatWaveform.centerXAnchor.constraint(equalTo: vAyat.centerXAnchor),
@@ -280,7 +285,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         currentPlayMode = .Ayat
         recordingPlayMode = AudioPlayMode.Paused
         
-        btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PauseGreen"), for: .normal)
+        btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
         
         if recordingWaveform != nil {
             recordingWaveform.audioPlayer.pause()

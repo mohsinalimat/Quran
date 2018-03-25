@@ -1,12 +1,10 @@
 import Foundation
 
 class DocumentManager {
+    static let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
+    
     static func createDirectory(folderPath: String) {
-        guard let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
-            fatalError("No document directory found in application bundle.")
-        }
-        
-        let folderURL = documentURL.appendingPathComponent(folderPath)
+        let folderURL = documentsDirectory.appendingPathComponent(folderPath)
         
         if (try? folderURL.checkResourceIsReachable()) == nil {
             do {
@@ -34,11 +32,7 @@ class DocumentManager {
         }
     }
     static func copyFilesFromBundleForType(sourceFileType: String, targetPath: String) {
-        guard let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
-            fatalError("No document directory found in application bundle.")
-        }
-        
-        let targetURL = documentURL.appendingPathComponent(targetPath)
+        let targetURL = documentsDirectory.appendingPathComponent(targetPath)
         
         if (try? targetURL.checkResourceIsReachable()) != nil {
             do {
@@ -56,10 +50,6 @@ class DocumentManager {
     }
     
     static func copyFileFromBundle(sourceFileName: String, sourceFileExtension: String, targetFilePath: String) -> String {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
-            fatalError("No document directory found in application bundle.")
-        }
-        
         let targetFileURL = documentsDirectory.appendingPathComponent(targetFilePath)
         
         if (try? targetFileURL.checkResourceIsReachable()) == nil {
@@ -80,10 +70,6 @@ class DocumentManager {
         return targetFileURL.path
     }
     static func createFileInApplicationDirectory(contents: Data, targetFilePath: String) -> String {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
-            fatalError("No document directory found in application bundle.")
-        }
-        
         let targetFileURL = documentsDirectory.appendingPathComponent(targetFilePath)
         
         if (try? targetFileURL.checkResourceIsReachable()) == nil {
@@ -98,10 +84,6 @@ class DocumentManager {
         return targetFileURL.path
     }
     static func checkFileInApplicationDirectory(targetFilePath: String) -> String {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
-            fatalError("No document directory found in application bundle.")
-        }
-        
         let targetFileURL = documentsDirectory.appendingPathComponent(targetFilePath)
         var filePath = targetFileURL.path
         
@@ -112,10 +94,6 @@ class DocumentManager {
         return filePath
     }
     static func getFileURLInApplicationDirectory(targetFilePath: String) -> URL {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
-            fatalError("No document directory found in application bundle.")
-        }
-        
         return documentsDirectory.appendingPathComponent(targetFilePath)
     }
     static func checkFilesExistForSurahAyatOrderRange(startSurahId: Int64, endSurahId: Int64, startAyatOrderId: Int64, endAyatOrderId: Int64) -> Bool {
@@ -149,18 +127,14 @@ class DocumentManager {
         return status
     }
     static func clearDirectory(folderPath: String) {
-        guard let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
-            fatalError("No document directory found in application bundle.")
-        }
+        let folderURL = documentsDirectory.appendingPathComponent(folderPath)
         
-        let folderURL = documentURL.appendingPathComponent(folderPath)
-        
-        if (try? folderURL.checkResourceIsReachable()) == nil {
+        if (try? folderURL.checkResourceIsReachable()) != nil {
             do {
-                let filePaths = try FileManager.default.contentsOfDirectory(atPath: folderPath)
-                
-                for filePath in filePaths {
-                    try FileManager.default.removeItem(atPath: folderPath + filePath)
+                try FileManager.default.contentsOfDirectory(atPath: folderURL.path).lazy.forEach { fileName in
+                    let targetFileURL = folderURL.appendingPathComponent(fileName)
+                    
+                    try FileManager.default.removeItem(atPath: targetFileURL.path)
                 }
             }
             catch {
