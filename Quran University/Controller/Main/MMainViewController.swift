@@ -24,13 +24,24 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     // ********** Footer Section ********** //
     @IBOutlet weak var vFooter: UIView!
     @IBOutlet weak var btnLMenu: UIButton!
+    @IBOutlet weak var btnRMenu: UIButton!
+    
+    // ********** Footer Player Section ********** //
+    @IBOutlet weak var vPlayer: UIView!
     @IBOutlet weak var btnRefresh: UIButton!
     @IBOutlet weak var btnPrevious: UIButton!
     @IBOutlet weak var btnStop: UIButton!
     @IBOutlet weak var btnPlay: UIButton!
     @IBOutlet weak var btnPause: UIButton!
     @IBOutlet weak var btnNext: UIButton!
-    @IBOutlet weak var btnRMenu: UIButton!
+    
+    // ********** Footer Recording Section ********** //
+    @IBOutlet weak var vRecording: UIView!
+    @IBOutlet weak var btnRRefresh: UIButton!
+    @IBOutlet weak var btnRRecord: UIButton!
+    @IBOutlet weak var btnRStop: UIButton!
+    @IBOutlet weak var btnGPlay: UIButton!
+    @IBOutlet weak var btnGRefresh: UIButton!
     
     // ********** Base Left Menu Section ********** //
     @IBOutlet var vBaseLeftMenu: UIView!
@@ -235,6 +246,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.view.viewWithTag(ViewTag.BaseLeftMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseRightMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.ListenRepeatMenu.rawValue)?.isHidden = true
+        
+        setFooterMode(currentFooterSectionMode: .Player)
     }
     func showMenu(tag: Int) {
         if self.view.viewWithTag(tag)?.isHidden == false {
@@ -249,6 +262,62 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     func updateListenRepeatView(info: String) {
         self.view.viewWithTag(ViewTag.ListenRepeatMenu.rawValue)?.isHidden = false
         lblListenRepeatInfo.text = info
+    }
+    func setFooterMode(currentFooterSectionMode: FooterSectionMode) {
+        vPlayer.isHidden = true
+        vRecording.isHidden = true
+        
+        switch currentFooterSectionMode {
+        case .Player:
+            vPlayer.isHidden = false
+            
+            break
+        case .Recording:
+            vRecording.isHidden = false
+            
+            setRecordCompareMode(currentRecordCompareMode: .Ready)
+            
+            break
+        }
+    }
+    func setRecordCompareMode(currentRecordCompareMode: RecordCompareMode) {
+        btnRRefresh.isEnabled = false
+        btnRRecord.isEnabled = false
+        btnRStop.isEnabled = false
+        btnGPlay.isEnabled = false
+        btnGRefresh.isEnabled = false
+        
+        switch currentRecordCompareMode {
+        case .Ready:
+            btnRRecord.isEnabled = true
+            
+            break
+        case .RRefresh:
+            btnRRefresh.isEnabled = true
+            btnRStop.isEnabled = true
+            
+            break
+        case .RRecord:
+            btnRRefresh.isEnabled = true
+            btnRStop.isEnabled = true
+            
+            break
+        case .RStop:
+            btnRRefresh.isEnabled = true
+            btnGPlay.isEnabled = true
+            
+            break
+        case .GPlay:
+            btnRRefresh.isEnabled = true
+            btnGRefresh.isEnabled = true
+            
+            break
+        case .GRefresh:
+            btnRRefresh.isEnabled = true
+            btnGRefresh.isEnabled = true
+            
+            break
+        }
     }
     
     // ********** Header Section ********** //
@@ -309,29 +378,6 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.performSegue(withIdentifier: "SegueDownload", sender: nil)
     }
     
-    // ********** Base Right Menu Section ********** //
-    @IBAction func btnRecordCompare_TouchUp(_ sender: Any) {
-        hideMenu()
-        
-        if RecitationManager.validatePlayer() {
-            let startAyatOrderId = RecitationManager.getRecitation(recitationIndex: 0).AyatOrderId
-            let endAyatOrderId = RecitationManager.getRecitation(recitationIndex: (RecitationManager.getRecitationCount() - 1)).AyatOrderId
-            
-            if DocumentManager.checkFilesExistForSurahAyatOrderRange(startSurahId: ApplicationData.CurrentSurah.Id, endSurahId: ApplicationData.CurrentSurah.Id, startAyatOrderId: startAyatOrderId, endAyatOrderId: endAyatOrderId) {
-                self.performSegue(withIdentifier: "SegueRecordCompare", sender: nil)
-            }
-            else {
-                DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.AYAT_MISSING_DOWNLOAD_SCRIPT_RECITATION, okHandler: {})
-            }
-        }
-    }
-    @IBAction func btnListenRepeat_TouchUp(_ sender: Any) {
-        hideMenu()
-        
-        self.performSegue(withIdentifier: "SegueListenRepeat", sender: nil)
-    }
-    
-    
     // ********** Content Section ********** //
     @IBAction func sgrLeft_Performed(_ sender: UISwipeGestureRecognizer) {
         hideMenu()
@@ -360,6 +406,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBAction func btnLMenu_TouchUp(_ sender: UIButton) {
         showMenu(tag: ViewTag.BaseLeftMenu.rawValue)
     }
+    @IBAction func btnRMenu_TouchUp(_ sender: UIButton) {
+        showMenu(tag: ViewTag.BaseRightMenu.rawValue)
+    }
+    
+    // ********** Footer Player Section ********** //
     @IBAction func btnRefresh_TouchUp(_ sender: UIButton) {
         hideMenu()
         
@@ -400,7 +451,45 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         
         RecitationManager.nextRecitation(onAudioPlayFinish: false)
     }
-    @IBAction func btnRMenu_TouchUp(_ sender: UIButton) {
-        showMenu(tag: ViewTag.BaseRightMenu.rawValue)
+    
+    // ********** Footer Recording Section ********** //
+    @IBAction func btnRRefresh_TouchUp(_ sender: Any) {
+        setRecordCompareMode(currentRecordCompareMode: .RRefresh)
+    }
+    @IBAction func btnRRecord_TouchUp(_ sender: Any) {
+        setRecordCompareMode(currentRecordCompareMode: .RRecord)
+        self.performSegue(withIdentifier: "SegueRecordCompare", sender: nil)
+    }
+    @IBAction func btnRStop_TouchUp(_ sender: Any) {
+        setRecordCompareMode(currentRecordCompareMode: .RStop)
+    }
+    @IBAction func btnGPlay_TouchUp(_ sender: Any) {
+        setRecordCompareMode(currentRecordCompareMode: .GPlay)
+    }
+    @IBAction func btnGRefresh_TouchUp(_ sender: Any) {
+        setRecordCompareMode(currentRecordCompareMode: .GRefresh)
+    }
+    
+    // ********** Base Right Menu Section ********** //
+    @IBAction func btnRecordCompare_TouchUp(_ sender: Any) {
+        hideMenu()
+        
+        if RecitationManager.validatePlayer() {
+            let startAyatOrderId = RecitationManager.getRecitation(recitationIndex: 0).AyatOrderId
+            let endAyatOrderId = RecitationManager.getRecitation(recitationIndex: (RecitationManager.getRecitationCount() - 1)).AyatOrderId
+            
+            if DocumentManager.checkFilesExistForSurahAyatOrderRange(startSurahId: ApplicationData.CurrentSurah.Id, endSurahId: ApplicationData.CurrentSurah.Id, startAyatOrderId: startAyatOrderId, endAyatOrderId: endAyatOrderId) {
+                
+                setFooterMode(currentFooterSectionMode: .Recording)
+            }
+            else {
+                DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.AYAT_MISSING_DOWNLOAD_SCRIPT_RECITATION, okHandler: {})
+            }
+        }
+    }
+    @IBAction func btnListenRepeat_TouchUp(_ sender: Any) {
+        hideMenu()
+        
+        self.performSegue(withIdentifier: "SegueListenRepeat", sender: nil)
     }
 }

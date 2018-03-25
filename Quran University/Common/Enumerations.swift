@@ -78,3 +78,17 @@ enum RecordComparePlayMode: Int32 {
     case Recording = 1
     case Ayat = 2
 }
+
+enum FooterSectionMode: Int32 {
+    case Player = 1
+    case Recording = 2
+}
+
+enum RecordCompareMode: Int32 {
+    case Ready = 1
+    case RRefresh = 2
+    case RRecord = 3
+    case RStop = 4
+    case GPlay = 5
+    case GRefresh = 6
+}

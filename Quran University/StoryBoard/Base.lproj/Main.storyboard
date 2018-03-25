@@ -231,6 +231,53 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yfu-Td-ZeC">
+                                        <rect key="frame" x="67" y="1" width="240" height="57"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zy3-Er-xw5">
+                                                <rect key="frame" x="1" y="5.5" width="40" height="46"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_RefreshRedBar"/>
+                                                <connections>
+                                                    <action selector="btnRRefresh_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="JDV-Kk-7il"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhM-dn-eN3">
+                                                <rect key="frame" x="41" y="1" width="44" height="55"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_RecordRedBar"/>
+                                                <connections>
+                                                    <action selector="btnRRecord_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="G3g-Wx-hO9"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKD-yg-4p0">
+                                                <rect key="frame" x="85" y="5.5" width="41" height="46"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_StopRedBar"/>
+                                                <connections>
+                                                    <action selector="btnRStop_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="wM1-4A-u9j"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UlF-Cz-FFn">
+                                                <rect key="frame" x="149" y="1" width="49" height="55"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_PlayGreenBar"/>
+                                                <connections>
+                                                    <action selector="btnGPlay_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="9lS-y3-Mzu"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3H1-EL-xD9">
+                                                <rect key="frame" x="198" y="5.5" width="41" height="46"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="img_RefreshGreenBar"/>
+                                                <connections>
+                                                    <action selector="btnGRefresh_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="VdH-Ko-hi6"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hG1-C5-6Y1">
                                         <rect key="frame" x="311" y="8" width="62" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -257,6 +304,8 @@
                     <connections>
                         <outlet property="btnBookmark" destination="A5u-mb-L3s" id="WYi-vL-BPg"/>
                         <outlet property="btnDownload" destination="Nv8-VS-a9m" id="fwd-Em-PLx"/>
+                        <outlet property="btnGPlay" destination="UlF-Cz-FFn" id="4lF-ck-lLL"/>
+                        <outlet property="btnGRefresh" destination="3H1-EL-xD9" id="xf6-AV-ntt"/>
                         <outlet property="btnJuzz" destination="Wq1-I2-fNs" id="RSQ-J2-s7o"/>
                         <outlet property="btnLMenu" destination="mTi-Dw-ve3" id="BR1-zH-4o3"/>
                         <outlet property="btnMenu" destination="0zU-xW-XiA" id="pQD-yU-oV3"/>
@@ -267,6 +316,9 @@
                         <outlet property="btnPlay" destination="2HH-0o-5yO" id="KO6-Cm-4kV"/>
                         <outlet property="btnPrevious" destination="NF4-Ff-3tT" id="GeY-Gz-cdD"/>
                         <outlet property="btnRMenu" destination="hG1-C5-6Y1" id="kDS-Bh-fbZ"/>
+                        <outlet property="btnRRecord" destination="hhM-dn-eN3" id="lxU-fE-93I"/>
+                        <outlet property="btnRRefresh" destination="zy3-Er-xw5" id="fSR-WK-yp1"/>
+                        <outlet property="btnRStop" destination="cKD-yg-4p0" id="EjX-t3-QsO"/>
                         <outlet property="btnReciter" destination="PDl-Eu-7cD" id="dS0-tO-gu0"/>
                         <outlet property="btnRefresh" destination="Cdr-Sw-kEL" id="dxf-90-9TP"/>
                         <outlet property="btnSetting" destination="y2u-v7-4XT" id="6G0-UX-sQF"/>
@@ -279,6 +331,8 @@
                         <outlet property="vFooter" destination="SJS-9O-BG0" id="McY-uQ-maY"/>
                         <outlet property="vHeader" destination="56n-73-bc1" id="MdY-n4-v4s"/>
                         <outlet property="vListenRepeat" destination="Ruj-iU-cMT" id="DvF-no-Ro4"/>
+                        <outlet property="vPlayer" destination="HmC-2a-kJ6" id="zDo-rI-VgX"/>
+                        <outlet property="vRecording" destination="Yfu-Td-ZeC" id="anj-Og-gb7"/>
                         <outlet property="vTopMenu" destination="pzi-e7-LuZ" id="M2h-Zu-IDh"/>
                         <segue destination="Yws-IH-IEe" kind="presentation" identifier="SegueDownloadPage" animates="NO" id="UFM-SL-3Ag"/>
                         <segue destination="tss-5n-Ifh" kind="presentation" identifier="SegueDropDown" id="UkX-2w-mbA"/>
@@ -672,10 +726,15 @@
         <image name="img_Next" width="39" height="44"/>
         <image name="img_Pause" width="34" height="44"/>
         <image name="img_Play" width="44" height="53"/>
+        <image name="img_PlayGreenBar" width="49" height="55"/>
+        <image name="img_RecordRedBar" width="44" height="55"/>
         <image name="img_Refresh" width="39" height="44"/>
+        <image name="img_RefreshGreenBar" width="41" height="46"/>
+        <image name="img_RefreshRedBar" width="40" height="46"/>
         <image name="img_RightMenu" width="62" height="44"/>
         <image name="img_Settings" width="25" height="23"/>
         <image name="img_Stop" width="35" height="44"/>
+        <image name="img_StopRedBar" width="41" height="46"/>
         <image name="img_Unlock" width="17" height="20"/>
     </resources>
 </document>

@@ -50,15 +50,16 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
                         self.totalRecitation = RecitationManager.getRecitationCount()
                         
                         self.loadAyat()
+                        self.startRecording()
                         
                         NotificationCenter.default.addObserver(self, selector: #selector(self.didAudioPlayToEnd), name: .AVPlayerItemDidPlayToEndTime, object: nil)
                     } else {
-                        self.dismiss(animated: true, completion: nil)
+                        self.closePopUp()
                     }
                 }
             }
         } catch {
-            self.dismiss(animated: true, completion: nil)
+            closePopUp()
         }
     }
     
@@ -133,6 +134,11 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
             vMain.frame.size.height = vMain.frame.size.height + heightAdjustment
         }
     }
+    func closePopUp() {
+        DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
+        (ApplicationObject.MainViewController as! MMainViewController).setFooterMode(currentFooterSectionMode: .Player)
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func loadRecording() {
         do {
@@ -143,7 +149,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
             if DocumentManager.checkFileInApplicationDirectory(targetFilePath: recordingPath) != "" {
                 let url = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: recordingPath)
                 
-                recordingWaveform = try ASWaveformPlayerView(audioURL: url, sampleCount: 1024, amplificationFactor: 2000)
+                recordingWaveform = try ASWaveformPlayerView(audioURL: url, sampleCount: 1024, amplificationFactor: 4000)
                 
                 recordingWaveform.normalColor = .lightGray
                 recordingWaveform.progressColor = .orange
@@ -310,8 +316,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
     }
     
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {
-        DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
-        self.dismiss(animated: true, completion: nil)
+        closePopUp()
     }
     
     // ********** Recording Section ********** //
