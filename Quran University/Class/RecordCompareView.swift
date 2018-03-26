@@ -38,6 +38,8 @@ class RecordCompareView: UIView {
             
             btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
             loadRecording()
+            loadAyat()
+            playPauseAyat()
             
             break
         case .Ayat:
@@ -71,31 +73,31 @@ class RecordCompareView: UIView {
     }
     
     func loadView() {
-        //        DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
-        //
-        //        recordingSession = AVAudioSession.sharedInstance()
-        //
-        //        do {
-        //            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        //            try recordingSession.setActive(true)
-        //
-        //            recordingSession.requestRecordPermission() { [unowned self] allowed in
-        //                DispatchQueue.main.async {
-        //                    if allowed {
-        self.totalRecitation = RecitationManager.getRecitationCount()
-        
-        self.loadAyat()
-        self.startRecording()
-        //
-        //                        NotificationCenter.default.addObserver(self, selector: #selector(self.didAudioPlayToEnd), name: .AVPlayerItemDidPlayToEndTime, object: nil)
-        //                    } else {
-        //                        self.closePopUp()
-        //                    }
-        //                }
-        //            }
-        //        } catch {
-        //            closePopUp()
-        //        }
+        DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
+
+        recordingSession = AVAudioSession.sharedInstance()
+
+        do {
+            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try recordingSession.setActive(true)
+
+            recordingSession.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        self.totalRecitation = RecitationManager.getRecitationCount()
+                        
+                        self.loadAyat()
+                        self.startRecording()
+
+                        NotificationCenter.default.addObserver(self, selector: #selector(self.didAudioPlayToEnd), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+                    } else {
+                        self.closePopUp()
+                    }
+                }
+            }
+        } catch {
+            closePopUp()
+        }
     }
     func setViewPosition() {
         var vMVC = ApplicationObject.MainViewController.vHeader!
@@ -130,13 +132,8 @@ class RecordCompareView: UIView {
         }
     }
     func closePopUp() {
-        if audioRecorder != nil {
-            audioRecorder.stop()
-        }
-        
+        audioRecorder.stop()
         timer.invalidate()
-        audioRecorder = nil
-        
         DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
         ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .Player)
         ApplicationObject.MainViewController.hideMenu(tag: ViewTag.RecordCompare.rawValue)
@@ -167,6 +164,13 @@ class RecordCompareView: UIView {
                                              recordingWaveform.heightAnchor.constraint(equalTo: vRecording.heightAnchor),
                                              recordingWaveform.leadingAnchor.constraint(equalTo: vRecording.leadingAnchor),
                                              recordingWaveform.trailingAnchor.constraint(equalTo: vRecording.trailingAnchor)])
+            }
+            else {
+                startRecording()
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05, execute: {
+                    self.finishRecording()
+                })
             }
             
         } catch {
@@ -207,16 +211,15 @@ class RecordCompareView: UIView {
         }
     }
     func finishRecording() {
-        audioRecorder.stop()
-        timer.invalidate()
-        
         vRecording.isHidden = false
         vTimer.isHidden = true
         btnRecord.isEnabled = true
         btnStopRecording.isEnabled = false
         
-        ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RStop)
+        audioRecorder.stop()
+        timer.invalidate()
         loadRecording()
+        ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RStop)
     }
     func playPauseRecording() {
         currentPlayMode = .Recording
@@ -342,15 +345,13 @@ class RecordCompareView: UIView {
     @IBAction func btnPreviousAyat_TouchUp(_ sender: Any) {
         currentRecitationIndex = currentRecitationIndex - 1
         
-        finishRecording()
-        loadRecording()
         loadAyat()
+        finishRecording()
     }
     @IBAction func btnNextAyat_TouchUp(_ sender: Any) {
         currentRecitationIndex = currentRecitationIndex + 1
         
-        finishRecording()
-        loadRecording()
         loadAyat()
+        finishRecording()
     }
 }

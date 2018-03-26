@@ -491,6 +491,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         vRecordCompare.playPauseRecording()
     }
     @IBAction func btnGRefresh_TouchUp(_ sender: Any) {
+        vRecordCompare.loadRecording()
         vRecordCompare.playPauseRecording()
     }
     
