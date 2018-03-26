@@ -3,7 +3,7 @@ import UIKit
 import AVFoundation
 
 struct ApplicationObject {
-    static var MainViewController = UIViewController()
+    static var MainViewController = MMainViewController()
     static var CurrentViewController = UIViewController()
     static var QuranPageImageView = UIImageView()
     static var RecitationAudioPlayer = AVAudioPlayer()

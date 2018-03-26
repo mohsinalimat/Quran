@@ -2,7 +2,7 @@ import UIKit
 import Alamofire
 import AVFoundation
 
-class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPlayerDelegate {
+class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     // ********** Header Section ********** //
     @IBOutlet weak var vHeader: UIView!
     @IBOutlet weak var btnMenu: UIButton!
@@ -49,6 +49,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     // ********** Base Right Menu Section ********** //
     @IBOutlet var vBaseRightMenu: UIView!
     @IBOutlet var vListenRepeat: UIView!
+    @IBOutlet var vRecordCompare: RecordCompareView!
     @IBOutlet weak var lblListenRepeatInfo: UILabel!
     
     var startTouchPoint = CGPoint()
@@ -211,6 +212,16 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         
         self.view.addSubview(vTopMenu)
         
+        x = vHeader.frame.origin.x
+        y = vHeader.frame.origin.y + vHeader.bounds.height
+        height = vRecordCompare.frame.size.height
+        width = vRecordCompare.frame.size.width
+        
+        vRecordCompare.tag = ViewTag.RecordCompare.rawValue
+        vRecordCompare.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        self.view.addSubview(vRecordCompare)
+        
         x = vFooter.frame.origin.x
         y = vFooter.frame.origin.y - vBaseLeftMenu.bounds.height
         height = vBaseLeftMenu.frame.size.height
@@ -236,7 +247,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         height = vListenRepeat.frame.size.height
         width = vFooter.frame.size.width
         
-        vListenRepeat.tag = ViewTag.ListenRepeatMenu.rawValue
+        vListenRepeat.tag = ViewTag.ListenRepeat.rawValue
         vListenRepeat.frame = CGRect(x: x, y: y, width: width, height: height)
         
         self.view.addSubview(vListenRepeat)
@@ -245,9 +256,12 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.view.viewWithTag(ViewTag.TopMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseLeftMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseRightMenu.rawValue)?.isHidden = true
-        self.view.viewWithTag(ViewTag.ListenRepeatMenu.rawValue)?.isHidden = true
+        self.view.viewWithTag(ViewTag.ListenRepeat.rawValue)?.isHidden = true
+    }
+    func hideMenu(tag: Int) {
+        hideMenu()
         
-        setFooterMode(currentFooterSectionMode: .Player)
+        self.view.viewWithTag(tag)?.isHidden = true
     }
     func showMenu(tag: Int) {
         if self.view.viewWithTag(tag)?.isHidden == false {
@@ -260,12 +274,14 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     func updateListenRepeatView(info: String) {
-        self.view.viewWithTag(ViewTag.ListenRepeatMenu.rawValue)?.isHidden = false
+        self.view.viewWithTag(ViewTag.ListenRepeat.rawValue)?.isHidden = false
         lblListenRepeatInfo.text = info
     }
     func setFooterMode(currentFooterSectionMode: FooterSectionMode) {
         vPlayer.isHidden = true
         vRecording.isHidden = true
+        
+        setViewForFooterMode(isUserInteractionEnabled: true)
         
         switch currentFooterSectionMode {
         case .Player:
@@ -275,6 +291,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         case .Recording:
             vRecording.isHidden = false
             
+            setViewForFooterMode(isUserInteractionEnabled: false)
             setRecordCompareMode(currentRecordCompareMode: .Ready)
             
             break
@@ -318,6 +335,12 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             
             break
         }
+    }
+    func setViewForFooterMode(isUserInteractionEnabled: Bool) {
+        vHeader.isUserInteractionEnabled = isUserInteractionEnabled
+        ivQuranPage.isUserInteractionEnabled = isUserInteractionEnabled
+        btnLMenu.isUserInteractionEnabled = isUserInteractionEnabled
+        btnRMenu.isUserInteractionEnabled = isUserInteractionEnabled
     }
     
     // ********** Header Section ********** //
@@ -454,20 +477,21 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Recording Section ********** //
     @IBAction func btnRRefresh_TouchUp(_ sender: Any) {
-        setRecordCompareMode(currentRecordCompareMode: .RRefresh)
+        vRecordCompare.startRecording()
     }
     @IBAction func btnRRecord_TouchUp(_ sender: Any) {
+        showMenu(tag: ViewTag.RecordCompare.rawValue)
         setRecordCompareMode(currentRecordCompareMode: .RRecord)
-        self.performSegue(withIdentifier: "SegueRecordCompare", sender: nil)
+        vRecordCompare.loadView()
     }
     @IBAction func btnRStop_TouchUp(_ sender: Any) {
-        setRecordCompareMode(currentRecordCompareMode: .RStop)
+        vRecordCompare.finishRecording()
     }
     @IBAction func btnGPlay_TouchUp(_ sender: Any) {
-        setRecordCompareMode(currentRecordCompareMode: .GPlay)
+        vRecordCompare.playPauseRecording()
     }
     @IBAction func btnGRefresh_TouchUp(_ sender: Any) {
-        setRecordCompareMode(currentRecordCompareMode: .GRefresh)
+        vRecordCompare.playPauseRecording()
     }
     
     // ********** Base Right Menu Section ********** //

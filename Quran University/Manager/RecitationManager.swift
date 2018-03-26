@@ -219,7 +219,7 @@ class RecitationManager {
             
             do {
                 ApplicationObject.RecitationAudioPlayer = try AVAudioPlayer(contentsOf: fileURL)
-                ApplicationObject.RecitationAudioPlayer.delegate = ApplicationObject.MainViewController as? AVAudioPlayerDelegate
+                ApplicationObject.RecitationAudioPlayer.delegate = ApplicationObject.MainViewController
                 audioPlayerInitialized = true
                 
                 AyatSelectionManager.highlightAyatSelection(recitationName: recitationName)
@@ -241,7 +241,7 @@ class RecitationManager {
                     listenRepeatInfo = listenRepeatInfo + " Range(\(currentRangeRepeatFor)/\(rangeRepeatFor))"
                 }
                 
-                (ApplicationObject.MainViewController as! MMainViewController).updateListenRepeatView(info: listenRepeatInfo)
+                ApplicationObject.MainViewController.updateListenRepeatView(info: listenRepeatInfo)
             }
             
             setPlayerMode(mode: .Play)
@@ -279,7 +279,7 @@ class RecitationManager {
         if onAudioPlayFinish && ayatRepeatFor > 0 {
             let listenRepeatInfo = "Ayat(\(currentAyatRecitationSilence) sec)"
             
-            (ApplicationObject.MainViewController as! MMainViewController).updateListenRepeatView(info: listenRepeatInfo)
+            ApplicationObject.MainViewController.updateListenRepeatView(info: listenRepeatInfo)
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + currentAyatRecitationSilence, execute: {
                 continueNextRecitation()
@@ -304,7 +304,7 @@ class RecitationManager {
                         
                         currentRangeRepeatFor = currentRangeRepeatFor + 1
                         
-                        (ApplicationObject.MainViewController as! MMainViewController).updateListenRepeatView(info: listenRepeatInfo)
+                        ApplicationObject.MainViewController.updateListenRepeatView(info: listenRepeatInfo)
                         
                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + currentRangeRecitationSilence, execute: {
                             startPlayRecitation()
@@ -315,7 +315,7 @@ class RecitationManager {
                         currentPageIndex = 0
                         
                         if ayatRepeatFor > 0 || rangeRepeatFor > 0 {
-                            (ApplicationObject.MainViewController as! MMainViewController).hideMenu()
+                            ApplicationObject.MainViewController.hideMenu()
                         }
                         
                         loadPageForContinuousRecitation()

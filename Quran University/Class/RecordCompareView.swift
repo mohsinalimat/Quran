@@ -2,9 +2,7 @@ import ASWaveformPlayerView
 import AVFoundation
 import UIKit
 
-class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegate {
-    @IBOutlet weak var vMain: UIView!
-    
+class RecordCompareView: UIView {
     // ********** Recording Section ********** //
     @IBOutlet weak var vRecording: UIView!
     @IBOutlet weak var vTimer: UIView!
@@ -33,36 +31,6 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
     var second = 0
     var minute = 0
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
-        
-        recordingSession = AVAudioSession.sharedInstance()
-        
-        do {
-            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-            try recordingSession.setActive(true)
-            
-            recordingSession.requestRecordPermission() { [unowned self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        self.totalRecitation = RecitationManager.getRecitationCount()
-                        
-                        self.loadAyat()
-                        self.startRecording()
-                        
-                        NotificationCenter.default.addObserver(self, selector: #selector(self.didAudioPlayToEnd), name: .AVPlayerItemDidPlayToEndTime, object: nil)
-                    } else {
-                        self.closePopUp()
-                    }
-                }
-            }
-        } catch {
-            closePopUp()
-        }
-    }
-    
     @objc func didAudioPlayToEnd() {
         switch currentPlayMode {
         case .Recording:
@@ -85,7 +53,7 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         if minute == 4 {
             finishRecording()
             
-            DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.MAX_RECORDING_LIMIT, okHandler: {})
+            DialogueManager.showInfo(viewController: ApplicationObject.MainViewController, message: ApplicationInfoMessage.MAX_RECORDING_LIMIT, okHandler: {})
         }
         else {
             second += 1
@@ -102,20 +70,47 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         }
     }
     
+    func loadView() {
+        //        DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
+        //
+        //        recordingSession = AVAudioSession.sharedInstance()
+        //
+        //        do {
+        //            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        //            try recordingSession.setActive(true)
+        //
+        //            recordingSession.requestRecordPermission() { [unowned self] allowed in
+        //                DispatchQueue.main.async {
+        //                    if allowed {
+        self.totalRecitation = RecitationManager.getRecitationCount()
+        
+        self.loadAyat()
+        self.startRecording()
+        //
+        //                        NotificationCenter.default.addObserver(self, selector: #selector(self.didAudioPlayToEnd), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+        //                    } else {
+        //                        self.closePopUp()
+        //                    }
+        //                }
+        //            }
+        //        } catch {
+        //            closePopUp()
+        //        }
+    }
     func setViewPosition() {
-        var vMVC = (ApplicationObject.MainViewController as! MMainViewController).vHeader!
+        var vMVC = ApplicationObject.MainViewController.vHeader!
         var y = vMVC.frame.origin.y + vMVC.bounds.height
         let heightAdjustment = vMVC.bounds.height
-
-        vMain.center = CGPoint(x: vMVC.frame.size.width  / 2, y: vMVC.frame.size.height / 2)
-        vMain.frame.origin.y = y
-        vMain.frame.size.height = vMain.frame.size.height - heightAdjustment
+        
+        self.center = CGPoint(x: vMVC.frame.size.width  / 2, y: vMVC.frame.size.height / 2)
+        self.frame.origin.y = y
+        self.frame.size.height = self.frame.size.height - heightAdjustment
         
         let ayatSelectionList = AyatSelectionManager.getAyatSelectionList(recitationName: RecitationManager.getRecitationName(recitationIndex: currentRecitationIndex))
         var status = false
         
         for ayatSelection in ayatSelectionList {
-            if (ayatSelection.path?.boundingBoxOfPath.intersects(vMain.frame))! {
+            if (ayatSelection.path?.boundingBoxOfPath.intersects(self.frame))! {
                 status = true
                 
                 break
@@ -123,21 +118,28 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         }
         
         if status {
-            vMVC = (ApplicationObject.MainViewController as! MMainViewController).vFooter!
-            vMain.frame.size.height = vMain.frame.size.height + heightAdjustment
-            y = vMVC.frame.origin.y - vMain.bounds.height
-    
-            vMain.center = CGPoint(x: vMVC.frame.size.width  / 2, y: vMVC.frame.size.height / 2)
-            vMain.frame.origin.y = y
+            vMVC = ApplicationObject.MainViewController.vFooter!
+            self.frame.size.height = self.frame.size.height + heightAdjustment
+            y = vMVC.frame.origin.y - self.bounds.height
+            
+            self.center = CGPoint(x: vMVC.frame.size.width  / 2, y: vMVC.frame.size.height / 2)
+            self.frame.origin.y = y
         }
         else {
-            vMain.frame.size.height = vMain.frame.size.height + heightAdjustment
+            self.frame.size.height = self.frame.size.height + heightAdjustment
         }
     }
     func closePopUp() {
+        if audioRecorder != nil {
+            audioRecorder.stop()
+        }
+        
+        timer.invalidate()
+        audioRecorder = nil
+        
         DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
-        (ApplicationObject.MainViewController as! MMainViewController).setFooterMode(currentFooterSectionMode: .Player)
-        self.dismiss(animated: true, completion: nil)
+        ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .Player)
+        ApplicationObject.MainViewController.hideMenu(tag: ViewTag.RecordCompare.rawValue)
     }
     
     func loadRecording() {
@@ -174,7 +176,6 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
     func startRecording() {
         let recordingPath = ApplicationMethods.getRecitationRecordingPath(currentRecitationIndex: currentRecitationIndex)
         let url = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: recordingPath)
-        
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 32000,
@@ -182,23 +183,25 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
         
+        minute = 0
+        second = 0
+        vRecording.isHidden = true
+        vTimer.isHidden = false
+        lblTimer.text = "00:00"
+        
+        timer.invalidate()
+        
         do {
             audioRecorder = try AVAudioRecorder(url: url, settings: settings)
-            audioRecorder.delegate = self
-            audioRecorder.record()
-            
-            minute = 0
-            second = 0
-            vRecording.isHidden = true
-            vTimer.isHidden = false
-            lblTimer.text = "00:00"
-            
-            timer.invalidate()
-            
+            audioRecorder.delegate = ApplicationObject.MainViewController
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+            
+            audioRecorder.record()
             
             btnRecord.isEnabled = false
             btnStopRecording.isEnabled = true
+            
+            ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RRefresh)
         } catch {
             finishRecording()
         }
@@ -209,10 +212,10 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
         
         vRecording.isHidden = false
         vTimer.isHidden = true
-        audioRecorder = nil
         btnRecord.isEnabled = true
         btnStopRecording.isEnabled = false
         
+        ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RStop)
         loadRecording()
     }
     func playPauseRecording() {
@@ -238,8 +241,10 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
             
             break
         }
-    }
         
+        ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .GPlay)
+    }
+    
     func loadAyat() {
         do {
             vAyat.subviews.forEach({ $0.removeFromSuperview() })
@@ -337,12 +342,14 @@ class BRMRecordCompareViewController: BaseViewController, AVAudioRecorderDelegat
     @IBAction func btnPreviousAyat_TouchUp(_ sender: Any) {
         currentRecitationIndex = currentRecitationIndex - 1
         
+        finishRecording()
         loadRecording()
         loadAyat()
     }
     @IBAction func btnNextAyat_TouchUp(_ sender: Any) {
         currentRecitationIndex = currentRecitationIndex + 1
         
+        finishRecording()
         loadRecording()
         loadAyat()
     }
