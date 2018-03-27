@@ -36,6 +36,16 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
         ayatNumber = NumberRepository().getFirstNumber()
         rangeNumber = ayatNumber
         
+        if RecitationManager.recitationList.count > 0 {
+            let firstRecitation = RecitationManager.getRecitation(recitationIndex: 0)
+            let lastRecitation = RecitationManager.getRecitation(recitationIndex: (RecitationManager.recitationList.count - 1))
+            
+            startSurah = SurahRepository().getSurah(Id: firstRecitation.SurahId)
+            endSurah = SurahRepository().getSurah(Id: lastRecitation.SurahId)
+            startAyat = firstRecitation
+            endAyat = lastRecitation
+        }
+        
         let recitationPreferenceList = RecitationPreferenceRepository().getRecitationPreferenceList()
         
         if recitationPreferenceList.count > 0 {
