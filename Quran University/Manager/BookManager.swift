@@ -32,6 +32,8 @@ class BookManager {
         case .WordMeaning:
             surahList = SurahRepository().getSurahList(fromSurahId: 1, toSurahId: 1)
             
+            startDummyProgress(progressFactor: 0.01, delayInSeconds: 1)
+            
             break
         case .Tafseer:
             surahList = SurahRepository().getSurahList()
@@ -43,6 +45,8 @@ class BookManager {
             break
         case .CauseOfRevelation:
             surahList = SurahRepository().getSurahList(fromSurahId: 1, toSurahId: 1)
+            
+            startDummyProgress(progressFactor: 0.01, delayInSeconds: 1)
             
             break
         }
@@ -173,5 +177,17 @@ class BookManager {
         else {
             terminateDownload = true
         }
+    }
+    static func startDummyProgress(progressFactor: Float, delayInSeconds: Double) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds, execute: {
+            self.pvOverallProgressView.progress = self.pvOverallProgressView.progress + progressFactor
+            
+            if self.pvOverallProgressView.progress < 0.9 && !terminateDownload {
+                startDummyProgress(progressFactor: progressFactor, delayInSeconds: delayInSeconds)
+            }
+            else if terminateDownload {
+                self.pvOverallProgressView.progress = 0
+            }
+        })
     }
 }
