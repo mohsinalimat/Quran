@@ -299,7 +299,14 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
                 recitationPreferenceList.append(recitationPreferenceObject)
             }
             
-            _ = RecitationPreferenceRepository().saveRecitationPreference(recitationPreferenceList: recitationPreferenceList)
+            if chkAyat.on || chkRange.on {
+                _ = RecitationPreferenceRepository().saveRecitationPreference(recitationPreferenceList: recitationPreferenceList)
+            }
+            else {
+                chkSavePreference.on = false
+                
+                DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.SELECT_PREFERENCE, okHandler: {})
+            }
         }
         else {
             _ = RecitationPreferenceRepository().deleteRecitationPreference()
