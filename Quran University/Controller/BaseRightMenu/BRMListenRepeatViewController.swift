@@ -165,18 +165,22 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
                 break
             case .AyatRecitationSilence:
                 ayatRecitationSilence = RecitationSilenceRepository().getRecitationSilence(Id: Id)
+                chkSavePreference.on = false
                 
                 break
             case .RangeRecitationSilence:
                 rangeRecitationSilence = RecitationSilenceRepository().getRecitationSilence(Id: Id)
+                chkSavePreference.on = false
                 
                 break
             case .AyatNumber:
                 ayatNumber = NumberRepository().getNumber(Id: Id)
+                chkSavePreference.on = false
                 
                 break
             case .RangeNumber:
                 rangeNumber = NumberRepository().getNumber(Id: Id)
+                chkSavePreference.on = false
                 
                 break
             }
