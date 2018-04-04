@@ -35,7 +35,7 @@
 		0442BAAC201F2FE5006D5FD8 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442BAAB201F2FE5006D5FD8 /* Script.swift */; };
 		0442BAAE201F587D006D5FD8 /* Recitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442BAAD201F587D006D5FD8 /* Recitation.swift */; };
 		044F6CBC2007A4420007828A /* PageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044F6CBB2007A4420007828A /* PageManager.swift */; };
-		04614C4D207373B9000F9922 /* AssignmentHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04614C4C207373B9000F9922 /* AssignmentHeaderFooterView.swift */; };
+		04614C4F20737A65000F9922 /* AssignmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04614C4E20737A65000F9922 /* AssignmentTableViewCell.swift */; };
 		046A18FA20147668006FB796 /* DPDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A18F920147668006FB796 /* DPDownloadViewController.swift */; };
 		0476BBA12005ECB5002697B6 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0476BBA02005ECB5002697B6 /* DownloadManager.swift */; };
 		0476BBA32005ED59002697B6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0476BBA22005ED59002697B6 /* Constants.swift */; };
@@ -732,7 +732,7 @@
 		0442BAAB201F2FE5006D5FD8 /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		0442BAAD201F587D006D5FD8 /* Recitation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recitation.swift; sourceTree = "<group>"; };
 		044F6CBB2007A4420007828A /* PageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageManager.swift; sourceTree = "<group>"; };
-		04614C4C207373B9000F9922 /* AssignmentHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentHeaderFooterView.swift; sourceTree = "<group>"; };
+		04614C4E20737A65000F9922 /* AssignmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTableViewCell.swift; sourceTree = "<group>"; };
 		046A18F920147668006FB796 /* DPDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPDownloadViewController.swift; sourceTree = "<group>"; };
 		0476BBA02005ECB5002697B6 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		0476BBA22005ED59002697B6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -1502,12 +1502,12 @@
 		0433258D201DAE02000FD494 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				04614C4C207373B9000F9922 /* AssignmentHeaderFooterView.swift */,
+				04614C4E20737A65000F9922 /* AssignmentTableViewCell.swift */,
 				04BBCB542032C43400D347BC /* BaseViewController.swift */,
+				048D662D20500257007185EC /* BookTableViewCell.swift */,
 				04332590201DB201000FD494 /* QUButton.swift */,
 				0433258E201DAE4A000FD494 /* QUView.swift */,
 				04CB5E2B2026E92D00BA6424 /* ReciterTableViewCell.swift */,
-				048D662D20500257007185EC /* BookTableViewCell.swift */,
 				04BB50A22069016D008C7D70 /* RecordCompareView.swift */,
 			);
 			path = Class;
@@ -3106,6 +3106,7 @@
 				048D662C204FDEA9007185EC /* BookManager.swift in Sources */,
 				0433258F201DAE4A000FD494 /* QUView.swift in Sources */,
 				048D662E20500257007185EC /* BookTableViewCell.swift in Sources */,
+				04614C4F20737A65000F9922 /* AssignmentTableViewCell.swift in Sources */,
 				04AE122C20235A9C00001FB7 /* TMAvailableReciterViewController.swift in Sources */,
 				04AB4D35205949490081A026 /* RecitationSilenceRepository.swift in Sources */,
 				04CE0AE920453E1D000CD6BF /* TMDownloadBookViewController.swift in Sources */,
@@ -3141,7 +3142,6 @@
 				04231F02203C10FA00740A9C /* TranslationBookDetailRepository.swift in Sources */,
 				0495EA10200F65E400EC35D1 /* Protocols.swift in Sources */,
 				04231F00203C10E700740A9C /* TranslationBookRepository.swift in Sources */,
-				04614C4D207373B9000F9922 /* AssignmentHeaderFooterView.swift in Sources */,
 				04BBCB552032C43400D347BC /* BaseViewController.swift in Sources */,
 				04CD81812004FFF700E34444 /* Enumerations.swift in Sources */,
 				04CD817E2004EDE900E34444 /* DocumentManager.swift in Sources */,

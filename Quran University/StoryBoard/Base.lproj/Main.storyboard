@@ -343,6 +343,7 @@
                         <segue destination="YAY-ud-RTx" kind="presentation" identifier="SegueDownload" animates="NO" id="FLn-zp-iNq"/>
                         <segue destination="KNi-ft-bC4" kind="presentation" identifier="SegueDownloadBook" animates="NO" id="OmZ-9k-Uzy"/>
                         <segue destination="Epn-Oa-rzP" kind="presentation" identifier="SegueListenRepeat" id="wQx-6X-fhH"/>
+                        <segue destination="CFc-aQ-5ak" kind="presentation" identifier="SegueAssignment" id="ZNI-HL-cl2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5FI-9r-R6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -830,6 +831,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0H-8t-cj9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2091" y="615"/>
+        </scene>
+        <!--Assignment-->
+        <scene sceneID="Ihj-cz-I7T">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BaseLeftMenu" referencedIdentifier="Assignment" id="CFc-aQ-5ak" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ciI-SC-n5V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2306" y="398"/>
         </scene>
         <!--DualDropDown-->
         <scene sceneID="e3V-ZI-1R6">
