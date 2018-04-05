@@ -11,18 +11,21 @@ final class QUView: UIView {
             self.layer.shadowRadius = shadowRadius
         }
     }
+    
     @IBInspectable
     var shadowOpacity: Float = 0 {
         didSet {
             self.layer.shadowOpacity = shadowOpacity
         }
     }
+    
     @IBInspectable
     var shadowOffset: CGSize = CGSize() {
         didSet {
             self.layer.shadowOffset = shadowOffset
         }
     }
+    
     @IBInspectable
     var shadowColor: UIColor? {
         didSet {

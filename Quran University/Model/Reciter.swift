@@ -22,7 +22,6 @@ class Reciter: BaseModel {
         
         super.init(id: 0, name: "")
     }
-    
     init(Id: Int64) {
         self.UserLoginInfo = 0
         self.ReciterNamePLang = ""

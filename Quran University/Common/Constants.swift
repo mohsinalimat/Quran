@@ -4,6 +4,7 @@ import UIKit
 struct QuranLink {
     static let Script = "http://media.quranlms.com/AppImages/Scripts/"
     static let Audio = "http://media.quranlms.com/Audio/"
+    static let Assignment = "http://m.services.quranlms.com/Student/?s=74"
     
     static func Book(languageId: Int64, bookId: Int64, surahId: Int64) -> URL {
         var urlAddress = ""

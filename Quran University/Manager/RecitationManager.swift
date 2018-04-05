@@ -205,7 +205,6 @@ class RecitationManager {
         }
     }
     
-    
     static func playRecitation() {
         let status = validatePlayer()
         

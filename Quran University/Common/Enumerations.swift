@@ -93,3 +93,16 @@ enum RecordCompareMode: Int32 {
     case GPlay = 5
     case GRefresh = 6
 }
+
+enum AssignmentStatus: Int32 {
+    case Due = 1
+    case Late = 2
+    case NotSent = 3
+    case Accepted = 4
+    case SubmittedResubmitted = 5
+    case CheckedRechecked = 6
+    case Submitted = 7
+    case Resubmitted = 8
+    case Checked = 9
+    case Rechecked = 10
+}

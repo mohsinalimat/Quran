@@ -10,7 +10,6 @@ class Surah: BaseModel {
         
         super.init(id: 0, name: "")
     }
-    
     init(surahId: Int64, surahName: String) {
         self.SurahId = surahId
         self.SurahName = surahName

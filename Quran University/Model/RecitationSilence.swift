@@ -18,7 +18,6 @@ class RecitationSilence : BaseModel {
         
         super.init(id: 0, name: "")
     }
-    
     init(Id: Int64) {
         self.TitlePLang = ""
         self.TitleSLang = ""

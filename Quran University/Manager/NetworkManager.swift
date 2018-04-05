@@ -2,10 +2,9 @@ import Foundation
 import Reachability
 
 class NetworkManager: NSObject {
-    var reachability = Reachability()!
-    
     static let sharedInstance: NetworkManager = { return NetworkManager() }()
     
+    var reachability = Reachability()!
     var reachabilityStatus = Reachability.NetworkUnreachable.self
     
     override init() {
@@ -42,29 +41,21 @@ class NetworkManager: NSObject {
             print("Error stopping notifier")
         }
     }
-    
-    // Network is reachable
     static func isReachable(completed: @escaping (NetworkManager) -> Void) {
         if (NetworkManager.sharedInstance.reachability).connection != .none {
             completed(NetworkManager.sharedInstance)
         }
     }
-    
-    // Network is unreachable
     static func isUnreachable(completed: @escaping (NetworkManager) -> Void) {
         if (NetworkManager.sharedInstance.reachability).connection == .none {
             completed(NetworkManager.sharedInstance)
         }
     }
-    
-    // Network is reachable via WWAN/Cellular
     static func isReachableViaWWAN(completed: @escaping (NetworkManager) -> Void) {
         if (NetworkManager.sharedInstance.reachability).connection == .cellular {
             completed(NetworkManager.sharedInstance)
         }
     }
-    
-    // Network is reachable via WiFi
     static func isReachableViaWiFi(completed: @escaping (NetworkManager) -> Void) {
         if (NetworkManager.sharedInstance.reachability).connection == .wifi {
             completed(NetworkManager.sharedInstance)

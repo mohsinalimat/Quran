@@ -14,7 +14,6 @@ class Recitation: BaseModel {
         
         super.init(id: 0, name: "")
     }
-    
     init(ayatId: Int64, ayatOrderId: Int64, surahId: Int64, pageId: Int64) {
         self.AyatId = ayatId
         self.AyatOrderId = ayatOrderId

@@ -10,7 +10,6 @@ class Page: BaseModel {
         
         super.init(id: 0, name: "")
     }
-    
     init(pageId: Int64) {
         self.PageId = pageId
         self.PageName = String(pageId)

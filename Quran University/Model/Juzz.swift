@@ -10,7 +10,6 @@ class Juzz: BaseModel {
         
         super.init(id: 0, name: "")
     }
-    
     init(chapterId: Int64, chapterName: String) {
         self.ChapterId = chapterId
         self.ChapterName = chapterName
