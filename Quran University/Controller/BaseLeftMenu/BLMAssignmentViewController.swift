@@ -1,6 +1,7 @@
 import UIKit
 
 class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var vMain: UIView!
     @IBOutlet weak var tvAssignment: UITableView!
     
     var dataArray : [[String:String]] = [["Number" : "1", "Assignment" : "Assignment 1", "Course" : "Course 1", "SubmissionDate" : "01 Jan 2018"], ["Number" : "2", "Assignment" : "Assignment 2", "Course" : "Course 1", "SubmissionDate" : "02 Jan 2018"], ["Number" : "3", "Assignment" : "Assignment 3", "Course" : "Course 1", "SubmissionDate" : "03 Jan 2018"], ["Number" : "4", "Assignment" : "Assignment 4", "Course" : "Course 1", "SubmissionDate" : "04 Jan 2018"]]
@@ -11,6 +12,8 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         
         tvAssignment.delegate = self
         tvAssignment.dataSource = self
+        
+        setViewPosition()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +48,17 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         self.tvAssignment.beginUpdates()
         self.tvAssignment.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         self.tvAssignment.endUpdates()
+    }
+    
+    func setViewPosition() {
+        let vHeader = ApplicationObject.MainViewController.vHeader!
+        let vFooter = ApplicationObject.MainViewController.vFooter!
+        let x = vHeader.frame.origin.x
+        let y = vHeader.frame.origin.y + vHeader.bounds.height
+        let height = vFooter.frame.origin.y - y
+        let width = vHeader.frame.size.width
+        
+        vMain.frame = CGRect(x: x, y: y, width: width, height: height)
     }
     
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {

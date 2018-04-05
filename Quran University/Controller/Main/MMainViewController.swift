@@ -428,8 +428,14 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     // ********** Footer Section ********** //
     @IBAction func btnLMenu_TouchUp(_ sender: UIButton) {
         //showMenu(tag: ViewTag.BaseLeftMenu.rawValue)
-        //self.performSegue(withIdentifier: "SegueAssignment", sender: nil)
         btnLMenu.loadingIndicator(true)
+        
+        AssignmentManager.populateStudentAssignment(completionHandler: {
+            DispatchQueue.main.async {
+                self.btnLMenu.loadingIndicator(false)
+                self.performSegue(withIdentifier: "SegueAssignment", sender: nil)
+            }
+        })
     }
     @IBAction func btnRMenu_TouchUp(_ sender: UIButton) {
         showMenu(tag: ViewTag.BaseRightMenu.rawValue)

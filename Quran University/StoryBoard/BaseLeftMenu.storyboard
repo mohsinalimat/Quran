@@ -217,6 +217,7 @@
                     </view>
                     <connections>
                         <outlet property="tvAssignment" destination="vnw-S0-AAA" id="9Dj-c1-zgT"/>
+                        <outlet property="vMain" destination="m6d-Ce-h8m" id="BFt-Qh-5MQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jxq-Is-xGx" userLabel="First Responder" sceneMemberID="firstResponder"/>
