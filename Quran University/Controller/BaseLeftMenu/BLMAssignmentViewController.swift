@@ -4,7 +4,6 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
     @IBOutlet weak var vMain: UIView!
     @IBOutlet weak var tvAssignment: UITableView!
     
-    var dataArray : [[String:String]] = [["Number" : "1", "Assignment" : "Assignment 1", "Course" : "Course 1", "SubmissionDate" : "01 Jan 2018"], ["Number" : "2", "Assignment" : "Assignment 2", "Course" : "Course 1", "SubmissionDate" : "02 Jan 2018"], ["Number" : "3", "Assignment" : "Assignment 3", "Course" : "Course 1", "SubmissionDate" : "03 Jan 2018"], ["Number" : "4", "Assignment" : "Assignment 4", "Course" : "Course 1", "SubmissionDate" : "04 Jan 2018"]]
     var selectedIndex = -1
     
     override func viewDidLoad() {
@@ -17,11 +16,11 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count;
+        return AssignmentManager.assignmentList.count;
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if selectedIndex == indexPath.row {
-            return 150;
+            return 180;
         }
         else {
             return 35;
@@ -29,12 +28,20 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tvcAssignment = tvAssignment.dequeueReusableCell(withIdentifier: "tvcAssignment") as! AssignmentTableViewCell
-        let obj = dataArray[indexPath.row]
+        let objAssignment = AssignmentManager.assignmentList[indexPath.row]
         
-        tvcAssignment.lblNumber.text = obj["Number"]
-        tvcAssignment.lblAssignment.text = obj["Assignment"]
-        tvcAssignment.lblCourse.text = obj["Course"]
-        tvcAssignment.lblSubmissionDate.text = obj["SubmissionDate"]
+        tvcAssignment.lblNumber.text = ""
+        tvcAssignment.lblAssignment.text = objAssignment.Title
+        tvcAssignment.lblCourse.text = objAssignment.CourseTitle
+        tvcAssignment.lblSubmissionDate.text = objAssignment.StudentSubmissionDate
+        
+        tvcAssignment.lblType.text = objAssignment.TypeTitle
+        tvcAssignment.lblStatus.text = objAssignment.AssignmentCurrentStatusTitle
+        tvcAssignment.lblDeadline.text = objAssignment.DeadlineDate
+        tvcAssignment.lblSubmitted.text = objAssignment.StudentOnlineSubmissionDate
+        tvcAssignment.lblSubmitted.text = objAssignment.StudentOnlineSubmissionDate
+        tvcAssignment.lblDelayDays.text = objAssignment.DelayedDaysString
+        tvcAssignment.lblMarks.text = String(objAssignment.Marks)
         
         return tvcAssignment;
     }

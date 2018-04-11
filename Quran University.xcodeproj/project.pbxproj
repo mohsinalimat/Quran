@@ -29,6 +29,8 @@
 		04231F08203C315F00740A9C /* TranslationBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04231F07203C315F00740A9C /* TranslationBook.swift */; };
 		0433258F201DAE4A000FD494 /* QUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0433258E201DAE4A000FD494 /* QUView.swift */; };
 		04332591201DB201000FD494 /* QUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04332590201DB201000FD494 /* QUButton.swift */; };
+		0434290F2079F83B00FB00A6 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0434290E2079F83B00FB00A6 /* Course.swift */; };
+		043429112079F8D700FB00A6 /* Correction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043429102079F8D700FB00A6 /* Correction.swift */; };
 		04395446200E37300019DD82 /* DownloadPageTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04395445200E37300019DD82 /* DownloadPageTabBarController.swift */; };
 		0440A506200C99EB00D42754 /* Surah.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0440A505200C99EB00D42754 /* Surah.swift */; };
 		0442BAAA201F2CC8006D5FD8 /* Reciter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442BAA9201F2CC8006D5FD8 /* Reciter.swift */; };
@@ -728,6 +730,8 @@
 		04231F07203C315F00740A9C /* TranslationBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationBook.swift; sourceTree = "<group>"; };
 		0433258E201DAE4A000FD494 /* QUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QUView.swift; sourceTree = "<group>"; };
 		04332590201DB201000FD494 /* QUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QUButton.swift; sourceTree = "<group>"; };
+		0434290E2079F83B00FB00A6 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		043429102079F8D700FB00A6 /* Correction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Correction.swift; sourceTree = "<group>"; };
 		04395445200E37300019DD82 /* DownloadPageTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPageTabBarController.swift; sourceTree = "<group>"; };
 		0440A505200C99EB00D42754 /* Surah.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Surah.swift; sourceTree = "<group>"; };
 		0442BAA9201F2CC8006D5FD8 /* Reciter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reciter.swift; sourceTree = "<group>"; };
@@ -2262,6 +2266,8 @@
 			children = (
 				048D6627204FCC2D007185EC /* AsbabNazool.swift */,
 				049D735E2076348800E4C41B /* Assignment.swift */,
+				043429102079F8D700FB00A6 /* Correction.swift */,
+				0434290E2079F83B00FB00A6 /* Course.swift */,
 				04E4010D204BCD0500C6F3AB /* JsonResponse.swift */,
 				048D6629204FCC34007185EC /* MaaniMafrudat.swift */,
 				04E4010B204BCA9100C6F3AB /* QuranText.swift */,
@@ -3117,6 +3123,7 @@
 				04AB4D35205949490081A026 /* RecitationSilenceRepository.swift in Sources */,
 				04CE0AE920453E1D000CD6BF /* TMDownloadBookViewController.swift in Sources */,
 				04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */,
+				043429112079F8D700FB00A6 /* Correction.swift in Sources */,
 				040A0376200E119C00978E25 /* DPOptionViewController.swift in Sources */,
 				04D2D70520035878006D1342 /* AyatSelectionManager.swift in Sources */,
 				0495EA12200F873900EC35D1 /* UCDualDropDownViewController.swift in Sources */,
@@ -3124,6 +3131,7 @@
 				04F0D2BB203B0C6D002F7183 /* SurahRepository.swift in Sources */,
 				04F0D2B9203B0BA2002F7183 /* PageRepository.swift in Sources */,
 				04D5F425204EBD4200E7F7B4 /* CauseOfRevelationBook.swift in Sources */,
+				0434290F2079F83B00FB00A6 /* Course.swift in Sources */,
 				04D5F433204EC12200E7F7B4 /* WordMeaningBookDetailRepository.swift in Sources */,
 				04DA8D0A200CF81700513A6B /* Page.swift in Sources */,
 				04D5F427204EBD5200E7F7B4 /* CauseOfRevelationBookDetail.swift in Sources */,

@@ -4,25 +4,27 @@ import UIKit
 struct QuranLink {
     static let Script = "http://media.quranlms.com/AppImages/Scripts/"
     static let Audio = "http://media.quranlms.com/Audio/"
+//    static let BaseUrl = "http://m.services.quranlms.com/
+    static let BaseUrl = "http://team-server.innotech-sa.com/QuranWebAPIs/"
     
     static func Book(languageId: Int64, bookId: Int64, surahId: Int64) -> URL {
         var urlAddress = ""
         
         switch ApplicationData.CurrentDownloadBookMode {
         case .CauseOfRevelation:
-            urlAddress = "http://m.services.quranlms.com/RelatedData/?a=\(bookId)&l=\(languageId)"
+            urlAddress = BaseUrl + "RelatedData/?a=\(bookId)&l=\(languageId)"
             
             break;
         case .Tafseer:
-            urlAddress = "http://m.services.quranlms.com/RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
+            urlAddress = BaseUrl + "RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
             
                 break;
         case .Translation:
-            urlAddress = "http://m.services.quranlms.com/RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
+            urlAddress = BaseUrl + "RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
             
             break;
         case .WordMeaning:
-            urlAddress = "http://m.services.quranlms.com/RelatedData/?l=\(languageId)"
+            urlAddress = BaseUrl + "RelatedData/?l=\(languageId)"
             
             break;
         }
@@ -30,7 +32,7 @@ struct QuranLink {
         return URL(string: urlAddress)!
     }
     static func Assignment() -> URL {
-        let urlAddress = "http://m.services.quranlms.com/Student/?s=74"
+        let urlAddress = BaseUrl + "Student/?s=96"
         
         return URL(string: urlAddress)!
     }
@@ -73,6 +75,14 @@ struct ApplicationLabel {
     static let YES = ApplicationData.CurrentLanguageMode == .English ? "YES" : "YES"
     static let NO = ApplicationData.CurrentLanguageMode == .English ? "NO" : "NO"
     static let ALERT = ApplicationData.CurrentLanguageMode == .English ? "Alert" : "Alert"
+    static let ACCEPTED = ApplicationData.CurrentLanguageMode == .English ? "Accepted" : "Accepted"
+    static let LATE = ApplicationData.CurrentLanguageMode == .English ? "Late" : "Late"
+    static let DUE = ApplicationData.CurrentLanguageMode == .English ? "Due" : "Due"
+    static let NOTSENT = ApplicationData.CurrentLanguageMode == .English ? "NotSent" : "NotSent"
+    static let SUBMITTED = ApplicationData.CurrentLanguageMode == .English ? "Submitted" : "Submitted"
+    static let CHECKED = ApplicationData.CurrentLanguageMode == .English ? "Checked" : "Checked"
+    static let RESUBMITTED = ApplicationData.CurrentLanguageMode == .English ? "Resubmitted" : "Resubmitted"
+    static let RECHECKED = ApplicationData.CurrentLanguageMode == .English ? "Rechecked" : "Rechecked"
 }
 
 struct ApplicationHeading {

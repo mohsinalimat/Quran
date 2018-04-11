@@ -7,6 +7,12 @@ class AssignmentTableViewCell: UITableViewCell {
     @IBOutlet weak var lblAssignment: UILabel!
     @IBOutlet weak var lblCourse: UILabel!
     @IBOutlet weak var lblSubmissionDate: UILabel!
+    @IBOutlet weak var lblType: UILabel!
+    @IBOutlet weak var lblStatus: UILabel!
+    @IBOutlet weak var lblDeadline: UILabel!
+    @IBOutlet weak var lblSubmitted: UILabel!
+    @IBOutlet weak var lblDelayDays: UILabel!
+    @IBOutlet weak var lblMarks: UILabel!
     
     // ********** Detail Section ********** //
     @IBOutlet weak var vDetailRow: UIView!
