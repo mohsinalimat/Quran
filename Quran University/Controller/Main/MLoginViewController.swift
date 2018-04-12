@@ -8,6 +8,7 @@ class MLoginViewController: UIViewController {
         
         DocumentManager.initApplicationStructure()
         ////NetworkManager.startMonitoringInternet()
+        Utilities.Initialize()
     }
 
     @IBAction func btnSignIn_TouchUp(_ sender: Any) {

@@ -35,6 +35,8 @@ class Assignment: Decodable {
             break
         }
         
+        title = (title == "" ? "N/A" : title)
+        
         return title
     }
     var TypeTitle: String {
@@ -51,6 +53,41 @@ class Assignment: Decodable {
             break
         }
         
+        typeTitle = (typeTitle == "" ? "N/A" : typeTitle)
+        
         return typeTitle
+    }
+    var Deadline: String {
+        var deadline = self.DeadlineDate
+        
+        if self.Correction.count > 1 {
+            deadline = self.Correction[1].DeadLineDate
+        }
+        
+        deadline = Utilities.dtPrintDate.string(from: Utilities.dtJsonDateTime.date(from: deadline)!)
+        
+        return deadline
+    }
+    var Submission: String {
+        var submission = self.StudentOnlineSubmissionDate == nil ? "-" : self.StudentOnlineSubmissionDate
+        
+        if self.Correction.count > 1 {
+            submission = self.Correction[1].StudentOnlineSubmissionDate == nil ? "-" : self.Correction[1].StudentOnlineSubmissionDate
+        }
+        
+        submission = (submission == "-" ? submission : Utilities.dtPrintDate.string(from: Utilities.dtJsonDateTime.date(from: submission!)!))
+        
+        return submission!
+    }
+    var SubmissionTime: String {
+        var submissionTime = self.StudentOnlineSubmissionDate == nil ? "-" : self.StudentOnlineSubmissionDate
+        
+        if self.Correction.count > 1 {
+            submissionTime = self.Correction[1].StudentOnlineSubmissionDate == nil ? "-" : self.Correction[1].StudentOnlineSubmissionDate
+        }
+        
+        submissionTime = (submissionTime == "-" ? submissionTime : Utilities.dtPrintDateTime.string(from: Utilities.dtJsonDateTime.date(from: submissionTime!)!))
+        
+        return submissionTime!
     }
 }

@@ -15,12 +15,9 @@ class AssignmentManager {
                 do {
 //                    let jsonString = String(data: data!, encoding: .utf8)
                     let response = try JSONDecoder().decode(JsonResponse.self, from: data!)
-                    let dateFormatter = DateFormatter()
                     var filterAssignmentList = [Assignment]()
                     
                     assignmentList = [Assignment]()
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                    dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
                     
                     for objCourse in response.Course! {
                         for objAssignment in objCourse.Assignment! {
@@ -35,7 +32,7 @@ class AssignmentManager {
                             }
                             else if !objAssignment.IsMarked {
                                 if objAssignment.StudentOnlineSubmissionDate == nil && objAssignment.StudentSubmissionDate == nil {
-                                    if dateFormatter.date(from: objAssignment.DeadlineDate)! < Date() {
+                                    if Utilities.dtJsonDateTime.date(from: objAssignment.DeadlineDate)! < Date() {
                                         assignmentCurrentStatus = ApplicationLabel.LATE
                                         assignmentStatusId = AssignmentStatus.Late
                                     }
@@ -103,7 +100,7 @@ class AssignmentManager {
                             if addRow {
                                 objAssignment.AssignmentCurrentStatusTitle = assignmentCurrentStatus
                                 objAssignment.AssignmentStatusId = assignmentStatusId.rawValue
-                                objAssignment.DeadlineDateValue = dateFormatter.date(from: objAssignment.DeadlineDate)
+                                objAssignment.DeadlineDateValue = Utilities.dtJsonDateTime.date(from: objAssignment.DeadlineDate)
                                 objAssignment.CourseInfoId = objCourse.CourseInfoId
                                 objAssignment.CourseTitle = objCourse.Title
 
@@ -119,31 +116,21 @@ class AssignmentManager {
                     assignmentList = filterAssignmentList.sorted(by: { $0.DeadlineDateValue! > $1.DeadlineDateValue! }) // sort_by('DeadlineDateValue', true)
 
 //                    for objAssignment in filterAssignmentList {
-//        var assignmentObj1 = lstFilteredAssignment[k];
-//        var pageId = assignmentObj1.AssignmentAyat[0].PageNo;
-//        var correctionId = (assignmentObj1.Correction.length === 0 ? 0 : assignmentObj1.Correction[0].Id);
-//        var row = $('#tmplAssigmentAccordion', '#dvTemplates').clone();
 //        var deadlineDate = assignmentObj1.DeadlineDate;
 //        var studentOnlineSubmissionDate = assignmentObj1.StudentOnlineSubmissionDate;
-//        var ayatID = [];
-//        var ayatAudioName = [];
+
 //
 //        if (assignmentObj1.Correction.length > 1) {
 //            deadlineDate = assignmentObj1.Correction[1].DeadLineDate;
 //            studentOnlineSubmissionDate = assignmentObj1.Correction[1].StudentOnlineSubmissionDate;
 //        }
 //
-//        $(assignmentObj1.AssignmentAyat).each(function (index, value) {
-//            ayatID.push(value.Id);
-//            ayatAudioName.push(value.AudioFileName);
-//        });
+
 //
-//        var assignmentTitle = (languageMode === "arabic" ? assignmentObj1.titleSLang : assignmentObj1.titlePLang);
-//        var assignmentType = (languageMode === "arabic" ? assignmentObj1.AssignmentTypeSLang : assignmentObj1.AssignmentType);
+
 //        var assignNumber = (count > 9 ? count : ("0" + count));
 //
-//        assignmentTitle = (assignmentTitle === "" ? "N/A" : assignmentTitle);
-//        assignmentType = (assignmentType === "" ? "N/A" : assignmentType);
+
 //
 //        $('h3', row)
 //            .attr('id', 'assignStatusId-' + assignmentObj1.AssignStatusId)

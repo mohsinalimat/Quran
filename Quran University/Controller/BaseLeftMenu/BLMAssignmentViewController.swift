@@ -33,13 +33,12 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         tvcAssignment.lblNumber.text = ""
         tvcAssignment.lblAssignment.text = objAssignment.Title
         tvcAssignment.lblCourse.text = objAssignment.CourseTitle
-        tvcAssignment.lblSubmissionDate.text = objAssignment.StudentSubmissionDate
+        tvcAssignment.lblSubmissionDate.text = objAssignment.SubmissionTime
         
         tvcAssignment.lblType.text = objAssignment.TypeTitle
         tvcAssignment.lblStatus.text = objAssignment.AssignmentCurrentStatusTitle
-        tvcAssignment.lblDeadline.text = objAssignment.DeadlineDate
-        tvcAssignment.lblSubmitted.text = objAssignment.StudentOnlineSubmissionDate
-        tvcAssignment.lblSubmitted.text = objAssignment.StudentOnlineSubmissionDate
+        tvcAssignment.lblDeadline.text = objAssignment.Deadline
+        tvcAssignment.lblSubmitted.text = objAssignment.Submission
         tvcAssignment.lblDelayDays.text = objAssignment.DelayedDaysString
         tvcAssignment.lblMarks.text = String(objAssignment.Marks)
         
