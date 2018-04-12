@@ -69,24 +69,24 @@ class Assignment: Decodable {
         return deadline
     }
     var Submission: String {
-        var submission = self.StudentOnlineSubmissionDate == nil ? "-" : self.StudentOnlineSubmissionDate
+        var submission = self.StudentOnlineSubmissionDate == nil ? "" : self.StudentOnlineSubmissionDate
         
         if self.Correction.count > 1 {
-            submission = self.Correction[1].StudentOnlineSubmissionDate == nil ? "-" : self.Correction[1].StudentOnlineSubmissionDate
+            submission = self.Correction[1].StudentOnlineSubmissionDate == nil ? "" : self.Correction[1].StudentOnlineSubmissionDate
         }
         
-        submission = (submission == "-" ? submission : Utilities.dtPrintDate.string(from: Utilities.dtJsonDateTime.date(from: submission!)!))
+        submission = (submission == "" ? submission : Utilities.dtPrintDate.string(from: Utilities.dtJsonDateTime.date(from: submission!)!))
         
         return submission!
     }
     var SubmissionTime: String {
-        var submissionTime = self.StudentOnlineSubmissionDate == nil ? "-" : self.StudentOnlineSubmissionDate
+        var submissionTime = self.StudentOnlineSubmissionDate == nil ? "" : self.StudentOnlineSubmissionDate
         
         if self.Correction.count > 1 {
-            submissionTime = self.Correction[1].StudentOnlineSubmissionDate == nil ? "-" : self.Correction[1].StudentOnlineSubmissionDate
+            submissionTime = self.Correction[1].StudentOnlineSubmissionDate == nil ? "" : self.Correction[1].StudentOnlineSubmissionDate
         }
         
-        submissionTime = (submissionTime == "-" ? submissionTime : Utilities.dtPrintDateTime.string(from: Utilities.dtJsonDateTime.date(from: submissionTime!)!))
+        submissionTime = (submissionTime == "" ? submissionTime : Utilities.dtPrintDateTime.string(from: Utilities.dtJsonDateTime.date(from: submissionTime!)!))
         
         return submissionTime!
     }
