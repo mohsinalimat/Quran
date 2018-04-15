@@ -147,3 +147,20 @@ struct ApplicationConfirmMessage {
     static let CANCEL_RECITATION_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Are you sure you want to cancel Recitation download?" : "Are you sure you want to cancel Recitation download?"
     static let CANCEL_BOOK_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Are you sure you want to cancel Book download?" : "Are you sure you want to cancel Book download?"
 }
+
+struct AssignmentStatusColor {
+    static let DUE_BG = UIColor(red: 248.0/255, green: 214.0/255, blue: 180.0/255, alpha: 1.0)
+    static let DUE_B = UIColor(red: 244.0/255, green: 191.0/255, blue: 144.0/255, alpha: 1.0)
+    static let LATE_BG = UIColor(red: 246.0/255, green: 162.0/255, blue: 149.0/255, alpha: 1.0)
+    static let LATE_B = UIColor(red: 238.0/255, green: 133.0/255, blue: 120.0/255, alpha: 1.0)
+    static let NOT_SENT_BG = UIColor(red: 121.0/255, green: 119.0/255, blue: 122.0/255, alpha: 1.0)
+    static let NOT_SENT_B = UIColor(red: 202.0/255, green: 200.0/255, blue: 203.0/255, alpha: 1.0)
+    static let ACCEPTED_BG = UIColor(red: 192.0/255, green: 214.0/255, blue: 154.0/255, alpha: 1.0)
+    static let ACCEPTED_B = UIColor(red: 165.0/255, green: 195.0/255, blue: 107.0/255, alpha: 1.0)
+    static let SUBMITTED_BG = UIColor(red: 255.0/255, green: 255.0/255, blue: 255.0/255, alpha: 1.0)
+    static let SUBMITTED_B = UIColor(red: 118.0/255, green: 118.0/255, blue: 118.0/255, alpha: 1.0)
+    static let CHECKED_BG = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
+    static let CHECKED_B = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+    static let ALL_BG = UIColor(red: 50.0/255, green: 133.0/255, blue: 255.0/255, alpha: 1.0)
+    static let ALL_B = UIColor(red: 255.0/255, green: 255.0/255, blue: 255.0/255, alpha: 1.0)
+}

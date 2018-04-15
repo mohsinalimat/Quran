@@ -65,6 +65,8 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         let width = vHeader.frame.size.width
         
         vMain.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        
     }
     
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {
