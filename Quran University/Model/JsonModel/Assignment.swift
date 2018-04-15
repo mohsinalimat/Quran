@@ -68,6 +68,11 @@ class Assignment: Decodable {
         
         return deadline
     }
+    var DelayedDays: Int64 {
+        let delayedDays = self.DelayedDaysString == "-" ? 0 : Int64(self.DelayedDaysString)
+        
+        return delayedDays!
+    }
     var Submission: String {
         var submission = self.StudentOnlineSubmissionDate == nil ? "" : self.StudentOnlineSubmissionDate
         
