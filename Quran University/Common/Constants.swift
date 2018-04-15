@@ -157,10 +157,8 @@ struct AssignmentStatusColor {
     static let NOT_SENT_B = UIColor(red: 202.0/255, green: 200.0/255, blue: 203.0/255, alpha: 1.0)
     static let ACCEPTED_BG = UIColor(red: 192.0/255, green: 214.0/255, blue: 154.0/255, alpha: 1.0)
     static let ACCEPTED_B = UIColor(red: 165.0/255, green: 195.0/255, blue: 107.0/255, alpha: 1.0)
-    static let SUBMITTED_BG = UIColor(red: 255.0/255, green: 255.0/255, blue: 255.0/255, alpha: 1.0)
+    static let SUBMITTED_BG = UIColor(red: 245.0/255, green: 245.0/255, blue: 245.0/255, alpha: 1.0)
     static let SUBMITTED_B = UIColor(red: 118.0/255, green: 118.0/255, blue: 118.0/255, alpha: 1.0)
     static let CHECKED_BG = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
     static let CHECKED_B = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
-    static let ALL_BG = UIColor(red: 50.0/255, green: 133.0/255, blue: 255.0/255, alpha: 1.0)
-    static let ALL_B = UIColor(red: 255.0/255, green: 255.0/255, blue: 255.0/255, alpha: 1.0)
 }

@@ -5,6 +5,7 @@ class AssignmentManager {
     typealias methodHandler1 = () -> Void
     
     static var assignmentList = [Assignment]()
+    static var assignmentStatusList = [AssignmentStatus]()
     static var jResponse = JsonResponse()
     static var dataTask: URLSessionDataTask?
     
@@ -41,85 +42,79 @@ class AssignmentManager {
         
         for objCourse in jResponse.Course! {
             for objAssignment in objCourse.Assignment! {
-                var assignmentCurrentStatus = ""
-                var assignmentStatusId = AssignmentStatus.Accepted
+                var assignmentStatus = AssignmentStatus.Accepted
+                var assignmentStatusString = ApplicationLabel.ACCEPTED
                 
                 objAssignment.Correction.sort(by: { $0.Id < $1.Id }) // .sort(sort_by('Id', false, parseInt)
                 
                 if objAssignment.IsMarked {
-                    assignmentCurrentStatus = ApplicationLabel.ACCEPTED
-                    assignmentStatusId = AssignmentStatus.Accepted
+                    assignmentStatusString = ApplicationLabel.ACCEPTED
+                    assignmentStatus = AssignmentStatus.Accepted
                 }
                 else if !objAssignment.IsMarked {
                     if objAssignment.StudentOnlineSubmissionDate == nil && objAssignment.StudentSubmissionDate == nil {
                         if Utilities.dtJsonDateTime.date(from: objAssignment.DeadlineDate)! < Date() {
-                            assignmentCurrentStatus = ApplicationLabel.LATE
-                            assignmentStatusId = AssignmentStatus.Late
+                            assignmentStatusString = ApplicationLabel.LATE
+                            assignmentStatus = AssignmentStatus.Late
                         }
                         else {
-                            assignmentCurrentStatus = ApplicationLabel.DUE
-                            assignmentStatusId = AssignmentStatus.Due
+                            assignmentStatusString = ApplicationLabel.DUE
+                            assignmentStatus = AssignmentStatus.Due
                         }
                     }
                     else if objAssignment.StudentOnlineSubmissionDate == nil && objAssignment.StudentSubmissionDate != nil {
-                        assignmentCurrentStatus = ApplicationLabel.NOTSENT
-                        assignmentStatusId = AssignmentStatus.NotSent
+                        assignmentStatusString = ApplicationLabel.NOTSENT
+                        assignmentStatus = AssignmentStatus.NotSent
                     }
                     else if objAssignment.StudentOnlineSubmissionDate != nil && objAssignment.StudentSubmissionDate != nil {
                         if objAssignment.Correction.count == 0 {
-                            assignmentCurrentStatus = ApplicationLabel.SUBMITTED
-                            assignmentStatusId = AssignmentStatus.Submitted
+                            assignmentStatusString = ApplicationLabel.SUBMITTED
+                            assignmentStatus = AssignmentStatus.Submitted
                         }
                         else if objAssignment.Correction.count > 0 {
                             let latestCorrection = objAssignment.Correction[objAssignment.Correction.count - 1];
                             
                             if objAssignment.Correction.count == 1 {
                                 if objAssignment.Correction[0].StudentOnlineSubmissionDate == nil {
-                                    assignmentCurrentStatus = ApplicationLabel.CHECKED
-                                    assignmentStatusId = AssignmentStatus.Checked
+                                    assignmentStatusString = ApplicationLabel.CHECKED
+                                    assignmentStatus = AssignmentStatus.Checked
                                 }
                                 else if objAssignment.Correction[0].StudentOnlineSubmissionDate != nil {
-                                    assignmentCurrentStatus = ApplicationLabel.RESUBMITTED
-                                    assignmentStatusId = AssignmentStatus.Resubmitted
+                                    assignmentStatusString = ApplicationLabel.RESUBMITTED
+                                    assignmentStatus = AssignmentStatus.Resubmitted
                                 }
                             }
                             else if objAssignment.Correction.count > 1 {
                                 if latestCorrection.StudentOnlineSubmissionDate != nil {
-                                    assignmentCurrentStatus = ApplicationLabel.RESUBMITTED
-                                    assignmentStatusId = AssignmentStatus.Resubmitted
+                                    assignmentStatusString = ApplicationLabel.RESUBMITTED
+                                    assignmentStatus = AssignmentStatus.Resubmitted
                                 }
                                 else if latestCorrection.StudentOnlineSubmissionDate == nil {
-                                    assignmentCurrentStatus = ApplicationLabel.RECHECKED
-                                    assignmentStatusId = AssignmentStatus.Rechecked
+                                    assignmentStatusString = ApplicationLabel.RECHECKED
+                                    assignmentStatus = AssignmentStatus.Rechecked
                                 }
                             }
                         }
                     }
                 }
                 
-                let addRow = true
-                //
-                //            if (applyfilter !== undefined && applyfilter) {
-                //                var chkBoxes = $('#dvAssignmentListing input:checked');
-                //
-                //                if (chkBoxes.length > 0) {
-                //                    addRow = false;
-                //
-                //                    $('#dvAssignmentListing input:checked').each(function () {
-                //                        var assignmentStatusId = parseInt($(this).attr('value'));
-                //
-                //                        if (assignStatus === assignmentStatusId) {
-                //                            addRow = true;
-                //
-                //                            return false;
-                //                        }
-                //                    });
-                //                }
-                //            }
-                //
+                var addRow = true
+                
+                if applyFilter {
+                    if assignmentStatusList.count > 0 {
+                        addRow = false
+                        
+                        for objAssignmentStatus in assignmentStatusList {
+                            if assignmentStatus == objAssignmentStatus {
+                                addRow = true
+                            }
+                        }
+                    }
+                }
+                
                 if addRow {
-                    objAssignment.AssignmentCurrentStatusTitle = assignmentCurrentStatus
-                    objAssignment.AssignmentStatusId = assignmentStatusId.rawValue
+                    objAssignment.AssignmentCurrentStatusTitle = assignmentStatusString
+                    objAssignment.AssignmentStatusId = assignmentStatus.rawValue
                     objAssignment.DeadlineDateValue = Utilities.dtJsonDateTime.date(from: objAssignment.DeadlineDate)
                     objAssignment.CourseInfoId = objCourse.CourseInfoId
                     objAssignment.CourseTitle = objCourse.Title
@@ -133,49 +128,11 @@ class AssignmentManager {
         
         assignmentList = filterAssignmentList.sorted(by: { $0.DeadlineDateValue! > $1.DeadlineDateValue! }) // sort_by('DeadlineDateValue', true)
         
-        //var count = filterAssignmentList.count
+        var count = assignmentList.count
         
-        
-        
-        //                    for objAssignment in filterAssignmentList {
-        //        var deadlineDate = assignmentObj1.DeadlineDate;
-        //        var studentOnlineSubmissionDate = assignmentObj1.StudentOnlineSubmissionDate;
-        
-        //
-        //        if (assignmentObj1.Correction.length > 1) {
-        //            deadlineDate = assignmentObj1.Correction[1].DeadLineDate;
-        //            studentOnlineSubmissionDate = assignmentObj1.Correction[1].StudentOnlineSubmissionDate;
-        //        }
-        //
-        
-        //
-        
-        //        var assignNumber = (count > 9 ? count : ("0" + count));
-        //
-        
-        //
-        //        $('h3', row)
-        //            .attr('id', 'assignStatusId-' + assignmentObj1.AssignStatusId)
-        //            .html("<span class='assignmentNumber'>" + assignNumber + "</span>" + assignmentTitle);
-        //        $('#spnType', row).html(assignmentType);
-        //        $('#spnStatus', row).html(assignmentObj1.AssignmentCurrentStatusTitle);
-        //        $('#spnDeadline', row).html((deadlineDate === null ? "-" : new Date(deadlineDate).format("mediumDate")));
-        //        $('#spnSubmittedDate', row).html((studentOnlineSubmissionDate === null ? "-" : new Date(studentOnlineSubmissionDate).format("mediumDate")));
-        //        $('#spnDelayDays', row).html(assignmentObj1.DelayedDaysString);
-        //        $('#spnMarks', row).html((assignmentObj1.IsMarked ? assignmentObj1.Marks : "-"));
-        //        $('#lnkView', row)
-        //            .attr('pageId', pageId)
-        //            .attr('ayatID', ayatID)
-        //            .attr('ayatAudioName', ayatAudioName)
-        //            .attr('assignmentId', assignmentObj1.classAssignmentStudentId)
-        //            .attr('courseId', assignmentObj1.CourseId)
-        //            .attr('studentId', localStorage.getItem("loginUserId"))
-        //            .attr('correctionId', correctionId)
-        //            .attr('onclick', 'saveAssignmentDataToLocalStorage(this, ' + assignmentObj1.classAssignmentStudentId + ',' + assignmentObj1.CourseInfoId + ',' + localStorage.getItem("loginUserId") + ',' + correctionId + ');');
-        //
-        //
-        //
-        //        count = count - 1
-        //    }
+        for objAssignment in assignmentList {
+            objAssignment.Number = count > 9 ? String(count) : ("0" + String(count))
+            count = count - 1
+        }
     }
 }

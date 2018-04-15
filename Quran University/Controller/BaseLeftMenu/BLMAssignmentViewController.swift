@@ -1,8 +1,15 @@
 import UIKit
+import BEMCheckBox
 
 class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var vMain: UIView!
     @IBOutlet weak var tvAssignment: UITableView!
+    @IBOutlet weak var chkDue: BEMCheckBox!
+    @IBOutlet weak var chkLate: BEMCheckBox!
+    @IBOutlet weak var chkNotSent: BEMCheckBox!
+    @IBOutlet weak var chkAccepted: BEMCheckBox!
+    @IBOutlet weak var chkSubmitted: BEMCheckBox!
+    @IBOutlet weak var chkChecked: BEMCheckBox!
     
     var selectedIndex = -1
     
@@ -30,7 +37,7 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         let tvcAssignment = tvAssignment.dequeueReusableCell(withIdentifier: "tvcAssignment") as! AssignmentTableViewCell
         let objAssignment = AssignmentManager.assignmentList[indexPath.row]
         
-        tvcAssignment.lblNumber.text = ""
+        tvcAssignment.lblNumber.text = objAssignment.Number
         tvcAssignment.lblAssignment.text = objAssignment.Title
         tvcAssignment.lblCourse.text = objAssignment.CourseTitle
         tvcAssignment.lblSubmissionDate.text = objAssignment.SubmissionTime
@@ -40,7 +47,7 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         tvcAssignment.lblDeadline.text = objAssignment.Deadline
         tvcAssignment.lblSubmitted.text = objAssignment.Submission
         tvcAssignment.lblDelayDays.text = objAssignment.DelayedDaysString
-        tvcAssignment.lblMarks.text = String(objAssignment.Marks)
+        tvcAssignment.lblMarks.text = objAssignment.MarkString
         
         return tvcAssignment;
     }
@@ -66,7 +73,159 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         
         vMain.frame = CGRect(x: x, y: y, width: width, height: height)
         
+        setCheckboxStatusColor(statusId: .Due, isChecked: false)
+        setCheckboxStatusColor(statusId: .Late, isChecked: false)
+        setCheckboxStatusColor(statusId: .NotSent, isChecked: false)
+        setCheckboxStatusColor(statusId: .Accepted, isChecked: false)
+        setCheckboxStatusColor(statusId: .Submitted, isChecked: false)
+        setCheckboxStatusColor(statusId: .Checked, isChecked: false)
+    }
+    func setCheckboxStatusColor(statusId: AssignmentStatus, isChecked: Bool) {
+        switch statusId {
+        case .Due:
+            chkDue.boxType = BEMBoxType.square
+            chkDue.onCheckColor = AssignmentStatusColor.DUE_BG
+            
+            if isChecked {
+                chkDue.onTintColor = AssignmentStatusColor.DUE_BG
+                chkDue.onFillColor = AssignmentStatusColor.DUE_B
+            }
+            else {
+                chkDue.tintColor = AssignmentStatusColor.DUE_B
+                chkDue.offFillColor = AssignmentStatusColor.DUE_BG
+            }
+            
+            break
+        case .Late:
+            chkLate.boxType = BEMBoxType.square
+            chkLate.onCheckColor = AssignmentStatusColor.LATE_BG
+            
+            if isChecked {
+                chkLate.onTintColor = AssignmentStatusColor.LATE_BG
+                chkLate.onFillColor = AssignmentStatusColor.LATE_B
+            }
+            else {
+                chkLate.tintColor = AssignmentStatusColor.LATE_B
+                chkLate.offFillColor = AssignmentStatusColor.LATE_BG
+            }
+            
+            break
+        case .NotSent:
+            chkNotSent.boxType = BEMBoxType.square
+            chkNotSent.onCheckColor = AssignmentStatusColor.NOT_SENT_BG
+            
+            if isChecked {
+                chkNotSent.onTintColor = AssignmentStatusColor.NOT_SENT_BG
+                chkNotSent.onFillColor = AssignmentStatusColor.NOT_SENT_B
+            }
+            else {
+                chkNotSent.tintColor = AssignmentStatusColor.NOT_SENT_B
+                chkNotSent.offFillColor = AssignmentStatusColor.NOT_SENT_BG
+            }
+            
+            break
+        case .Accepted:
+            chkAccepted.boxType = BEMBoxType.square
+            chkAccepted.onCheckColor = AssignmentStatusColor.ACCEPTED_BG
+            
+            if isChecked {
+                chkAccepted.onTintColor = AssignmentStatusColor.ACCEPTED_BG
+                chkAccepted.onFillColor = AssignmentStatusColor.ACCEPTED_B
+            }
+            else {
+                chkAccepted.tintColor = AssignmentStatusColor.ACCEPTED_B
+                chkAccepted.offFillColor = AssignmentStatusColor.ACCEPTED_BG
+            }
+            
+            break
+        case .Submitted:
+            chkSubmitted.boxType = BEMBoxType.square
+            chkSubmitted.onCheckColor = AssignmentStatusColor.SUBMITTED_BG
+            
+            if isChecked {
+                chkSubmitted.onTintColor = AssignmentStatusColor.SUBMITTED_BG
+                chkSubmitted.onFillColor = AssignmentStatusColor.SUBMITTED_B
+            }
+            else {
+                chkSubmitted.tintColor = AssignmentStatusColor.SUBMITTED_B
+                chkSubmitted.offFillColor = AssignmentStatusColor.SUBMITTED_BG
+            }
+            
+            break
+        case .Checked:
+            chkChecked.boxType = BEMBoxType.square
+            chkChecked.onCheckColor = AssignmentStatusColor.CHECKED_BG
+            
+            if isChecked {
+                chkChecked.onTintColor = AssignmentStatusColor.CHECKED_BG
+                chkChecked.onFillColor = AssignmentStatusColor.CHECKED_B
+            }
+            else {
+                chkChecked.tintColor = AssignmentStatusColor.CHECKED_B
+                chkChecked.offFillColor = AssignmentStatusColor.CHECKED_BG
+            }
+            
+            break
+        default:
+            break
+        }
+    }
+    func filterAssignmentList() {
+        AssignmentManager.assignmentStatusList.removeAll()
         
+        if chkDue.on {
+            AssignmentManager.assignmentStatusList.append(.Due)
+        }
+        
+        if chkLate.on {
+            AssignmentManager.assignmentStatusList.append(.Late)
+        }
+        
+        if chkNotSent.on {
+            AssignmentManager.assignmentStatusList.append(.NotSent)
+        }
+        
+        if chkAccepted.on {
+            AssignmentManager.assignmentStatusList.append(.Accepted)
+        }
+        
+        if chkSubmitted.on {
+            AssignmentManager.assignmentStatusList.append(.Submitted)
+            AssignmentManager.assignmentStatusList.append(.Resubmitted)
+        }
+        
+        if chkChecked.on {
+            AssignmentManager.assignmentStatusList.append(.Checked)
+            AssignmentManager.assignmentStatusList.append(.Rechecked)
+        }
+        
+        AssignmentManager.populateFilteredAssignment(applyFilter: true)
+        tvAssignment.reloadData()
+    }
+    
+    @IBAction func chkDue_TouchUp(_ sender: Any) {
+        setCheckboxStatusColor(statusId: .Due, isChecked: chkDue.on)
+        filterAssignmentList()
+    }
+    @IBAction func chkLate_TouchUp(_ sender: Any) {
+        setCheckboxStatusColor(statusId: .Late, isChecked: chkLate.on)
+        filterAssignmentList()
+    }
+    @IBAction func chkNotSent_TouchUp(_ sender: Any) {
+        setCheckboxStatusColor(statusId: .NotSent, isChecked: chkNotSent.on)
+        filterAssignmentList()
+    }
+    @IBAction func chkAccepted_TouchUp(_ sender: Any) {
+        setCheckboxStatusColor(statusId: .Accepted, isChecked: chkAccepted.on)
+        filterAssignmentList()
+    }
+    @IBAction func chkSubmitted_TouchUp(_ sender: Any) {
+        setCheckboxStatusColor(statusId: .Submitted, isChecked: chkSubmitted.on)
+        filterAssignmentList()
+    }
+    @IBAction func chkChecked_TouchUp(_ sender: Any) {
+        setCheckboxStatusColor(statusId: .Checked, isChecked: chkChecked.on)
+        filterAssignmentList()
     }
     
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {

@@ -18,6 +18,7 @@ class Assignment: Decodable {
     var DeadlineDateValue: Date?
     var CourseInfoId: Int64?
     var CourseTitle: String?
+    var Number: String?
     
     var Correction: [Correction]
     
@@ -89,5 +90,10 @@ class Assignment: Decodable {
         submissionTime = (submissionTime == "" ? submissionTime : Utilities.dtPrintDateTime.string(from: Utilities.dtJsonDateTime.date(from: submissionTime!)!))
         
         return submissionTime!
+    }
+    var MarkString: String {
+        let mark = self.IsMarked ? String(self.Marks) : "-"
+        
+        return mark
     }
 }
