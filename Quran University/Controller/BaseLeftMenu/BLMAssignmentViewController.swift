@@ -16,14 +16,14 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AssignmentManager.assignmentList.count;
+        return AssignmentManager.assignmentList.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if selectedIndex == indexPath.row {
-            return 180;
+            return 180
         }
         else {
-            return 35;
+            return 35
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
