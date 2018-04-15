@@ -32,6 +32,14 @@
                                                 <color key="textColor" red="0.25882352939999997" green="0.22352941179999999" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEb-OJ-ttn">
+                                                <rect key="frame" x="282" y="4" width="46" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="btnRefresh_TouchUp:" destination="Qkq-eA-gR7" eventType="touchUpInside" id="Pzz-uX-Y2b"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrZ-Jf-E7b" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
                                                 <rect key="frame" x="340" y="0.0" width="30" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -559,6 +567,8 @@
                         <viewLayoutGuide key="safeArea" id="Sku-bN-2Ml"/>
                     </view>
                     <connections>
+                        <outlet property="btnRefresh" destination="gEb-OJ-ttn" id="pxM-dQ-zIq"/>
+                        <outlet property="btnTopClose" destination="KrZ-Jf-E7b" id="fYq-oc-YF6"/>
                         <outlet property="chkAccepted" destination="F2l-vb-xUF" id="K0T-1h-QAK"/>
                         <outlet property="chkChecked" destination="HOJ-AQ-hL8" id="vqR-fK-bac"/>
                         <outlet property="chkDue" destination="plk-XM-Nky" id="sfZ-cs-LEg"/>
@@ -566,6 +576,7 @@
                         <outlet property="chkNotSent" destination="bcp-Yg-bQs" id="QB1-h5-uie"/>
                         <outlet property="chkSubmitted" destination="8HZ-yS-aU9" id="FND-xL-cYF"/>
                         <outlet property="tvAssignment" destination="vnw-S0-AAA" id="9Dj-c1-zgT"/>
+                        <outlet property="vContent" destination="OEp-Dw-1ER" id="MZL-p6-T9O"/>
                         <outlet property="vMain" destination="m6d-Ce-h8m" id="BFt-Qh-5MQ"/>
                     </connections>
                 </viewController>

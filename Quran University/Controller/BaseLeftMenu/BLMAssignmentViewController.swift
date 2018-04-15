@@ -3,6 +3,9 @@ import BEMCheckBox
 
 class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var vMain: UIView!
+    @IBOutlet weak var vContent: UIView!
+    @IBOutlet weak var btnRefresh: UIButton!
+    @IBOutlet weak var btnTopClose: QUButton!
     @IBOutlet weak var tvAssignment: UITableView!
     @IBOutlet weak var chkDue: BEMCheckBox!
     @IBOutlet weak var chkLate: BEMCheckBox!
@@ -222,6 +225,31 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         
         AssignmentManager.populateFilteredAssignment(applyFilter: true)
         tvAssignment.reloadData()
+    }
+    
+    @IBAction func btnRefresh_TouchUp(_ sender: Any) {
+        AssignmentManager.assignmentList.removeAll()
+        tvAssignment.reloadData()
+        btnRefresh.loadingIndicator(true)
+        vContent.setViewDisabled()
+        
+        btnTopClose.isEnabled = false
+        chkDue.on = false
+        chkLate.on = false
+        chkNotSent.on = false
+        chkAccepted.on = false
+        chkSubmitted.on = false
+        chkChecked.on = false
+        
+        AssignmentManager.populateStudentAssignment(completionHandler: {
+            DispatchQueue.main.async {
+                self.tvAssignment.reloadData()
+                self.btnRefresh.loadingIndicator(false)
+                self.vContent.setViewEnabled()
+                
+                self.btnTopClose.isEnabled = true
+            }
+        })
     }
     
     @IBAction func chkDue_TouchUp(_ sender: Any) {

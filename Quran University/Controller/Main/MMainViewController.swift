@@ -427,7 +427,6 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Section ********** //
     @IBAction func btnLMenu_TouchUp(_ sender: UIButton) {
-        //showMenu(tag: ViewTag.BaseLeftMenu.rawValue)
         btnLMenu.loadingIndicator(true)
         
         AssignmentManager.populateStudentAssignment(completionHandler: {
