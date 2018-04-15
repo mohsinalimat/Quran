@@ -113,7 +113,7 @@ class AssignmentManager {
                 }
                 
                 if addRow {
-                    objAssignment.AssignmentCurrentStatusTitle = assignmentStatusString
+                    objAssignment.AssignmentStatusTitle = assignmentStatusString
                     objAssignment.AssignmentStatusId = assignmentStatus.rawValue
                     objAssignment.DeadlineDateValue = Utilities.dtJsonDateTime.date(from: objAssignment.DeadlineDate)
                     objAssignment.CourseInfoId = objCourse.CourseInfoId

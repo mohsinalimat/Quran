@@ -43,11 +43,30 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         tvcAssignment.lblSubmissionDate.text = objAssignment.SubmissionTime
         
         tvcAssignment.lblType.text = objAssignment.TypeTitle
-        tvcAssignment.lblStatus.text = objAssignment.AssignmentCurrentStatusTitle
+        tvcAssignment.lblStatus.text = objAssignment.AssignmentStatusTitle
         tvcAssignment.lblDeadline.text = objAssignment.Deadline
         tvcAssignment.lblSubmitted.text = objAssignment.Submission
         tvcAssignment.lblDelayDays.text = objAssignment.DelayedDaysString
         tvcAssignment.lblMarks.text = objAssignment.MarkString
+        
+        if objAssignment.AssignmentStatusId == AssignmentStatus.Due.rawValue {
+            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.DUE_BG
+        }
+        else if objAssignment.AssignmentStatusId == AssignmentStatus.Late.rawValue {
+            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.LATE_BG
+        }
+        else if objAssignment.AssignmentStatusId == AssignmentStatus.NotSent.rawValue {
+            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.NOT_SENT_BG
+        }
+        else if objAssignment.AssignmentStatusId == AssignmentStatus.Accepted.rawValue {
+            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.ACCEPTED_BG
+        }
+        else if objAssignment.AssignmentStatusId == AssignmentStatus.Submitted.rawValue {
+            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.SUBMITTED_BG
+        }
+        else if objAssignment.AssignmentStatusId == AssignmentStatus.Checked.rawValue {
+            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.CHECKED_BG
+        }
         
         return tvcAssignment;
     }

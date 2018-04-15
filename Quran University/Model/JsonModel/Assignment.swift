@@ -12,8 +12,7 @@ class Assignment: Decodable {
     var titlePLang: String
     var titleSLang: String
     
-    var AssignmentCurrentStatusTitle: String?
-    var AssignStatusId: Int64?
+    var AssignmentStatusTitle: String?
     var AssignmentStatusId: Int32?
     var DeadlineDateValue: Date?
     var CourseInfoId: Int64?
