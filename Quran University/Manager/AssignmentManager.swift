@@ -126,7 +126,7 @@ class AssignmentManager {
             }
         }
         
-        assignmentList = filterAssignmentList.sorted(by: { ($0.DeadlineDateValue!, $0.DelayedDays) > ($1.DeadlineDateValue!, $1.DelayedDays) }) // sort_by('DeadlineDateValue', true)
+        assignmentList = filterAssignmentList.sorted(by: { ($0.DeadlineDateValue!, $0.Id) > ($1.DeadlineDateValue!, $1.Id) }) // sort_by('DeadlineDateValue', true)
         
         var count = assignmentList.count
         

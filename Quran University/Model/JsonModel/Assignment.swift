@@ -1,6 +1,7 @@
 import Foundation
 
 class Assignment: Decodable {
+    var Id: Int64
     var AssignmentType: String
     var AssignmentTypeSLang: String
     var DeadlineDate: String
