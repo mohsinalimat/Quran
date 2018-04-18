@@ -32,10 +32,10 @@
                                                 <color key="textColor" red="0.25882352939999997" green="0.22352941179999999" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEb-OJ-ttn">
-                                                <rect key="frame" x="282" y="4" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEb-OJ-ttn">
+                                                <rect key="frame" x="286" y="2.5" width="34" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="icn_Refresh"/>
                                                 <connections>
                                                     <action selector="btnRefresh_TouchUp:" destination="Qkq-eA-gR7" eventType="touchUpInside" id="Pzz-uX-Y2b"/>
                                                 </connections>
@@ -586,6 +586,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icn_Refresh" width="34" height="33"/>
         <image name="img_Close" width="19" height="19"/>
     </resources>
 </document>

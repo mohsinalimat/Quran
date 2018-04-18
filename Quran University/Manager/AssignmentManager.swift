@@ -9,7 +9,6 @@ class AssignmentManager {
     static var jResponse = JsonResponse()
     static var dataTask: URLSessionDataTask?
     
-    
     static func populateStudentAssignment(completionHandler: @escaping methodHandler1) {
         if assignmentList.count <= 0 {
             dataTask = URLSession.shared.dataTask(with: QuranLink.Assignment()) { (data, response, err) in
