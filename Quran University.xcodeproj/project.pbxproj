@@ -2228,8 +2228,8 @@
 			isa = PBXGroup;
 			children = (
 				04AE122B20235A9C00001FB7 /* TMAvailableReciterViewController.swift */,
-				04F0D2B1203AC9D1002F7183 /* TMDownloadViewController.swift */,
 				04CE0AE820453E1D000CD6BF /* TMDownloadBookViewController.swift */,
+				04F0D2B1203AC9D1002F7183 /* TMDownloadViewController.swift */,
 			);
 			path = TopMenu;
 			sourceTree = "<group>";
