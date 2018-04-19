@@ -16,10 +16,10 @@ class Assignment: Decodable {
     var AssignmentStatusTitle: String?
     var AssignmentStatusId: Int32?
     var DeadlineDateValue: Date?
-    var CourseInfoId: Int64?
     var CourseTitle: String?
     var Number: String?
     
+    var AssignmentBoundary: [AssignmentBoundary]
     var Correction: [Correction]
     
     var Title: String {

@@ -115,7 +115,6 @@ class AssignmentManager {
                     objAssignment.AssignmentStatusTitle = assignmentStatusString
                     objAssignment.AssignmentStatusId = assignmentStatus.rawValue
                     objAssignment.DeadlineDateValue = Utilities.dtJsonDateTime.date(from: objAssignment.DeadlineDate)
-                    objAssignment.CourseInfoId = objCourse.CourseInfoId
                     objAssignment.CourseTitle = objCourse.Title
                     
                     objAssignment.Correction.sort(by: { $0.Id > $1.Id }) // sort_by('Id', true, parseInt)

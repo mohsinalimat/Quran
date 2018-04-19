@@ -40,6 +40,7 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         let tvcAssignment = tvAssignment.dequeueReusableCell(withIdentifier: "tvcAssignment") as! AssignmentTableViewCell
         let objAssignment = AssignmentManager.assignmentList[indexPath.row]
         
+        tvcAssignment.Id = objAssignment.Id
         tvcAssignment.lblNumber.text = objAssignment.Number
         tvcAssignment.lblAssignment.text = objAssignment.Title
         tvcAssignment.lblCourse.text = objAssignment.CourseTitle

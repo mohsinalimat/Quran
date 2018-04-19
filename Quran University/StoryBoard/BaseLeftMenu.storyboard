@@ -509,6 +509,9 @@
                                                                                     <state key="normal" title="Open Assignment Page">
                                                                                         <color key="titleColor" red="0.16470588235294117" green="0.27843137254901962" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     </state>
+                                                                                    <connections>
+                                                                                        <action selector="btnOpenAssignment_TouchUp:" destination="Pq8-yD-PAM" eventType="touchUpInside" id="Cm5-lT-RUL"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

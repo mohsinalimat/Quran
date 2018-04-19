@@ -17,11 +17,17 @@ class AssignmentTableViewCell: UITableViewCell {
     // ********** Detail Section ********** //
     @IBOutlet weak var vDetailRow: UIView!
     
+    var Id: Int64 = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    @IBAction func btnOpenAssignment_TouchUp(_ sender: Any) {
+        ApplicationData.CurrentAssignment = AssignmentManager.assignmentList.filter { $0.Id == self.Id }
     }
 }
