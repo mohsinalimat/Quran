@@ -504,17 +504,22 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcs-Sg-JZY">
-                                                                                    <rect key="frame" x="100" y="6" width="170" height="30"/>
+                                                                                    <rect key="frame" x="114" y="5" width="144" height="30"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                     <state key="normal" title="Open Assignment Page">
-                                                                                        <color key="titleColor" red="0.16470588235294117" green="0.27843137254901962" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                        <color key="titleColor" red="0.87058823529411766" green="0.45098039215686275" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     </state>
                                                                                     <connections>
                                                                                         <action selector="btnOpenAssignment_TouchUp:" destination="Pq8-yD-PAM" eventType="touchUpInside" id="Cm5-lT-RUL"/>
                                                                                     </connections>
                                                                                 </button>
+                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icn_OpenAssignment" translatesAutoresizingMaskIntoConstraints="NO" id="7W3-4t-wnQ">
+                                                                                    <rect key="frame" x="94" y="10" width="16" height="20"/>
+                                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                                </imageView>
                                                                             </subviews>
-                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <color key="backgroundColor" red="1" green="0.97254901960784312" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </view>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -589,6 +594,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icn_OpenAssignment" width="16" height="20"/>
         <image name="icn_Refresh" width="34" height="33"/>
         <image name="img_Close" width="19" height="19"/>
     </resources>

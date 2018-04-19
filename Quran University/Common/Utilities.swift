@@ -7,7 +7,7 @@ class Utilities {
     
     static func Initialize() {
         Utilities.dtJsonDateTime.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        Utilities.dtJsonDateTime.timeZone = TimeZone(abbreviation: "UTC")
+        Utilities.dtJsonDateTime.timeZone = TimeZone(abbreviation: "GMT+1")
         Utilities.dtPrintDateTime.dateFormat = "dd/MM/yyyy HH:mm:ss"
         Utilities.dtPrintDate.dateFormat = "dd/MM/yyyy"
     }
