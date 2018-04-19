@@ -185,6 +185,31 @@ class PageRepository : BaseRepository {
         
         return pageObject
     }
+    func getFirstPage(ayatId: Int64) -> Page {
+        var stmt: OpaquePointer?
+        var pageObject = Page()
+        let queryString = "SELECT StartingPageNo FROM Ayat WHERE AyatId = ? LIMIT 1"
+        
+        if sqlite3_prepare(database, queryString, -1, &stmt, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(database)!)
+            print("error preparing select: \(errmsg)")
+            return pageObject
+        }
+        
+        if sqlite3_bind_int64(stmt, 1, ayatId) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(database)!)
+            print("failure binding AyatId: \(errmsg)")
+            return pageObject
+        }
+        
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            pageObject = Page(pageId: sqlite3_column_int64(stmt, 0))
+        }
+        
+        sqlite3_finalize(stmt)
+        
+        return pageObject
+    }
     func getNextPage(Id: Int64) -> Page {
         var stmt: OpaquePointer?
         var pageObject = Page()

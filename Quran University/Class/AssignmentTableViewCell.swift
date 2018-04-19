@@ -28,7 +28,14 @@ class AssignmentTableViewCell: UITableViewCell {
     }
     
     @IBAction func btnOpenAssignment_TouchUp(_ sender: Any) {
-        ApplicationData.CurrentAssignment = AssignmentManager.assignmentList.filter { $0.Id == self.Id }
         ApplicationData.AssignmentModeOn = true
+        ApplicationData.CurrentAssignment = AssignmentManager.assignmentList.filter { $0.Id == self.Id }
+        
+        let ayatId = ApplicationData.CurrentAssignment[0].AssignmentBoundary[0].StartPoint[0].AyatId
+        let pageObject = PageRepository().getFirstPage(ayatId: ayatId)
+        
+        ApplicationObject.CurrentViewController.dismiss(animated: true, completion: {
+            PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
+        })
     }
 }

@@ -22,6 +22,14 @@ class DPConfirmViewController: BaseViewController {
         tabBarController?.selectedIndex = DownloadPageMode.Option.hashValue
     }
     @IBAction func btnNo_TouchUp(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            if ApplicationData.AssignmentModeOn {
+                AssignmentManager.populateStudentAssignment(completionHandler: {
+                    DispatchQueue.main.async {
+                        ApplicationObject.MainViewController.performSegue(withIdentifier: "SegueAssignment", sender: nil)
+                    }
+                })
+            }
+        })
     }
 }
