@@ -29,5 +29,6 @@ class AssignmentTableViewCell: UITableViewCell {
     
     @IBAction func btnOpenAssignment_TouchUp(_ sender: Any) {
         ApplicationData.CurrentAssignment = AssignmentManager.assignmentList.filter { $0.Id == self.Id }
+        ApplicationData.AssignmentModeOn = true
     }
 }
