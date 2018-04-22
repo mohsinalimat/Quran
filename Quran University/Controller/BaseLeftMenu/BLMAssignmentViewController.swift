@@ -50,7 +50,7 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         tvcAssignment.lblStatus.text = objAssignment.AssignmentStatusTitle
         tvcAssignment.lblDeadline.text = objAssignment.Deadline
         tvcAssignment.lblSubmitted.text = objAssignment.SubmissionTime
-        tvcAssignment.lblDelayDays.text = objAssignment.DelayedDaysString
+        tvcAssignment.lblDelayDays.text = objAssignment.DelayedDays
         tvcAssignment.lblMarks.text = objAssignment.MarkString
         
         if objAssignment.AssignmentStatusId == AssignmentStatus.Due.rawValue {

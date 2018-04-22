@@ -44,7 +44,7 @@ class AssignmentManager {
                 var assignmentStatus = AssignmentStatus.Accepted
                 var assignmentStatusString = ApplicationLabel.ACCEPTED
                 
-                objAssignment.Correction.sort(by: { $0.Id < $1.Id }) // .sort(sort_by('Id', false, parseInt)
+                objAssignment.Correction.sort(by: { $0.Id > $1.Id })
                 
                 if objAssignment.IsMarked {
                     assignmentStatusString = ApplicationLabel.ACCEPTED
@@ -71,8 +71,6 @@ class AssignmentManager {
                             assignmentStatus = AssignmentStatus.Submitted
                         }
                         else if objAssignment.Correction.count > 0 {
-                            let latestCorrection = objAssignment.Correction[objAssignment.Correction.count - 1];
-                            
                             if objAssignment.Correction.count == 1 {
                                 if objAssignment.Correction[0].StudentOnlineSubmissionDate == nil {
                                     assignmentStatusString = ApplicationLabel.CHECKED
@@ -84,11 +82,11 @@ class AssignmentManager {
                                 }
                             }
                             else if objAssignment.Correction.count > 1 {
-                                if latestCorrection.StudentOnlineSubmissionDate != nil {
+                                if objAssignment.Correction[0].StudentOnlineSubmissionDate != nil {
                                     assignmentStatusString = ApplicationLabel.RESUBMITTED
                                     assignmentStatus = AssignmentStatus.Resubmitted
                                 }
-                                else if latestCorrection.StudentOnlineSubmissionDate == nil {
+                                else if objAssignment.Correction[0].StudentOnlineSubmissionDate == nil {
                                     assignmentStatusString = ApplicationLabel.RECHECKED
                                     assignmentStatus = AssignmentStatus.Rechecked
                                 }
@@ -116,8 +114,6 @@ class AssignmentManager {
                     objAssignment.AssignmentStatusId = assignmentStatus.rawValue
                     objAssignment.DeadlineDateValue = Utilities.dtJsonDateTime.date(from: objAssignment.DeadlineDate)
                     objAssignment.CourseTitle = objCourse.Title
-                    
-                    objAssignment.Correction.sort(by: { $0.Id > $1.Id }) // sort_by('Id', true, parseInt)
                     
                     filterAssignmentList.append(objAssignment)
                 }
