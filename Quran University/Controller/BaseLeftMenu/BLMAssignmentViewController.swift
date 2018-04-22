@@ -232,7 +232,6 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
     
     @IBAction func btnRefresh_TouchUp(_ sender: Any) {
         AssignmentManager.assignmentList.removeAll()
-        tvAssignment.reloadData()
         btnRefresh.loadingIndicator(true)
         vContent.setViewDisabled()
         
