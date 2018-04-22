@@ -4,7 +4,7 @@ import UIKit
 class AssignmentManager {
     typealias methodHandler1 = () -> Void
     
-    static var assignmentList = [Assignment]()
+    static var assignmentList = [AssignmentModel]()
     static var assignmentStatusList = [AssignmentStatus]()
     static var jResponse = JsonResponse()
     static var dataTask: URLSessionDataTask?
@@ -37,7 +37,7 @@ class AssignmentManager {
         }
     }
     static func populateFilteredAssignment(applyFilter: Bool) {
-        var filterAssignmentList = [Assignment]()
+        var filterAssignmentList = [AssignmentModel]()
         
         for objCourse in jResponse.Course! {
             for objAssignment in objCourse.Assignment! {

@@ -1,6 +1,6 @@
 import Foundation
 
-class Assignment: Decodable {
+class AssignmentModel: Decodable {
     var Id: Int64
     var AssignmentType: String
     var AssignmentTypeSLang: String
@@ -19,8 +19,23 @@ class Assignment: Decodable {
     var CourseTitle: String?
     var Number: String?
     
-    var AssignmentBoundary: [AssignmentBoundary]
-    var Correction: [Correction]
+    var AssignmentBoundary: [AssignmentBoundaryModel]
+    var Correction: [CorrectionModel]
+    
+    init() {
+        self.Id = 0
+        self.AssignmentType = ""
+        self.AssignmentTypeSLang = ""
+        self.DeadlineDate = ""
+        self.DelayedDaysString = ""
+        self.IsMarked = false
+        self.Marks = 0
+        self.titlePLang = ""
+        self.titleSLang = ""
+        
+        self.AssignmentBoundary = [AssignmentBoundaryModel]()
+        self.Correction = [CorrectionModel]()
+    }
     
     var Title: String {
         var title = ""

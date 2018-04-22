@@ -29,13 +29,20 @@ class AssignmentTableViewCell: UITableViewCell {
     
     @IBAction func btnOpenAssignment_TouchUp(_ sender: Any) {
         ApplicationData.AssignmentModeOn = true
-        ApplicationData.CurrentAssignment = AssignmentManager.assignmentList.filter { $0.Id == self.Id }
         
-        let ayatId = ApplicationData.CurrentAssignment[0].AssignmentBoundary[0].StartPoint[0].AyatId
+        AssignmentManager.assignmentList.filter { $0.Id == self.Id }.forEach { objAssignment in
+            ApplicationData.CurrentAssignment = objAssignment
+        }
+        
+        let ayatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
         let pageObject = PageRepository().getFirstPage(ayatId: ayatId)
         
         ApplicationObject.CurrentViewController.dismiss(animated: true, completion: {
             PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
+            
+            ApplicationData.CurrentSurah = SurahRepository().getSurah(ayatId: ayatId)
+            
+            ApplicationObject.SurahButton.setTitle(ApplicationData.CurrentSurah.Name, for: .normal)
         })
     }
 }

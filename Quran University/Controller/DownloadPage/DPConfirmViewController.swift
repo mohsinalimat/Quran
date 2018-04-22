@@ -26,6 +26,8 @@ class DPConfirmViewController: BaseViewController {
             if ApplicationData.AssignmentModeOn {
                 AssignmentManager.populateStudentAssignment(completionHandler: {
                     DispatchQueue.main.async {
+                        ApplicationData.AssignmentModeOn = false
+                        
                         ApplicationObject.MainViewController.performSegue(withIdentifier: "SegueAssignment", sender: nil)
                     }
                 })

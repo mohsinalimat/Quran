@@ -1,10 +1,10 @@
 import Foundation
 
-struct Course: Decodable {
+struct CourseModel: Decodable {
     var TitlePLang: String
     var TitleSLang: String
     
-    var Assignment: [Assignment]?
+    var Assignment: [AssignmentModel]?
     
     var Title: String {
         var title = ""

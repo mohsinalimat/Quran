@@ -34,6 +34,6 @@ struct ApplicationData {
     static var CurrentPage = PageRepository().getPage(Id: 604)
     static var CurrentJuzz = JuzzRepository().getJuzz(Id: 30)
     static var CurrentPageGroup = PageRepository().getPageGroup(pageId: 600)
-    static var CurrentAssignment = [Assignment]()
+    static var CurrentAssignment = AssignmentModel()
     static var AssignmentModeOn = false
 }

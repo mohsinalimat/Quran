@@ -198,6 +198,8 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
     func filterAssignmentList() {
         AssignmentManager.assignmentStatusList.removeAll()
         
+        selectedIndex = -1
+        
         if chkDue.on {
             AssignmentManager.assignmentStatusList.append(.Due)
         }
@@ -234,6 +236,7 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         btnRefresh.loadingIndicator(true)
         vContent.setViewDisabled()
         
+        selectedIndex = -1
         btnTopClose.isEnabled = false
         chkDue.on = false
         chkLate.on = false
