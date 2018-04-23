@@ -118,14 +118,14 @@ struct ApplicationInfoMessage {
     static let SOME_RECITATION_NOT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Some recitation files are not downloaded due to some error" : "Some recitation files are not downloaded due to some error"
     static let INTERNET_AVAILABLE = ApplicationData.CurrentLanguageMode == .English ? "Internet Available Now" : "Internet Available Now"
     static let INTERNET_NOT_AVAILABLE = ApplicationData.CurrentLanguageMode == .English ? "Internet Not Available" : "Internet Not Available"
-    static let SELECT_AYAT = ApplicationData.CurrentLanguageMode == .English ? "Please select Ayat" : "Please select Ayat"
+    static let SELECT_AYAT = ApplicationData.CurrentLanguageMode == .English ? "Please select Ayah" : "Please select Ayah"
     static let PAGE_SURAH_JUZZ_NOT_AVAILABLE = ApplicationData.CurrentLanguageMode == .English ? "Current Page/Surah/Juzz not available!" : "Current Page/Surah/Juzz not available!"
     static let WANT_TO_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Do you want to download it?" : "Do you want to download it?"
     static let INVALID_START_SURAH = ApplicationData.CurrentLanguageMode == .English ? "Invalid Start Surah" : "Invalid Start Surah"
     static let INVALID_END_SURAH = ApplicationData.CurrentLanguageMode == .English ? "Invalid End Surah" : "Invalid End Surah"
-    static let INVALID_START_AYAT = ApplicationData.CurrentLanguageMode == .English ? "Invalid Start Ayat" : "Invalid Start Ayat"
-    static let INVALID_END_AYAT = ApplicationData.CurrentLanguageMode == .English ? "Invalid End Ayat" : "Invalid End Ayat"
-    static let AYAT_MISSING_DOWNLOAD_SCRIPT_RECITATION = ApplicationData.CurrentLanguageMode == .English ? "Some of the Ayat(s) for selected range is not available. Please download the missing Script, Recitation and try again!" : "Some of the Ayat(s) for selected range is not available. Please download the missing Script, Recitation and try again!"
+    static let INVALID_START_AYAT = ApplicationData.CurrentLanguageMode == .English ? "Invalid Start Ayah" : "Invalid Start Ayah"
+    static let INVALID_END_AYAT = ApplicationData.CurrentLanguageMode == .English ? "Invalid End Ayah" : "Invalid End Ayah"
+    static let AYAT_MISSING_DOWNLOAD_SCRIPT_RECITATION = ApplicationData.CurrentLanguageMode == .English ? "Some of the Ayah(s) for selected range is not available. Please download the missing Script, Recitation and try again!" : "Some of the Ayah(s) for selected range is not available. Please download the missing Script, Recitation and try again!"
     static let SELECT_BOOK = ApplicationData.CurrentLanguageMode == .English ? "Please select Book" : "Please select Book"
     static let SOME_BOOK_NOT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Some book files are not downloaded due to some error" : "Some book files are not downloaded due to some error"
     static let MAX_RECORDING_LIMIT = ApplicationData.CurrentLanguageMode == .English ? "Maximum recording limit is reached" : "Maximum recording limit is reached"
@@ -146,6 +146,7 @@ struct ApplicationConfirmMessage {
     static let CANCEL_SCRIPT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Are you sure you want to cancel Script download?" : "Are you sure you want to cancel Script download?"
     static let CANCEL_RECITATION_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Are you sure you want to cancel Recitation download?" : "Are you sure you want to cancel Recitation download?"
     static let CANCEL_BOOK_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Are you sure you want to cancel Book download?" : "Are you sure you want to cancel Book download?"
+    static let TURN_OFF_ASSIGNMENT_MODE = ApplicationData.CurrentLanguageMode == .English ? "Do you want to turn off assignment mode?" : "Do you want to turn off assignment mode?"
 }
 
 struct AssignmentStatusColor {

@@ -427,14 +427,19 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Section ********** //
     @IBAction func btnLMenu_TouchUp(_ sender: UIButton) {
-        btnLMenu.loadingIndicator(true)
-        
-        AssignmentManager.populateStudentAssignment(completionHandler: {
-            DispatchQueue.main.async {
-                self.btnLMenu.loadingIndicator(false)
-                self.performSegue(withIdentifier: "SegueAssignment", sender: nil)
-            }
-        })
+        if ApplicationData.AssignmentModeOn {
+            showMenu(tag: ViewTag.BaseLeftMenu.rawValue)
+        }
+        else {
+            btnLMenu.loadingIndicator(true)
+            
+            AssignmentManager.populateStudentAssignment(completionHandler: {
+                DispatchQueue.main.async {
+                    self.btnLMenu.loadingIndicator(false)
+                    self.performSegue(withIdentifier: "SegueAssignment", sender: nil)
+                }
+            })
+        }
     }
     @IBAction func btnRMenu_TouchUp(_ sender: UIButton) {
         showMenu(tag: ViewTag.BaseRightMenu.rawValue)
@@ -500,6 +505,30 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBAction func btnGRefresh_TouchUp(_ sender: Any) {
         vRecordCompare.loadRecording()
         vRecordCompare.playPauseRecording()
+    }
+    
+    // ********** Base Left Menu Section ********** //
+    @IBAction func btnAssignmentList_TouchUp(_ sender: Any) {
+        AssignmentManager.populateStudentAssignment(completionHandler: {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "SegueAssignment", sender: nil)
+            }
+        })
+    }
+    @IBAction func btnRecordUpload_TouchUp(_ sender: Any) {
+    }
+    @IBAction func btnCorrection_TouchUp(_ sender: Any) {
+    }
+    @IBAction func btnMeeting_TouchUp(_ sender: Any) {
+    }
+    @IBAction func btnSchedule_TouchUp(_ sender: Any) {
+    }
+    @IBAction func btnExit_TouchUp(_ sender: Any) {
+        DialogueManager.showConfirmation(viewController: self, message: ApplicationConfirmMessage.TURN_OFF_ASSIGNMENT_MODE, yesHandler: {
+            ApplicationData.AssignmentModeOn = false
+            
+            self.hideMenu()
+        })
     }
     
     // ********** Base Right Menu Section ********** //
