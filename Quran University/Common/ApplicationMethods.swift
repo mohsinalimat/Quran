@@ -92,4 +92,13 @@ class ApplicationMethods {
             }
         }
     }
+    static func getRecitaion(recitationLabel: String) -> Recitation {
+        let sRange = recitationLabel.index(recitationLabel.startIndex, offsetBy: 0)..<recitationLabel.index(recitationLabel.endIndex, offsetBy: -7)
+        let aRange = recitationLabel.index(recitationLabel.startIndex, offsetBy: 3)..<recitationLabel.index(recitationLabel.endIndex, offsetBy: -4)
+        let surahId = Int64(recitationLabel[sRange])
+        let ayatOrder = Int64(recitationLabel[aRange])
+        let recitationObject = RecitationRepository().getRecitation(surahId: surahId!, ayatOrder: ayatOrder!)
+        
+        return recitationObject
+    }
 }

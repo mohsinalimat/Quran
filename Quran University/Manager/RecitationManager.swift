@@ -69,13 +69,9 @@ class RecitationManager {
         var recitationObject = Recitation()
         
         if recitationList.count > 0 {
-            let recitationName = recitationList[recitationIndex]
-            let sRange = recitationName.index(recitationName.startIndex, offsetBy: 0)..<recitationName.index(recitationName.endIndex, offsetBy: -7)
-            let aRange = recitationName.index(recitationName.startIndex, offsetBy: 3)..<recitationName.index(recitationName.endIndex, offsetBy: -4)
-            let surahId = Int64(recitationName[sRange])
-            let ayatOrder = Int64(recitationName[aRange])
+            let recitationLabel = recitationList[recitationIndex]
             
-            recitationObject = RecitationRepository().getRecitation(surahId: surahId!, ayatOrder: ayatOrder!)
+            recitationObject = ApplicationMethods.getRecitaion(recitationLabel: recitationLabel)
         }
         
         return recitationObject

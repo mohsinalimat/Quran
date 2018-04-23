@@ -222,6 +222,10 @@ class RecordCompareView: UIView {
         ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RStop)
     }
     func playPauseRecording() {
+        if recordingWaveform == nil {
+            return
+        }
+        
         currentPlayMode = .Recording
         ayatPlayMode = AudioPlayMode.Paused
         
@@ -296,6 +300,10 @@ class RecordCompareView: UIView {
         }
     }
     func playPauseAyat() {
+        if ayatWaveform == nil {
+            return
+        }
+        
         currentPlayMode = .Ayat
         recordingPlayMode = AudioPlayMode.Paused
         

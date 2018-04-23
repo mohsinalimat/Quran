@@ -98,21 +98,36 @@ class AyatSelectionManager {
         
         for ayatSelection in ayatSelectionList {
             if ayatSelection.isHidden && (ayatSelection.path?.boundingBoxOfPath.intersects(touchRectangle))! {
-                ayatSelectionTempList.forEach { ayatSelectionTemp in
-                    ayatSelectionTemp.isHidden = false
+                var continueStatus = true
+                
+                if ApplicationData.AssignmentModeOn {
+                    let recitationObject = ApplicationMethods.getRecitaion(recitationLabel: ayatSelection.accessibilityLabel!)
                     
-                    RecitationManager.appendRecitation(accessibilityLabel: ayatSelectionTemp.accessibilityLabel!)
+                    continueStatus = false
+                    
+                    if (recitationObject.AyatId >= ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId &&
+                        recitationObject.AyatId <= ApplicationData.CurrentAssignment.AssignmentBoundary[0].EndPoint[0].AyatId) {
+                        continueStatus = true
+                    }
                 }
                 
-                ayatSelectionList.lazy.filter { $0.isHidden && $0.accessibilityLabel == ayatSelection.accessibilityLabel }.forEach { relatedAyatSelection in
-                    relatedAyatSelection.isHidden = false
+                if continueStatus {
+                    ayatSelectionTempList.forEach { ayatSelectionTemp in
+                        ayatSelectionTemp.isHidden = false
+                        
+                        RecitationManager.appendRecitation(accessibilityLabel: ayatSelectionTemp.accessibilityLabel!)
+                    }
+                    
+                    ayatSelectionList.lazy.filter { $0.isHidden && $0.accessibilityLabel == ayatSelection.accessibilityLabel }.forEach { relatedAyatSelection in
+                        relatedAyatSelection.isHidden = false
+                    }
+                    
+                    RecitationManager.appendRecitation(accessibilityLabel: ayatSelection.accessibilityLabel!)
+                    
+                    selectionStarted = true
+                    ayatSelection.isHidden = false
+                    ayatSelectionTempList = [CAShapeLayer]()
                 }
-                
-                RecitationManager.appendRecitation(accessibilityLabel: ayatSelection.accessibilityLabel!)
-                
-                selectionStarted = true
-                ayatSelection.isHidden = false
-                ayatSelectionTempList = [CAShapeLayer]()
             }
             else if selectionStarted && ayatSelection.isHidden {
                 ayatSelectionTempList.append(ayatSelection)

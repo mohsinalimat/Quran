@@ -96,7 +96,7 @@ class AssignmentModel: Decodable {
             return "0"
         }
 
-        return String(end - start)
+        return String(start - end)
     }
     var Submission: String {
         var submission = self.StudentOnlineSubmissionDate == nil ? "" : self.StudentOnlineSubmissionDate
