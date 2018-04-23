@@ -15,7 +15,6 @@ class AssignmentModel: Decodable {
     
     var AssignmentStatusTitle: String?
     var AssignmentStatusId: Int32?
-    var DeadlineDateValue: Date?
     var CourseTitle: String?
     var Number: String?
     
@@ -73,25 +72,31 @@ class AssignmentModel: Decodable {
         
         return typeTitle
     }
-    var Deadline: String {
+    var Deadline: Date {
         var deadline = self.DeadlineDate
         
         if self.Correction.count > 0 {
             deadline = self.Correction[0].DeadLineDate
         }
         
-        deadline = Utilities.dtPrintDate.string(from: Utilities.dtJsonDateTime.date(from: deadline)!)
+        return Utilities.dtJsonDateTime.date(from: deadline)!
+    }
+    var DeadlineString: String {
+        let deadlineString = Utilities.dtPrintDate.string(from: Deadline)
         
-        return deadline
+        return deadlineString
     }
     var DelayedDays: String {
-        var delayedDays = self.DelayedDaysString
-        
-        if self.Correction.count > 0 {
-            delayedDays = self.Correction[0].DelayedDaysString
+        let currentCalendar = Calendar.current
+
+        guard let start = currentCalendar.ordinality(of: .day, in: .era, for: Date()) else {
+            return "0"
         }
-        
-        return delayedDays
+        guard let end = currentCalendar.ordinality(of: .day, in: .era, for: Deadline) else {
+            return "0"
+        }
+
+        return String(end - start)
     }
     var Submission: String {
         var submission = self.StudentOnlineSubmissionDate == nil ? "" : self.StudentOnlineSubmissionDate

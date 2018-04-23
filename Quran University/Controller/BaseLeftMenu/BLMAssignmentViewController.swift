@@ -48,7 +48,7 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         
         tvcAssignment.lblType.text = objAssignment.TypeTitle
         tvcAssignment.lblStatus.text = objAssignment.AssignmentStatusTitle
-        tvcAssignment.lblDeadline.text = objAssignment.Deadline
+        tvcAssignment.lblDeadline.text = objAssignment.DeadlineString
         tvcAssignment.lblSubmitted.text = objAssignment.SubmissionTime
         tvcAssignment.lblDelayDays.text = objAssignment.DelayedDays
         tvcAssignment.lblMarks.text = objAssignment.MarkString

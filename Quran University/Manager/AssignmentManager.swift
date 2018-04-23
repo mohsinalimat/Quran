@@ -112,7 +112,6 @@ class AssignmentManager {
                 if addRow {
                     objAssignment.AssignmentStatusTitle = assignmentStatusString
                     objAssignment.AssignmentStatusId = assignmentStatus.rawValue
-                    objAssignment.DeadlineDateValue = Utilities.dtJsonDateTime.date(from: objAssignment.DeadlineDate)
                     objAssignment.CourseTitle = objCourse.Title
                     
                     filterAssignmentList.append(objAssignment)
@@ -120,7 +119,7 @@ class AssignmentManager {
             }
         }
         
-        assignmentList = filterAssignmentList.sorted(by: { ($0.DeadlineDateValue!, $0.Id) > ($1.DeadlineDateValue!, $1.Id) }) // sort_by('DeadlineDateValue', true)
+        assignmentList = filterAssignmentList.sorted(by: { ($0.Deadline, $0.Id) > ($1.Deadline, $1.Id) })
         
         var count = assignmentList.count
         
