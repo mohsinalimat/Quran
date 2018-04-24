@@ -6,10 +6,6 @@ class PageManager {
         ApplicationObject.QuranPageImageView.image = UIImage(contentsOfFile: pageURL)
         
         AyatSelectionManager.generateAyatSelectionForCurrentPage()
-        
-        for objAyatSelection in AyatSelectionManager.ayatSelectionList {
-            ApplicationObject.QuranPageImageView.layer.addSublayer(objAyatSelection)
-        }
     }
     static func showQuranPage(scriptId: Int64, pageId: Int64) {
         if pageId > 0 {
@@ -38,6 +34,7 @@ class PageManager {
                     let recitationObjectList = RecitationRepository().getRecitationList(fromSurahId: startAyatObject.SurahId, toSurahId: endAyatObject.SurahId, fromAyatOrderId: startAyatObject.AyatOrder, toAyatOrderId: endAyatObject.AyatOrder)
                     
                     AyatSelectionManager.highlightAyatSelectionRange(recitationList: recitationObjectList)
+                    AyatSelectionManager.generateShowAssignmentBoundary()
                 }
             }
         }

@@ -75,18 +75,46 @@ class AyatSelectionManager {
                 }
             }
         }
+        
+        for objAyatSelection in ayatSelectionList {
+            ApplicationObject.QuranPageImageView.layer.addSublayer(objAyatSelection)
+        }
     }
-//    static func generateShowAssignmentBoundary() {
-//        assignmentBoundaryList.removeAll()
-//
-//        if ApplicationData.AssignmentModeOn {
-//            var ayatSelection = CAShapeLayer()
-//            var selectionRectangle = CGRect(x: xAxisStart, y: yAxisStart, width: width, height: startHeight)
-//            var path = UIBezierPath(roundedRect: selectionRectangle, cornerRadius: 0).cgPath
-//
-//            ayatSelection.isHidden = true
-//            ayatSelection.opacity = 0.5
-//            ayatSelection.path = path
+    static func generateShowAssignmentBoundary() {
+        assignmentBoundaryList.removeAll()
+
+        if ApplicationData.AssignmentModeOn {
+            let startAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
+            let endAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].EndPoint[0].AyatId
+            var startAyatSelection = CAShapeLayer()
+            var endAyatSelection = CAShapeLayer()
+
+            for ayatSelection in ayatSelectionList {
+                let recitationObject = ApplicationMethods.getRecitaion(recitationLabel: ayatSelection.accessibilityLabel!)
+
+                if recitationObject.AyatId == startAyatId {
+                    startAyatSelection = ayatSelection
+                }
+                else if recitationObject.AyatId == endAyatId {
+                    endAyatSelection = ayatSelection
+                }
+            }
+            
+            let assignmentBoundary = CAShapeLayer()
+            let selectionRect = (startAyatSelection.path?.boundingBoxOfPath)!
+            let assignmentRect = CGRect(x: (selectionRect.origin.x + selectionRect.size.width), y: selectionRect.origin.y, width: 50, height: selectionRect.size.height)
+            let assignmentPath = UIBezierPath(roundedRect: assignmentRect, cornerRadius: 0).cgPath
+
+            assignmentBoundary.opacity = 1
+            assignmentBoundary.path = assignmentPath
+            assignmentBoundary.fillColor = UIColor.black.cgColor
+            
+            ApplicationObject.QuranPageImageView.layer.addSublayer(assignmentBoundary)
+            
+//            for ayatSelection in ayatSelectionList {
+//                ayatSelection.removeFromSuperlayer()
+//            }
+//            ayatSelectionList.removeAll()
 //
 //
 //
@@ -98,9 +126,8 @@ class AyatSelectionManager {
 //                recitationObject.AyatId <= ApplicationData.CurrentAssignment.AssignmentBoundary[0].EndPoint[0].AyatId) {
 //                continueStatus = true
 //            }
-//        }
-//
-//    }
+        }
+    }
     static func showHideAyatSelection(startTouchPoint: CGPoint, lastTouchPoint: CGPoint, touchMoving: Bool) {
         var touchRectangle = CGRect(x: startTouchPoint.x, y: startTouchPoint.y, width: 1, height: 1)
         
