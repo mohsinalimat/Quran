@@ -3,6 +3,7 @@ import UIKit
 
 class AyatSelectionManager {
     static var ayatSelectionList = [CAShapeLayer]()
+    static var assignmentBoundaryList = [CAShapeLayer]()
     
     static func generateAyatSelectionForCurrentPage() {
         ayatSelectionList.removeAll()
@@ -75,6 +76,31 @@ class AyatSelectionManager {
             }
         }
     }
+//    static func generateShowAssignmentBoundary() {
+//        assignmentBoundaryList.removeAll()
+//
+//        if ApplicationData.AssignmentModeOn {
+//            var ayatSelection = CAShapeLayer()
+//            var selectionRectangle = CGRect(x: xAxisStart, y: yAxisStart, width: width, height: startHeight)
+//            var path = UIBezierPath(roundedRect: selectionRectangle, cornerRadius: 0).cgPath
+//
+//            ayatSelection.isHidden = true
+//            ayatSelection.opacity = 0.5
+//            ayatSelection.path = path
+//
+//
+//
+//            let recitationObject = ApplicationMethods.getRecitaion(recitationLabel: ayatSelection.accessibilityLabel!)
+//
+//            continueStatus = false
+//
+//            if (recitationObject.AyatId >= ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId &&
+//                recitationObject.AyatId <= ApplicationData.CurrentAssignment.AssignmentBoundary[0].EndPoint[0].AyatId) {
+//                continueStatus = true
+//            }
+//        }
+//
+//    }
     static func showHideAyatSelection(startTouchPoint: CGPoint, lastTouchPoint: CGPoint, touchMoving: Bool) {
         var touchRectangle = CGRect(x: startTouchPoint.x, y: startTouchPoint.y, width: 1, height: 1)
         

@@ -34,23 +34,14 @@ class AssignmentTableViewCell: UITableViewCell {
             ApplicationData.CurrentAssignment = objAssignment
         }
         
-        let ayatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
-        let pageObject = PageRepository().getFirstPage(ayatId: ayatId)
-        
         ApplicationObject.CurrentViewController.dismiss(animated: true, completion: {
-            let startAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
-            let endAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].EndPoint[0].AyatId
-            let startAyatObject = AyatRepository().getAyat(Id: startAyatId)
-            let endAyatObject = AyatRepository().getAyat(Id: endAyatId)
-            let recitationObjectList = RecitationRepository().getRecitationList(fromSurahId: startAyatObject.SurahId, toSurahId: endAyatObject.SurahId, fromAyatOrderId: startAyatObject.AyatOrder, toAyatOrderId: endAyatObject.AyatOrder)
-            
-            PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
-            AyatSelectionManager.highlightAyatSelectionRange(recitationList: recitationObjectList)
+            let ayatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
+            let pageObject = PageRepository().getFirstPage(ayatId: ayatId)
             
             ApplicationData.CurrentSurah = SurahRepository().getSurah(ayatId: ayatId)
             
             ApplicationObject.SurahButton.setTitle(ApplicationData.CurrentSurah.Name, for: .normal)
-            ApplicationObject.MainViewController.hideMenu()
+            PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
         })
     }
 }
