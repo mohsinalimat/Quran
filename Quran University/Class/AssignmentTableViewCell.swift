@@ -28,20 +28,6 @@ class AssignmentTableViewCell: UITableViewCell {
     }
     
     @IBAction func btnOpenAssignment_TouchUp(_ sender: Any) {
-        ApplicationData.AssignmentModeOn = true
-        
-        AssignmentManager.assignmentList.filter { $0.Id == self.Id }.forEach { objAssignment in
-            ApplicationData.CurrentAssignment = objAssignment
-        }
-        
-        ApplicationObject.CurrentViewController.dismiss(animated: true, completion: {
-            let ayatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
-            let pageObject = PageRepository().getFirstPage(ayatId: ayatId)
-            
-            ApplicationData.CurrentSurah = SurahRepository().getSurah(ayatId: ayatId)
-            
-            ApplicationObject.SurahButton.setTitle(ApplicationData.CurrentSurah.Name, for: .normal)
-            PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
-        })
+        AssignmentManager.loadAssignmentMode(Id: Id)
     }
 }

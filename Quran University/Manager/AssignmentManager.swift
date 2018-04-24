@@ -128,4 +128,31 @@ class AssignmentManager {
             count = count - 1
         }
     }
+    static func loadAssignmentMode(Id: Int64) {
+        ApplicationData.AssignmentModeOn = true
+        
+        AssignmentManager.assignmentList.filter { $0.Id == Id }.forEach { objAssignment in
+            ApplicationData.CurrentAssignment = objAssignment
+        }
+        
+        ApplicationObject.CurrentViewController.dismiss(animated: true, completion: {
+            let ayatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
+            let pageObject = PageRepository().getFirstPage(ayatId: ayatId)
+            
+            ApplicationData.CurrentSurah = SurahRepository().getSurah(ayatId: ayatId)
+            
+            ApplicationObject.SurahButton.setTitle(ApplicationData.CurrentSurah.Name, for: .normal)
+            PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
+        })
+    }
+    static func unloadAssignmentMode(yesHandler: @escaping methodHandler1) {
+        DialogueManager.showConfirmation(viewController: ApplicationObject.MainViewController, message: ApplicationConfirmMessage.TURN_OFF_ASSIGNMENT_MODE, yesHandler: {
+            ApplicationData.AssignmentModeOn = false
+            
+            AyatSelectionManager.hideAyatSelection()
+            AyatSelectionManager.removeAssignmentBoundary()
+            ApplicationObject.MainViewController.hideMenu()
+            yesHandler()
+        })
+    }
 }

@@ -524,11 +524,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBAction func btnSchedule_TouchUp(_ sender: Any) {
     }
     @IBAction func btnExit_TouchUp(_ sender: Any) {
-        DialogueManager.showConfirmation(viewController: self, message: ApplicationConfirmMessage.TURN_OFF_ASSIGNMENT_MODE, yesHandler: {
-            ApplicationData.AssignmentModeOn = false
-            
-            self.hideMenu()
-        })
+        AssignmentManager.unloadAssignmentMode(yesHandler: {})
     }
     
     // ********** Base Right Menu Section ********** //
