@@ -105,7 +105,7 @@ class AssignmentModel: Decodable {
             submission = self.Correction[0].StudentOnlineSubmissionDate == nil ? "" : self.Correction[0].StudentOnlineSubmissionDate
         }
         
-        submission = (submission == "" ? submission : Utilities.dtPrintDate.string(from: Utilities.dtJsonDateTime.date(from: submission!)!))
+        submission = (submission == "" ? submission : Utilities.dtPrintDate.string(from: Utilities.dtJsonPrintDateTime.date(from: submission!)!))
         
         return submission!
     }
@@ -116,7 +116,7 @@ class AssignmentModel: Decodable {
             submissionTime = self.Correction[0].StudentOnlineSubmissionDate == nil ? "" : self.Correction[0].StudentOnlineSubmissionDate
         }
         
-        submissionTime = (submissionTime == "" ? submissionTime : Utilities.dtPrintDateTime.string(from: Utilities.dtJsonDateTime.date(from: submissionTime!)!))
+        submissionTime = (submissionTime == "" ? submissionTime : Utilities.dtPrintDateTime.string(from: Utilities.dtJsonPrintDateTime.date(from: submissionTime!)!))
         
         return submissionTime!
     }
