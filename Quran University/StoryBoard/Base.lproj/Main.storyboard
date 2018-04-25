@@ -420,37 +420,51 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4J-7c-8e8" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
-                            <rect key="frame" x="5" y="6" width="206" height="58"/>
+                            <rect key="frame" x="5" y="3" width="206" height="70"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFz-9P-7Qh">
-                                    <rect key="frame" x="9" y="2" width="62" height="54"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="GFz-9P-7Qh">
+                                    <rect key="frame" x="5" y="2" width="41" height="66"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                    <inset key="titleEdgeInsets" minX="-26" minY="38" maxX="0.0" maxY="0.0"/>
-                                    <inset key="imageEdgeInsets" minX="17" minY="-21" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Assignments" image="icn_Assignments">
+                                    <inset key="titleEdgeInsets" minX="-22" minY="28" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="7" minY="-26" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Assign-  ments" image="icn_Assignments">
                                         <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="btnAssignmentList_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="lUS-7T-H42"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8D-Ek-iOQ">
-                                    <rect key="frame" x="72" y="2" width="52" height="54"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MtT-GK-dHl">
+                                    <rect key="frame" x="54" y="0.0" width="1" height="70"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.92156862750000001" green="0.90196078430000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="r8D-Ek-iOQ">
+                                    <rect key="frame" x="63" y="2" width="52" height="66"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                    <state key="normal" title="Record &amp; Upload" image="icn_RecordUpload">
+                                    <inset key="titleEdgeInsets" minX="-21" minY="34" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="12" minY="-26" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Record &amp;    Upload" image="icn_RecordUpload">
                                         <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="btnRecordUpload_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="LcN-t2-ueg"/>
                                     </connections>
                                 </button>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nua-Tl-qfa">
+                                    <rect key="frame" x="127" y="0.0" width="1" height="70"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.92156862750000001" green="0.90196078430000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9k-Li-a2K">
-                                    <rect key="frame" x="130" y="2" width="62" height="54"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="139" y="2" width="62" height="66"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                    <inset key="titleEdgeInsets" minX="-47" minY="50" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="7" minY="-11" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" title="Corrections" image="icn_Corrections">
                                         <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
@@ -547,15 +561,15 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="3Cb-wg-ckJ" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cml-Au-f2X" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
-                            <rect key="frame" x="5" y="6" width="226" height="58"/>
+                            <rect key="frame" x="5" y="3" width="226" height="70"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gh3-nI-Whu">
-                                    <rect key="frame" x="9" y="2" width="70" height="54"/>
+                                    <rect key="frame" x="9" y="2" width="70" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                     <inset key="titleEdgeInsets" minX="-28" minY="38" maxX="0.0" maxY="0.0"/>
@@ -568,12 +582,12 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HcB-Z7-DoS">
-                                    <rect key="frame" x="88" y="0.0" width="1" height="58"/>
+                                    <rect key="frame" x="88" y="0.0" width="1" height="70"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90196078430000004" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4U-c3-NpK">
-                                    <rect key="frame" x="97" y="2" width="58" height="54"/>
+                                    <rect key="frame" x="97" y="2" width="58" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                     <inset key="titleEdgeInsets" minX="-29" minY="38" maxX="0.0" maxY="0.0"/>
@@ -583,16 +597,16 @@
                                     </state>
                                 </button>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ImA-c9-fub">
-                                    <rect key="frame" x="164" y="0.0" width="1" height="58"/>
+                                    <rect key="frame" x="164" y="0.0" width="1" height="70"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.92156862745098034" green="0.90196078431372551" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Iq6-b9-WKJ">
-                                    <rect key="frame" x="172" y="2" width="47" height="54"/>
+                                    <rect key="frame" x="172" y="2" width="47" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                    <inset key="titleEdgeInsets" minX="-16" minY="31" maxX="0.0" maxY="0.0"/>
-                                    <inset key="imageEdgeInsets" minX="14" minY="-20" maxX="0.0" maxY="0.0"/>
+                                    <inset key="titleEdgeInsets" minX="-16" minY="34" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="14" minY="-23" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" title="Record &amp; Compare" image="icn_Record">
                                         <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
@@ -609,15 +623,15 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rin-vh-mvq" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
-                            <rect key="frame" x="235" y="6" width="43" height="58"/>
+                            <rect key="frame" x="235" y="3" width="43" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvo-vl-jKg">
-                                    <rect key="frame" x="1" y="2" width="41" height="54"/>
+                                    <rect key="frame" x="1" y="2" width="41" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                    <inset key="titleEdgeInsets" minX="-19" minY="30" maxX="0.0" maxY="0.0"/>
-                                    <inset key="imageEdgeInsets" minX="7" minY="-17" maxX="0.0" maxY="0.0"/>
+                                    <inset key="titleEdgeInsets" minX="-19" minY="35" maxX="0.0" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="7" minY="-25" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" title="Search" image="icn_Search">
                                         <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
@@ -631,11 +645,11 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XeT-vU-LGW" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
-                            <rect key="frame" x="282" y="6" width="34" height="58"/>
+                            <rect key="frame" x="282" y="3" width="34" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="L7b-S4-2HZ">
-                                    <rect key="frame" x="1" y="2" width="32" height="54"/>
+                                    <rect key="frame" x="1" y="2" width="32" height="66"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                     <inset key="titleEdgeInsets" minX="-9" minY="27" maxX="0.0" maxY="0.0"/>
@@ -653,12 +667,12 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70X-X7-cxl" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
-                            <rect key="frame" x="320" y="6" width="50" height="58"/>
+                            <rect key="frame" x="320" y="3" width="50" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blG-2B-HKB">
-                                    <rect key="frame" x="1" y="2" width="48" height="54"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="1" y="2" width="48" height="66"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                     <inset key="titleEdgeInsets" minX="-26" minY="38" maxX="0.0" maxY="0.0"/>
                                     <inset key="imageEdgeInsets" minX="10" minY="-19" maxX="0.0" maxY="0.0"/>
