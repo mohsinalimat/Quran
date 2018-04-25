@@ -213,20 +213,27 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
                 chkSavePreference.on = false
                 
                 break
-            case .AyatNumber:
-                ayatNumber = NumberRepository().getNumber(Id: Id)
-                chkSavePreference.on = false
-                
-                break
-            case .RangeNumber:
-                rangeNumber = NumberRepository().getNumber(Id: Id)
-                chkSavePreference.on = false
-                
+            default:
                 break
             }
-            
-            setViewForContinuousRecitationMode(setSelection: true)
         }
+        
+        switch currentContinuousRecitationMode {
+        case .AyatNumber:
+            ayatNumber = NumberRepository().getNumber(Id: Id)
+            chkSavePreference.on = false
+            
+            break
+        case .RangeNumber:
+            rangeNumber = NumberRepository().getNumber(Id: Id)
+            chkSavePreference.on = false
+            
+            break
+        default:
+            break
+        }
+        
+        setViewForContinuousRecitationMode(setSelection: true)
     }
     
     func setViewForContinuousRecitationMode(setSelection: Bool) {
