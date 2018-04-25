@@ -30,7 +30,15 @@ class BaseViewController: UIViewController {
             self.internetNotAvailable()
         }
     }
-
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.presentingViewController != nil {
+            ApplicationObject.CurrentViewController = self.presentingViewController!
+        }
+        else {
+            ApplicationObject.CurrentViewController = ApplicationObject.MainViewController
+        }
+    }
+    
     func internetNotAvailable() {
         DialogueManager.showError(viewController: ApplicationObject.CurrentViewController, message: ApplicationInfoMessage.INTERNET_NOT_AVAILABLE, okHandler: {
             ApplicationMethods.showGeneralSetting()

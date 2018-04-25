@@ -146,7 +146,7 @@ class AssignmentManager {
         })
     }
     static func unloadAssignmentMode(yesHandler: @escaping methodHandler1) {
-        DialogueManager.showConfirmation(viewController: ApplicationObject.MainViewController, message: ApplicationConfirmMessage.TURN_OFF_ASSIGNMENT_MODE, yesHandler: {
+        DialogueManager.showConfirmation(viewController: ApplicationObject.CurrentViewController, message: ApplicationConfirmMessage.TURN_OFF_ASSIGNMENT_MODE, yesHandler: {
             ApplicationData.AssignmentModeOn = false
             
             AyatSelectionManager.hideAyatSelection()
