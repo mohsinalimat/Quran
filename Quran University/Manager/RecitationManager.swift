@@ -229,8 +229,12 @@ class RecitationManager {
         }
         
         if audioPlayerInitialized {
-            if ayatRepeatFor > 0 {
-                var listenRepeatInfo = "Ayat(\(currentAyatRepeatFor)/\(ayatRepeatFor))"
+            if ayatRepeatFor > 0 || rangeRepeatFor > 0 {
+                var listenRepeatInfo = ""
+                
+                if ayatRepeatFor > 0 {
+                    listenRepeatInfo = "Ayat(\(currentAyatRepeatFor)/\(ayatRepeatFor))"
+                }
                 
                 if rangeRepeatFor > 0 {
                     listenRepeatInfo = listenRepeatInfo + " Range(\(currentRangeRepeatFor)/\(rangeRepeatFor))"

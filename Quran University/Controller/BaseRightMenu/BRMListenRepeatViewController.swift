@@ -279,9 +279,6 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
         return status
     }
     
-    @IBAction func btnTopClose_TouchUp(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     @IBAction func btnStartSurah_TouchUp(_ sender: Any) {
         currentContinuousRecitationMode = .StartSurah
         
@@ -385,6 +382,10 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
                 DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.AYAT_MISSING_DOWNLOAD_SCRIPT_RECITATION, okHandler: {})
             }
         }
+    }
+    
+    @IBAction func btnTopClose_TouchUp(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     @IBAction func btnClose_TouchUp(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
