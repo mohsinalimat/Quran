@@ -350,33 +350,30 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     @IBAction func btnSurah_TouchUp(_ sender: UIButton) {
         AssignmentManager.unloadAssignmentMode(completionHandler: {
-            self.hideMenu()
-            
             ApplicationData.CurrentDownloadCategoryMode = .Surah
             
+            self.hideMenu()
             self.performSegue(withIdentifier: "SegueDropDown", sender: nil)
         })
     }
     @IBAction func btnPage_TouchUp(_ sender: UIButton) {
         AssignmentManager.unloadAssignmentMode(completionHandler: {
-            self.hideMenu()
-            
             ApplicationData.CurrentDownloadCategoryMode = .Page
             
+            self.hideMenu()
             self.performSegue(withIdentifier: "SegueDualDropDown", sender: nil)
         })
     }
     @IBAction func btnJuzz_TouchUp(_ sender: UIButton) {
         AssignmentManager.unloadAssignmentMode(completionHandler: {
-            self.hideMenu()
-            
             ApplicationData.CurrentDownloadCategoryMode = .Juzz
             
+            self.hideMenu()
             self.performSegue(withIdentifier: "SegueDropDown", sender: nil)
         })
     }
     @IBAction func btnPageLock_TouchUp(_ sender: UIButton) {
-        hideMenu()
+        self.hideMenu()
         
         pageLocked = !pageLocked
         
@@ -394,22 +391,20 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Top Menu Section ********** //
     @IBAction func btnReciter_TouchUp(_ sender: Any) {
-        hideMenu()
-        
+        self.hideMenu()
         self.performSegue(withIdentifier: "SegueAvailableReciter", sender: nil)
     }
     @IBAction func btnSetting_TouchUp(_ sender: Any) {
-        hideMenu()
+        self.hideMenu()
     }
     @IBAction func btnDownload_TouchUp(_ sender: Any) {
-        hideMenu()
-        
+        self.hideMenu()
         self.performSegue(withIdentifier: "SegueDownload", sender: nil)
     }
     
     // ********** Content Section ********** //
     @IBAction func sgrLeft_Performed(_ sender: UISwipeGestureRecognizer) {
-        hideMenu()
+        self.hideMenu()
 
         if !pageLocked {
             if sender.state == .ended {
@@ -422,7 +417,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     @IBAction func sgrRight_Performed(_ sender: UISwipeGestureRecognizer) {
-        hideMenu()
+        self.hideMenu()
 
         if !pageLocked {
             if sender.state == .ended {
@@ -457,22 +452,19 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Player Section ********** //
     @IBAction func btnRefresh_TouchUp(_ sender: UIButton) {
-        hideMenu()
-        
+        self.hideMenu()
         RecitationManager.restartRecitation()
     }
     @IBAction func btnPrevious_TouchUp(_ sender: UIButton) {
-        hideMenu()
-        
+        self.hideMenu()
         RecitationManager.previousRecitation()
     }
     @IBAction func btnStop_TouchUp(_ sender: UIButton) {
-        hideMenu()
-        
+        self.hideMenu()
         RecitationManager.stopRecitation()
     }
     @IBAction func btnPlay_TouchDown(_ sender: Any) {
-        hideMenu()
+        self.hideMenu()
         
         startDate = Date()
     }
@@ -487,13 +479,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     @IBAction func btnPause_TouchUp(_ sender: UIButton) {
-        hideMenu()
-        
+        self.hideMenu()
         RecitationManager.pauseRecitation()
     }
     @IBAction func btnNext_TouchUp(_ sender: UIButton) {
-        hideMenu()
-        
+        self.hideMenu()
         RecitationManager.nextRecitation(onAudioPlayFinish: false)
     }
     
@@ -519,6 +509,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Base Left Menu Section ********** //
     @IBAction func btnAssignmentList_TouchUp(_ sender: Any) {
+        self.hideMenu()
+        
         AssignmentManager.populateStudentAssignment(completionHandler: {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "SegueAssignment", sender: nil)
@@ -526,20 +518,31 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         })
     }
     @IBAction func btnRecordUpload_TouchUp(_ sender: Any) {
+        self.hideMenu()
     }
     @IBAction func btnCorrection_TouchUp(_ sender: Any) {
+        self.hideMenu()
     }
     @IBAction func btnMeeting_TouchUp(_ sender: Any) {
+        self.hideMenu()
     }
     @IBAction func btnSchedule_TouchUp(_ sender: Any) {
+        self.hideMenu()
     }
     @IBAction func btnExit_TouchUp(_ sender: Any) {
         AssignmentManager.unloadAssignmentMode(completionHandler: {})
     }
     
     // ********** Base Right Menu Section ********** //
+    @IBAction func btnListenRepeat_TouchUp(_ sender: Any) {
+        self.hideMenu()
+        self.performSegue(withIdentifier: "SegueListenRepeat", sender: nil)
+    }
+    @IBAction func btnHideShow_TouchUp(_ sender: Any) {
+        self.hideMenu()
+    }
     @IBAction func btnRecordCompare_TouchUp(_ sender: Any) {
-        hideMenu()
+        self.hideMenu()
         
         if RecitationManager.validatePlayer() {
             let startAyatOrderId = RecitationManager.getRecitation(recitationIndex: 0).AyatOrderId
@@ -554,9 +557,13 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             }
         }
     }
-    @IBAction func btnListenRepeat_TouchUp(_ sender: Any) {
-        hideMenu()
-        
-        self.performSegue(withIdentifier: "SegueListenRepeat", sender: nil)
+    @IBAction func btnSearch_TouchUp(_ sender: Any) {
+        self.hideMenu()
+    }
+    @IBAction func btnBookmark_TouchUp(_ sender: Any) {
+        self.hideMenu()
+    }
+    @IBAction func btnLibrary_TouchUp(_ sender: Any) {
+        self.hideMenu()
     }
 }

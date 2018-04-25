@@ -12,14 +12,29 @@ class BMMContinuousRecitationViewController: BaseViewController, ModalDialoguePr
     var endSurah = Surah()
     var startAyat = Recitation()
     var endAyat = Recitation()
+    var startAyatObject = Ayat()
+    var endAyatObject = Ayat()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        startSurah = ApplicationData.CurrentSurah
-        endSurah = ApplicationData.CurrentSurah
-        startAyat = RecitationRepository().getFirstRecitation(surahId: startSurah.Id)
-        endAyat = startAyat
+        if ApplicationData.AssignmentModeOn {
+            let startAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
+            let endAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].EndPoint[0].AyatId
+            
+            startAyatObject = AyatRepository().getAyat(Id: startAyatId)
+            endAyatObject = AyatRepository().getAyat(Id: endAyatId)
+            startSurah = SurahRepository().getSurah(Id: startAyatObject.SurahId)
+            endSurah = SurahRepository().getSurah(Id: endAyatObject.SurahId)
+            startAyat = RecitationRepository().getRecitation(surahId: startAyatObject.SurahId, ayatOrder: startAyatObject.AyatOrder)
+            endAyat = RecitationRepository().getRecitation(surahId: endAyatObject.SurahId, ayatOrder: endAyatObject.AyatOrder)
+        }
+        else {
+            startSurah = ApplicationData.CurrentSurah
+            endSurah = ApplicationData.CurrentSurah
+            startAyat = RecitationRepository().getFirstRecitation(surahId: startSurah.Id)
+            endAyat = startAyat
+        }
         
         setViewForContinuousRecitationMode()
     }
@@ -30,22 +45,46 @@ class BMMContinuousRecitationViewController: BaseViewController, ModalDialoguePr
             switch currentContinuousRecitationMode {
             case .StartSurah:
                 viewController.selectedValue = startSurah.Id
-                viewController.dataList = SurahRepository().getSurahList()
+                
+                if ApplicationData.AssignmentModeOn {
+                    viewController.dataList = SurahRepository().getSurahList(fromSurahId: startAyatObject.SurahId, toSurahId: endAyatObject.SurahId)
+                }
+                else {
+                    viewController.dataList = SurahRepository().getSurahList()
+                }
                 
                 break
             case .StartAyat:
                 viewController.selectedValue = startAyat.Id
-                viewController.dataList = RecitationRepository().getRecitationList(surahId: startSurah.Id)
+                
+                if ApplicationData.AssignmentModeOn {
+                    viewController.dataList = RecitationRepository().getRecitationList(fromSurahId: startAyatObject.SurahId, toSurahId: endAyatObject.SurahId, fromAyatOrderId: startAyatObject.AyatOrder, toAyatOrderId: endAyatObject.AyatOrder)
+                }
+                else {
+                    viewController.dataList = RecitationRepository().getRecitationList(surahId: startSurah.Id)
+                }
                 
                 break
             case .EndSurah:
                 viewController.selectedValue = endSurah.Id
-                viewController.dataList = SurahRepository().getSurahList()
+                
+                if ApplicationData.AssignmentModeOn {
+                    viewController.dataList = SurahRepository().getSurahList(fromSurahId: startAyatObject.SurahId, toSurahId: endAyatObject.SurahId)
+                }
+                else {
+                    viewController.dataList = SurahRepository().getSurahList()
+                }
                 
                 break
             case .EndAyat:
                 viewController.selectedValue = endAyat.Id
-                viewController.dataList = RecitationRepository().getRecitationList(surahId: endSurah.Id)
+                
+                if ApplicationData.AssignmentModeOn {
+                    viewController.dataList = RecitationRepository().getRecitationList(fromSurahId: startAyatObject.SurahId, toSurahId: endAyatObject.SurahId, fromAyatOrderId: startAyatObject.AyatOrder, toAyatOrderId: endAyatObject.AyatOrder)
+                }
+                else {
+                    viewController.dataList = RecitationRepository().getRecitationList(surahId: endSurah.Id)
+                }
                 
                 break
             default:

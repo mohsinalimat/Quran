@@ -595,6 +595,9 @@
                                     <state key="normal" title="Hide &amp; Show" image="icn_HidenShow">
                                         <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="btnHideShow_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="dDj-U8-osm"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ImA-c9-fub">
                                     <rect key="frame" x="164" y="0.0" width="1" height="70"/>
@@ -635,6 +638,9 @@
                                     <state key="normal" title="Search" image="icn_Search">
                                         <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="btnSearch_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="UDK-dl-Vtq"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -657,6 +663,9 @@
                                     <state key="normal" title="Bookmark" image="icn_Bookmark">
                                         <color key="titleColor" red="0.51764705879999995" green="0.43137254899999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="btnBookmark_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="Awg-Ay-dKA"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -679,6 +688,9 @@
                                     <state key="normal" title="Library" image="icn_Library">
                                         <color key="titleColor" red="0.51764705882352935" green="0.43137254901960786" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="btnLibrary_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="FHt-xp-XI6"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
