@@ -113,6 +113,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        
         if segue.identifier == "SegueDropDown" {
             let viewController = segue.destination as! UCDropDownViewController
             

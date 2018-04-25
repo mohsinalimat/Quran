@@ -52,7 +52,7 @@ class AssignmentManager {
                 }
                 else if !objAssignment.IsMarked {
                     if objAssignment.StudentOnlineSubmissionDate == nil && objAssignment.StudentSubmissionDate == nil {
-                        if Utilities.dtJsonDateTime.date(from: objAssignment.DeadlineDate)! < Date() {
+                        if Int64(objAssignment.DelayedDays)! > 0 {
                             assignmentStatusString = ApplicationLabel.LATE
                             assignmentStatus = AssignmentStatus.Late
                         }
