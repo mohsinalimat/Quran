@@ -145,14 +145,19 @@ class AssignmentManager {
             PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
         })
     }
-    static func unloadAssignmentMode(yesHandler: @escaping methodHandler1) {
-        DialogueManager.showConfirmation(viewController: ApplicationObject.CurrentViewController, message: ApplicationConfirmMessage.TURN_OFF_ASSIGNMENT_MODE, yesHandler: {
-            ApplicationData.AssignmentModeOn = false
-            
-            AyatSelectionManager.hideAyatSelection()
-            AyatSelectionManager.removeAssignmentBoundary()
-            ApplicationObject.MainViewController.hideMenu()
-            yesHandler()
-        })
+    static func unloadAssignmentMode(completionHandler: @escaping methodHandler1) {
+        if ApplicationData.AssignmentModeOn {
+            DialogueManager.showConfirmation(viewController: ApplicationObject.CurrentViewController, message: ApplicationConfirmMessage.TURN_OFF_ASSIGNMENT_MODE, yesHandler: {
+                ApplicationData.AssignmentModeOn = false
+                
+                AyatSelectionManager.hideAyatSelection()
+                AyatSelectionManager.removeAssignmentBoundary()
+                ApplicationObject.MainViewController.hideMenu()
+                completionHandler()
+            })
+        }
+        else {
+            completionHandler()
+        }
     }
 }

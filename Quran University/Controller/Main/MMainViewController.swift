@@ -349,25 +349,31 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         showMenu(tag: ViewTag.TopMenu.rawValue)
     }
     @IBAction func btnSurah_TouchUp(_ sender: UIButton) {
-        hideMenu()
-        
-        ApplicationData.CurrentDownloadCategoryMode = .Surah
-        
-        self.performSegue(withIdentifier: "SegueDropDown", sender: nil)
+        AssignmentManager.unloadAssignmentMode(completionHandler: {
+            self.hideMenu()
+            
+            ApplicationData.CurrentDownloadCategoryMode = .Surah
+            
+            self.performSegue(withIdentifier: "SegueDropDown", sender: nil)
+        })
     }
     @IBAction func btnPage_TouchUp(_ sender: UIButton) {
-        hideMenu()
-        
-        ApplicationData.CurrentDownloadCategoryMode = .Page
-        
-        self.performSegue(withIdentifier: "SegueDualDropDown", sender: nil)
+        AssignmentManager.unloadAssignmentMode(completionHandler: {
+            self.hideMenu()
+            
+            ApplicationData.CurrentDownloadCategoryMode = .Page
+            
+            self.performSegue(withIdentifier: "SegueDualDropDown", sender: nil)
+        })
     }
     @IBAction func btnJuzz_TouchUp(_ sender: UIButton) {
-        hideMenu()
-        
-        ApplicationData.CurrentDownloadCategoryMode = .Juzz
-        
-        self.performSegue(withIdentifier: "SegueDropDown", sender: nil)
+        AssignmentManager.unloadAssignmentMode(completionHandler: {
+            self.hideMenu()
+            
+            ApplicationData.CurrentDownloadCategoryMode = .Juzz
+            
+            self.performSegue(withIdentifier: "SegueDropDown", sender: nil)
+        })
     }
     @IBAction func btnPageLock_TouchUp(_ sender: UIButton) {
         hideMenu()
@@ -407,9 +413,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
 
         if !pageLocked {
             if sender.state == .ended {
-                let pageId = PageRepository().getPreviousPage(Id: ApplicationData.CurrentPage.Id).Id
-
-                PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageId)
+                AssignmentManager.unloadAssignmentMode(completionHandler: {
+                    let pageId = PageRepository().getPreviousPage(Id: ApplicationData.CurrentPage.Id).Id
+                    
+                    PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageId)
+                })
             }
         }
     }
@@ -418,9 +426,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
 
         if !pageLocked {
             if sender.state == .ended {
-                let pageId = PageRepository().getNextPage(Id: ApplicationData.CurrentPage.Id).Id
-
-                PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageId)
+                AssignmentManager.unloadAssignmentMode(completionHandler: {
+                    let pageId = PageRepository().getNextPage(Id: ApplicationData.CurrentPage.Id).Id
+                    
+                    PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageId)
+                })
             }
         }
     }
@@ -524,7 +534,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBAction func btnSchedule_TouchUp(_ sender: Any) {
     }
     @IBAction func btnExit_TouchUp(_ sender: Any) {
-        AssignmentManager.unloadAssignmentMode(yesHandler: {})
+        AssignmentManager.unloadAssignmentMode(completionHandler: {})
     }
     
     // ********** Base Right Menu Section ********** //
