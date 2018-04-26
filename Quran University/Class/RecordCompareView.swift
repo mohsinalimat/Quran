@@ -30,6 +30,7 @@ class RecordCompareView: UIView {
     var totalRecitation = 0
     var second = 0
     var minute = 0
+    var onlyRecordModeOn = false
     
     @objc func didAudioPlayToEnd() {
         switch currentPlayMode {
@@ -74,7 +75,9 @@ class RecordCompareView: UIView {
     
     func loadView() {
         DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
-
+        
+        onlyRecordModeOn = true
+        currentRecitationIndex = 0
         recordingSession = AVAudioSession.sharedInstance()
 
         do {
@@ -143,6 +146,11 @@ class RecordCompareView: UIView {
         do {
             vRecording.subviews.forEach({ $0.removeFromSuperview() })
             
+            vRecording.isHidden = false
+            vTimer.isHidden = true
+            btnRecord.isEnabled = true
+            btnPlayRecording.isEnabled = true
+            
             let recordingPath = ApplicationMethods.getRecitationRecordingPath(currentRecitationIndex: currentRecitationIndex)
             
             if DocumentManager.checkFileInApplicationDirectory(targetFilePath: recordingPath) != "" {
@@ -192,7 +200,11 @@ class RecordCompareView: UIView {
         vRecording.isHidden = true
         vTimer.isHidden = false
         lblTimer.text = "00:00"
+        btnRecord.isEnabled = false
+        btnStopRecording.isEnabled = false
+        btnPlayRecording.isEnabled = false
         
+        loadAyat()
         timer.invalidate()
         
         do {
@@ -202,8 +214,9 @@ class RecordCompareView: UIView {
             
             audioRecorder.record()
             
-            btnRecord.isEnabled = false
-            btnStopRecording.isEnabled = true
+            if !onlyRecordModeOn {
+                btnStopRecording.isEnabled = true
+            }
             
             ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RRefresh)
         } catch {
@@ -211,20 +224,22 @@ class RecordCompareView: UIView {
         }
     }
     func finishRecording() {
-        vRecording.isHidden = false
-        vTimer.isHidden = true
-        btnRecord.isEnabled = true
+        vRecording.isHidden = true
+        vTimer.isHidden = false
+        btnRecord.isEnabled = false
         btnStopRecording.isEnabled = false
         
         audioRecorder.stop()
         timer.invalidate()
-        loadRecording()
+        
+        if !onlyRecordModeOn {
+            loadRecording()
+        }
+        
         ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RStop)
     }
     func playPauseRecording() {
-        if recordingWaveform == nil {
-            return
-        }
+        loadRecording()
         
         currentPlayMode = .Recording
         ayatPlayMode = AudioPlayMode.Paused
@@ -256,25 +271,7 @@ class RecordCompareView: UIView {
         do {
             vAyat.subviews.forEach({ $0.removeFromSuperview() })
             
-            let ayatOrderId = RecitationManager.getRecitation(recitationIndex: currentRecitationIndex).AyatOrderId
-            let currentRecitationNumber = currentRecitationIndex + 1
-            
-            lblAyatName.text = "Ayat "  + String(ayatOrderId)
-            btnNextAyat.isHidden = true
-            btnPreviousAyat.isHidden = true
-            
-            if totalRecitation > 1 {
-                if currentRecitationNumber == 1 {
-                    btnNextAyat.isHidden = false
-                }
-                else if currentRecitationNumber == totalRecitation {
-                    btnPreviousAyat.isHidden = false
-                }
-                else {
-                    btnNextAyat.isHidden = false
-                    btnPreviousAyat.isHidden = false
-                }
-            }
+            updateNavigation()
             
             ayatWaveform = try ASWaveformPlayerView(audioURL: RecitationManager.getRecitationFileURL(recitationIndex: currentRecitationIndex), sampleCount: 1024, amplificationFactor: 2000)
             
@@ -300,6 +297,8 @@ class RecordCompareView: UIView {
         }
     }
     func playPauseAyat() {
+        finishRecording()
+        
         if ayatWaveform == nil {
             return
         }
@@ -328,6 +327,32 @@ class RecordCompareView: UIView {
             ayatWaveform.audioPlayer.pause()
             
             break
+        }
+    }
+    func updateNavigation() {
+        let ayatOrderId = RecitationManager.getRecitation(recitationIndex: currentRecitationIndex).AyatOrderId
+        let currentRecitationNumber = currentRecitationIndex + 1
+        
+        lblAyatName.text = "Ayat "  + String(ayatOrderId)
+        btnPreviousAyat.isHidden = true
+        btnNextAyat.isHidden = true
+        
+        if totalRecitation > 1 {
+            if currentRecitationNumber == 1 {
+                btnNextAyat.isHidden = false
+            }
+            else if currentRecitationNumber == totalRecitation {
+                if !onlyRecordModeOn {
+                    btnPreviousAyat.isHidden = false
+                }
+            }
+            else {
+                btnNextAyat.isHidden = false
+                
+                if !onlyRecordModeOn {
+                    btnPreviousAyat.isHidden = false
+                }
+            }
         }
     }
     
@@ -361,5 +386,9 @@ class RecordCompareView: UIView {
         
         loadAyat()
         finishRecording()
+        
+        if onlyRecordModeOn {
+            startRecording()
+        }
     }
 }

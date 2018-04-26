@@ -323,7 +323,13 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             break
         case .RStop:
             btnRRefresh.isEnabled = true
-            btnGPlay.isEnabled = true
+            
+            if vRecordCompare.onlyRecordModeOn && vRecordCompare.currentRecitationIndex < (vRecordCompare.totalRecitation - 1) {
+                btnRStop.isEnabled = true
+            }
+            else {
+                btnGPlay.isEnabled = true
+            }
             
             break
         case .GPlay:
@@ -491,6 +497,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Recording Section ********** //
     @IBAction func btnRRefresh_TouchUp(_ sender: Any) {
+        vRecordCompare.onlyRecordModeOn = true
+        vRecordCompare.currentRecitationIndex = 0
+        
         vRecordCompare.startRecording()
     }
     @IBAction func btnRRecord_TouchUp(_ sender: Any) {
@@ -499,9 +508,14 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         vRecordCompare.loadView()
     }
     @IBAction func btnRStop_TouchUp(_ sender: Any) {
+        vRecordCompare.onlyRecordModeOn = true
+        
         vRecordCompare.finishRecording()
     }
     @IBAction func btnGPlay_TouchUp(_ sender: Any) {
+        vRecordCompare.onlyRecordModeOn = false
+        vRecordCompare.currentRecitationIndex = 0
+        
         vRecordCompare.playPauseRecording()
     }
     @IBAction func btnGRefresh_TouchUp(_ sender: Any) {
