@@ -129,6 +129,8 @@ class AssignmentManager {
         }
     }
     static func loadAssignmentMode(Id: Int64) {
+        unloadAssignment(completionHandler: {})
+        
         ApplicationData.AssignmentModeOn = true
         
         AssignmentManager.assignmentList.filter { $0.Id == Id }.forEach { objAssignment in
@@ -148,16 +150,19 @@ class AssignmentManager {
     static func unloadAssignmentMode(completionHandler: @escaping methodHandler1) {
         if ApplicationData.AssignmentModeOn {
             DialogueManager.showConfirmation(viewController: ApplicationObject.CurrentViewController, message: ApplicationConfirmMessage.TURN_OFF_ASSIGNMENT_MODE, yesHandler: {
-                ApplicationData.AssignmentModeOn = false
-                
-                AyatSelectionManager.hideAyatSelection()
-                AyatSelectionManager.removeAssignmentBoundary()
-                ApplicationObject.MainViewController.hideMenu()
-                completionHandler()
+                unloadAssignment(completionHandler: completionHandler)
             })
         }
         else {
             completionHandler()
         }
+    }
+    static func unloadAssignment(completionHandler: @escaping methodHandler1) {
+        ApplicationData.AssignmentModeOn = false
+        
+        AyatSelectionManager.hideAyatSelection()
+        AyatSelectionManager.removeAssignmentBoundary()
+        ApplicationObject.MainViewController.hideMenu()
+        completionHandler()
     }
 }
