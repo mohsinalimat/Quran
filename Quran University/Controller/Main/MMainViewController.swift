@@ -517,10 +517,14 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         vRecordCompare.currentRecitationIndex = 0
         
         vRecordCompare.playPauseRecording()
+        vRecordCompare.loadAyat()
     }
     @IBAction func btnGRefresh_TouchUp(_ sender: Any) {
-        vRecordCompare.loadRecording()
+        vRecordCompare.onlyRecordModeOn = false
+        vRecordCompare.currentRecitationIndex = 0
+        
         vRecordCompare.playPauseRecording()
+        vRecordCompare.loadAyat()
     }
     
     // ********** Base Left Menu Section ********** //

@@ -218,7 +218,7 @@ class RecordCompareView: UIView {
                 btnStopRecording.isEnabled = true
             }
             
-            ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RRefresh)
+            ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RRecord)
         } catch {
             finishRecording()
         }
@@ -236,7 +236,9 @@ class RecordCompareView: UIView {
             loadRecording()
         }
         
-        ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RStop)
+        if onlyRecordModeOn {
+            ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RStop)
+        }
     }
     func playPauseRecording() {
         loadRecording()
@@ -380,6 +382,10 @@ class RecordCompareView: UIView {
         
         loadAyat()
         finishRecording()
+        
+        if !onlyRecordModeOn {
+            playPauseRecording()
+        }
     }
     @IBAction func btnNextAyat_TouchUp(_ sender: Any) {
         currentRecitationIndex = currentRecitationIndex + 1
@@ -389,6 +395,9 @@ class RecordCompareView: UIView {
         
         if onlyRecordModeOn {
             startRecording()
+        }
+        else {
+            playPauseRecording()
         }
     }
 }
