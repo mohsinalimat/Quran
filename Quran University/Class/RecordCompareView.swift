@@ -53,7 +53,7 @@ class RecordCompareView: UIView {
         }
     }
     @objc func timerAction() {
-        if minute == 4 {
+        if minute == 15 {
             finishRecording()
             
             DialogueManager.showInfo(viewController: ApplicationObject.MainViewController, message: ApplicationInfoMessage.MAX_RECORDING_LIMIT, okHandler: {})
@@ -217,8 +217,9 @@ class RecordCompareView: UIView {
             if !onlyRecordModeOn {
                 btnStopRecording.isEnabled = true
             }
-            
-            ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RRecord)
+            else {
+                ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .RRecord)
+            }
         } catch {
             finishRecording()
         }
