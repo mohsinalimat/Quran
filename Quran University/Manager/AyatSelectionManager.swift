@@ -6,7 +6,7 @@ class AyatSelectionManager {
     static var assignmentBoundaryList = [CAShapeLayer]()
     
     static func generateAyatSelectionForCurrentPage() {
-        ayatSelectionList.removeAll()
+        removeAyatSelection()
         
         let ayatList = AyatRepository().getAyatList(pageId: ApplicationData.CurrentPage.Id)
         let canvasHeight = ApplicationObject.QuranPageImageView.bounds.height
@@ -79,6 +79,14 @@ class AyatSelectionManager {
         for objAyatSelection in ayatSelectionList {
             ApplicationObject.QuranPageImageView.layer.addSublayer(objAyatSelection)
         }
+    }
+    static func removeAyatSelection() {
+        for ayatSelection in ayatSelectionList {
+            ayatSelection.removeFromSuperlayer()
+        }
+        
+        ayatSelectionList.removeAll()
+        RecitationManager.recitationList.removeAll()
     }
     static func generateShowAssignmentBoundary() {
         assignmentBoundaryList.removeAll()
@@ -267,11 +275,12 @@ class AyatSelectionManager {
         highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
     }
     static func hideAyatSelection() {
-        RecitationManager.recitationList.removeAll()
         ayatSelectionList.lazy.forEach { ayatSelection in
             ayatSelection.isHidden = true
             ayatSelection.fillColor = ApplicationConstant.AyatSelectionColor
         }
+        
+        RecitationManager.recitationList.removeAll()
     }
     static func getAyatSelectionList(recitationName: String) -> [CAShapeLayer] {
         var lstAyatSelection = [CAShapeLayer]()

@@ -13,7 +13,7 @@ class PageManager {
             
             RecitationManager.setPlayerMode(mode: .None)
             ApplicationMethods.setCurrentPageData(selectedScriptId: scriptId, selectedPageId: pageId)
-            ApplicationObject.QuranPageImageView.layer.sublayers?.removeAll()
+            AyatSelectionManager.removeAyatSelection()
             
             let fileURL = DocumentManager.checkFileInApplicationDirectory(targetFilePath: ApplicationMethods.getPagePath(scriptId: scriptId, pageId: pageId))
             
