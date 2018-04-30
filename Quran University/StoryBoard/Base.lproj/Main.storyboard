@@ -278,6 +278,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y8F-Cf-QjF">
+                                        <rect key="frame" x="74" y="1" width="226" height="57"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hG1-C5-6Y1">
                                         <rect key="frame" x="311" y="8" width="62" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -326,6 +331,7 @@
                         <outlet property="btnSurah" destination="EiP-E6-vD3" id="7Kd-mm-UIW"/>
                         <outlet property="ivQuranPage" destination="pWY-1c-Aim" id="4XM-uv-OBr"/>
                         <outlet property="lblListenRepeatInfo" destination="fhE-p9-fZ6" id="kaM-G4-Mur"/>
+                        <outlet property="vAssignmentRecording" destination="y8F-Cf-QjF" id="Rhb-cC-GlL"/>
                         <outlet property="vBaseLeftMenu" destination="yHi-CM-4oG" id="Oy1-St-McC"/>
                         <outlet property="vBaseRightMenu" destination="3Cb-wg-ckJ" id="qVf-53-599"/>
                         <outlet property="vFooter" destination="SJS-9O-BG0" id="McY-uQ-maY"/>

@@ -83,6 +83,7 @@ enum RecordComparePlayMode: Int32 {
 enum FooterSectionMode: Int32 {
     case Player = 1
     case Recording = 2
+    case AssignmentRecording = 3
 }
 
 enum RecordCompareMode: Int32 {

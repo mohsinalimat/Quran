@@ -43,6 +43,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBOutlet weak var btnGPlay: UIButton!
     @IBOutlet weak var btnGRefresh: UIButton!
     
+    // ********** Footer Assignment Recording Section ********** //
+    @IBOutlet weak var vAssignmentRecording: UIView!
+    
     // ********** Base Left Menu Section ********** //
     @IBOutlet var vBaseLeftMenu: UIView!
     
@@ -283,6 +286,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     func setFooterMode(currentFooterSectionMode: FooterSectionMode, enableQuranPageUserInteraction: Bool) {
         vPlayer.isHidden = true
         vRecording.isHidden = true
+        vAssignmentRecording.isHidden = true
         
         setViewForFooterMode(isUserInteractionEnabled: true)
         
@@ -300,6 +304,10 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             if enableQuranPageUserInteraction {
                 ivQuranPage.isUserInteractionEnabled = true
             }
+            
+            break
+        case .AssignmentRecording:
+            vAssignmentRecording.isHidden = false
             
             break
         }
