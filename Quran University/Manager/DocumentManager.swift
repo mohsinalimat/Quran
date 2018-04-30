@@ -96,35 +96,45 @@ class DocumentManager {
     static func getFileURLInApplicationDirectory(targetFilePath: String) -> URL {
         return documentsDirectory.appendingPathComponent(targetFilePath)
     }
-    static func checkFilesExistForSurahAyatOrderRange(startSurahId: Int64, endSurahId: Int64, startAyatOrderId: Int64, endAyatOrderId: Int64) -> Bool {
+    static func checkFilesExistForSurahAyatOrderRange(startSurahId: Int64, endSurahId: Int64, startAyatOrderId: Int64, endAyatOrderId: Int64) -> FileMissingMode {
         let pageList = PageRepository().getPageList(fromSurahId: startSurahId, toSurahId: endSurahId, startAyatOrderId: startAyatOrderId, endAyatOrderId: endAyatOrderId)
-        var status = true;
+        var missingMode = FileMissingMode.None
+        var scriptExist = true
+        var audioExist = true
         
         for pageObject in pageList {
             let fileURL = DocumentManager.checkFileInApplicationDirectory(targetFilePath: ApplicationMethods.getPagePath(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id))
             
             if fileURL == "" {
-                status = false
+                scriptExist = false
                 
                 break
             }
         }
         
-        if status == true {
-            let recitationList = RecitationRepository().getRecitationList(fromSurahId: startSurahId, toSurahId: endSurahId, fromAyatOrderId: startAyatOrderId, toAyatOrderId: endAyatOrderId)
+        let recitationList = RecitationRepository().getRecitationList(fromSurahId: startSurahId, toSurahId: endSurahId, fromAyatOrderId: startAyatOrderId, toAyatOrderId: endAyatOrderId)
+        
+        for recitationObject in recitationList {
+            let fileURL = DocumentManager.checkFileInApplicationDirectory(targetFilePath: ApplicationMethods.getRecitationPath(reciterId: ApplicationData.CurrentReciter.Id, recitationName: recitationObject.RecitationFileName))
             
-            for recitationObject in recitationList {
-                let fileURL = DocumentManager.checkFileInApplicationDirectory(targetFilePath: ApplicationMethods.getRecitationPath(reciterId: ApplicationData.CurrentReciter.Id, recitationName: recitationObject.RecitationFileName))
+            if fileURL == "" {
+                audioExist = false
                 
-                if fileURL == "" {
-                    status = false
-                    
-                    break
-                }
+                break
             }
         }
         
-        return status
+        if !scriptExist && !audioExist {
+            missingMode = .All
+        }
+        else if !scriptExist {
+            missingMode = .Script
+        }
+        else if !audioExist {
+            missingMode = .Audio
+        }
+        
+        return missingMode
     }
     static func clearDirectory(folderPath: String) {
         let folderURL = documentsDirectory.appendingPathComponent(folderPath)

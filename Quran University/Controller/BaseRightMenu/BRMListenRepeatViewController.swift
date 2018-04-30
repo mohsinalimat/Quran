@@ -358,7 +358,10 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
     }
     @IBAction func btnPlay_TouchUp(_ sender: Any) {
         if validateView() {
-            if DocumentManager.checkFilesExistForSurahAyatOrderRange(startSurahId: startSurah.Id, endSurahId: endSurah.Id, startAyatOrderId: startAyat.AyatOrderId, endAyatOrderId: endAyat.AyatOrderId) {
+            let missingMode = DocumentManager.checkFilesExistForSurahAyatOrderRange(startSurahId: startSurah.Id, endSurahId: endSurah.Id, startAyatOrderId: startAyat.AyatOrderId, endAyatOrderId: endAyat.AyatOrderId)
+            
+            switch missingMode {
+            case .None:
                 var aSilence: Double = 0.0
                 var aNumber:Int64 = 0
                 var rSilence: Double = 0.0
@@ -377,9 +380,20 @@ class BRMListenRepeatViewController: BaseViewController, ModalDialogueProtocol {
                 self.delegate?.onDoneHandler?(StartSurahId: startSurah.Id, EndSurahId: endSurah.Id, StartAyatOrderId: startAyat.AyatOrderId, EndAyatOrderId: endAyat.AyatOrderId, AyatRecitationSilence: aSilence, AyatRepeatFor: aNumber, RangeRecitationSilence: rSilence, RangeRepeatFor: rNumber)
                 
                 self.dismiss(animated: true, completion: nil)
-            }
-            else {
+                
+                break
+            case .All:
                 DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.AYAT_MISSING_DOWNLOAD_SCRIPT_RECITATION, okHandler: {})
+                
+                break
+            case .Audio:
+                RecitationManager.downloadRecitationForCurrentPage()
+                
+                break
+            case .Script:
+                PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: startAyat.PageId)
+                
+                break
             }
         }
     }

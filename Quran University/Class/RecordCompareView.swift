@@ -138,7 +138,7 @@ class RecordCompareView: UIView {
         audioRecorder.stop()
         timer.invalidate()
         DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
-        ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .Player)
+        ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
         ApplicationObject.MainViewController.hideMenu(tag: ViewTag.RecordCompare.rawValue)
     }
     

@@ -106,6 +106,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         if !pageLocked {
             if let touch = touches.first {
                 if touch.view == ivQuranPage && RecitationManager.recitationList.first != nil {
+                    setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
                     RecitationManager.setPlayerMode(mode: .Ready)
                     AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
                 }
@@ -279,7 +280,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.view.viewWithTag(ViewTag.ListenRepeat.rawValue)?.isHidden = false
         lblListenRepeatInfo.text = info
     }
-    func setFooterMode(currentFooterSectionMode: FooterSectionMode) {
+    func setFooterMode(currentFooterSectionMode: FooterSectionMode, enableQuranPageUserInteraction: Bool) {
         vPlayer.isHidden = true
         vRecording.isHidden = true
         
@@ -295,6 +296,10 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             
             setViewForFooterMode(isUserInteractionEnabled: false)
             setRecordCompareMode(currentRecordCompareMode: .Ready)
+            
+            if enableQuranPageUserInteraction {
+                ivQuranPage.isUserInteractionEnabled = true
+            }
             
             break
         }
@@ -503,6 +508,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         vRecordCompare.startRecording()
     }
     @IBAction func btnRRecord_TouchUp(_ sender: Any) {
+        setFooterMode(currentFooterSectionMode: .Recording, enableQuranPageUserInteraction: false)
         showMenu(tag: ViewTag.RecordCompare.rawValue)
         setRecordCompareMode(currentRecordCompareMode: .RRecord)
         vRecordCompare.loadView()
@@ -565,15 +571,27 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.hideMenu()
         
         if RecitationManager.validatePlayer() {
-            let startAyatOrderId = RecitationManager.getRecitation(recitationIndex: 0).AyatOrderId
-            let endAyatOrderId = RecitationManager.getRecitation(recitationIndex: (RecitationManager.getRecitationCount() - 1)).AyatOrderId
+            let startAyat = RecitationManager.getRecitation(recitationIndex: 0)
+            let endAyat = RecitationManager.getRecitation(recitationIndex: (RecitationManager.getRecitationCount() - 1))
+            let missingMode = DocumentManager.checkFilesExistForSurahAyatOrderRange(startSurahId: ApplicationData.CurrentSurah.Id, endSurahId: ApplicationData.CurrentSurah.Id, startAyatOrderId: startAyat.AyatOrderId, endAyatOrderId: endAyat.AyatOrderId)
             
-            if DocumentManager.checkFilesExistForSurahAyatOrderRange(startSurahId: ApplicationData.CurrentSurah.Id, endSurahId: ApplicationData.CurrentSurah.Id, startAyatOrderId: startAyatOrderId, endAyatOrderId: endAyatOrderId) {
+            switch missingMode {
+            case .None:
+                setFooterMode(currentFooterSectionMode: .Recording, enableQuranPageUserInteraction: true)
                 
-                setFooterMode(currentFooterSectionMode: .Recording)
-            }
-            else {
+                break
+            case .All:
                 DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.AYAT_MISSING_DOWNLOAD_SCRIPT_RECITATION, okHandler: {})
+                
+                break
+            case .Audio:
+                RecitationManager.downloadRecitationForCurrentPage()
+                
+                break
+            case .Script:
+                PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: startAyat.PageId)
+                
+                break
             }
         }
     }

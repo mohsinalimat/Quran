@@ -220,11 +220,7 @@ class RecitationManager {
                 AyatSelectionManager.highlightAyatSelection(recitationName: recitationName)
             }
             catch {
-                ApplicationData.CurrentDownloadMode = .Audio
-                ApplicationData.CurrentDownloadCategoryMode = .Page
-                ApplicationData.CurrentDownloadPageMode = DownloadPageMode.Confirm.hashValue
-                
-                ApplicationObject.MainViewController.performSegue(withIdentifier: "SegueDownloadPage", sender: nil)
+                downloadRecitationForCurrentPage()
             }
         }
         
@@ -245,6 +241,13 @@ class RecitationManager {
             
             setPlayerMode(mode: .Play)
         }
+    }
+    static func downloadRecitationForCurrentPage() {
+        ApplicationData.CurrentDownloadMode = .Audio
+        ApplicationData.CurrentDownloadCategoryMode = .Page
+        ApplicationData.CurrentDownloadPageMode = DownloadPageMode.Confirm.hashValue
+        
+        ApplicationObject.MainViewController.performSegue(withIdentifier: "SegueDownloadPage", sender: nil)
     }
     static func stopRecitation() {
         if recitationList.count <= 0 {

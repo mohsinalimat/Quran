@@ -106,3 +106,10 @@ enum AssignmentStatus: Int32 {
     case Checked = 9
     case Rechecked = 10
 }
+
+enum FileMissingMode: Int32 {
+    case None = 0
+    case All = 1
+    case Audio = 2
+    case Script = 3
+}
