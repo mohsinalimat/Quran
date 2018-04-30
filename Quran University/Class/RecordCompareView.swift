@@ -20,7 +20,6 @@ class RecordCompareView: UIView {
     
     var recordingWaveform: ASWaveformPlayerView!
     var ayatWaveform: ASWaveformPlayerView!
-    var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var recordingPlayMode = AudioPlayMode.Paused
     var ayatPlayMode = AudioPlayMode.Paused
@@ -39,7 +38,6 @@ class RecordCompareView: UIView {
             
             btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
             loadRecording()
-            loadAyat()
             playPauseAyat()
             
             break
@@ -78,32 +76,17 @@ class RecordCompareView: UIView {
         
         onlyRecordModeOn = true
         currentRecitationIndex = 0
-        recordingSession = AVAudioSession.sharedInstance()
-
-        do {
-            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-            try recordingSession.setActive(true)
-
-            recordingSession.requestRecordPermission() { [unowned self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        self.totalRecitation = RecitationManager.getRecitationCount()
-                        
-                        self.loadAyat()
-                        self.startRecording()
-
-                        NotificationCenter.default.addObserver(self, selector: #selector(self.didAudioPlayToEnd), name: .AVPlayerItemDidPlayToEndTime, object: nil)
-                    } else {
-                        DialogueManager.showInfo(viewController: ApplicationObject.CurrentViewController, message: ApplicationInfoMessage.ACCESS_MICROPHONE, okHandler: {
-                            self.closePopUp()
-                            ApplicationMethods.showSetting()
-                        })
-                    }
-                }
-            }
-        } catch {
-            closePopUp()
-        }
+        
+        PermissionManager.requestRecordPermission(successHandler: {
+            self.totalRecitation = RecitationManager.getRecitationCount()
+            
+            self.loadAyat()
+            self.startRecording()
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(self.didAudioPlayToEnd), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+        }, errorHandler: {
+            self.closePopUp()
+        })
     }
     func setViewPosition() {
         var vMVC = ApplicationObject.MainViewController.vHeader!
@@ -372,6 +355,7 @@ class RecordCompareView: UIView {
     // ********** Recording Section ********** //
     @IBAction func btnStopRecording_TouchUp(_ sender: Any) {
         finishRecording()
+        playPauseRecording()
     }
     @IBAction func btnRecord_TouchUp(_ sender: Any) {
         startRecording()
