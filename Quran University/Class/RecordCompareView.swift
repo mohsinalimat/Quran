@@ -94,7 +94,10 @@ class RecordCompareView: UIView {
 
                         NotificationCenter.default.addObserver(self, selector: #selector(self.didAudioPlayToEnd), name: .AVPlayerItemDidPlayToEndTime, object: nil)
                     } else {
-                        self.closePopUp()
+                        DialogueManager.showInfo(viewController: ApplicationObject.CurrentViewController, message: ApplicationInfoMessage.ACCESS_MICROPHONE, okHandler: {
+                            self.closePopUp()
+                            ApplicationMethods.showSetting()
+                        })
                     }
                 }
             }
@@ -135,7 +138,10 @@ class RecordCompareView: UIView {
         }
     }
     func closePopUp() {
-        audioRecorder.stop()
+        if audioRecorder != nil {
+            audioRecorder.stop()
+        }
+        
         timer.invalidate()
         DocumentManager.clearDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
         ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)

@@ -85,10 +85,10 @@ class ApplicationMethods {
         
         return DirectoryStructure.TempRecordingRecitation + recordingName
     }
-    static func showGeneralSetting() {
-        if let wifiUrl = URL(string: UIApplicationOpenSettingsURLString) {
-            if UIApplication.shared.canOpenURL(wifiUrl) {
-                UIApplication.shared.open(wifiUrl, options: [:], completionHandler: nil)
+    static func showSetting() {
+        if let settingUrl = URL(string: UIApplicationOpenSettingsURLString) {
+            if UIApplication.shared.canOpenURL(settingUrl) {
+                UIApplication.shared.open(settingUrl, options: [:], completionHandler: nil)
             }
         }
     }

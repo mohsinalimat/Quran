@@ -41,7 +41,7 @@ class BaseViewController: UIViewController {
     
     func internetNotAvailable() {
         DialogueManager.showError(viewController: ApplicationObject.CurrentViewController, message: ApplicationInfoMessage.INTERNET_NOT_AVAILABLE, okHandler: {
-            ApplicationMethods.showGeneralSetting()
+            ApplicationMethods.showSetting()
         })
     }
 }
