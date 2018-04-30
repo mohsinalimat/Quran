@@ -358,6 +358,7 @@ class RecordCompareView: UIView {
         playPauseRecording()
     }
     @IBAction func btnRecord_TouchUp(_ sender: Any) {
+        recordingWaveform.audioPlayer.pause()
         startRecording()
     }
     @IBAction func btnPlayRecording_TouchUp(_ sender: Any) {
