@@ -118,6 +118,10 @@ class RecordAssignmentView: UIView {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
             
             audioRecorder.record()
+            
+            let studentAssignmentRecordingObject = StudentAssignmentRecording(Id: ApplicationData.CurrentAssignment.Id)
+            
+            _ = StudentAssignmentRecordingRepository().saveStudentAssignmentRecording(studentAssignmentRecordingObject: studentAssignmentRecordingObject)
         } catch {
             finishRecording()
         }
