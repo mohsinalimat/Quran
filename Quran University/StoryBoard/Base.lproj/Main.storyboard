@@ -170,7 +170,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTi-Dw-ve3">
                                         <rect key="frame" x="2" y="8" width="62" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="icn_AssignmentListingCircle"/>
+                                        <state key="normal" image="img_LeftAssignmentPlainCircle"/>
                                         <connections>
                                             <action selector="btnLMenu_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="hOx-YJ-Z22"/>
                                         </connections>
@@ -918,7 +918,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="887" y="303"/>
+            <point key="canvasLocation" x="885.60000000000002" y="302.6986506746627"/>
         </scene>
         <!--AvailableReciter-->
         <scene sceneID="yZ1-Tp-nPi">
@@ -994,7 +994,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icn_AssignmentListingCircle" width="61" height="43"/>
         <image name="icn_Assignments" width="26" height="20"/>
         <image name="icn_Bookmark" width="12" height="17"/>
         <image name="icn_Corrections" width="47" height="45"/>
@@ -1016,6 +1015,7 @@
         <image name="img_Bookmark" width="17" height="20"/>
         <image name="img_Close" width="19" height="19"/>
         <image name="img_Download" width="23" height="22"/>
+        <image name="img_LeftAssignmentPlainCircle" width="62" height="44"/>
         <image name="img_Menu" width="30" height="11"/>
         <image name="img_Next" width="39" height="44"/>
         <image name="img_Pause" width="34" height="44"/>

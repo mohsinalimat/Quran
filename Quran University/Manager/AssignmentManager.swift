@@ -145,7 +145,7 @@ class AssignmentManager {
             
             ApplicationObject.SurahButton.setTitle(ApplicationData.CurrentSurah.Name, for: .normal)
             PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
-            ApplicationObject.MainViewController.btnLMenu.setImage(#imageLiteral(resourceName: "img_LeftAssignment"), for: .normal)
+            ApplicationObject.MainViewController.btnLMenu.setImage(#imageLiteral(resourceName: "img_LeftAssignmentLinesCircle"), for: .normal)
             ApplicationObject.MainViewController.showMenu(tag: ViewTag.BaseLeftMenu.rawValue)
         })
     }
@@ -164,7 +164,7 @@ class AssignmentManager {
         
         AyatSelectionManager.hideAyatSelection()
         AyatSelectionManager.removeAssignmentBoundary()
-        ApplicationObject.MainViewController.btnLMenu.setImage(#imageLiteral(resourceName: "icn_AssignmentListingCircle"), for: .normal)
+        ApplicationObject.MainViewController.btnLMenu.setImage(#imageLiteral(resourceName: "img_LeftAssignmentPlainCircle"), for: .normal)
         ApplicationObject.MainViewController.hideMenu()
         ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
         
