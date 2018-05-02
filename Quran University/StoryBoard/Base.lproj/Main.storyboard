@@ -368,6 +368,7 @@
                         <outlet property="vListenRepeat" destination="Ruj-iU-cMT" id="DvF-no-Ro4"/>
                         <outlet property="vPlayer" destination="HmC-2a-kJ6" id="zDo-rI-VgX"/>
                         <outlet property="vRecordCompare" destination="RZv-Ij-J1M" id="DHw-F3-Ynr"/>
+                        <outlet property="vRecordedAssignment" destination="epU-Hb-UNk" id="kjB-1Q-zfQ"/>
                         <outlet property="vRecording" destination="Yfu-Td-ZeC" id="anj-Og-gb7"/>
                         <outlet property="vTopMenu" destination="pzi-e7-LuZ" id="M2h-Zu-IDh"/>
                         <segue destination="Yws-IH-IEe" kind="presentation" identifier="SegueDownloadPage" animates="NO" id="UFM-SL-3Ag"/>
@@ -905,6 +906,38 @@
                         <outlet property="vAyat" destination="vPO-Gx-GVS" id="nkx-K1-QQr"/>
                         <outlet property="vRecording" destination="mg8-gW-wWy" id="hpq-JD-erS"/>
                         <outlet property="vTimer" destination="Fgx-dg-DmK" id="6Tv-Mp-Hpk"/>
+                    </connections>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" id="epU-Hb-UNk" customClass="RecordAssignmentView" customModule="Quran_University" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SCG-QC-iuV">
+                            <rect key="frame" x="1" y="1" width="373" height="83"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBA-nE-Lc8">
+                                    <rect key="frame" x="86" y="4" width="200" height="75"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                    <color key="textColor" red="0.44705882349999998" green="0.39607843139999999" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3YF-rf-kmn">
+                            <rect key="frame" x="1" y="1" width="373" height="83"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="gyL-QG-UeY"/>
+                    <connections>
+                        <outlet property="lblTimer" destination="LBA-nE-Lc8" id="IsS-st-lcl"/>
+                        <outlet property="vRecording" destination="3YF-rf-kmn" id="57O-pF-Rs4"/>
+                        <outlet property="vTimer" destination="SCG-QC-iuV" id="bd3-N5-dMd"/>
                     </connections>
                 </view>
                 <swipeGestureRecognizer direction="left" id="P1Z-F7-j9R">

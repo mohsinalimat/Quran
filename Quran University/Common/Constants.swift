@@ -46,6 +46,7 @@ struct DirectoryStructure {
     static let DefaultScript = "Quran University/Image/Script/2/"
     static let DefaultAudio = "Quran University/Audio/1/"
     static let TempRecordingRecitation = "Quran University/Temp/Recording/Recitation/"
+    static let StudentAssignmentRecording = "Quran University/Student/Assignment/Recording/"
 }
 
 struct BundleFileType {

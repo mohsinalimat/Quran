@@ -677,6 +677,9 @@
 		04CE0AE5204534CB000CD6BF /* TafseerBookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0AE4204534CB000CD6BF /* TafseerBookDetail.swift */; };
 		04CE0AE7204534EE000CD6BF /* TranslationBookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0AE6204534EE000CD6BF /* TranslationBookDetail.swift */; };
 		04CE0AE920453E1D000CD6BF /* TMDownloadBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0AE820453E1D000CD6BF /* TMDownloadBookViewController.swift */; };
+		04CE12642099C7D80026D118 /* RecordAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE12632099C7D80026D118 /* RecordAssignmentView.swift */; };
+		04CE12662099D4370026D118 /* StudentAssignmentRecordingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE12652099D4370026D118 /* StudentAssignmentRecordingRepository.swift */; };
+		04CE12682099D7680026D118 /* StudentAssignmentRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE12672099D7680026D118 /* StudentAssignmentRecording.swift */; };
 		04D1CBAF2075FE7100334912 /* AssignmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1CBAE2075FE7100334912 /* AssignmentManager.swift */; };
 		04D2D70520035878006D1342 /* AyatSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2D70420035878006D1342 /* AyatSelectionManager.swift */; };
 		04D452AB2070ECD100715CA8 /* BaseLeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D452AA2070ECD100715CA8 /* BaseLeftMenu.storyboard */; };
@@ -1383,6 +1386,9 @@
 		04CE0AE4204534CB000CD6BF /* TafseerBookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TafseerBookDetail.swift; sourceTree = "<group>"; };
 		04CE0AE6204534EE000CD6BF /* TranslationBookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationBookDetail.swift; sourceTree = "<group>"; };
 		04CE0AE820453E1D000CD6BF /* TMDownloadBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDownloadBookViewController.swift; sourceTree = "<group>"; };
+		04CE12632099C7D80026D118 /* RecordAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAssignmentView.swift; sourceTree = "<group>"; };
+		04CE12652099D4370026D118 /* StudentAssignmentRecordingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAssignmentRecordingRepository.swift; sourceTree = "<group>"; };
+		04CE12672099D7680026D118 /* StudentAssignmentRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAssignmentRecording.swift; sourceTree = "<group>"; };
 		04D1CBAE2075FE7100334912 /* AssignmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentManager.swift; sourceTree = "<group>"; };
 		04D2D70420035878006D1342 /* AyatSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyatSelectionManager.swift; sourceTree = "<group>"; };
 		04D452AA2070ECD100715CA8 /* BaseLeftMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BaseLeftMenu.storyboard; sourceTree = "<group>"; };
@@ -1527,6 +1533,7 @@
 				0433258E201DAE4A000FD494 /* QUView.swift */,
 				04CB5E2B2026E92D00BA6424 /* ReciterTableViewCell.swift */,
 				04BB50A22069016D008C7D70 /* RecordCompareView.swift */,
+				04CE12632099C7D80026D118 /* RecordAssignmentView.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -2196,6 +2203,7 @@
 				04AB4D32205935490081A026 /* RecitationSilence.swift */,
 				0442BAA9201F2CC8006D5FD8 /* Reciter.swift */,
 				0442BAAB201F2FE5006D5FD8 /* Script.swift */,
+				04CE12672099D7680026D118 /* StudentAssignmentRecording.swift */,
 				0440A505200C99EB00D42754 /* Surah.swift */,
 				04231F05203C2F2300740A9C /* TafseerBook.swift */,
 				04CE0AE4204534CB000CD6BF /* TafseerBookDetail.swift */,
@@ -2306,6 +2314,7 @@
 				04AB4D34205949490081A026 /* RecitationSilenceRepository.swift */,
 				04F0D2BE203B0D6D002F7183 /* ReciterRepository.swift */,
 				04F0D2C0203B0E28002F7183 /* ScriptRepository.swift */,
+				04CE12652099D4370026D118 /* StudentAssignmentRecordingRepository.swift */,
 				04F0D2BA203B0C6D002F7183 /* SurahRepository.swift */,
 				04231EFD203C10CE00740A9C /* TafseerBookDetailRepository.swift */,
 				04231EFB203C10B600740A9C /* TafseerBookRepository.swift */,
@@ -3111,6 +3120,7 @@
 			files = (
 				04231F08203C315F00740A9C /* TranslationBook.swift in Sources */,
 				04D5F42B204EBD6200E7F7B4 /* WordMeaningBookDetail.swift in Sources */,
+				04CE12662099D4370026D118 /* StudentAssignmentRecordingRepository.swift in Sources */,
 				04F0D2BF203B0D6D002F7183 /* ReciterRepository.swift in Sources */,
 				0442BAAA201F2CC8006D5FD8 /* Reciter.swift in Sources */,
 				04CE0AE7204534EE000CD6BF /* TranslationBookDetail.swift in Sources */,
@@ -3169,6 +3179,7 @@
 				0476BBA12005ECB5002697B6 /* DownloadManager.swift in Sources */,
 				0495EA0D200F60BB00EC35D1 /* BaseModel.swift in Sources */,
 				0415F37B2002107600041C3D /* MLoginViewController.swift in Sources */,
+				04CE12642099C7D80026D118 /* RecordAssignmentView.swift in Sources */,
 				04CE0AE5204534CB000CD6BF /* TafseerBookDetail.swift in Sources */,
 				048D6628204FCC2D007185EC /* AsbabNazool.swift in Sources */,
 				04D5F429204EBD5A00E7F7B4 /* WordMeaningBook.swift in Sources */,
@@ -3180,6 +3191,7 @@
 				049D735F2076348800E4C41B /* AssignmentModel.swift in Sources */,
 				04CD81812004FFF700E34444 /* Enumerations.swift in Sources */,
 				04CD817E2004EDE900E34444 /* DocumentManager.swift in Sources */,
+				04CE12682099D7680026D118 /* StudentAssignmentRecording.swift in Sources */,
 				0415F3792002107600041C3D /* AppDelegate.swift in Sources */,
 				0415F3812002107600041C3D /* Quran_University.xcdatamodeld in Sources */,
 				04AB4D3920596EA80081A026 /* NumberRepository.swift in Sources */,

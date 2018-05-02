@@ -45,6 +45,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Assignment Record & Upload Section ********** //
     @IBOutlet weak var vAssignmentRecording: UIView!
+    @IBOutlet var vRecordedAssignment: RecordAssignmentView!
     @IBOutlet weak var btnARecord: UIButton!
     @IBOutlet weak var btnAPlay: UIButton!
     @IBOutlet weak var btnAUpload: UIButton!
@@ -260,12 +261,23 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         vListenRepeat.frame = CGRect(x: x, y: y, width: width, height: height)
         
         self.view.addSubview(vListenRepeat)
+        
+        x = vFooter.frame.origin.x
+        y = vFooter.frame.origin.y - vRecordedAssignment.bounds.height
+        height = vRecordedAssignment.frame.size.height
+        width = vFooter.frame.size.width
+        
+        vRecordedAssignment.tag = ViewTag.RecordedAssignment.rawValue
+        vRecordedAssignment.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        self.view.addSubview(vRecordedAssignment)
     }
     func hideMenu() {
         self.view.viewWithTag(ViewTag.TopMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseLeftMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseRightMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.ListenRepeat.rawValue)?.isHidden = true
+        self.view.viewWithTag(ViewTag.RecordedAssignment.rawValue)?.isHidden = true
     }
     func hideMenu(tag: Int) {
         hideMenu()
@@ -574,10 +586,20 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Assignment Record & Upload Section ********** //
     @IBAction func btnARecord_TouchUp(_ sender: Any) {
+        self.hideMenu()
+        showMenu(tag: ViewTag.RecordedAssignment.rawValue)
+        vRecordedAssignment.loadView(completionHandler: {
+            self.vRecordedAssignment.startRecording()
+        })
     }
     @IBAction func btnAPlay_TouchUp(_ sender: Any) {
+        self.hideMenu()
+        showMenu(tag: ViewTag.RecordedAssignment.rawValue)
+        vRecordedAssignment.playPauseRecording()
     }
     @IBAction func btnAUpload_TouchUp(_ sender: Any) {
+        self.hideMenu()
+        vRecordedAssignment.finishRecording()
     }
     
     // ********** Base Right Menu Section ********** //

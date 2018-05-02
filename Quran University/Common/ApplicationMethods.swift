@@ -13,6 +13,13 @@ class ApplicationMethods {
         ApplicationObject.PageButton.setTitle(ApplicationData.CurrentPage.Name, for: .normal)
         ApplicationObject.JuzzButton.setTitle(ApplicationData.CurrentJuzz.Name, for: .normal)
     }
+    static func showSetting() {
+        if let settingUrl = URL(string: UIApplicationOpenSettingsURLString) {
+            if UIApplication.shared.canOpenURL(settingUrl) {
+                UIApplication.shared.open(settingUrl, options: [:], completionHandler: nil)
+            }
+        }
+    }
     
     static func getScriptPath(scriptId: Int64) -> String {
         return DirectoryStructure.Script + String(scriptId)
@@ -85,13 +92,6 @@ class ApplicationMethods {
         
         return DirectoryStructure.TempRecordingRecitation + recordingName
     }
-    static func showSetting() {
-        if let settingUrl = URL(string: UIApplicationOpenSettingsURLString) {
-            if UIApplication.shared.canOpenURL(settingUrl) {
-                UIApplication.shared.open(settingUrl, options: [:], completionHandler: nil)
-            }
-        }
-    }
     static func getRecitaion(recitationLabel: String) -> Recitation {
         let sRange = recitationLabel.index(recitationLabel.startIndex, offsetBy: 0)..<recitationLabel.index(recitationLabel.endIndex, offsetBy: -7)
         let aRange = recitationLabel.index(recitationLabel.startIndex, offsetBy: 3)..<recitationLabel.index(recitationLabel.endIndex, offsetBy: -4)
@@ -100,5 +100,16 @@ class ApplicationMethods {
         let recitationObject = RecitationRepository().getRecitation(surahId: surahId!, ayatOrder: ayatOrder!)
         
         return recitationObject
+    }
+    static func getCurrentStudentAssignmentRecordingPath() -> String {
+        var recordingName = String(ApplicationData.CurrentAssignment.CourseInfoId!) + "_" + String(ApplicationData.CurrentAssignment.StudentId) + "_" + String(ApplicationData.CurrentAssignment.classAssignmentStudentId)
+        
+        if ApplicationData.CurrentAssignment.Correction.count > 0 {
+            recordingName += "_" + String(ApplicationData.CurrentAssignment.Correction[0].Id)
+        }
+        
+        recordingName += ".m4a"
+        
+        return DirectoryStructure.StudentAssignmentRecording + recordingName
     }
 }

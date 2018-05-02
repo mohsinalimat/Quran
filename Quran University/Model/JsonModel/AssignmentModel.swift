@@ -2,6 +2,8 @@ import Foundation
 
 class AssignmentModel: Decodable {
     var Id: Int64
+    var StudentId: Int64
+    var classAssignmentStudentId: Int64
     var AssignmentType: String
     var AssignmentTypeSLang: String
     var DeadlineDate: String
@@ -15,6 +17,7 @@ class AssignmentModel: Decodable {
     
     var AssignmentStatusTitle: String?
     var AssignmentStatusId: Int32?
+    var CourseInfoId: Int64?
     var CourseTitle: String?
     var Number: String?
     
@@ -23,6 +26,8 @@ class AssignmentModel: Decodable {
     
     init() {
         self.Id = 0
+        self.StudentId = 0
+        self.classAssignmentStudentId = 0
         self.AssignmentType = ""
         self.AssignmentTypeSLang = ""
         self.DeadlineDate = ""

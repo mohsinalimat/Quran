@@ -1,6 +1,7 @@
 import Foundation
 
 struct CourseModel: Decodable {
+    var CourseInfoId: Int64
     var TitlePLang: String
     var TitleSLang: String
     

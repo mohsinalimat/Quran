@@ -3,6 +3,33 @@ import Foundation
 class DocumentManager {
     static let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
     
+    static func initApplicationStructure() {
+        createDirectory(folderPath: DirectoryStructure.Database)
+        createDirectory(folderPath: DirectoryStructure.DefaultScript)
+        createDirectory(folderPath: DirectoryStructure.DefaultAudio)
+        createDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
+        createDirectory(folderPath: DirectoryStructure.StudentAssignmentRecording)
+        
+        copyFilesFromBundleForType(sourceFileType: BundleFileType.SQLite, targetPath: DirectoryStructure.Database)
+        copyFilesFromBundleForType(sourceFileType: BundleFileType.MP3, targetPath: DirectoryStructure.DefaultAudio)
+        copyFilesFromBundleForType(sourceFileType: BundleFileType.PNG, targetPath: DirectoryStructure.DefaultScript)
+    }
+    static func clearDirectory(folderPath: String) {
+        let folderURL = documentsDirectory.appendingPathComponent(folderPath)
+        
+        if (try? folderURL.checkResourceIsReachable()) != nil {
+            do {
+                try FileManager.default.contentsOfDirectory(atPath: folderURL.path).lazy.forEach { fileName in
+                    let targetFileURL = folderURL.appendingPathComponent(fileName)
+                    
+                    try FileManager.default.removeItem(atPath: targetFileURL.path)
+                }
+            }
+            catch {
+                fatalError("No \(folderURL) directory found in application bundle.")
+            }
+        }
+    }
     static func createDirectory(folderPath: String) {
         let folderURL = documentsDirectory.appendingPathComponent(folderPath)
         
@@ -135,32 +162,5 @@ class DocumentManager {
         }
         
         return missingMode
-    }
-    static func clearDirectory(folderPath: String) {
-        let folderURL = documentsDirectory.appendingPathComponent(folderPath)
-        
-        if (try? folderURL.checkResourceIsReachable()) != nil {
-            do {
-                try FileManager.default.contentsOfDirectory(atPath: folderURL.path).lazy.forEach { fileName in
-                    let targetFileURL = folderURL.appendingPathComponent(fileName)
-                    
-                    try FileManager.default.removeItem(atPath: targetFileURL.path)
-                }
-            }
-            catch {
-                fatalError("No \(folderURL) directory found in application bundle.")
-            }
-        }
-    }
-    
-    static func initApplicationStructure() {
-        createDirectory(folderPath: DirectoryStructure.Database)
-        createDirectory(folderPath: DirectoryStructure.DefaultScript)
-        createDirectory(folderPath: DirectoryStructure.DefaultAudio)
-        createDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
-        
-        copyFilesFromBundleForType(sourceFileType: BundleFileType.SQLite, targetPath: DirectoryStructure.Database)
-        copyFilesFromBundleForType(sourceFileType: BundleFileType.MP3, targetPath: DirectoryStructure.DefaultAudio)
-        copyFilesFromBundleForType(sourceFileType: BundleFileType.PNG, targetPath: DirectoryStructure.DefaultScript)
     }
 }

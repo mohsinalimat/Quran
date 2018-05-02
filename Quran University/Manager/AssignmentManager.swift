@@ -112,6 +112,7 @@ class AssignmentManager {
                 if addRow {
                     objAssignment.AssignmentStatusTitle = assignmentStatusString
                     objAssignment.AssignmentStatusId = assignmentStatus.rawValue
+                    objAssignment.CourseInfoId = objCourse.CourseInfoId
                     objAssignment.CourseTitle = objCourse.Title
                     
                     filterAssignmentList.append(objAssignment)
