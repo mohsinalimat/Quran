@@ -35,7 +35,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBOutlet weak var btnPause: UIButton!
     @IBOutlet weak var btnNext: UIButton!
     
-    // ********** Footer Recording Section ********** //
+    // ********** Footer Record & Compare Section ********** //
     @IBOutlet weak var vRecording: UIView!
     @IBOutlet weak var btnRRefresh: UIButton!
     @IBOutlet weak var btnRRecord: UIButton!
@@ -43,8 +43,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBOutlet weak var btnGPlay: UIButton!
     @IBOutlet weak var btnGRefresh: UIButton!
     
-    // ********** Footer Assignment Recording Section ********** //
+    // ********** Footer Assignment Record & Upload Section ********** //
     @IBOutlet weak var vAssignmentRecording: UIView!
+    @IBOutlet weak var btnARecord: UIButton!
+    @IBOutlet weak var btnAPlay: UIButton!
+    @IBOutlet weak var btnAUpload: UIButton!
     
     // ********** Base Left Menu Section ********** //
     @IBOutlet var vBaseLeftMenu: UIView!
@@ -508,7 +511,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         RecitationManager.nextRecitation(onAudioPlayFinish: false)
     }
     
-    // ********** Footer Recording Section ********** //
+    // ********** Footer Record & Compare Section ********** //
     @IBAction func btnRRefresh_TouchUp(_ sender: Any) {
         vRecordCompare.onlyRecordModeOn = true
         vRecordCompare.currentRecitationIndex = 0
@@ -541,7 +544,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         vRecordCompare.loadAyat()
     }
     
-    // ********** Base Left Menu Section ********** //
+    // ********** Footer Assignment Section ********** //
     @IBAction func btnAssignmentList_TouchUp(_ sender: Any) {
         self.hideMenu()
         
@@ -553,6 +556,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     @IBAction func btnRecordUpload_TouchUp(_ sender: Any) {
         self.hideMenu()
+        
+        setFooterMode(currentFooterSectionMode: .AssignmentRecording, enableQuranPageUserInteraction: false)
     }
     @IBAction func btnCorrection_TouchUp(_ sender: Any) {
         self.hideMenu()
@@ -565,6 +570,14 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     @IBAction func btnExit_TouchUp(_ sender: Any) {
         AssignmentManager.unloadAssignmentMode(completionHandler: {})
+    }
+    
+    // ********** Footer Assignment Record & Upload Section ********** //
+    @IBAction func btnARecord_TouchUp(_ sender: Any) {
+    }
+    @IBAction func btnAPlay_TouchUp(_ sender: Any) {
+    }
+    @IBAction func btnAUpload_TouchUp(_ sender: Any) {
     }
     
     // ********** Base Right Menu Section ********** //

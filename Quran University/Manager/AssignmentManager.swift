@@ -163,6 +163,7 @@ class AssignmentManager {
         AyatSelectionManager.hideAyatSelection()
         AyatSelectionManager.removeAssignmentBoundary()
         ApplicationObject.MainViewController.hideMenu()
+        ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
         completionHandler()
     }
 }

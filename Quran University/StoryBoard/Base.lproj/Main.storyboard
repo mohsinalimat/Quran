@@ -281,6 +281,32 @@
                                     <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y8F-Cf-QjF">
                                         <rect key="frame" x="74" y="1" width="226" height="57"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LC6-p3-DDl">
+                                                <rect key="frame" x="10" y="4" width="49" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="icn_RecordCircle"/>
+                                                <connections>
+                                                    <action selector="btnARecord_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="BMc-hK-0Xo"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyn-9w-DMp">
+                                                <rect key="frame" x="91" y="4" width="49" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="icn_PlayCircle"/>
+                                                <connections>
+                                                    <action selector="btnAPlay_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="o5r-ca-ltZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIT-nw-1vn">
+                                                <rect key="frame" x="167" y="4" width="49" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="icn_UploadCircle"/>
+                                                <connections>
+                                                    <action selector="btnAUpload_TouchUp:" destination="VWn-eF-CVE" eventType="touchUpInside" id="nql-ec-t3c"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hG1-C5-6Y1">
@@ -307,6 +333,9 @@
                         <viewLayoutGuide key="safeArea" id="bBF-Bn-zEV"/>
                     </view>
                     <connections>
+                        <outlet property="btnAPlay" destination="Xyn-9w-DMp" id="LrI-E4-Opb"/>
+                        <outlet property="btnARecord" destination="LC6-p3-DDl" id="eph-zJ-UVg"/>
+                        <outlet property="btnAUpload" destination="AIT-nw-1vn" id="3Nt-jH-cvK"/>
                         <outlet property="btnBookmark" destination="A5u-mb-L3s" id="WYi-vL-BPg"/>
                         <outlet property="btnDownload" destination="Nv8-VS-a9m" id="fwd-Em-PLx"/>
                         <outlet property="btnGPlay" destination="UlF-Cz-FFn" id="4lF-ck-lLL"/>
@@ -973,11 +1002,14 @@
         <image name="icn_HidenShow" width="29" height="23"/>
         <image name="icn_Library" width="28" height="27"/>
         <image name="icn_MeetingOnline" width="36" height="42"/>
+        <image name="icn_PlayCircle" width="49" height="49"/>
         <image name="icn_Record" width="19" height="29"/>
+        <image name="icn_RecordCircle" width="49" height="49"/>
         <image name="icn_RecordUpload" width="25" height="26"/>
         <image name="icn_RewindGreen" width="26" height="25"/>
         <image name="icn_Schedule" width="29" height="29"/>
         <image name="icn_Search" width="20" height="20"/>
+        <image name="icn_UploadCircle" width="49" height="49"/>
         <image name="icn_listen" width="28" height="24"/>
         <image name="img_Back" width="35" height="44"/>
         <image name="img_Bookmark" width="17" height="20"/>
