@@ -5,26 +5,28 @@ struct QuranLink {
     static let Script = "http://media.quranlms.com/AppImages/Scripts/"
     static let Audio = "http://media.quranlms.com/Audio/"
 //    static let BaseUrl = "http://m.services.quranlms.com/
-    static let BaseUrl = "http://team-server.innotech-sa.com/QuranWebAPIs/"
+    static let BaseAddress = "http://team-server.innotech-sa.com/"
+    static let WebAPIUrl = BaseAddress + "QuranWebAPIs/"
+    static let WebSiteUrl = BaseAddress + "QuranWeb/"
     
     static func Book(languageId: Int64, bookId: Int64, surahId: Int64) -> URL {
         var urlAddress = ""
         
         switch ApplicationData.CurrentDownloadBookMode {
         case .CauseOfRevelation:
-            urlAddress = BaseUrl + "RelatedData/?a=\(bookId)&l=\(languageId)"
+            urlAddress = WebAPIUrl + "RelatedData/?a=\(bookId)&l=\(languageId)"
             
             break;
         case .Tafseer:
-            urlAddress = BaseUrl + "RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
+            urlAddress = WebAPIUrl + "RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
             
                 break;
         case .Translation:
-            urlAddress = BaseUrl + "RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
+            urlAddress = WebAPIUrl + "RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
             
             break;
         case .WordMeaning:
-            urlAddress = BaseUrl + "RelatedData/?l=\(languageId)"
+            urlAddress = WebAPIUrl + "RelatedData/?l=\(languageId)"
             
             break;
         }
@@ -32,9 +34,14 @@ struct QuranLink {
         return URL(string: urlAddress)!
     }
     static func Assignment() -> URL {
-        let urlAddress = BaseUrl + "Student/?s=96"
+        let urlAddress = WebAPIUrl + "Student/?s=96"
         
         return URL(string: urlAddress)!
+    }
+    static func UploadAssignment() -> String {
+        let urlAddress = WebSiteUrl + "Handlers/FileUpload.ashx?commandAction=uploadRecordedAudio"
+        
+        return urlAddress
     }
 }
 

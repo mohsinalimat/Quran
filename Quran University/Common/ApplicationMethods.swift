@@ -101,7 +101,7 @@ class ApplicationMethods {
         
         return recitationObject
     }
-    static func getCurrentStudentAssignmentRecordingPath() -> String {
+    static func getCurrentStudentAssignmentRecordingName() -> String {
         var recordingName = String(ApplicationData.CurrentAssignment.CourseInfoId!) + "_" + String(ApplicationData.CurrentAssignment.StudentId) + "_" + String(ApplicationData.CurrentAssignment.classAssignmentStudentId)
         
         if ApplicationData.CurrentAssignment.Correction.count > 0 {
@@ -110,6 +110,22 @@ class ApplicationMethods {
         
         recordingName += ".m4a"
         
-        return DirectoryStructure.StudentAssignmentRecording + recordingName
+        return recordingName
+    }
+    static func getCurrentStudentAssignmentRecordingPath() -> String {
+        return DirectoryStructure.StudentAssignmentRecording + getCurrentStudentAssignmentRecordingName()
+    }
+    static func getCurrentStudentAssignmentRecording() -> Data {
+        let targetFileURL = DocumentManager.documentsDirectory.appendingPathComponent(getCurrentStudentAssignmentRecordingPath())
+        let contents: Data
+        
+        do {
+            contents = try Data(contentsOf: targetFileURL)
+        }
+        catch {
+            fatalError("No \(getCurrentStudentAssignmentRecordingPath()) file found in application.")
+        }
+        
+        return contents
     }
 }

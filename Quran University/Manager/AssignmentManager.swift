@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Alamofire
 
 class AssignmentManager {
     typealias methodHandler1 = () -> Void
@@ -37,16 +38,26 @@ class AssignmentManager {
         }
     }
     static func populateFilteredAssignment(applyFilter: Bool) {
+        let studentAssignmentRecordingList = StudentAssignmentRecordingRepository().getStudentAssignmentRecordingList()
         var filterAssignmentList = [AssignmentModel]()
         
         for objCourse in jResponse.Course! {
             for objAssignment in objCourse.Assignment! {
                 var assignmentStatus = AssignmentStatus.Accepted
                 var assignmentStatusString = ApplicationLabel.ACCEPTED
+                var recordingExists = false
                 
                 objAssignment.Correction.sort(by: { $0.Id > $1.Id })
                 
-                if objAssignment.IsMarked {
+                studentAssignmentRecordingList.lazy.filter { $0.Id == objAssignment.Id }.forEach { objStudentAssignmentRecording in
+                    recordingExists = true
+                }
+                
+                if recordingExists {
+                    assignmentStatusString = ApplicationLabel.NOTSENT
+                    assignmentStatus = AssignmentStatus.NotSent
+                }
+                else if objAssignment.IsMarked {
                     assignmentStatusString = ApplicationLabel.ACCEPTED
                     assignmentStatus = AssignmentStatus.Accepted
                 }
@@ -114,6 +125,7 @@ class AssignmentManager {
                     objAssignment.AssignmentStatusId = assignmentStatus.rawValue
                     objAssignment.CourseInfoId = objCourse.CourseInfoId
                     objAssignment.CourseTitle = objCourse.Title
+                    objAssignment.RecordingExists = recordingExists
                     
                     filterAssignmentList.append(objAssignment)
                 }
@@ -170,5 +182,32 @@ class AssignmentManager {
         ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
         
         completionHandler()
+    }
+    static func uploadAssignment(completionHandler: @escaping methodHandler1) {
+        Alamofire
+            .upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(ApplicationMethods.getCurrentStudentAssignmentRecording(),
+                                         withName: "audio",
+                                         fileName: ApplicationMethods.getCurrentStudentAssignmentRecordingName(),
+                                         mimeType: "audio/m4a")
+                
+                },
+                to: QuranLink.UploadAssignment(),
+                encodingCompletion: { encodingResult in
+                    switch encodingResult {
+                    case .success(let upload, _, _):
+                        upload.uploadProgress { progress in
+    //                                progressCompletion(Float(progress.fractionCompleted))
+                        }
+                        
+                        upload.validate()
+                        
+                        upload.responseJSON { response in
+                            
+                        }
+                    case .failure(let encodingError):
+                        print(encodingError)
+                }
+            })
     }
 }

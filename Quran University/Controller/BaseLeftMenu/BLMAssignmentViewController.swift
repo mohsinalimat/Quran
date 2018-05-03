@@ -74,6 +74,15 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
             tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.CHECKED_BG
         }
         
+        if !objAssignment.RecordingExists! {
+            tvcAssignment.btnUpload.isHidden = true
+            tvcAssignment.lblAssignment.frame = CGRect(x: tvcAssignment.lblAssignment.frame.origin.x, y: tvcAssignment.lblAssignment.frame.origin.y, width: 147, height: tvcAssignment.lblAssignment.frame.height)
+        }
+        else {
+            tvcAssignment.btnUpload.isHidden = false
+            tvcAssignment.lblAssignment.frame = CGRect(x: tvcAssignment.lblAssignment.frame.origin.x, y: tvcAssignment.lblAssignment.frame.origin.y, width: 115, height: tvcAssignment.lblAssignment.frame.height)
+        }
+        
         return tvcAssignment;
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -83,9 +92,10 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
             selectedIndex = indexPath.row
         }
         
-        self.tvAssignment.beginUpdates()
-        self.tvAssignment.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-        self.tvAssignment.endUpdates()
+//        self.tvAssignment.beginUpdates()
+//        self.tvAssignment.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+//        self.tvAssignment.endUpdates()
+        self.tvAssignment.reloadData()
     }
     
     func setViewPosition() {

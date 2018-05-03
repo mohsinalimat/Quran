@@ -13,6 +13,7 @@ class AssignmentTableViewCell: UITableViewCell {
     @IBOutlet weak var lblSubmitted: UILabel!
     @IBOutlet weak var lblDelayDays: UILabel!
     @IBOutlet weak var lblMarks: UILabel!
+    @IBOutlet weak var btnUpload: UIButton!
     
     // ********** Detail Section ********** //
     @IBOutlet weak var vDetailRow: UIView!
@@ -27,6 +28,9 @@ class AssignmentTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    @IBAction func btnUpload_TouchUp(_ sender: Any) {
+        
+    }
     @IBAction func btnOpenAssignment_TouchUp(_ sender: Any) {
         AssignmentManager.loadAssignmentMode(Id: Id)
     }

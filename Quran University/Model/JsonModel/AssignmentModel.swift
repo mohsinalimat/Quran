@@ -20,6 +20,7 @@ class AssignmentModel: Decodable {
     var CourseInfoId: Int64?
     var CourseTitle: String?
     var Number: String?
+    var RecordingExists: Bool?
     
     var AssignmentBoundary: [AssignmentBoundaryModel]
     var Correction: [CorrectionModel]

@@ -600,6 +600,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBAction func btnAUpload_TouchUp(_ sender: Any) {
         self.hideMenu()
         vRecordedAssignment.finishRecording()
+//        AssignmentManager.uploadAssignment(completionHandler: {})
     }
     
     // ********** Base Right Menu Section ********** //

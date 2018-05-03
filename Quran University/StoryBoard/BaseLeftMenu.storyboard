@@ -295,13 +295,21 @@
                                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mse-QB-AWY">
-                                                                                    <rect key="frame" x="2" y="0.0" width="147" height="35"/>
+                                                                                    <rect key="frame" x="2" y="0.0" width="115" height="35"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
+                                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BO3-ie-Sye">
+                                                                                    <rect key="frame" x="118" y="3" width="30" height="30"/>
+                                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                                                    <state key="normal" title="U"/>
+                                                                                    <connections>
+                                                                                        <action selector="btnUpload_TouchUp:" destination="Pq8-yD-PAM" eventType="touchUpInside" id="G4I-7t-7Cj"/>
+                                                                                    </connections>
+                                                                                </button>
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <userDefinedRuntimeAttributes>
@@ -528,6 +536,7 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="btnUpload" destination="BO3-ie-Sye" id="PLa-Z3-shj"/>
                                                             <outlet property="lblAssignment" destination="mse-QB-AWY" id="lcC-fd-t6T"/>
                                                             <outlet property="lblCourse" destination="bvS-yQ-FdK" id="y4f-Ky-tCT"/>
                                                             <outlet property="lblDeadline" destination="yjs-F4-q4M" id="3rA-oB-L8z"/>
