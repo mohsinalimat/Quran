@@ -295,17 +295,17 @@
                                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mse-QB-AWY">
-                                                                                    <rect key="frame" x="2" y="0.0" width="115" height="35"/>
+                                                                                    <rect key="frame" x="2" y="0.0" width="116" height="35"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BO3-ie-Sye">
-                                                                                    <rect key="frame" x="118" y="3" width="30" height="30"/>
+                                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BO3-ie-Sye">
+                                                                                    <rect key="frame" x="120" y="4" width="27" height="27"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                                                    <state key="normal" title="U"/>
+                                                                                    <state key="normal" image="icn_UploadCircleSmall"/>
                                                                                     <connections>
                                                                                         <action selector="btnUpload_TouchUp:" destination="Pq8-yD-PAM" eventType="touchUpInside" id="G4I-7t-7Cj"/>
                                                                                     </connections>
@@ -605,6 +605,7 @@
     <resources>
         <image name="icn_OpenAssignment" width="16" height="20"/>
         <image name="icn_Refresh" width="34" height="33"/>
+        <image name="icn_UploadCircleSmall" width="27" height="27"/>
         <image name="img_Close" width="19" height="19"/>
     </resources>
 </document>

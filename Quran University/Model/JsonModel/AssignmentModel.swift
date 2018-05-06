@@ -12,6 +12,7 @@ class AssignmentModel: Decodable {
     var Marks: Int64
     var StudentOnlineSubmissionDate: String?
     var StudentSubmissionDate: String?
+    var StudentAudioFile: String?
     var titlePLang: String
     var titleSLang: String
     

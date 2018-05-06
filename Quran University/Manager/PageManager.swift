@@ -27,14 +27,7 @@ class PageManager {
                 setCurrentQuranPage(pageURL: fileURL)
                 
                 if ApplicationData.AssignmentModeOn {
-                    let startAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
-                    let endAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].EndPoint[0].AyatId
-                    let startAyatObject = AyatRepository().getAyat(Id: startAyatId)
-                    let endAyatObject = AyatRepository().getAyat(Id: endAyatId)
-                    let recitationObjectList = RecitationRepository().getRecitationList(fromSurahId: startAyatObject.SurahId, toSurahId: endAyatObject.SurahId, fromAyatOrderId: startAyatObject.AyatOrder, toAyatOrderId: endAyatObject.AyatOrder)
-                    
-                    AyatSelectionManager.highlightAyatSelectionRange(recitationList: recitationObjectList)
-                    AyatSelectionManager.generateShowAssignmentBoundary()
+                    AssignmentManager.highlightAssignment()
                 }
             }
         }

@@ -8,6 +8,7 @@ struct QuranLink {
     static let BaseAddress = "http://team-server.innotech-sa.com/"
     static let WebAPIUrl = BaseAddress + "QuranWebAPIs/"
     static let WebSiteUrl = BaseAddress + "QuranWeb/"
+    static let StudentAssignmentUrl = WebSiteUrl + "Media/Assignments/Student/"
     
     static func Book(languageId: Int64, bookId: Int64, surahId: Int64) -> URL {
         var urlAddress = ""
@@ -68,6 +69,7 @@ struct ApplicationConstant {
     static let AyatHighlightColor = UIColor.green.cgColor
     static let AyatSelectionColor = UIColor.lightGray.cgColor
     static let AssignmentBoundaryColor = UIColor.red.cgColor
+    static let AssignmentMarkColor = UIColor.black.cgColor
     static let RowColor = UIColor(red: 248.0/255.0, green: 234.0/255.0, blue: 195.0/255.0, alpha: 1.0)
     static let RowSelectionColor = UIColor(red: 233.0/255.0, green: 231.0/255.0, blue: 224.0/255.0, alpha: 1.0)
     static let DatabaseFile = "QuranUniversity.sqlite"

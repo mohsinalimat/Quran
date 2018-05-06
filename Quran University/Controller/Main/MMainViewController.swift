@@ -85,7 +85,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !pageLocked {
             if let touch = touches.first {
-                if touch.view != vTopMenu {
+                if ivQuranPage.isUserInteractionEnabled {
                     hideMenu()
                 }
                 
@@ -324,6 +324,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         case .AssignmentRecording:
             vAssignmentRecording.isHidden = false
             
+            setRecordUploadFooter()
+            
             break
         }
     }
@@ -379,59 +381,80 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         btnRMenu.isUserInteractionEnabled = isUserInteractionEnabled
     }
     func setRecordUploadFooter() {
-        btnARecord.isEnabled = true
-        
-        if AssignmentManager.assignmentRecordingExist() {
+        if ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Accepted.rawValue ||
+            ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Submitted.rawValue ||
+            ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Resubmitted.rawValue {
+            btnARecord.isEnabled = false
             btnAPlay.isEnabled = true
-            btnAUpload.isEnabled = true
+            btnAUpload.isEnabled = false
         }
         else {
-            btnAPlay.isEnabled = false
-            btnAUpload.isEnabled = false
+            btnARecord.isEnabled = true
+            
+            if AssignmentManager.assignmentRecordingExist() {
+                btnAPlay.isEnabled = true
+                btnAUpload.isEnabled = true
+            }
+            else {
+                btnAPlay.isEnabled = false
+                btnAUpload.isEnabled = false
+            }
         }
     }
     func setRecordUploadMode(currentRecordUploadMode: RecordUploadMode) {
-//        btnARecord.isEnabled = false
-//        btnAPlay.isEnabled = false
-//        btnAUpload.isEnabled = false
-//        
-//        switch currentRecordUploadMode {
-//        case .Record:
-//            btnRRecord.isEnabled = true
-//            
-//            break
-//        case .RRefresh:
-//            btnRRefresh.isEnabled = true
-//            btnRStop.isEnabled = true
-//            
-//            break
-//        case .RRecord:
-//            btnRRefresh.isEnabled = true
-//            btnRStop.isEnabled = true
-//            
-//            break
-//        case .RStop:
-//            btnRRefresh.isEnabled = true
-//            
-//            if vRecordCompare.onlyRecordModeOn && vRecordCompare.currentRecitationIndex < (vRecordCompare.totalRecitation - 1) {
-//                btnRStop.isEnabled = true
-//            }
-//            else {
-//                btnGPlay.isEnabled = true
-//            }
-//            
-//            break
-//        case .GPlay:
-//            btnRRefresh.isEnabled = true
-//            btnGRefresh.isEnabled = true
-//            
-//            break
-//        case .GRefresh:
-//            btnRRefresh.isEnabled = true
-//            btnGRefresh.isEnabled = true
-//            
-//            break
-//        }
+        btnARecord.isEnabled = false
+        btnAPlay.isEnabled = false
+        btnAUpload.isEnabled = false
+        
+        btnARecord.setImage(#imageLiteral(resourceName: "icn_RecordCircle"), for: .normal)
+        btnAPlay.setImage(#imageLiteral(resourceName: "icn_PlayCircle"), for: .normal)
+        btnAPlay.loadingIndicator(false)
+        setViewForFooterMode(isUserInteractionEnabled: true)
+        
+        switch currentRecordUploadMode {
+        case .Record:
+            btnARecord.isEnabled = true
+            
+            btnARecord.setImage(#imageLiteral(resourceName: "icn_StopCircle"), for: .normal)
+            setViewForFooterMode(isUserInteractionEnabled: false)
+            AssignmentManager.markAssignment()
+            
+            break
+        case .Stop:
+            btnARecord.isEnabled = true
+            btnAPlay.isEnabled = true
+            btnAUpload.isEnabled = true
+            
+            AssignmentManager.highlightAssignment()
+            
+            break
+        case .Play:
+            btnAPlay.isEnabled = true
+            
+            btnAPlay.setImage(#imageLiteral(resourceName: "icn_PauseCircle"), for: .normal)
+            setViewForFooterMode(isUserInteractionEnabled: false)
+            
+            break
+        case .Pause:
+            btnARecord.isEnabled = true
+            btnAPlay.isEnabled = true
+            btnAUpload.isEnabled = true
+            
+            break
+        case .Download:
+            hideMenu(tag: ViewTag.RecordedAssignment.rawValue)
+            btnAPlay.loadingIndicator(true)
+            
+            break
+        }
+
+        if ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Accepted.rawValue ||
+            ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Submitted.rawValue ||
+            ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Resubmitted.rawValue {
+            btnARecord.isEnabled = false
+            btnAPlay.isEnabled = true
+            btnAUpload.isEnabled = false
+        }
     }
     
     // ********** Header Section ********** //
@@ -641,20 +664,31 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Assignment Record & Upload Section ********** //
     @IBAction func btnARecord_TouchUp(_ sender: Any) {
-        self.hideMenu()
-        showMenu(tag: ViewTag.RecordedAssignment.rawValue)
-        vRecordedAssignment.loadView(completionHandler: {
-            self.vRecordedAssignment.startRecording()
-        })
+        vRecordedAssignment.isHidden = false
+        
+        if vRecordedAssignment.recordingPlayMode != .Recording {
+            vRecordedAssignment.loadView(completionHandler: {
+                self.vRecordedAssignment.recordStopRecording()
+            })
+        }
+        else {
+            self.vRecordedAssignment.recordStopRecording()
+        }
     }
     @IBAction func btnAPlay_TouchUp(_ sender: Any) {
-        self.hideMenu()
-        showMenu(tag: ViewTag.RecordedAssignment.rawValue)
-        vRecordedAssignment.playPauseRecording()
+        vRecordedAssignment.isHidden = false
+        
+        if vRecordedAssignment.recordingPlayMode != .Playing {
+            vRecordedAssignment.loadView(completionHandler: {
+                self.vRecordedAssignment.playPauseRecording()
+            })
+        }
+        else {
+            self.vRecordedAssignment.playPauseRecording()
+        }
     }
     @IBAction func btnAUpload_TouchUp(_ sender: Any) {
         self.hideMenu()
-        vRecordedAssignment.finishRecording()
 //        AssignmentManager.uploadAssignment(completionHandler: {})
     }
     

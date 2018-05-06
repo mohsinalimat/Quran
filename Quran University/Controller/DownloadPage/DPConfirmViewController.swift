@@ -24,13 +24,11 @@ class DPConfirmViewController: BaseViewController {
     @IBAction func btnNo_TouchUp(_ sender: Any) {
         self.dismiss(animated: true, completion: {
             if ApplicationData.AssignmentModeOn {
-                AssignmentManager.populateStudentAssignment(completionHandler: {
-                    DispatchQueue.main.async {
-                        ApplicationData.AssignmentModeOn = false
-                        
+                AssignmentManager.unloadAssignment {
+                    AssignmentManager.populateStudentAssignment(completionHandler: {
                         ApplicationObject.MainViewController.performSegue(withIdentifier: "SegueAssignment", sender: nil)
-                    }
-                })
+                    })
+                }
             }
         })
     }

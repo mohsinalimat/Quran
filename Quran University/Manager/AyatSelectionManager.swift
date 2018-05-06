@@ -88,8 +88,8 @@ class AyatSelectionManager {
         ayatSelectionList.removeAll()
         RecitationManager.recitationList.removeAll()
     }
-    static func generateShowAssignmentBoundary() {
-        assignmentBoundaryList.removeAll()
+    static func generateBoundaryForCurrentAssignment() {
+        removeAssignmentBoundary()
         
         let startPoint = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0]
         let endPoint = ApplicationData.CurrentAssignment.AssignmentBoundary[0].EndPoint[0]
@@ -294,5 +294,17 @@ class AyatSelectionManager {
         }
         
         return lstAyatSelection
+    }
+    static func markAyatSelectionRange(recitationList: [Recitation]) {
+        hideAyatSelection()
+        
+        for recitationObject in recitationList {
+            ayatSelectionList.lazy.filter { $0.accessibilityLabel == recitationObject.RecitationFileName }.forEach { ayatSelection in
+                ayatSelection.isHidden = false
+                ayatSelection.fillColor = ApplicationConstant.AssignmentMarkColor
+                
+                RecitationManager.appendRecitation(accessibilityLabel: ayatSelection.accessibilityLabel!)
+            }
+        }
     }
 }

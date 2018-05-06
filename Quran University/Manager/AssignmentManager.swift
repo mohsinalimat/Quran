@@ -4,6 +4,7 @@ import Alamofire
 
 class AssignmentManager {
     typealias methodHandler1 = () -> Void
+    typealias methodHandler2 = (_ status: Bool) -> Void
     
     static var assignmentList = [AssignmentModel]()
     static var assignmentStatusList = [AssignmentStatus]()
@@ -209,6 +210,54 @@ class AssignmentManager {
                         print(encodingError)
                 }
             })
+    }
+    static func highlightAssignment() {
+        let startAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
+        let endAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].EndPoint[0].AyatId
+        let startAyatObject = AyatRepository().getAyat(Id: startAyatId)
+        let endAyatObject = AyatRepository().getAyat(Id: endAyatId)
+        let recitationObjectList = RecitationRepository().getRecitationList(fromSurahId: startAyatObject.SurahId, toSurahId: endAyatObject.SurahId, fromAyatOrderId: startAyatObject.AyatOrder, toAyatOrderId: endAyatObject.AyatOrder)
+        
+        AyatSelectionManager.highlightAyatSelectionRange(recitationList: recitationObjectList)
+        AyatSelectionManager.generateBoundaryForCurrentAssignment()
+    }
+    static func markAssignment() {
+        let startAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
+        let endAyatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].EndPoint[0].AyatId
+        let startAyatObject = AyatRepository().getAyat(Id: startAyatId)
+        let endAyatObject = AyatRepository().getAyat(Id: endAyatId)
+        let recitationObjectList = RecitationRepository().getRecitationList(fromSurahId: startAyatObject.SurahId, toSurahId: endAyatObject.SurahId, fromAyatOrderId: startAyatObject.AyatOrder, toAyatOrderId: endAyatObject.AyatOrder)
+        
+        AyatSelectionManager.markAyatSelectionRange(recitationList: recitationObjectList)
+    }
+    static func downloadAssignment(completionHandler: @escaping methodHandler2) {
+        Alamofire
+            .request(ApplicationMethods.getCurrentStudentAssignmentRecordingWebUrl())
+            .validate()
+            .responseData(completionHandler: { (response) in
+                var status = false
+                
+                if response.result.isSuccess {
+                    if let data = response.result.value {
+                        let createdFileURL = DocumentManager.createFileInApplicationDirectory(contents: data, targetFilePath: ApplicationMethods.getCurrentStudentAssignmentRecordingPath())
+                        
+                        if createdFileURL != "" {
+                            status = true
+                        }
+                    }
+                }
+                
+                completionHandler(status)
+            })
+    }
+    static func cancelDownloadUploadAssignment() {
+        let sessionManager = Alamofire.SessionManager.default
+        
+        sessionManager.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
+            downloadTasks.forEach { $0.cancel() }
+            uploadTasks.forEach { $0.cancel() }
+            dataTasks.forEach { $0.cancel() }
+        }
     }
     
     static func assignmentRecordingExist() -> Bool {

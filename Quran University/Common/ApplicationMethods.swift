@@ -102,13 +102,26 @@ class ApplicationMethods {
         return recitationObject
     }
     static func getCurrentStudentAssignmentRecordingName() -> String {
-        var recordingName = String(ApplicationData.CurrentAssignment.CourseInfoId!) + "_" + String(ApplicationData.CurrentAssignment.StudentId) + "_" + String(ApplicationData.CurrentAssignment.classAssignmentStudentId)
+        var recordingName = ""
         
-        if ApplicationData.CurrentAssignment.Correction.count > 0 {
-            recordingName += "_" + String(ApplicationData.CurrentAssignment.Correction[0].Id)
+        if ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Accepted.rawValue ||
+            ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Submitted.rawValue ||
+            ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Resubmitted.rawValue {
+            recordingName = ApplicationData.CurrentAssignment.StudentAudioFile!
+            
+            if ApplicationData.CurrentAssignment.Correction.count > 0 {
+                recordingName = ApplicationData.CurrentAssignment.Correction[0].StudentAudioFile
+            }
         }
-        
-        recordingName += ".m4a"
+        else {
+            recordingName = String(ApplicationData.CurrentAssignment.CourseInfoId!) + "_" + String(ApplicationData.CurrentAssignment.StudentId) + "_" + String(ApplicationData.CurrentAssignment.classAssignmentStudentId)
+            
+            if ApplicationData.CurrentAssignment.Correction.count > 0 {
+                recordingName += "_" + String(ApplicationData.CurrentAssignment.Correction[0].Id)
+            }
+            
+            recordingName += ".m4a"
+        }
         
         return recordingName
     }
@@ -127,5 +140,8 @@ class ApplicationMethods {
         }
         
         return contents
+    }
+    static func getCurrentStudentAssignmentRecordingWebUrl() -> String {
+        return QuranLink.StudentAssignmentUrl + getCurrentStudentAssignmentRecordingName()
     }
 }

@@ -74,6 +74,8 @@ enum RecitationRepeatFor: Int32 {
 enum AudioPlayMode: Int32 {
     case Playing = 1
     case Paused = 2
+    case Recording = 3
+    case Stopped = 4
 }
 
 enum RecordComparePlayMode: Int32 {
@@ -101,6 +103,7 @@ enum RecordUploadMode: Int32 {
     case Stop = 2
     case Play = 3
     case Pause = 4
+    case Download = 5
 }
 
 enum AssignmentStatus: Int32 {

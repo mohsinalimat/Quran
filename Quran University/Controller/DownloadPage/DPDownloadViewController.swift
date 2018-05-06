@@ -532,10 +532,21 @@ class DPDownloadViewController: BaseViewController, ModalDialogueProtocol {
             DownloadManager.cancelDownload()
         })
     }
+    func closePopUp() {
+        self.dismiss(animated: true, completion: {
+            if ApplicationData.AssignmentModeOn {
+                AssignmentManager.unloadAssignment {
+                    AssignmentManager.populateStudentAssignment(completionHandler: {
+                        ApplicationObject.MainViewController.performSegue(withIdentifier: "SegueAssignment", sender: nil)
+                    })
+                }
+            }
+        })
+    }
     
     // ********** Main Section ********** //
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        closePopUp()
     }
     @IBAction func btnScript_TouchUp(_ sender: Any) {
         downloadCategorySelected = false
@@ -624,6 +635,6 @@ class DPDownloadViewController: BaseViewController, ModalDialogueProtocol {
         }
     }
     @IBAction func btnClose_TouchUp(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        closePopUp()
     }
 }

@@ -14,6 +14,10 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
     @IBOutlet weak var chkSubmitted: BEMCheckBox!
     @IBOutlet weak var chkChecked: BEMCheckBox!
     
+    
+    var collapsedHeight: CGFloat = 35
+    var expandedHeight: CGFloat = 180
+    var currentAssignmentLoaded = false
     var selectedIndex = -1
     
     override func viewDidLoad() {
@@ -21,6 +25,7 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         
         tvAssignment.delegate = self
         tvAssignment.dataSource = self
+        currentAssignmentLoaded = false
         
         setViewPosition()
     }
@@ -29,12 +34,31 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         return AssignmentManager.assignmentList.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var rowHeight = collapsedHeight
+        
         if selectedIndex == indexPath.row {
-            return 180
+            rowHeight = expandedHeight
         }
         else {
-            return 35
+            if ApplicationData.AssignmentModeOn && !currentAssignmentLoaded {
+                let objAssignment = AssignmentManager.assignmentList[indexPath.row]
+                
+                if objAssignment.Id == ApplicationData.CurrentAssignment.Id {
+                    selectedIndex = indexPath.row
+                    currentAssignmentLoaded = true
+                    
+                    rowHeight = expandedHeight
+                }
+                else {
+                    rowHeight = collapsedHeight
+                }
+            }
+            else {
+                rowHeight = collapsedHeight
+            }
         }
+        
+        return rowHeight
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tvcAssignment = tvAssignment.dequeueReusableCell(withIdentifier: "tvcAssignment") as! AssignmentTableViewCell
@@ -86,9 +110,10 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         return tvcAssignment;
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(selectedIndex == indexPath.row) {
+        if selectedIndex == indexPath.row {
             selectedIndex = -1
-        } else {
+        }
+        else {
             selectedIndex = indexPath.row
         }
         
@@ -209,6 +234,7 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         AssignmentManager.assignmentStatusList.removeAll()
         
         selectedIndex = -1
+        currentAssignmentLoaded = false
         
         if chkDue.on {
             AssignmentManager.assignmentStatusList.append(.Due)

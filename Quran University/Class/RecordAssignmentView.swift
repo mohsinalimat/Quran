@@ -13,18 +13,22 @@ class RecordAssignmentView: UIView {
     var audioRecorder: AVAudioRecorder!
     var recordingPlayMode = AudioPlayMode.Paused
     var timer = Timer()
+    var recordingLoaded = false
     var second = 0
     var minute = 0
     
     @objc func didAudioPlayToEnd() {
         recordingPlayMode = AudioPlayMode.Paused
         
-        loadRecording()
+        ApplicationObject.MainViewController.setRecordUploadMode(currentRecordUploadMode: .Pause)
+        
+        _ = loadRecording()
     }
     @objc func timerAction() {
         if minute == 15 {
-            finishRecording()
+            recordingPlayMode = .Stopped
             
+            recordStopRecording()
             DialogueManager.showInfo(viewController: ApplicationObject.MainViewController, message: ApplicationInfoMessage.MAX_RECORDING_LIMIT, okHandler: {})
         }
         else {
@@ -43,6 +47,8 @@ class RecordAssignmentView: UIView {
     }
     
     func loadView(completionHandler: @escaping methodHandler1) {
+        recordingLoaded = false
+        
         PermissionManager.requestRecordPermission(successHandler: {
             NotificationCenter.default.addObserver(self, selector: #selector(self.didAudioPlayToEnd), name: .AVPlayerItemDidPlayToEndTime, object: nil)
             
@@ -60,12 +66,93 @@ class RecordAssignmentView: UIView {
         ApplicationObject.MainViewController.hideMenu(tag: ViewTag.RecordedAssignment.rawValue)
     }
     
-    func loadRecording() {
+    func recordStopRecording() {
+        switch recordingPlayMode {
+        case .Recording:
+            vRecording.isHidden = true
+            vTimer.isHidden = false
+            recordingPlayMode = .Stopped
+            
+            ApplicationObject.MainViewController.setRecordUploadMode(currentRecordUploadMode: .Stop)
+            audioRecorder.stop()
+            timer.invalidate()
+            
+            break
+        default:
+            let recordingPath = ApplicationMethods.getCurrentStudentAssignmentRecordingPath()
+            let url = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: recordingPath)
+            let settings = [
+                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+                AVSampleRateKey: 32000,
+                AVNumberOfChannelsKey: 2,
+                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            ]
+            
+            minute = 0
+            second = 0
+            vRecording.isHidden = true
+            vTimer.isHidden = false
+            lblTimer.text = "00:00"
+            recordingLoaded = false
+            recordingPlayMode = .Recording
+            
+            ApplicationObject.MainViewController.setRecordUploadMode(currentRecordUploadMode: .Record)
+            timer.invalidate()
+            
+            do {
+                audioRecorder = try AVAudioRecorder(url: url, settings: settings)
+                audioRecorder.delegate = ApplicationObject.MainViewController
+                timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+                
+                audioRecorder.record()
+                
+                let studentAssignmentRecordingObject = StudentAssignmentRecording(Id: ApplicationData.CurrentAssignment.Id)
+                
+                _ = StudentAssignmentRecordingRepository().saveStudentAssignmentRecording(studentAssignmentRecordingObject: studentAssignmentRecordingObject)
+            }
+            catch {
+                recordStopRecording()
+            }
+            
+            break
+        }
+    }
+    func playPauseRecording() {
+        var recordingExist = true
+        
+        if !recordingLoaded {
+            recordingPlayMode = .Paused
+            
+            recordingExist = loadRecording()
+        }
+        
+        if recordingExist {
+            switch recordingPlayMode {
+            case .Playing:
+                recordingPlayMode = .Paused
+                
+                ApplicationObject.MainViewController.setRecordUploadMode(currentRecordUploadMode: .Pause)
+                recordingWaveform.audioPlayer.pause()
+                
+                break
+            case .Paused:
+                recordingPlayMode = .Playing
+                
+                ApplicationObject.MainViewController.setRecordUploadMode(currentRecordUploadMode: .Play)
+                recordingWaveform.audioPlayer.play()
+                
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    func loadRecording() -> Bool {
+        var recordingExist = false
+        
         do {
             vRecording.subviews.forEach({ $0.removeFromSuperview() })
-            
-            vRecording.isHidden = false
-            vTimer.isHidden = true
             
             let recordingPath = ApplicationMethods.getCurrentStudentAssignmentRecordingPath()
             
@@ -78,7 +165,10 @@ class RecordAssignmentView: UIView {
                 recordingWaveform.progressColor = .orange
                 recordingWaveform.allowSpacing = false
                 recordingWaveform.translatesAutoresizingMaskIntoConstraints = false
-                recordingPlayMode = .Paused
+                vRecording.isHidden = false
+                vTimer.isHidden = true
+                recordingLoaded = true
+                recordingExist = true
                 
                 vRecording.addSubview(recordingWaveform)
                 
@@ -88,67 +178,22 @@ class RecordAssignmentView: UIView {
                                              recordingWaveform.leadingAnchor.constraint(equalTo: vRecording.leadingAnchor),
                                              recordingWaveform.trailingAnchor.constraint(equalTo: vRecording.trailingAnchor)])
             }
-            
+            else {
+                ApplicationObject.MainViewController.setRecordUploadMode(currentRecordUploadMode: .Download)
+                AssignmentManager.downloadAssignment(completionHandler: { downloadStatus in
+                    if downloadStatus {
+                        self.playPauseRecording()
+                    }
+                    else {
+                        DialogueManager.showError(viewController: ApplicationObject.CurrentViewController, message: ApplicationErrorMessage.DOWNLOAD, okHandler: {
+                            ApplicationObject.MainViewController.setRecordUploadFooter()
+                        })
+                    }
+                })
+            }
         }
-        catch {
-            print(error.localizedDescription)
-        }
-    }
-    func startRecording() {
-        let recordingPath = ApplicationMethods.getCurrentStudentAssignmentRecordingPath()
-        let url = DocumentManager.getFileURLInApplicationDirectory(targetFilePath: recordingPath)
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 32000,
-            AVNumberOfChannelsKey: 2,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
+        catch {}
         
-        minute = 0
-        second = 0
-        vRecording.isHidden = true
-        vTimer.isHidden = false
-        lblTimer.text = "00:00"
-        
-        timer.invalidate()
-        
-        do {
-            audioRecorder = try AVAudioRecorder(url: url, settings: settings)
-            audioRecorder.delegate = ApplicationObject.MainViewController
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
-            
-            audioRecorder.record()
-            
-            let studentAssignmentRecordingObject = StudentAssignmentRecording(Id: ApplicationData.CurrentAssignment.Id)
-            
-            _ = StudentAssignmentRecordingRepository().saveStudentAssignmentRecording(studentAssignmentRecordingObject: studentAssignmentRecordingObject)
-        } catch {
-            finishRecording()
-        }
-    }
-    func finishRecording() {
-        vRecording.isHidden = true
-        vTimer.isHidden = false
-        
-        audioRecorder.stop()
-        timer.invalidate()
-    }
-    func playPauseRecording() {
-        loadRecording()
-        
-        switch recordingPlayMode {
-        case .Paused:
-            recordingPlayMode = .Playing
-            
-            recordingWaveform.audioPlayer.play()
-            
-            break
-        case .Playing:
-            recordingPlayMode = .Paused
-            
-            recordingWaveform.audioPlayer.pause()
-            
-            break
-        }
+        return recordingExist
     }
 }

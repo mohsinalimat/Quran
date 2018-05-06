@@ -254,6 +254,8 @@ class RecordCompareView: UIView {
             recordingWaveform.audioPlayer.pause()
             
             break
+        default:
+            break
         }
         
         ApplicationObject.MainViewController.setRecordCompareMode(currentRecordCompareMode: .GPlay)
@@ -318,6 +320,8 @@ class RecordCompareView: UIView {
             btnPlayAyat.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)
             ayatWaveform.audioPlayer.pause()
             
+            break
+        default:
             break
         }
     }
