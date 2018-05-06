@@ -210,4 +210,15 @@ class AssignmentManager {
                 }
             })
     }
+    
+    static func assignmentRecordingExist() -> Bool {
+        let fileURL = DocumentManager.checkFileInApplicationDirectory(targetFilePath: ApplicationMethods.getCurrentStudentAssignmentRecordingPath())
+        var recordingExist = true
+        
+        if fileURL == "" {
+            recordingExist = false
+        }
+        
+        return recordingExist
+    }
 }

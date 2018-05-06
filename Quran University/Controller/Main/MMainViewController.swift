@@ -378,6 +378,61 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         btnLMenu.isUserInteractionEnabled = isUserInteractionEnabled
         btnRMenu.isUserInteractionEnabled = isUserInteractionEnabled
     }
+    func setRecordUploadFooter() {
+        btnARecord.isEnabled = true
+        
+        if AssignmentManager.assignmentRecordingExist() {
+            btnAPlay.isEnabled = true
+            btnAUpload.isEnabled = true
+        }
+        else {
+            btnAPlay.isEnabled = false
+            btnAUpload.isEnabled = false
+        }
+    }
+    func setRecordUploadMode(currentRecordUploadMode: RecordUploadMode) {
+//        btnARecord.isEnabled = false
+//        btnAPlay.isEnabled = false
+//        btnAUpload.isEnabled = false
+//        
+//        switch currentRecordUploadMode {
+//        case .Record:
+//            btnRRecord.isEnabled = true
+//            
+//            break
+//        case .RRefresh:
+//            btnRRefresh.isEnabled = true
+//            btnRStop.isEnabled = true
+//            
+//            break
+//        case .RRecord:
+//            btnRRefresh.isEnabled = true
+//            btnRStop.isEnabled = true
+//            
+//            break
+//        case .RStop:
+//            btnRRefresh.isEnabled = true
+//            
+//            if vRecordCompare.onlyRecordModeOn && vRecordCompare.currentRecitationIndex < (vRecordCompare.totalRecitation - 1) {
+//                btnRStop.isEnabled = true
+//            }
+//            else {
+//                btnGPlay.isEnabled = true
+//            }
+//            
+//            break
+//        case .GPlay:
+//            btnRRefresh.isEnabled = true
+//            btnGRefresh.isEnabled = true
+//            
+//            break
+//        case .GRefresh:
+//            btnRRefresh.isEnabled = true
+//            btnGRefresh.isEnabled = true
+//            
+//            break
+//        }
+    }
     
     // ********** Header Section ********** //
     @IBAction func btnMenu_TouchUp(_ sender: UIButton) {

@@ -96,6 +96,13 @@ enum RecordCompareMode: Int32 {
     case GRefresh = 6
 }
 
+enum RecordUploadMode: Int32 {
+    case Record = 1
+    case Stop = 2
+    case Play = 3
+    case Pause = 4
+}
+
 enum AssignmentStatus: Int32 {
     case Due = 1
     case Late = 2
