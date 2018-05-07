@@ -45,7 +45,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Assignment Record & Upload Section ********** //
     @IBOutlet weak var vAssignmentRecording: UIView!
-    @IBOutlet var vRecordedAssignment: RecordAssignmentView!
+    @IBOutlet var vRecordAssignment: RecordAssignmentView!
     @IBOutlet weak var btnARecord: UIButton!
     @IBOutlet weak var btnAPlay: UIButton!
     @IBOutlet weak var btnAUpload: UIButton!
@@ -87,7 +87,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             if let touch = touches.first {
                 if ivQuranPage.isUserInteractionEnabled &&
                     touch.view != vTopMenu &&
-                    touch.view != vRecordedAssignment &&
+                    touch.view != vRecordAssignment &&
                     touch.view?.superview?.tag != ViewTag.RecordedAssignment.rawValue &&
                     touch.view?.superview?.superview?.tag != ViewTag.RecordedAssignment.rawValue {
                     hideMenu()
@@ -268,14 +268,14 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.view.addSubview(vListenRepeat)
         
         x = vFooter.frame.origin.x
-        y = vFooter.frame.origin.y - vRecordedAssignment.bounds.height
-        height = vRecordedAssignment.frame.size.height
+        y = vFooter.frame.origin.y - vRecordAssignment.bounds.height
+        height = vRecordAssignment.frame.size.height
         width = vFooter.frame.size.width
         
-        vRecordedAssignment.tag = ViewTag.RecordedAssignment.rawValue
-        vRecordedAssignment.frame = CGRect(x: x, y: y, width: width, height: height)
+        vRecordAssignment.tag = ViewTag.RecordedAssignment.rawValue
+        vRecordAssignment.frame = CGRect(x: x, y: y, width: width, height: height)
         
-        self.view.addSubview(vRecordedAssignment)
+        self.view.addSubview(vRecordAssignment)
     }
     func hideMenu() {
         self.view.viewWithTag(ViewTag.TopMenu.rawValue)?.isHidden = true
@@ -328,7 +328,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             break
         case .AssignmentRecording:
             vAssignmentRecording.isHidden = false
-            vRecordedAssignment.recordingLoaded = false
+            vRecordAssignment.recordingLoaded = false
             
             setRecordUploadFooter()
             
@@ -670,27 +670,27 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Assignment Record & Upload Section ********** //
     @IBAction func btnARecord_TouchUp(_ sender: Any) {
-        vRecordedAssignment.isHidden = false
+        vRecordAssignment.isHidden = false
         
-        if vRecordedAssignment.recordingPlayMode != .Recording {
-            vRecordedAssignment.loadView(completionHandler: {
-                self.vRecordedAssignment.recordStopRecording()
+        if vRecordAssignment.recordingPlayMode != .Recording {
+            vRecordAssignment.loadView(completionHandler: {
+                self.vRecordAssignment.recordStopRecording()
             })
         }
         else {
-            self.vRecordedAssignment.recordStopRecording()
+            self.vRecordAssignment.recordStopRecording()
         }
     }
     @IBAction func btnAPlay_TouchUp(_ sender: Any) {
-        vRecordedAssignment.isHidden = false
+        vRecordAssignment.isHidden = false
         
-        if !vRecordedAssignment.recordingLoaded {
-            vRecordedAssignment.loadView(completionHandler: {
-                self.vRecordedAssignment.playPauseRecording()
+        if !vRecordAssignment.recordingLoaded {
+            vRecordAssignment.loadView(completionHandler: {
+                self.vRecordAssignment.playPauseRecording()
             })
         }
         else {
-            self.vRecordedAssignment.playPauseRecording()
+            self.vRecordAssignment.playPauseRecording()
         }
     }
     @IBAction func btnAUpload_TouchUp(_ sender: Any) {

@@ -367,8 +367,8 @@
                         <outlet property="vHeader" destination="56n-73-bc1" id="MdY-n4-v4s"/>
                         <outlet property="vListenRepeat" destination="Ruj-iU-cMT" id="DvF-no-Ro4"/>
                         <outlet property="vPlayer" destination="HmC-2a-kJ6" id="zDo-rI-VgX"/>
+                        <outlet property="vRecordAssignment" destination="epU-Hb-UNk" id="BIT-3X-USK"/>
                         <outlet property="vRecordCompare" destination="RZv-Ij-J1M" id="DHw-F3-Ynr"/>
-                        <outlet property="vRecordedAssignment" destination="epU-Hb-UNk" id="kjB-1Q-zfQ"/>
                         <outlet property="vRecording" destination="Yfu-Td-ZeC" id="anj-Og-gb7"/>
                         <outlet property="vTopMenu" destination="pzi-e7-LuZ" id="M2h-Zu-IDh"/>
                         <segue destination="Yws-IH-IEe" kind="presentation" identifier="SegueDownloadPage" animates="NO" id="UFM-SL-3Ag"/>

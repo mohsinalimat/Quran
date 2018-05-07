@@ -184,14 +184,13 @@ class AssignmentManager {
         
         completionHandler()
     }
-    static func uploadAssignment(completionHandler: @escaping methodHandler1) {
+    static func uploadAssignment(completionHandler: @escaping methodHandler2) {
         Alamofire
             .upload(multipartFormData: { multipartFormData in
                 multipartFormData.append(ApplicationMethods.getCurrentStudentAssignmentRecording(),
                                          withName: "audio",
                                          fileName: ApplicationMethods.getCurrentStudentAssignmentRecordingName(),
                                          mimeType: "audio/m4a")
-                
                 },
                 to: QuranLink.UploadAssignment(),
                 encodingCompletion: { encodingResult in
