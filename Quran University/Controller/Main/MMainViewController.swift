@@ -85,7 +85,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !pageLocked {
             if let touch = touches.first {
-                if ivQuranPage.isUserInteractionEnabled {
+                if ivQuranPage.isUserInteractionEnabled &&
+                    touch.view != vTopMenu &&
+                    touch.view != vRecordedAssignment &&
+                    touch.view?.superview?.tag != ViewTag.RecordedAssignment.rawValue &&
+                    touch.view?.superview?.superview?.tag != ViewTag.RecordedAssignment.rawValue {
                     hideMenu()
                 }
                 
@@ -122,6 +126,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.presentedViewController?.dismiss(animated: true, completion: nil)
+        self.hideMenu()
         
         if segue.identifier == "SegueDropDown" {
             let viewController = segue.destination as! UCDropDownViewController
@@ -323,6 +328,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             break
         case .AssignmentRecording:
             vAssignmentRecording.isHidden = false
+            vRecordedAssignment.recordingLoaded = false
             
             setRecordUploadFooter()
             
@@ -402,14 +408,14 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     func setRecordUploadMode(currentRecordUploadMode: RecordUploadMode) {
-        btnARecord.isEnabled = false
-        btnAPlay.isEnabled = false
-        btnAUpload.isEnabled = false
-        
         btnARecord.setImage(#imageLiteral(resourceName: "icn_RecordCircle"), for: .normal)
         btnAPlay.setImage(#imageLiteral(resourceName: "icn_PlayCircle"), for: .normal)
         btnAPlay.loadingIndicator(false)
         setViewForFooterMode(isUserInteractionEnabled: true)
+        
+        btnARecord.isEnabled = false
+        btnAPlay.isEnabled = false
+        btnAUpload.isEnabled = false
         
         switch currentRecordUploadMode {
         case .Record:
@@ -678,7 +684,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBAction func btnAPlay_TouchUp(_ sender: Any) {
         vRecordedAssignment.isHidden = false
         
-        if vRecordedAssignment.recordingPlayMode != .Playing {
+        if !vRecordedAssignment.recordingLoaded {
             vRecordedAssignment.loadView(completionHandler: {
                 self.vRecordedAssignment.playPauseRecording()
             })

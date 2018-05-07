@@ -62,6 +62,8 @@ class RecordAssignmentView: UIView {
             audioRecorder.stop()
         }
         
+        recordingLoaded = false
+        
         timer.invalidate()
         ApplicationObject.MainViewController.hideMenu(tag: ViewTag.RecordedAssignment.rawValue)
     }
@@ -182,6 +184,7 @@ class RecordAssignmentView: UIView {
                 ApplicationObject.MainViewController.setRecordUploadMode(currentRecordUploadMode: .Download)
                 AssignmentManager.downloadAssignment(completionHandler: { downloadStatus in
                     if downloadStatus {
+                        ApplicationObject.MainViewController.showMenu(tag: ViewTag.RecordedAssignment.rawValue)
                         self.playPauseRecording()
                     }
                     else {

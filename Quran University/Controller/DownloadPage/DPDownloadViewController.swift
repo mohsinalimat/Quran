@@ -409,27 +409,38 @@ class DPDownloadViewController: BaseViewController, ModalDialogueProtocol {
                 })
             }
             else {
-                if self.firstPageId > 0 {
-                    PageManager.showQuranPage(scriptId: currentScript.Id, pageId: self.firstPageId)
-                }
-                
-                if self.totalDownload > 0 {
-                    if self.errorDownload > 0 {
-                        if self.successDownload > 0 {
-                            DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.SOME_SCRIPT_NOT_DOWNLOAD, okHandler: {
-                                self.dismiss(animated: true, completion: nil)
-                            })
-                        }
-                        else {
-                            DialogueManager.showError(viewController: self, message: ApplicationErrorMessage.DOWNLOAD, okHandler: {
-                                self.dismiss(animated: true, completion: nil)
-                            })
-                        }
-                    }
-                    else if self.successDownload > 0 {
+                if ApplicationData.AssignmentModeOn {
+                    AssignmentManager.loadAssignmentMode(Id: ApplicationData.CurrentAssignment.Id)
+                    
+                    if self.successDownload > 0 {
                         DialogueManager.showSuccess(viewController: self, message: ApplicationSuccessMessage.SCRIPT_DOWNLOAD, okHandler: {
                             self.dismiss(animated: true, completion: nil)
                         })
+                    }
+                }
+                else {
+                    if self.firstPageId > 0 {
+                        PageManager.showQuranPage(scriptId: currentScript.Id, pageId: self.firstPageId)
+                    }
+                    
+                    if self.totalDownload > 0 {
+                        if self.errorDownload > 0 {
+                            if self.successDownload > 0 {
+                                DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.SOME_SCRIPT_NOT_DOWNLOAD, okHandler: {
+                                    self.dismiss(animated: true, completion: nil)
+                                })
+                            }
+                            else {
+                                DialogueManager.showError(viewController: self, message: ApplicationErrorMessage.DOWNLOAD, okHandler: {
+                                    self.dismiss(animated: true, completion: nil)
+                                })
+                            }
+                        }
+                        else if self.successDownload > 0 {
+                            DialogueManager.showSuccess(viewController: self, message: ApplicationSuccessMessage.SCRIPT_DOWNLOAD, okHandler: {
+                                self.dismiss(animated: true, completion: nil)
+                            })
+                        }
                     }
                 }
             }
