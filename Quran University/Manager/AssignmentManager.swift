@@ -51,15 +51,7 @@ class AssignmentManager {
                 
                 objAssignment.Correction.sort(by: { $0.Id > $1.Id })
                 
-                studentAssignmentRecordingList.lazy.filter { $0.Id == objAssignment.Id }.forEach { objStudentAssignmentRecording in
-                    recordingExists = true
-                }
-                
-                if recordingExists {
-                    assignmentStatusString = ApplicationLabel.NOTSENT
-                    assignmentStatus = AssignmentStatus.NotSent
-                }
-                else if objAssignment.IsMarked {
+                if objAssignment.IsMarked {
                     assignmentStatusString = ApplicationLabel.ACCEPTED
                     assignmentStatus = AssignmentStatus.Accepted
                 }
@@ -105,6 +97,19 @@ class AssignmentManager {
                                 }
                             }
                         }
+                    }
+                }
+                
+                if !(assignmentStatus == AssignmentStatus.Accepted ||
+                    assignmentStatus == AssignmentStatus.Submitted ||
+                    assignmentStatus == AssignmentStatus.Resubmitted) {
+                    studentAssignmentRecordingList.lazy.filter { $0.Id == objAssignment.Id }.forEach { objStudentAssignmentRecording in
+                        recordingExists = true
+                    }
+                    
+                    if recordingExists {
+                        assignmentStatusString = ApplicationLabel.NOTSENT
+                        assignmentStatus = AssignmentStatus.NotSent
                     }
                 }
                 
@@ -185,7 +190,9 @@ class AssignmentManager {
         
         completionHandler()
     }
-    static func uploadAssignment(uiProgressView: UIProgressView, progressFactor: Float, completionHandler: @escaping methodHandler2) {
+    static func submitAssignment(uiProgressView: UIProgressView, completionHandler: @escaping methodHandler2) {
+        let progressFactor: Float = (1 / 3)
+        
         pvFileProgressView = uiProgressView
         pvFileProgressView.progress = 0
         
@@ -207,7 +214,56 @@ class AssignmentManager {
                         upload.validate()
                         
                         upload.responseJSON { response in
-                            completionHandler(true)
+                            let jsonContent = """
+                            {
+                            "ClassAssignmentStudentId": \(ApplicationData.CurrentAssignment.classAssignmentStudentId),
+                            "StudentSubmissionDate": "\(Utilities.dtJsonDateTime.string(from: Date()))",
+                            "StudentOnlineSubmissionDate": "\(Utilities.dtJsonDateTime.string(from: Date()))",
+                            "StudentAudioFile": "\(ApplicationMethods.getCurrentStudentAssignmentRecordingName())",
+                            "Iscorrection": \(ApplicationData.CurrentAssignment.Correction.count > 0 ? 1 : 0)
+                            }
+                            """
+                            let dataTask = URLSession.shared.dataTask(with: QuranLink.SubmitAssignment(jsonContent: jsonContent)) { (data, response, err) in
+                                let response = response as? HTTPURLResponse
+                                
+                                DispatchQueue.main.async {
+                                    pvFileProgressView.progress = pvFileProgressView.progress + progressFactor
+                                }
+                                
+                                if err == nil && response?.statusCode == 200 {
+                                    do {
+                                        //                            let jsonString = String(data: data!, encoding: .utf8)
+                                        let jResponse = try JSONDecoder().decode(JsonResponse.self, from: data!)
+                                        
+                                        if jResponse.Status == 2 {
+                                            assignmentList.removeAll()
+                                            
+                                            populateStudentAssignment(completionHandler: {
+                                                DispatchQueue.main.async {
+                                                    pvFileProgressView.progress = pvFileProgressView.progress + progressFactor
+                                                }
+                                                
+                                                AssignmentManager.assignmentList.filter { $0.Id == ApplicationData.CurrentAssignment.Id }.forEach { objAssignment in
+                                                    ApplicationData.CurrentAssignment = objAssignment
+                                                }
+                                                
+                                                completionHandler(true)
+                                            })
+                                        }
+                                        else {
+                                            completionHandler(false)
+                                        }
+                                    }
+                                    catch {
+                                        completionHandler(false)
+                                    }
+                                }
+                                else {
+                                    completionHandler(false)
+                                }
+                            }
+                            
+                            dataTask.resume()
                         }
                     case .failure( _):
                         completionHandler(false)

@@ -128,6 +128,7 @@ struct ApplicationHeading {
 struct ApplicationErrorMessage {
     static let DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Download interrupted due to bad Internet Connection. Please connect to internet and try again!" : "Download interrupted due to bad Internet Connection. Please connect to internet and try again!"
     static let INVALIDDATA = ApplicationData.CurrentLanguageMode == .English ? "Invalid data found!" : "Invalid data found!"
+    static let UPLOAD = ApplicationData.CurrentLanguageMode == .English ? "Upload interrupted due to bad Internet Connection. Please connect to internet and try again!" : "Upload interrupted due to bad Internet Connection. Please connect to internet and try again!"
 }
 
 struct ApplicationInfoMessage {
@@ -164,6 +165,7 @@ struct ApplicationSuccessMessage {
     static let SCRIPT_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Scripts are downloaded successfully" : "Scripts are downloaded successfully"
     static let RECITATION_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Recitations are downloaded successfully" : "Recitations are downloaded successfully"
     static let BOOK_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Book is downloaded successfully" : "Book is downloaded successfully"
+    static let ASSIGNMENT_SUBMIT = ApplicationData.CurrentLanguageMode == .English ? "Assignment is submitted successfully" : "Assignment is submitted successfully"
 }
 
 struct ApplicationConfirmMessage {

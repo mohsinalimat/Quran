@@ -14,18 +14,20 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
     @IBOutlet weak var chkSubmitted: BEMCheckBox!
     @IBOutlet weak var chkChecked: BEMCheckBox!
     
-    
     var collapsedHeight: CGFloat = 35
     var expandedHeight: CGFloat = 180
-    var currentAssignmentLoaded = false
+//    var currentAssignmentLoaded = false
+//    var currentAssignmentFocused = false
+    var seletecdRowFocused = false
     var selectedIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        currentAssignmentLoaded = false
+//        currentAssignmentFocused = false
         tvAssignment.delegate = self
         tvAssignment.dataSource = self
-        currentAssignmentLoaded = false
         
         setViewPosition()
     }
@@ -38,24 +40,29 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         
         if selectedIndex == indexPath.row {
             rowHeight = expandedHeight
+            
+            if !seletecdRowFocused {
+                seletecdRowFocused = true
+                
+                tvAssignment.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
         }
         else {
-            if ApplicationData.AssignmentModeOn && !currentAssignmentLoaded {
-                let objAssignment = AssignmentManager.assignmentList[indexPath.row]
-                
-                if objAssignment.Id == ApplicationData.CurrentAssignment.Id {
-                    selectedIndex = indexPath.row
-                    currentAssignmentLoaded = true
-                    
-                    rowHeight = expandedHeight
-                }
-                else {
-                    rowHeight = collapsedHeight
-                }
-            }
-            else {
+//            if ApplicationData.AssignmentModeOn && !currentAssignmentLoaded {
+//                let objAssignment = AssignmentManager.assignmentList[indexPath.row]
+//
+//                if objAssignment.Id == ApplicationData.CurrentAssignment.Id {
+//                    selectedIndex = indexPath.row
+//                    currentAssignmentLoaded = true
+//                    rowHeight = expandedHeight
+//                }
+//                else {
+//                    rowHeight = collapsedHeight
+//                }
+//            }
+//            else {
                 rowHeight = collapsedHeight
-            }
+//            }
         }
         
         return rowHeight
@@ -107,6 +114,14 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
             tvcAssignment.lblAssignment.frame = CGRect(x: tvcAssignment.lblAssignment.frame.origin.x, y: tvcAssignment.lblAssignment.frame.origin.y, width: 115, height: tvcAssignment.lblAssignment.frame.height)
         }
         
+//        if ApplicationData.AssignmentModeOn &&
+//            !currentAssignmentFocused &&
+//            objAssignment.Id == ApplicationData.CurrentAssignment.Id {
+//            currentAssignmentFocused = true
+//
+//            tvAssignment.scrollToRow(at: indexPath, at: .bottom, animated: true)
+//        }
+        
         return tvcAssignment;
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -115,11 +130,9 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         }
         else {
             selectedIndex = indexPath.row
+            seletecdRowFocused = false
         }
         
-//        self.tvAssignment.beginUpdates()
-//        self.tvAssignment.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-//        self.tvAssignment.endUpdates()
         self.tvAssignment.reloadData()
     }
     
@@ -234,7 +247,8 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
         AssignmentManager.assignmentStatusList.removeAll()
         
         selectedIndex = -1
-        currentAssignmentLoaded = false
+//        currentAssignmentLoaded = false
+//        currentAssignmentFocused = false
         
         if chkDue.on {
             AssignmentManager.assignmentStatusList.append(.Due)

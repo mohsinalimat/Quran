@@ -720,7 +720,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         setRecordUploadMode(currentRecordUploadMode: .Upload)
         
         vUploadAssignment.uploadRecording(completionHandler: {
-            self.setRecordUploadFooter()
+            DispatchQueue.main.async {
+                self.hideMenu()
+                self.setViewForFooterMode(isUserInteractionEnabled: true)
+                self.setRecordUploadFooter()
+            }
         })
     }
     
