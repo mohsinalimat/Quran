@@ -45,7 +45,8 @@ enum ViewTag: Int {
     case BaseRightMenu = 300
     case ListenRepeat = 400
     case RecordCompare = 500
-    case RecordedAssignment = 600
+    case RecordAssignment = 600
+    case UploadAssignment = 700
 }
 
 enum ContinuousRecitationMode: Int32 {
@@ -104,6 +105,7 @@ enum RecordUploadMode: Int32 {
     case Play = 3
     case Pause = 4
     case Download = 5
+    case Upload = 6
 }
 
 enum AssignmentStatus: Int32 {

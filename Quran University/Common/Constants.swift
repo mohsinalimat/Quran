@@ -34,10 +34,22 @@ struct QuranLink {
         
         return URL(string: urlAddress)!
     }
-    static func Assignment() -> URL {
+    static func GetAssignment() -> URL {
         let urlAddress = WebAPIUrl + "Student/?s=96"
         
         return URL(string: urlAddress)!
+    }
+    static func SubmitAssignment(jsonContent: String) -> URL {
+        let urlAddress = WebAPIUrl + "Student/"
+        let url = URL(string: urlAddress)!
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        var queryItems = [URLQueryItem]()
+        
+        queryItems.append(URLQueryItem(name: "sas", value: jsonContent))
+        
+        urlComponents?.queryItems = queryItems
+        
+        return (urlComponents?.url)!
     }
     static func UploadAssignment() -> String {
         let urlAddress = WebSiteUrl + "Handlers/FileUpload.ashx?commandAction=uploadRecordedAudio"

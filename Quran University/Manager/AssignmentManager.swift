@@ -6,6 +6,7 @@ class AssignmentManager {
     typealias methodHandler1 = () -> Void
     typealias methodHandler2 = (_ status: Bool) -> Void
     
+    static var pvFileProgressView = UIProgressView()
     static var assignmentList = [AssignmentModel]()
     static var assignmentStatusList = [AssignmentStatus]()
     static var jResponse = JsonResponse()
@@ -13,7 +14,7 @@ class AssignmentManager {
     
     static func populateStudentAssignment(completionHandler: @escaping methodHandler1) {
         if assignmentList.count <= 0 {
-            dataTask = URLSession.shared.dataTask(with: QuranLink.Assignment()) { (data, response, err) in
+            dataTask = URLSession.shared.dataTask(with: QuranLink.GetAssignment()) { (data, response, err) in
                 let response = response as? HTTPURLResponse
                 
                 if err == nil && response?.statusCode == 200 {
@@ -160,7 +161,7 @@ class AssignmentManager {
             ApplicationObject.SurahButton.setTitle(ApplicationData.CurrentSurah.Name, for: .normal)
             PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
             ApplicationObject.MainViewController.btnLMenu.setImage(#imageLiteral(resourceName: "img_LeftAssignmentLinesCircle"), for: .normal)
-            ApplicationObject.MainViewController.showMenu(tag: ViewTag.BaseLeftMenu.rawValue)
+            ApplicationObject.MainViewController.showHideMenu(tag: ViewTag.BaseLeftMenu.rawValue)
         })
     }
     static func unloadAssignmentMode(completionHandler: @escaping methodHandler1) {
@@ -184,7 +185,10 @@ class AssignmentManager {
         
         completionHandler()
     }
-    static func uploadAssignment(completionHandler: @escaping methodHandler2) {
+    static func uploadAssignment(uiProgressView: UIProgressView, progressFactor: Float, completionHandler: @escaping methodHandler2) {
+        pvFileProgressView = uiProgressView
+        pvFileProgressView.progress = 0
+        
         Alamofire
             .upload(multipartFormData: { multipartFormData in
                 multipartFormData.append(ApplicationMethods.getCurrentStudentAssignmentRecording(),
@@ -197,16 +201,16 @@ class AssignmentManager {
                     switch encodingResult {
                     case .success(let upload, _, _):
                         upload.uploadProgress { progress in
-    //                                progressCompletion(Float(progress.fractionCompleted))
+                            pvFileProgressView.progress = Float(progress.fractionCompleted) * progressFactor
                         }
                         
                         upload.validate()
                         
                         upload.responseJSON { response in
-                            
+                            completionHandler(true)
                         }
-                    case .failure(let encodingError):
-                        print(encodingError)
+                    case .failure( _):
+                        completionHandler(false)
                 }
             })
     }

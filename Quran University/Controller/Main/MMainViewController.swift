@@ -46,6 +46,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     // ********** Footer Assignment Record & Upload Section ********** //
     @IBOutlet weak var vAssignmentRecording: UIView!
     @IBOutlet var vRecordAssignment: RecordAssignmentView!
+    @IBOutlet var vUploadAssignment: UploadAssignmentView!
     @IBOutlet weak var btnARecord: UIButton!
     @IBOutlet weak var btnAPlay: UIButton!
     @IBOutlet weak var btnAUpload: UIButton!
@@ -88,8 +89,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                 if ivQuranPage.isUserInteractionEnabled &&
                     touch.view != vTopMenu &&
                     touch.view != vRecordAssignment &&
-                    touch.view?.superview?.tag != ViewTag.RecordedAssignment.rawValue &&
-                    touch.view?.superview?.superview?.tag != ViewTag.RecordedAssignment.rawValue {
+                    touch.view?.superview?.tag != ViewTag.RecordAssignment.rawValue &&
+                    touch.view?.superview?.superview?.tag != ViewTag.RecordAssignment.rawValue {
                     hideMenu()
                 }
                 
@@ -272,17 +273,28 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         height = vRecordAssignment.frame.size.height
         width = vFooter.frame.size.width
         
-        vRecordAssignment.tag = ViewTag.RecordedAssignment.rawValue
+        vRecordAssignment.tag = ViewTag.RecordAssignment.rawValue
         vRecordAssignment.frame = CGRect(x: x, y: y, width: width, height: height)
         
         self.view.addSubview(vRecordAssignment)
+        
+        x = ivQuranPage.frame.origin.x
+        y = (ivQuranPage.frame.origin.y + (ivQuranPage.frame.size.height / 2)) - (vUploadAssignment.bounds.height / 2)
+        height = vUploadAssignment.frame.size.height
+        width = ivQuranPage.frame.size.width
+        
+        vUploadAssignment.tag = ViewTag.UploadAssignment.rawValue
+        vUploadAssignment.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        self.view.addSubview(vUploadAssignment)
     }
     func hideMenu() {
         self.view.viewWithTag(ViewTag.TopMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseLeftMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseRightMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.ListenRepeat.rawValue)?.isHidden = true
-        self.view.viewWithTag(ViewTag.RecordedAssignment.rawValue)?.isHidden = true
+        self.view.viewWithTag(ViewTag.RecordAssignment.rawValue)?.isHidden = true
+        self.view.viewWithTag(ViewTag.UploadAssignment.rawValue)?.isHidden = true
     }
     func hideMenu(tag: Int) {
         hideMenu()
@@ -290,6 +302,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.view.viewWithTag(tag)?.isHidden = true
     }
     func showMenu(tag: Int) {
+        hideMenu()
+        
+        self.view.viewWithTag(tag)?.isHidden = false
+    }
+    func showHideMenu(tag: Int) {
         if self.view.viewWithTag(tag)?.isHidden == false {
             hideMenu()
         }
@@ -299,6 +316,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             self.view.viewWithTag(tag)?.isHidden = false
         }
     }
+    
     func updateListenRepeatView(info: String) {
         self.view.viewWithTag(ViewTag.ListenRepeat.rawValue)?.isHidden = false
         lblListenRepeatInfo.text = info
@@ -448,8 +466,12 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             
             break
         case .Download:
-            hideMenu(tag: ViewTag.RecordedAssignment.rawValue)
+            hideMenu(tag: ViewTag.RecordAssignment.rawValue)
             btnAPlay.loadingIndicator(true)
+            
+            break
+        case .Upload:
+            setViewForFooterMode(isUserInteractionEnabled: false)
             
             break
         }
@@ -466,7 +488,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     // ********** Header Section ********** //
     @IBAction func btnMenu_TouchUp(_ sender: UIButton) {
         btnReciter.setTitle(ApplicationData.CurrentReciter.Name, for: .normal)
-        showMenu(tag: ViewTag.TopMenu.rawValue)
+        showHideMenu(tag: ViewTag.TopMenu.rawValue)
     }
     @IBAction func btnSurah_TouchUp(_ sender: UIButton) {
         AssignmentManager.unloadAssignmentMode(completionHandler: {
@@ -553,7 +575,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     // ********** Footer Section ********** //
     @IBAction func btnLMenu_TouchUp(_ sender: UIButton) {
         if ApplicationData.AssignmentModeOn {
-            showMenu(tag: ViewTag.BaseLeftMenu.rawValue)
+            showHideMenu(tag: ViewTag.BaseLeftMenu.rawValue)
         }
         else {
             btnLMenu.loadingIndicator(true)
@@ -567,7 +589,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     @IBAction func btnRMenu_TouchUp(_ sender: UIButton) {
-        showMenu(tag: ViewTag.BaseRightMenu.rawValue)
+        showHideMenu(tag: ViewTag.BaseRightMenu.rawValue)
     }
     
     // ********** Footer Player Section ********** //
@@ -616,7 +638,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     @IBAction func btnRRecord_TouchUp(_ sender: Any) {
         setFooterMode(currentFooterSectionMode: .Recording, enableQuranPageUserInteraction: false)
-        showMenu(tag: ViewTag.RecordCompare.rawValue)
+        showHideMenu(tag: ViewTag.RecordCompare.rawValue)
         setRecordCompareMode(currentRecordCompareMode: .RRecord)
         vRecordCompare.loadView()
     }
@@ -670,7 +692,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Assignment Record & Upload Section ********** //
     @IBAction func btnARecord_TouchUp(_ sender: Any) {
-        vRecordAssignment.isHidden = false
+        showMenu(tag: ViewTag.RecordAssignment.rawValue)
         
         if vRecordAssignment.recordingPlayMode != .Recording {
             vRecordAssignment.loadView(completionHandler: {
@@ -682,7 +704,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     @IBAction func btnAPlay_TouchUp(_ sender: Any) {
-        vRecordAssignment.isHidden = false
+        showMenu(tag: ViewTag.RecordAssignment.rawValue)
         
         if !vRecordAssignment.recordingLoaded {
             vRecordAssignment.loadView(completionHandler: {
@@ -694,8 +716,12 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     @IBAction func btnAUpload_TouchUp(_ sender: Any) {
-        self.hideMenu()
-//        AssignmentManager.uploadAssignment(completionHandler: {})
+        showMenu(tag: ViewTag.UploadAssignment.rawValue)
+        setRecordUploadMode(currentRecordUploadMode: .Upload)
+        
+        vUploadAssignment.uploadRecording(completionHandler: {
+            self.setRecordUploadFooter()
+        })
     }
     
     // ********** Base Right Menu Section ********** //

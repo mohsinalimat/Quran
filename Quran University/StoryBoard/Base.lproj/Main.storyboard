@@ -371,6 +371,7 @@
                         <outlet property="vRecordCompare" destination="RZv-Ij-J1M" id="DHw-F3-Ynr"/>
                         <outlet property="vRecording" destination="Yfu-Td-ZeC" id="anj-Og-gb7"/>
                         <outlet property="vTopMenu" destination="pzi-e7-LuZ" id="M2h-Zu-IDh"/>
+                        <outlet property="vUploadAssignment" destination="ulB-vJ-Ibf" id="P6v-ua-8NW"/>
                         <segue destination="Yws-IH-IEe" kind="presentation" identifier="SegueDownloadPage" animates="NO" id="UFM-SL-3Ag"/>
                         <segue destination="tss-5n-Ifh" kind="presentation" identifier="SegueDropDown" id="UkX-2w-mbA"/>
                         <segue destination="D4Y-sd-Ile" kind="presentation" identifier="SegueDualDropDown" id="ubR-Mh-LgH"/>
@@ -938,6 +939,43 @@
                         <outlet property="lblTimer" destination="LBA-nE-Lc8" id="IsS-st-lcl"/>
                         <outlet property="vRecording" destination="3YF-rf-kmn" id="57O-pF-Rs4"/>
                         <outlet property="vTimer" destination="SCG-QC-iuV" id="bd3-N5-dMd"/>
+                    </connections>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" id="ulB-vJ-Ibf" customClass="UploadAssignmentView" customModule="Quran_University" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V0U-Qj-t6X" customClass="QUView" customModule="Quran_University" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uploading Assignment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPo-dE-DRX">
+                                    <rect key="frame" x="117" y="15" width="140" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yLp-26-tAP">
+                                    <rect key="frame" x="10" y="56" width="355" height="3"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                </progressView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                                    <color key="value" red="0.53333333329999999" green="0.38431372549999998" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                                    <color key="value" red="0.97254901959999995" green="0.85882352939999995" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="eg6-EP-Uzd"/>
+                    <connections>
+                        <outlet property="pvUploadFileProgressView" destination="yLp-26-tAP" id="4i6-Ce-i5r"/>
                     </connections>
                 </view>
                 <swipeGestureRecognizer direction="left" id="P1Z-F7-j9R">

@@ -5,4 +5,5 @@ struct JsonResponse: Decodable {
     var AsbabNazoolList: [AsbabNazool]?
     var MaaniMafrudatList: [MaaniMafrudat]?
     var Course: [CourseModel]?
+    var Status: Int32?
 }

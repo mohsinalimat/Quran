@@ -65,7 +65,7 @@ class RecordAssignmentView: UIView {
         recordingLoaded = false
         
         timer.invalidate()
-        ApplicationObject.MainViewController.hideMenu(tag: ViewTag.RecordedAssignment.rawValue)
+        ApplicationObject.MainViewController.hideMenu(tag: ViewTag.RecordAssignment.rawValue)
     }
     
     func recordStopRecording() {
@@ -184,7 +184,7 @@ class RecordAssignmentView: UIView {
                 ApplicationObject.MainViewController.setRecordUploadMode(currentRecordUploadMode: .Download)
                 AssignmentManager.downloadAssignment(completionHandler: { downloadStatus in
                     if downloadStatus {
-                        ApplicationObject.MainViewController.showMenu(tag: ViewTag.RecordedAssignment.rawValue)
+                        ApplicationObject.MainViewController.showHideMenu(tag: ViewTag.RecordAssignment.rawValue)
                         self.playPauseRecording()
                     }
                     else {
