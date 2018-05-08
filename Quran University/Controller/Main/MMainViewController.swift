@@ -679,6 +679,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     @IBAction func btnCorrection_TouchUp(_ sender: Any) {
         self.hideMenu()
+        
+        self.performSegue(withIdentifier: "SegueCorrection", sender: nil)
     }
     @IBAction func btnMeeting_TouchUp(_ sender: Any) {
         self.hideMenu()
