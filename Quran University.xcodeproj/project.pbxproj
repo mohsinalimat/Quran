@@ -694,6 +694,8 @@
 		04D5F431204EC03400E7F7B4 /* WordMeaningBookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5F430204EC03400E7F7B4 /* WordMeaningBookRepository.swift */; };
 		04D5F433204EC12200E7F7B4 /* WordMeaningBookDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5F432204EC12200E7F7B4 /* WordMeaningBookDetailRepository.swift */; };
 		04D7975E207F785B0092140A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7975D207F785B0092140A /* Utilities.swift */; };
+		04D9301820A2D44100F7EEF0 /* BLMCorrectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9301720A2D44100F7EEF0 /* BLMCorrectionViewController.swift */; };
+		04D9301A20A2D94E00F7EEF0 /* CorrectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9301920A2D94E00F7EEF0 /* CorrectionTableViewCell.swift */; };
 		04DA8D0A200CF81700513A6B /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA8D09200CF81700513A6B /* Page.swift */; };
 		04DAF96F205FECBB00BC8257 /* RecitationPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAF96E205FECBB00BC8257 /* RecitationPreference.swift */; };
 		04DAF971205FEDA900BC8257 /* RecitationPreferenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DAF970205FEDA900BC8257 /* RecitationPreferenceRepository.swift */; };
@@ -1404,6 +1406,8 @@
 		04D5F430204EC03400E7F7B4 /* WordMeaningBookRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningBookRepository.swift; sourceTree = "<group>"; };
 		04D5F432204EC12200E7F7B4 /* WordMeaningBookDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMeaningBookDetailRepository.swift; sourceTree = "<group>"; };
 		04D7975D207F785B0092140A /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		04D9301720A2D44100F7EEF0 /* BLMCorrectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLMCorrectionViewController.swift; sourceTree = "<group>"; };
+		04D9301920A2D94E00F7EEF0 /* CorrectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionTableViewCell.swift; sourceTree = "<group>"; };
 		04DA8D09200CF81700513A6B /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		04DAF96E205FECBB00BC8257 /* RecitationPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationPreference.swift; sourceTree = "<group>"; };
 		04DAF970205FEDA900BC8257 /* RecitationPreferenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationPreferenceRepository.swift; sourceTree = "<group>"; };
@@ -1531,11 +1535,12 @@
 				04614C4E20737A65000F9922 /* AssignmentTableViewCell.swift */,
 				04BBCB542032C43400D347BC /* BaseViewController.swift */,
 				048D662D20500257007185EC /* BookTableViewCell.swift */,
+				04D9301920A2D94E00F7EEF0 /* CorrectionTableViewCell.swift */,
 				04332590201DB201000FD494 /* QUButton.swift */,
 				0433258E201DAE4A000FD494 /* QUView.swift */,
 				04CB5E2B2026E92D00BA6424 /* ReciterTableViewCell.swift */,
-				04BB50A22069016D008C7D70 /* RecordCompareView.swift */,
 				04CE12632099C7D80026D118 /* RecordAssignmentView.swift */,
+				04BB50A22069016D008C7D70 /* RecordCompareView.swift */,
 				04D215C620A06B7B00C0325D /* UploadAssignmentView.swift */,
 			);
 			path = Class;
@@ -2280,6 +2285,7 @@
 			isa = PBXGroup;
 			children = (
 				04D452AD2070FDDA00715CA8 /* BLMAssignmentViewController.swift */,
+				04D9301720A2D44100F7EEF0 /* BLMCorrectionViewController.swift */,
 			);
 			path = BaseLeftMenu;
 			sourceTree = "<group>";
@@ -3140,6 +3146,7 @@
 				044F6CBC2007A4420007828A /* PageManager.swift in Sources */,
 				0495EA0B200F299600EC35D1 /* UCDropDownViewController.swift in Sources */,
 				0442BAAC201F2FE5006D5FD8 /* Script.swift in Sources */,
+				04D9301A20A2D94E00F7EEF0 /* CorrectionTableViewCell.swift in Sources */,
 				0442BAAE201F587D006D5FD8 /* Recitation.swift in Sources */,
 				04E4010E204BCD0500C6F3AB /* JsonResponse.swift in Sources */,
 				04BB50A32069016D008C7D70 /* RecordCompareView.swift in Sources */,
@@ -3168,6 +3175,7 @@
 				0476C17620887FB40066203E /* AssignmentBoundaryModel.swift in Sources */,
 				04231F04203C164F00740A9C /* Language.swift in Sources */,
 				04231EFE203C10CE00740A9C /* TafseerBookDetailRepository.swift in Sources */,
+				04D9301820A2D44100F7EEF0 /* BLMCorrectionViewController.swift in Sources */,
 				04F0D2C1203B0E28002F7183 /* ScriptRepository.swift in Sources */,
 				04A35D26200CCB190090A64F /* Juzz.swift in Sources */,
 				04AB4D33205935490081A026 /* RecitationSilence.swift in Sources */,
