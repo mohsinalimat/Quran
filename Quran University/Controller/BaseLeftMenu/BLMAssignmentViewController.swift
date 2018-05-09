@@ -44,7 +44,7 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
             if !seletecdRowFocused {
                 seletecdRowFocused = true
                 
-                tvAssignment.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                tvAssignment.scrollToRow(at: indexPath, at: .none, animated: true)
             }
         }
         else {

@@ -42,13 +42,14 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tvcCorrection = tvCorrection.dequeueReusableCell(withIdentifier: "tvcCorrection") as! CorrectionTableViewCell
-//        let objAssignment = AssignmentManager.assignmentList[indexPath.row]
-//
-//        tvcAssignment.Id = objAssignment.Id
-//        tvcAssignment.lblNumber.text = objAssignment.Number
-//        tvcAssignment.lblAssignment.text = objAssignment.Title
-//        tvcAssignment.lblCourse.text = objAssignment.CourseTitle
-//        tvcAssignment.lblSubmissionDate.text = objAssignment.Submission
+        let objCorrection = ApplicationData.CurrentAssignment.Correction[indexPath.row]
+        let number = Int32(indexPath.row) + 1
+        
+        tvcCorrection.Id = objCorrection.Id
+        tvcCorrection.lblNumber.text = ApplicationMethods.getOrdinalNumber(num: number)
+//        tvcCorrection.lblAssignment.text = objAssignment.Title
+//        tvcCorrection.lblCourse.text = objAssignment.CourseTitle
+//        tvcCorrection.lblSubmissionDate.text = objAssignment.Submission
 //
 //        tvcAssignment.lblType.text = objAssignment.TypeTitle
 //        tvcAssignment.lblStatus.text = objAssignment.AssignmentStatusTitle

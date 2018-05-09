@@ -2294,8 +2294,8 @@
 			isa = PBXGroup;
 			children = (
 				048D6627204FCC2D007185EC /* AsbabNazool.swift */,
-				049D735E2076348800E4C41B /* AssignmentModel.swift */,
 				0476C17520887FB40066203E /* AssignmentBoundaryModel.swift */,
+				049D735E2076348800E4C41B /* AssignmentModel.swift */,
 				043429102079F8D700FB00A6 /* CorrectionModel.swift */,
 				0434290E2079F83B00FB00A6 /* CourseModel.swift */,
 				0476C17B208880C90066203E /* EndPointModel.swift */,

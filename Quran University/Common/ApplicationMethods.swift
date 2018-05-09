@@ -144,4 +144,38 @@ class ApplicationMethods {
     static func getCurrentStudentAssignmentRecordingWebUrl() -> String {
         return QuranLink.StudentAssignmentUrl + getCurrentStudentAssignmentRecordingName()
     }
+    static func getOrdinalNumber(num: Int32) -> String {
+        var numString = String(num)
+        
+        if num > 0 {
+            if num > 10 && num < 21 {
+                numString = numString + "th"
+            }
+            else {
+                switch num % 10 {
+                case 1:
+                    numString = numString + "st"
+                    
+                    break
+                case 2:
+                    numString = numString + "nd"
+                    
+                    break
+                case 3:
+                    numString = numString + "rd"
+                    
+                    break
+                default:
+                    numString = numString + "th"
+                    
+                    break
+                }
+            }
+        }
+        else {
+            numString = ""
+        }
+        
+        return numString
+    }
 }

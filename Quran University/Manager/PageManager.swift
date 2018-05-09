@@ -28,6 +28,7 @@ class PageManager {
                 
                 if ApplicationData.AssignmentModeOn {
                     AssignmentManager.highlightAssignment()
+                    RecitationManager.setPlayerMode(mode: .Ready)
                 }
             }
         }

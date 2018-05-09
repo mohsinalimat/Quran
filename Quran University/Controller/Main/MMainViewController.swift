@@ -587,6 +587,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                 }
             })
         }
+        
+        setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
     }
     @IBAction func btnRMenu_TouchUp(_ sender: UIButton) {
         showHideMenu(tag: ViewTag.BaseRightMenu.rawValue)
