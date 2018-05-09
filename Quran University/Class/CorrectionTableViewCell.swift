@@ -10,6 +10,7 @@ class CorrectionTableViewCell: UITableViewCell {
     @IBOutlet weak var chkShowDetail: BEMCheckBox!
     
     var Id: Int64 = 0
+    var SelectedIndexPath = IndexPath()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,8 +33,6 @@ class CorrectionTableViewCell: UITableViewCell {
             chkShowDetail.tintColor = AssignmentStatusColor.CHECKED_B
             chkShowDetail.offFillColor = AssignmentStatusColor.CHECKED_BG
         }
-        
-        super.setSelected(true, animated: true)
     }
     
     @IBAction func btnPlayPause_TouchUp(_ sender: Any) {
@@ -43,5 +42,6 @@ class CorrectionTableViewCell: UITableViewCell {
     
     @IBAction func chkShowDetail_TouchUp(_ sender: Any) {
         setCheckboxStatusColor(isChecked: chkShowDetail.on)
+        (ApplicationObject.CurrentViewController as! BLMCorrectionViewController).setSelectedRow(indexPath: SelectedIndexPath)
     }
 }

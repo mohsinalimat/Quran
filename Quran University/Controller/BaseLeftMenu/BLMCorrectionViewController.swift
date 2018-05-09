@@ -45,6 +45,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         let objCorrection = ApplicationData.CurrentAssignment.Correction[indexPath.row]
         let number = Int32(indexPath.row) + 1
         
+        tvcCorrection.SelectedIndexPath = indexPath
         tvcCorrection.Id = objCorrection.Id
         tvcCorrection.lblNumber.text = ApplicationMethods.getOrdinalNumber(num: number)
 //        tvcCorrection.lblAssignment.text = objAssignment.Title
@@ -90,17 +91,6 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         
         return tvcCorrection;
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if selectedIndex == indexPath.row {
-            selectedIndex = -1
-        }
-        else {
-            selectedIndex = indexPath.row
-            seletecdRowFocused = false
-        }
-        
-        self.tvCorrection.reloadData()
-    }
     
     func setViewPosition() {
         let vHeader = ApplicationObject.MainViewController.vHeader!
@@ -111,6 +101,17 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         let width = vHeader.frame.size.width
         
         vMain.frame = CGRect(x: x, y: y, width: width, height: height)
+    }
+    func setSelectedRow(indexPath: IndexPath) {
+        if selectedIndex == indexPath.row {
+            selectedIndex = -1
+        }
+        else {
+            selectedIndex = indexPath.row
+            seletecdRowFocused = false
+        }
+        
+        self.tvCorrection.reloadData()
     }
     
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {
