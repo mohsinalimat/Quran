@@ -672,6 +672,7 @@
 		04CA15CC20075CB200D8B494 /* 594.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CA15B320075CB200D8B494 /* 594.png */; };
 		04CA42AF209710D900FF495E /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA42AE209710D900FF495E /* PermissionManager.swift */; };
 		04CB5E2C2026E92D00BA6424 /* ReciterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB5E2B2026E92D00BA6424 /* ReciterTableViewCell.swift */; };
+		04CCE13720A43D4A006412C2 /* CorrectionDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCE13620A43D4A006412C2 /* CorrectionDetailModel.swift */; };
 		04CD817E2004EDE900E34444 /* DocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD817D2004EDE900E34444 /* DocumentManager.swift */; };
 		04CD81812004FFF700E34444 /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CD81802004FFF700E34444 /* Enumerations.swift */; };
 		04CE0AE5204534CB000CD6BF /* TafseerBookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE0AE4204534CB000CD6BF /* TafseerBookDetail.swift */; };
@@ -1384,6 +1385,7 @@
 		04CA15B320075CB200D8B494 /* 594.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 594.png; sourceTree = "<group>"; };
 		04CA42AE209710D900FF495E /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		04CB5E2B2026E92D00BA6424 /* ReciterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReciterTableViewCell.swift; sourceTree = "<group>"; };
+		04CCE13620A43D4A006412C2 /* CorrectionDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionDetailModel.swift; sourceTree = "<group>"; };
 		04CD817D2004EDE900E34444 /* DocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentManager.swift; sourceTree = "<group>"; };
 		04CD81802004FFF700E34444 /* Enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
 		04CE0AE4204534CB000CD6BF /* TafseerBookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TafseerBookDetail.swift; sourceTree = "<group>"; };
@@ -2296,6 +2298,7 @@
 				048D6627204FCC2D007185EC /* AsbabNazool.swift */,
 				0476C17520887FB40066203E /* AssignmentBoundaryModel.swift */,
 				049D735E2076348800E4C41B /* AssignmentModel.swift */,
+				04CCE13620A43D4A006412C2 /* CorrectionDetailModel.swift */,
 				043429102079F8D700FB00A6 /* CorrectionModel.swift */,
 				0434290E2079F83B00FB00A6 /* CourseModel.swift */,
 				0476C17B208880C90066203E /* EndPointModel.swift */,
@@ -3164,6 +3167,7 @@
 				04D2D70520035878006D1342 /* AyatSelectionManager.swift in Sources */,
 				0495EA12200F873900EC35D1 /* UCDualDropDownViewController.swift in Sources */,
 				04231F06203C2F2300740A9C /* TafseerBook.swift in Sources */,
+				04CCE13720A43D4A006412C2 /* CorrectionDetailModel.swift in Sources */,
 				04D7975E207F785B0092140A /* Utilities.swift in Sources */,
 				04F0D2BB203B0C6D002F7183 /* SurahRepository.swift in Sources */,
 				04F0D2B9203B0BA2002F7183 /* PageRepository.swift in Sources */,

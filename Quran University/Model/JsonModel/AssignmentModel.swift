@@ -15,6 +15,7 @@ class AssignmentModel: Decodable {
     var StudentAudioFile: String?
     var titlePLang: String
     var titleSLang: String
+    var StaffCheckDate: String?
     
     var AssignmentStatusTitle: String?
     var AssignmentStatusId: Int32?
@@ -131,5 +132,19 @@ class AssignmentModel: Decodable {
         let mark = self.IsMarked ? String(self.Marks) : "-"
         
         return mark
+    }
+    var StudentSubmission: String {
+        var studentSubmission = self.StudentOnlineSubmissionDate == nil ? "" : self.StudentOnlineSubmissionDate
+        
+        studentSubmission = (studentSubmission == "" ? studentSubmission : Utilities.dtPrintDate.string(from: Utilities.dtJsonPrintDateTime.date(from: studentSubmission!)!))
+        
+        return studentSubmission!
+    }
+    var StaffCheck: String {
+        var staffCheck = self.StaffCheckDate == nil ? "" : self.StaffCheckDate
+        
+        staffCheck = (staffCheck == "" ? staffCheck : Utilities.dtPrintDate.string(from: Utilities.dtJsonPrintDateTime.date(from: staffCheck!)!))
+        
+        return staffCheck!
     }
 }

@@ -20,7 +20,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ApplicationData.CurrentAssignment.Correction.count
+        return ApplicationData.CurrentAssignment.Correction.count + 1
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var rowHeight = collapsedHeight
@@ -42,52 +42,68 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tvcCorrection = tvCorrection.dequeueReusableCell(withIdentifier: "tvcCorrection") as! CorrectionTableViewCell
-        let objCorrection = ApplicationData.CurrentAssignment.Correction[indexPath.row]
         let number = Int32(indexPath.row) + 1
         
         tvcCorrection.SelectedIndexPath = indexPath
-        tvcCorrection.Id = objCorrection.Id
         tvcCorrection.lblNumber.text = ApplicationMethods.getOrdinalNumber(num: number)
-//        tvcCorrection.lblAssignment.text = objAssignment.Title
-//        tvcCorrection.lblCourse.text = objAssignment.CourseTitle
-//        tvcCorrection.lblSubmissionDate.text = objAssignment.Submission
-//
-//        tvcAssignment.lblType.text = objAssignment.TypeTitle
-//        tvcAssignment.lblStatus.text = objAssignment.AssignmentStatusTitle
-//        tvcAssignment.lblDeadline.text = objAssignment.DeadlineString
-//        tvcAssignment.lblSubmitted.text = objAssignment.SubmissionTime
-//        tvcAssignment.lblDelayDays.text = objAssignment.DelayedDays
-//        tvcAssignment.lblMarks.text = objAssignment.MarkString
-//
-//        if objAssignment.AssignmentStatusId == AssignmentStatus.Due.rawValue {
-//            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.DUE_BG
-//        }
-//        else if objAssignment.AssignmentStatusId == AssignmentStatus.Late.rawValue {
-//            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.LATE_BG
-//        }
-//        else if objAssignment.AssignmentStatusId == AssignmentStatus.NotSent.rawValue {
-//            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.NOT_SENT_BG
-//        }
-//        else if objAssignment.AssignmentStatusId == AssignmentStatus.Accepted.rawValue {
-//            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.ACCEPTED_BG
-//        }
-//        else if objAssignment.AssignmentStatusId == AssignmentStatus.Submitted.rawValue ||
-//            objAssignment.AssignmentStatusId == AssignmentStatus.Resubmitted.rawValue {
-//            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.SUBMITTED_BG
-//        }
-//        else if objAssignment.AssignmentStatusId == AssignmentStatus.Checked.rawValue ||
-//            objAssignment.AssignmentStatusId == AssignmentStatus.Rechecked.rawValue {
-//            tvcAssignment.lblNumber.backgroundColor = AssignmentStatusColor.CHECKED_BG
-//        }
-//
-//        if !objAssignment.RecordingExists! {
-//            tvcAssignment.btnUpload.isHidden = true
-//            tvcAssignment.lblAssignment.frame = CGRect(x: tvcAssignment.lblAssignment.frame.origin.x, y: tvcAssignment.lblAssignment.frame.origin.y, width: 147, height: tvcAssignment.lblAssignment.frame.height)
-//        }
-//        else {
-//            tvcAssignment.btnUpload.isHidden = false
-//            tvcAssignment.lblAssignment.frame = CGRect(x: tvcAssignment.lblAssignment.frame.origin.x, y: tvcAssignment.lblAssignment.frame.origin.y, width: 115, height: tvcAssignment.lblAssignment.frame.height)
-//        }
+        
+        if indexPath.row <= 0 {
+            if ApplicationData.CurrentAssignment.StudentOnlineSubmissionDate == nil || ApplicationData.CurrentAssignment.StudentOnlineSubmissionDate == "" {
+                tvcCorrection.btnPlayPause.isHidden = true
+                tvcCorrection.btnStop.isHidden = true
+                tvcCorrection.lblSubmissionDate.isHidden = true
+            }
+            else {
+                if ApplicationData.CurrentAssignment.StudentAudioFile == nil || ApplicationData.CurrentAssignment.StudentAudioFile == "" {
+                    
+                }
+                
+                tvcCorrection.lblSubmissionDate.text = ApplicationData.CurrentAssignment.StudentSubmission
+            }
+            
+            if ApplicationData.CurrentAssignment.StaffCheckDate == nil || ApplicationData.CurrentAssignment.StaffCheckDate == "" {
+                tvcCorrection.chkShowDetail.isHidden = true
+                tvcCorrection.lblCheckDate.isHidden = true
+            }
+            else {
+                if ApplicationData.CurrentAssignment.StudentAudioFile == nil || ApplicationData.CurrentAssignment.StudentAudioFile == "" {
+                    
+                }
+                
+                tvcCorrection.lblCheckDate.text = ApplicationData.CurrentAssignment.StaffCheck
+            }
+        }
+        else {
+            let index = ApplicationData.CurrentAssignment.Correction.count - indexPath.row
+            let objCorrection = ApplicationData.CurrentAssignment.Correction[index]
+            
+            tvcCorrection.Id = objCorrection.Id
+            
+            if objCorrection.StudentOnlineSubmissionDate == nil || objCorrection.StudentOnlineSubmissionDate == "" {
+                tvcCorrection.btnPlayPause.isHidden = true
+                tvcCorrection.btnStop.isHidden = true
+                tvcCorrection.lblSubmissionDate.isHidden = true
+            }
+            else {
+                if objCorrection.StudentAudioFile == nil || objCorrection.StudentAudioFile == "" {
+                    
+                }
+                
+                tvcCorrection.lblSubmissionDate.text = objCorrection.Submission
+            }
+            
+            if objCorrection.StaffCheckDate == nil || objCorrection.StaffCheckDate == "" {
+                tvcCorrection.chkShowDetail.isHidden = true
+                tvcCorrection.lblCheckDate.isHidden = true
+            }
+            else {
+                if objCorrection.StudentAudioFile == nil || objCorrection.StudentAudioFile == "" {
+                    
+                }
+                
+                tvcCorrection.lblCheckDate.text = objCorrection.StaffCheck
+            }
+        }
         
         return tvcCorrection;
     }

@@ -110,7 +110,7 @@ class ApplicationMethods {
             recordingName = ApplicationData.CurrentAssignment.StudentAudioFile!
             
             if ApplicationData.CurrentAssignment.Correction.count > 0 {
-                recordingName = ApplicationData.CurrentAssignment.Correction[0].StudentAudioFile
+                recordingName = ApplicationData.CurrentAssignment.Correction[0].StudentAudioFile!
             }
         }
         else {
