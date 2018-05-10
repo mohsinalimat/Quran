@@ -5,8 +5,8 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     @IBOutlet weak var vMain: UIView!
     @IBOutlet weak var tvCorrection: UITableView!
     
-    var collapsedHeight: CGFloat = 65
-    var expandedHeight: CGFloat = 245
+    var collapsedHeight: CGFloat = 50
+    var expandedHeight: CGFloat = 200
     var seletecdRowFocused = false
     var selectedIndex = -1
     
