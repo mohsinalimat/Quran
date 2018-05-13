@@ -1,7 +1,7 @@
 import UIKit
 import BEMCheckBox
 
-class CorrectionTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
+class CorrectionTableViewCell: UITableViewCell {
     @IBOutlet weak var lblNumber: UILabel!
     @IBOutlet weak var lblSubmissionDate: UILabel!
     @IBOutlet weak var lblCheckDate: UILabel!
@@ -22,15 +22,6 @@ class CorrectionTableViewCell: UITableViewCell, UITableViewDelegate, UITableView
         super.setSelected(selected, animated: animated)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (Id <= 0 ? 0 : (ApplicationData.CurrentAssignment.Correction.filter { $0.Id == Id }.first?.CorrectionDetail.count)!)
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tvcCorrectionDetail = tvCorrectionDetail.dequeueReusableCell(withIdentifier: "tvcCorrectionDetail") as! CorrectionDetailTableViewCell
-        
-        return tvcCorrectionDetail
-    }
-    
     func setCheckboxStatusColor(isChecked: Bool) {
         chkShowDetail.boxType = BEMBoxType.square
         chkShowDetail.onCheckColor = AssignmentStatusColor.CHECKED_BG
@@ -43,6 +34,13 @@ class CorrectionTableViewCell: UITableViewCell, UITableViewDelegate, UITableView
             chkShowDetail.tintColor = AssignmentStatusColor.CHECKED_B
             chkShowDetail.offFillColor = AssignmentStatusColor.CHECKED_BG
         }
+    }
+    func setCorrectionDetailDataSourceDelegate
+        <delegate:UITableViewDelegate & UITableViewDataSource>(_ dataSourceDelegate: delegate, forRow row: Int) {
+        tvCorrectionDetail.delegate = dataSourceDelegate
+        tvCorrectionDetail.dataSource = dataSourceDelegate
+        
+        tvCorrectionDetail.reloadData()
     }
     
     @IBAction func btnPlayPause_TouchUp(_ sender: Any) {

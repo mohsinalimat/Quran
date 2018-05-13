@@ -877,7 +877,7 @@
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </view>
-                                                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DvA-yl-UgC">
+                                                                        <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DvA-yl-UgC">
                                                                             <rect key="frame" x="0.0" y="35" width="371" height="115"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -915,6 +915,10 @@
                                                                                     </tableViewCellContentView>
                                                                                 </tableViewCell>
                                                                             </prototypes>
+                                                                            <connections>
+                                                                                <outlet property="dataSource" destination="dvh-cs-znM" id="tUj-ZV-dgn"/>
+                                                                                <outlet property="delegate" destination="dvh-cs-znM" id="omb-Qc-SE2"/>
+                                                                            </connections>
                                                                         </tableView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" red="0.71372549019607845" green="0.63921568627450975" blue="0.63137254901960782" alpha="1" colorSpace="calibratedRGB"/>
@@ -933,6 +937,10 @@
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="dvh-cs-znM" id="OQf-hE-SuC"/>
+                                                    <outlet property="delegate" destination="dvh-cs-znM" id="ad2-3t-iUX"/>
+                                                </connections>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNS-pm-WMc" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
                                                 <rect key="frame" x="148" y="358" width="76" height="32"/>

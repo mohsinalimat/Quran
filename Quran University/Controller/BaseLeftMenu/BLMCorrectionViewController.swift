@@ -8,8 +8,8 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     var selectedIdList = [Int64]()
     var collapsedHeight: CGFloat = 50
     var expandedHeight: CGFloat = 200
-    var seletecdRowFocused = false
-    var selectedId:Int64 = 0
+//    var seletecdRowFocused = false
+//    var selectedId:Int64 = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,56 +23,77 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ApplicationData.CurrentAssignment.Correction.count + 1
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let index = ApplicationData.CurrentAssignment.Correction.count - (indexPath.row + 1)
-        var rowHeight = collapsedHeight
-        
-        if index >= 0 {
-            let id = ApplicationData.CurrentAssignment.Correction[index].Id
-            
-            if selectedIdList.contains(id) {
-                rowHeight = expandedHeight
-                
-                if !seletecdRowFocused && selectedId == id {
-                    selectedId = 0
-                    seletecdRowFocused = true
-                    
-                    tvCorrection.scrollToRow(at: indexPath, at: .bottom, animated: true)
-                }
-            }
-        }
-        
-        return rowHeight
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var tvcCorrection = tvCorrection.dequeueReusableCell(withIdentifier: "tvcCorrection") as! CorrectionTableViewCell
-        let index = ApplicationData.CurrentAssignment.Correction.count - indexPath.row
-        let number = Int32(indexPath.row) + 1
-        
-        tvcCorrection.lblNumber.text = ApplicationMethods.getOrdinalNumber(num: number)
-        tvcCorrection.lblSubmissionDate.isHidden = true
-        tvcCorrection.btnPlayPause.isHidden = true
-        tvcCorrection.btnStop.isHidden = true
-        tvcCorrection.lblCheckDate.isHidden = true
-        tvcCorrection.chkShowDetail.isHidden = true
-        
-        if indexPath.row <= 0 {
-            tvcCorrection = setFirstCorrectionCell(tvcCorrection: tvcCorrection)
-        }
-        else if index >= 0 {
-            tvcCorrection = setOtherCorrectionCell(tvcCorrection: tvcCorrection, index: index)
-        }
-        
-        if selectedIdList.contains(tvcCorrection.Id) {
-            tvcCorrection.chkShowDetail.on = true
+        if tableView.tag == 0 {
+            return ApplicationData.CurrentAssignment.Correction.count + 1
         }
         else {
-            tvcCorrection.chkShowDetail.on = false
+            return 10
         }
-        
-        return tvcCorrection
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView.tag == 0 {
+            let index = ApplicationData.CurrentAssignment.Correction.count - (indexPath.row + 1)
+            var rowHeight = collapsedHeight
+            
+            if index >= 0 {
+                let id = ApplicationData.CurrentAssignment.Correction[index].Id
+                
+                if selectedIdList.contains(id) {
+                    rowHeight = expandedHeight
+                    
+//                    if !seletecdRowFocused && selectedId == id {
+//                        selectedId = 0
+//                        seletecdRowFocused = true
+//
+//                        tvCorrection.scrollToRow(at: indexPath, at: .none, animated: true)
+//                    }
+                }
+            }
+            
+            return rowHeight
+        }
+        else {
+            return 50
+        }
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView.tag == 0 {
+            var tvcCorrection = tableView.dequeueReusableCell(withIdentifier: "tvcCorrection") as! CorrectionTableViewCell
+            let index = ApplicationData.CurrentAssignment.Correction.count - indexPath.row
+            let number = Int32(indexPath.row) + 1
+            
+            tvcCorrection.lblNumber.text = ApplicationMethods.getOrdinalNumber(num: number)
+            tvcCorrection.lblSubmissionDate.isHidden = true
+            tvcCorrection.btnPlayPause.isHidden = true
+            tvcCorrection.btnStop.isHidden = true
+            tvcCorrection.lblCheckDate.isHidden = true
+            tvcCorrection.chkShowDetail.isHidden = true
+            
+            if indexPath.row <= 0 {
+                tvcCorrection = setFirstCorrectionCell(tvcCorrection: tvcCorrection)
+            }
+            else if index >= 0 {
+                tvcCorrection = setOtherCorrectionCell(tvcCorrection: tvcCorrection, index: index)
+            }
+            
+            if selectedIdList.contains(tvcCorrection.Id) {
+                tvcCorrection.chkShowDetail.on = true
+                
+                tvcCorrection.setCheckboxStatusColor(isChecked: true)
+            }
+            else {
+                tvcCorrection.chkShowDetail.on = false
+                
+                tvcCorrection.setCheckboxStatusColor(isChecked: false)
+            }
+            
+            return tvcCorrection
+        }
+        else {
+            let tvcCorrectionDetail = tableView.dequeueReusableCell(withIdentifier: "tvcCorrectionDetail") as! CorrectionDetailTableViewCell
+            
+            return tvcCorrectionDetail
+        }
     }
     
     func setViewPosition() {
@@ -90,8 +111,8 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
             selectedIdList = selectedIdList.filter { $0 != id }
         }
         else {
-            selectedId = id
-            seletecdRowFocused = false
+//            selectedId = id
+//            seletecdRowFocused = false
             
             selectedIdList.append(id)
         }
