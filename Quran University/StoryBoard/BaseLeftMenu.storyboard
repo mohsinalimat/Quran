@@ -882,7 +882,7 @@
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <prototypes>
-                                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="70g-u7-5mX">
+                                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tvcCorrectionDetail" rowHeight="50" id="70g-u7-5mX" customClass="CorrectionDetailTableViewCell" customModule="Quran_University" customModuleProvider="target">
                                                                                     <rect key="frame" x="0.0" y="28" width="371" height="50"/>
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="70g-u7-5mX" id="eVy-OP-mpq">
@@ -929,6 +929,7 @@
                                                             <outlet property="lblCheckDate" destination="VYh-bV-5iN" id="6ez-5O-YKT"/>
                                                             <outlet property="lblNumber" destination="mkO-Fh-GfN" id="G5X-VW-GX4"/>
                                                             <outlet property="lblSubmissionDate" destination="qSV-Ei-ORl" id="ig6-1Q-KHT"/>
+                                                            <outlet property="tvCorrectionDetail" destination="DvA-yl-UgC" id="tID-lD-2um"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>

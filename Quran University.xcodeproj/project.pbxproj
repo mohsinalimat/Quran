@@ -683,6 +683,7 @@
 		04CE12682099D7680026D118 /* StudentAssignmentRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE12672099D7680026D118 /* StudentAssignmentRecording.swift */; };
 		04D1CBAF2075FE7100334912 /* AssignmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1CBAE2075FE7100334912 /* AssignmentManager.swift */; };
 		04D215C720A06B7B00C0325D /* UploadAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D215C620A06B7B00C0325D /* UploadAssignmentView.swift */; };
+		04D2359F20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2359E20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift */; };
 		04D2D70520035878006D1342 /* AyatSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2D70420035878006D1342 /* AyatSelectionManager.swift */; };
 		04D452AB2070ECD100715CA8 /* BaseLeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D452AA2070ECD100715CA8 /* BaseLeftMenu.storyboard */; };
 		04D452AE2070FDDA00715CA8 /* BLMAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D452AD2070FDDA00715CA8 /* BLMAssignmentViewController.swift */; };
@@ -1396,6 +1397,7 @@
 		04CE12672099D7680026D118 /* StudentAssignmentRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAssignmentRecording.swift; sourceTree = "<group>"; };
 		04D1CBAE2075FE7100334912 /* AssignmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentManager.swift; sourceTree = "<group>"; };
 		04D215C620A06B7B00C0325D /* UploadAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAssignmentView.swift; sourceTree = "<group>"; };
+		04D2359E20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionDetailTableViewCell.swift; sourceTree = "<group>"; };
 		04D2D70420035878006D1342 /* AyatSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyatSelectionManager.swift; sourceTree = "<group>"; };
 		04D452AA2070ECD100715CA8 /* BaseLeftMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BaseLeftMenu.storyboard; sourceTree = "<group>"; };
 		04D452AD2070FDDA00715CA8 /* BLMAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLMAssignmentViewController.swift; sourceTree = "<group>"; };
@@ -1537,6 +1539,7 @@
 				04614C4E20737A65000F9922 /* AssignmentTableViewCell.swift */,
 				04BBCB542032C43400D347BC /* BaseViewController.swift */,
 				048D662D20500257007185EC /* BookTableViewCell.swift */,
+				04D2359E20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift */,
 				04D9301920A2D94E00F7EEF0 /* CorrectionTableViewCell.swift */,
 				04332590201DB201000FD494 /* QUButton.swift */,
 				0433258E201DAE4A000FD494 /* QUView.swift */,
@@ -3180,6 +3183,7 @@
 				04231F04203C164F00740A9C /* Language.swift in Sources */,
 				04231EFE203C10CE00740A9C /* TafseerBookDetailRepository.swift in Sources */,
 				04D9301820A2D44100F7EEF0 /* BLMCorrectionViewController.swift in Sources */,
+				04D2359F20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift in Sources */,
 				04F0D2C1203B0E28002F7183 /* ScriptRepository.swift in Sources */,
 				04A35D26200CCB190090A64F /* Juzz.swift in Sources */,
 				04AB4D33205935490081A026 /* RecitationSilence.swift in Sources */,

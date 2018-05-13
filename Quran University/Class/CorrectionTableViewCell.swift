@@ -1,7 +1,7 @@
 import UIKit
 import BEMCheckBox
 
-class CorrectionTableViewCell: UITableViewCell {
+class CorrectionTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var lblNumber: UILabel!
     @IBOutlet weak var lblSubmissionDate: UILabel!
     @IBOutlet weak var lblCheckDate: UILabel!
@@ -9,8 +9,9 @@ class CorrectionTableViewCell: UITableViewCell {
     @IBOutlet weak var btnStop: UIButton!
     @IBOutlet weak var chkShowDetail: BEMCheckBox!
     
+    @IBOutlet weak var tvCorrectionDetail: UITableView!
+    
     var Id: Int64 = 0
-    var SelectedIndexPath = IndexPath()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +20,15 @@ class CorrectionTableViewCell: UITableViewCell {
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (Id <= 0 ? 0 : (ApplicationData.CurrentAssignment.Correction.filter { $0.Id == Id }.first?.CorrectionDetail.count)!)
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let tvcCorrectionDetail = tvCorrectionDetail.dequeueReusableCell(withIdentifier: "tvcCorrectionDetail") as! CorrectionDetailTableViewCell
+        
+        return tvcCorrectionDetail
     }
     
     func setCheckboxStatusColor(isChecked: Bool) {
@@ -42,6 +52,6 @@ class CorrectionTableViewCell: UITableViewCell {
     
     @IBAction func chkShowDetail_TouchUp(_ sender: Any) {
         setCheckboxStatusColor(isChecked: chkShowDetail.on)
-        (ApplicationObject.CurrentViewController as! BLMCorrectionViewController).setSelectedRow(indexPath: SelectedIndexPath)
+        (ApplicationObject.CurrentViewController as! BLMCorrectionViewController).setSelectedRow(showDetail: chkShowDetail.on, id: Id)
     }
 }
