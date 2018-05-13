@@ -122,7 +122,7 @@ class BLMAssignmentViewController: BaseViewController, UITableViewDelegate, UITa
 //            tvAssignment.scrollToRow(at: indexPath, at: .bottom, animated: true)
 //        }
         
-        return tvcAssignment;
+        return tvcAssignment
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectedIndex == indexPath.row {

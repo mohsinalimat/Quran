@@ -17,19 +17,19 @@ struct QuranLink {
         case .CauseOfRevelation:
             urlAddress = WebAPIUrl + "RelatedData/?a=\(bookId)&l=\(languageId)"
             
-            break;
+            break
         case .Tafseer:
             urlAddress = WebAPIUrl + "RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
             
-                break;
+            break
         case .Translation:
             urlAddress = WebAPIUrl + "RelatedData/?l=\(languageId)&t=\(ApplicationData.CurrentDownloadBookMode.rawValue)&m=\(bookId)&n=2&q=\(surahId)"
             
-            break;
+            break
         case .WordMeaning:
             urlAddress = WebAPIUrl + "RelatedData/?l=\(languageId)"
             
-            break;
+            break
         }
         
         return URL(string: urlAddress)!

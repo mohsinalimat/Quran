@@ -41,71 +41,20 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         return rowHeight
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tvcCorrection = tvCorrection.dequeueReusableCell(withIdentifier: "tvcCorrection") as! CorrectionTableViewCell
+        var tvcCorrection = tvCorrection.dequeueReusableCell(withIdentifier: "tvcCorrection") as! CorrectionTableViewCell
         let number = Int32(indexPath.row) + 1
         
         tvcCorrection.SelectedIndexPath = indexPath
         tvcCorrection.lblNumber.text = ApplicationMethods.getOrdinalNumber(num: number)
         
         if indexPath.row <= 0 {
-            if ApplicationData.CurrentAssignment.StudentOnlineSubmissionDate == nil || ApplicationData.CurrentAssignment.StudentOnlineSubmissionDate == "" {
-                tvcCorrection.btnPlayPause.isHidden = true
-                tvcCorrection.btnStop.isHidden = true
-                tvcCorrection.lblSubmissionDate.isHidden = true
-            }
-            else {
-                if ApplicationData.CurrentAssignment.StudentAudioFile == nil || ApplicationData.CurrentAssignment.StudentAudioFile == "" {
-                    
-                }
-                
-                tvcCorrection.lblSubmissionDate.text = ApplicationData.CurrentAssignment.StudentSubmission
-            }
-            
-            if ApplicationData.CurrentAssignment.StaffCheckDate == nil || ApplicationData.CurrentAssignment.StaffCheckDate == "" {
-                tvcCorrection.chkShowDetail.isHidden = true
-                tvcCorrection.lblCheckDate.isHidden = true
-            }
-            else {
-                if ApplicationData.CurrentAssignment.StudentAudioFile == nil || ApplicationData.CurrentAssignment.StudentAudioFile == "" {
-                    
-                }
-                
-                tvcCorrection.lblCheckDate.text = ApplicationData.CurrentAssignment.StaffCheck
-            }
+            tvcCorrection = setFirstCorrectionCell(tvcCorrection: tvcCorrection)
         }
         else {
-            let index = ApplicationData.CurrentAssignment.Correction.count - indexPath.row
-            let objCorrection = ApplicationData.CurrentAssignment.Correction[index]
-            
-            tvcCorrection.Id = objCorrection.Id
-            
-            if objCorrection.StudentOnlineSubmissionDate == nil || objCorrection.StudentOnlineSubmissionDate == "" {
-                tvcCorrection.btnPlayPause.isHidden = true
-                tvcCorrection.btnStop.isHidden = true
-                tvcCorrection.lblSubmissionDate.isHidden = true
-            }
-            else {
-                if objCorrection.StudentAudioFile == nil || objCorrection.StudentAudioFile == "" {
-                    
-                }
-                
-                tvcCorrection.lblSubmissionDate.text = objCorrection.Submission
-            }
-            
-            if objCorrection.StaffCheckDate == nil || objCorrection.StaffCheckDate == "" {
-                tvcCorrection.chkShowDetail.isHidden = true
-                tvcCorrection.lblCheckDate.isHidden = true
-            }
-            else {
-                if objCorrection.StudentAudioFile == nil || objCorrection.StudentAudioFile == "" {
-                    
-                }
-                
-                tvcCorrection.lblCheckDate.text = objCorrection.StaffCheck
-            }
+            tvcCorrection = setOtherCorrectionCell(tvcCorrection: tvcCorrection, indexPath: indexPath)
         }
         
-        return tvcCorrection;
+        return tvcCorrection
     }
     
     func setViewPosition() {
@@ -128,6 +77,76 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         }
         
         self.tvCorrection.reloadData()
+    }
+    func setFirstCorrectionCell(tvcCorrection: CorrectionTableViewCell) -> CorrectionTableViewCell {
+        if ApplicationData.CurrentAssignment.StudentOnlineSubmissionDate == nil || ApplicationData.CurrentAssignment.StudentOnlineSubmissionDate == "" {
+            tvcCorrection.btnPlayPause.isHidden = true
+            tvcCorrection.btnStop.isHidden = true
+            tvcCorrection.lblSubmissionDate.isHidden = true
+        }
+        else {
+            if ApplicationData.CurrentAssignment.StudentAudioFile == nil || ApplicationData.CurrentAssignment.StudentAudioFile == "" {
+                tvcCorrection.btnPlayPause.isHidden = true
+                tvcCorrection.btnStop.isHidden = true
+            }
+            else {
+                
+            }
+            
+            tvcCorrection.lblSubmissionDate.text = ApplicationData.CurrentAssignment.StudentSubmission
+        }
+        
+        if ApplicationData.CurrentAssignment.StaffCheckDate == nil || ApplicationData.CurrentAssignment.StaffCheckDate == "" {
+            tvcCorrection.chkShowDetail.isHidden = true
+            tvcCorrection.lblCheckDate.isHidden = true
+        }
+        else {
+            let index = ApplicationData.CurrentAssignment.Correction.count - 1
+            
+            if ApplicationData.CurrentAssignment.Correction.count <= 0 || ApplicationData.CurrentAssignment.Correction[index].CorrectionDetail.count <= 0 {
+                tvcCorrection.chkShowDetail.isHidden = true
+            }
+            else {
+                
+            }
+            
+            tvcCorrection.lblCheckDate.text = ApplicationData.CurrentAssignment.StaffCheck
+        }
+        
+        return tvcCorrection
+    }
+    func setOtherCorrectionCell(tvcCorrection: CorrectionTableViewCell, indexPath: IndexPath) -> CorrectionTableViewCell {
+        let index = ApplicationData.CurrentAssignment.Correction.count - indexPath.row
+        let objCorrection = ApplicationData.CurrentAssignment.Correction[index]
+        
+        tvcCorrection.Id = objCorrection.Id
+        
+        if objCorrection.StudentOnlineSubmissionDate == nil || objCorrection.StudentOnlineSubmissionDate == "" {
+            tvcCorrection.btnPlayPause.isHidden = true
+            tvcCorrection.btnStop.isHidden = true
+            tvcCorrection.lblSubmissionDate.isHidden = true
+        }
+        else {
+            if objCorrection.StudentAudioFile == nil || objCorrection.StudentAudioFile == "" {
+                
+            }
+            
+            tvcCorrection.lblSubmissionDate.text = objCorrection.Submission
+        }
+        
+        if objCorrection.StaffCheckDate == nil || objCorrection.StaffCheckDate == "" {
+            tvcCorrection.chkShowDetail.isHidden = true
+            tvcCorrection.lblCheckDate.isHidden = true
+        }
+        else {
+            if objCorrection.StudentAudioFile == nil || objCorrection.StudentAudioFile == "" {
+                
+            }
+            
+            tvcCorrection.lblCheckDate.text = objCorrection.StaffCheck
+        }
+        
+        return tvcCorrection
     }
     
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {
