@@ -81,11 +81,11 @@ class AssignmentModel: Decodable {
         return typeTitle
     }
     var Deadline: Date {
-        var deadline = self.DeadlineDate
+        let deadline = self.DeadlineDate
         
-        if self.Correction.count > 0 {
-            deadline = self.Correction[0].DeadLineDate
-        }
+//        if self.Correction.count > 0 {
+//            deadline = self.Correction[0].DeadLineDate
+//        }
         
         return Utilities.dtJsonDateTime.date(from: deadline)!
     }
@@ -109,9 +109,12 @@ class AssignmentModel: Decodable {
     var Submission: String {
         var submission = self.StudentOnlineSubmissionDate == nil ? "" : self.StudentOnlineSubmissionDate
         
-        if self.Correction.count > 0 {
-            submission = self.Correction[0].StudentOnlineSubmissionDate == nil ? "" : self.Correction[0].StudentOnlineSubmissionDate
-        }
+//        if self.IsMarked && self.Correction.count > 0 {
+//            submission = self.Correction[0].StudentOnlineSubmissionDate == nil ? "" : self.Correction[0].StudentOnlineSubmissionDate
+//        }
+//        else if self.Correction.count > 1 {
+//            submission = self.Correction[1].StudentOnlineSubmissionDate == nil ? "" : self.Correction[1].StudentOnlineSubmissionDate
+//        }
         
         submission = (submission == "" ? submission : Utilities.dtPrintDate.string(from: Utilities.dtJsonPrintDateTime.date(from: submission!)!))
         
@@ -120,9 +123,12 @@ class AssignmentModel: Decodable {
     var SubmissionTime: String {
         var submissionTime = self.StudentOnlineSubmissionDate == nil ? "" : self.StudentOnlineSubmissionDate
         
-        if self.Correction.count > 0 {
-            submissionTime = self.Correction[0].StudentOnlineSubmissionDate == nil ? "" : self.Correction[0].StudentOnlineSubmissionDate
-        }
+//        if self.IsMarked && self.Correction.count > 0 {
+//            submissionTime = self.Correction[0].StudentOnlineSubmissionDate == nil ? "" : self.Correction[0].StudentOnlineSubmissionDate
+//        }
+//        else if self.Correction.count > 1 {
+//            submissionTime = self.Correction[1].StudentOnlineSubmissionDate == nil ? "" : self.Correction[1].StudentOnlineSubmissionDate
+//        }
         
         submissionTime = (submissionTime == "" ? submissionTime : Utilities.dtPrintDateTime.string(from: Utilities.dtJsonPrintDateTime.date(from: submissionTime!)!))
         

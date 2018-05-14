@@ -95,6 +95,13 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
             return tvcCorrectionDetail
         }
     }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if tableView.tag == 0 {
+            let tvcCorrection = tableView.dequeueReusableCell(withIdentifier: "tvcCorrection") as! CorrectionTableViewCell
+            
+            tvcCorrection.setCorrectionDetailDataSourceDelegate(self, forRow: indexPath.row)
+        }
+    }
     
     func setViewPosition() {
         let vHeader = ApplicationObject.MainViewController.vHeader!
