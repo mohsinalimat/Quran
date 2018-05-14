@@ -410,13 +410,13 @@ class DPDownloadViewController: BaseViewController, ModalDialogueProtocol {
             }
             else {
                 if ApplicationData.AssignmentModeOn {
-                    AssignmentManager.loadAssignmentMode(Id: ApplicationData.CurrentAssignment.Id)
-                    
-                    if self.successDownload > 0 {
-                        DialogueManager.showSuccess(viewController: self, message: ApplicationSuccessMessage.SCRIPT_DOWNLOAD, okHandler: {
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                    }
+                    AssignmentManager.loadAssignmentMode(Id: ApplicationData.CurrentAssignment.Id, completionHandler: {
+                        if self.successDownload > 0 {
+                            DialogueManager.showSuccess(viewController: self, message: ApplicationSuccessMessage.SCRIPT_DOWNLOAD, okHandler: {
+                                self.dismiss(animated: true, completion: nil)
+                            })
+                        }
+                    })
                 }
                 else {
                     if self.firstPageId > 0 {

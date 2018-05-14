@@ -735,16 +735,16 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.74509803921568629" green="0.72549019607843135" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y7f-Wo-UbQ">
+                                            <tableView clipsSubviews="YES" tag="-1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y7f-Wo-UbQ">
                                                 <rect key="frame" x="0.0" y="35" width="371" height="308"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tvcCorrection" rowHeight="200" id="NXs-nw-Pn7" customClass="CorrectionTableViewCell" customModule="Quran_University" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="371" height="200"/>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tvcCorrection" rowHeight="235" id="NXs-nw-Pn7" customClass="CorrectionTableViewCell" customModule="Quran_University" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="371" height="235"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NXs-nw-Pn7" id="v9U-Sc-Ibp">
-                                                            <rect key="frame" x="0.0" y="0.0" width="371" height="199.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="371" height="234.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hfy-nO-Gx4">
@@ -756,7 +756,7 @@
                                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkO-Fh-GfN">
-                                                                                    <rect key="frame" x="2" y="1" width="66" height="46"/>
+                                                                                    <rect key="frame" x="2" y="2" width="66" height="45"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -825,7 +825,7 @@
                                                                     <color key="backgroundColor" red="0.74509803919999995" green="0.72549019609999998" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0eo-QU-B6U">
-                                                                    <rect key="frame" x="0.0" y="50" width="371" height="150"/>
+                                                                    <rect key="frame" x="0.0" y="50" width="371" height="185"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zJ8-mp-E4h">
@@ -877,12 +877,12 @@
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </view>
-                                                                        <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DvA-yl-UgC">
-                                                                            <rect key="frame" x="0.0" y="35" width="371" height="115"/>
+                                                                        <tableView clipsSubviews="YES" tag="-2" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DvA-yl-UgC">
+                                                                            <rect key="frame" x="0.0" y="35" width="371" height="150"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <prototypes>
-                                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tvcCorrectionDetail" rowHeight="50" id="70g-u7-5mX" customClass="CorrectionDetailTableViewCell" customModule="Quran_University" customModuleProvider="target">
+                                                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tvcCorrectionDetail" rowHeight="50" id="70g-u7-5mX" customClass="CorrectionDetailTableViewCell" customModule="Quran_University" customModuleProvider="target">
                                                                                     <rect key="frame" x="0.0" y="28" width="371" height="50"/>
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="70g-u7-5mX" id="eVy-OP-mpq">
@@ -896,6 +896,15 @@
                                                                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OgP-ac-B6I">
                                                                                                         <rect key="frame" x="0.0" y="0.0" width="54" height="49"/>
                                                                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                                                                        <subviews>
+                                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p81-EU-G93">
+                                                                                                                <rect key="frame" x="2" y="2" width="50" height="45"/>
+                                                                                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                                                                <nil key="textColor"/>
+                                                                                                                <nil key="highlightedColor"/>
+                                                                                                            </label>
+                                                                                                        </subviews>
                                                                                                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                                                                                     </view>
                                                                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DXd-PY-RYC">
@@ -913,12 +922,11 @@
                                                                                             </view>
                                                                                         </subviews>
                                                                                     </tableViewCellContentView>
+                                                                                    <connections>
+                                                                                        <outlet property="lblNumber" destination="p81-EU-G93" id="wg7-CZ-VsV"/>
+                                                                                    </connections>
                                                                                 </tableViewCell>
                                                                             </prototypes>
-                                                                            <connections>
-                                                                                <outlet property="dataSource" destination="dvh-cs-znM" id="tUj-ZV-dgn"/>
-                                                                                <outlet property="delegate" destination="dvh-cs-znM" id="omb-Qc-SE2"/>
-                                                                            </connections>
                                                                         </tableView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" red="0.71372549019607845" green="0.63921568627450975" blue="0.63137254901960782" alpha="1" colorSpace="calibratedRGB"/>
@@ -937,10 +945,6 @@
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="dvh-cs-znM" id="OQf-hE-SuC"/>
-                                                    <outlet property="delegate" destination="dvh-cs-znM" id="ad2-3t-iUX"/>
-                                                </connections>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNS-pm-WMc" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
                                                 <rect key="frame" x="148" y="358" width="76" height="32"/>

@@ -35,21 +35,23 @@ class CorrectionTableViewCell: UITableViewCell {
             chkShowDetail.offFillColor = AssignmentStatusColor.CHECKED_BG
         }
     }
-    func setCorrectionDetailDataSourceDelegate
-        <delegate:UITableViewDelegate & UITableViewDataSource>(_ dataSourceDelegate: delegate, forRow row: Int) {
-        tvCorrectionDetail.delegate = dataSourceDelegate
-        tvCorrectionDetail.dataSource = dataSourceDelegate
-        
-        tvCorrectionDetail.reloadData()
-    }
     
     @IBAction func btnPlayPause_TouchUp(_ sender: Any) {
     }
     @IBAction func btnStop_TouchUp(_ sender: Any) {
     }
-    
     @IBAction func chkShowDetail_TouchUp(_ sender: Any) {
         setCheckboxStatusColor(isChecked: chkShowDetail.on)
         (ApplicationObject.CurrentViewController as! BLMCorrectionViewController).setSelectedRow(showDetail: chkShowDetail.on, id: Id)
+    }
+}
+
+extension CorrectionTableViewCell {
+    func setCorrectionDetailDataSourceDelegate<D: UITableViewDataSource & UITableViewDelegate>(_ dataSourceDelegate: D, id: Int64) {
+        tvCorrectionDetail.delegate = dataSourceDelegate
+        tvCorrectionDetail.dataSource = dataSourceDelegate
+        tvCorrectionDetail.accessibilityLabel = String(id)
+        
+        tvCorrectionDetail.reloadData()
     }
 }

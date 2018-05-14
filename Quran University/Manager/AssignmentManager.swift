@@ -148,25 +148,26 @@ class AssignmentManager {
             count = count - 1
         }
     }
-    static func loadAssignmentMode(Id: Int64) {
-        unloadAssignment(completionHandler: {})
-        
-        ApplicationData.AssignmentModeOn = true
-        
-        AssignmentManager.assignmentList.filter { $0.Id == Id }.forEach { objAssignment in
-            ApplicationData.CurrentAssignment = objAssignment
-        }
-        
-        ApplicationObject.CurrentViewController.dismiss(animated: true, completion: {
-            let ayatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
-            let pageObject = PageRepository().getFirstPage(ayatId: ayatId)
+    static func loadAssignmentMode(Id: Int64, completionHandler: @escaping methodHandler1) {
+        unloadAssignment(completionHandler: {
+            ApplicationData.AssignmentModeOn = true
             
-            ApplicationData.CurrentSurah = SurahRepository().getSurah(ayatId: ayatId)
+            AssignmentManager.assignmentList.filter { $0.Id == Id }.forEach { objAssignment in
+                ApplicationData.CurrentAssignment = objAssignment
+            }
             
-            ApplicationObject.SurahButton.setTitle(ApplicationData.CurrentSurah.Name, for: .normal)
-            PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
-            ApplicationObject.MainViewController.btnLMenu.setImage(#imageLiteral(resourceName: "img_LeftAssignmentLinesCircle"), for: .normal)
-            ApplicationObject.MainViewController.showHideMenu(tag: ViewTag.BaseLeftMenu.rawValue)
+            ApplicationObject.CurrentViewController.dismiss(animated: true, completion: {
+                let ayatId = ApplicationData.CurrentAssignment.AssignmentBoundary[0].StartPoint[0].AyatId
+                let pageObject = PageRepository().getFirstPage(ayatId: ayatId)
+                
+                ApplicationData.CurrentSurah = SurahRepository().getSurah(ayatId: ayatId)
+                
+                ApplicationObject.SurahButton.setTitle(ApplicationData.CurrentSurah.Name, for: .normal)
+                PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: pageObject.Id)
+                ApplicationObject.MainViewController.btnLMenu.setImage(#imageLiteral(resourceName: "img_LeftAssignmentLinesCircle"), for: .normal)
+                ApplicationObject.MainViewController.showHideMenu(tag: ViewTag.BaseLeftMenu.rawValue)
+                completionHandler()
+            })
         })
     }
     static func unloadAssignmentMode(completionHandler: @escaping methodHandler1) {

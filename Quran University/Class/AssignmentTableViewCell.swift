@@ -28,9 +28,12 @@ class AssignmentTableViewCell: UITableViewCell {
     }
     
     @IBAction func btnUpload_TouchUp(_ sender: Any) {
-        
+        AssignmentManager.loadAssignmentMode(Id: Id, completionHandler: {
+            ApplicationObject.MainViewController.hideMenu()
+            ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .AssignmentRecording, enableQuranPageUserInteraction: false)
+        })
     }
     @IBAction func btnOpenAssignment_TouchUp(_ sender: Any) {
-        AssignmentManager.loadAssignmentMode(Id: Id)
+        AssignmentManager.loadAssignmentMode(Id: Id, completionHandler: {})
     }
 }

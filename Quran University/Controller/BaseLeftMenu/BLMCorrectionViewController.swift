@@ -7,33 +7,46 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     
     var selectedIdList = [Int64]()
     var collapsedHeight: CGFloat = 50
-    var expandedHeight: CGFloat = 200
+    var expandedHeight: CGFloat = 235
+    var detailHeight: CGFloat = 50
 //    var seletecdRowFocused = false
 //    var selectedId:Int64 = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        tvCorrection.delegate = self
-//        tvCorrection.dataSource = self
-//        tvcCorrection.tvCorrectionDetail.delegate = self
-//        tvcCorrection.tvCorrectionDetail.dataSource = self
+        tvCorrection.delegate = self
+        tvCorrection.dataSource = self
         
         setViewPosition()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView.tag == 0 {
-            return ApplicationData.CurrentAssignment.Correction.count + 1
+        var count = 0
+        
+        if tableView.tag == -1 {
+            count = ApplicationData.CurrentAssignment.Correction.count + 1
         }
-        else {
-            return 10
+        else if tableView.tag == -2 {
+            if tableView.accessibilityLabel != nil && tableView.accessibilityLabel != "" {
+                let id = Int64(tableView.accessibilityLabel!)
+
+                if id! > 0 {
+                    let objCorrection = ApplicationData.CurrentAssignment.Correction.filter { $0.Id == id }.first
+
+                    count = (objCorrection?.CorrectionDetail.count)!
+                }
+            }
         }
+        
+        return count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView.tag == 0 {
+        var rowHeight = collapsedHeight
+        
+        if tableView.tag == -1 {
             let index = ApplicationData.CurrentAssignment.Correction.count - (indexPath.row + 1)
-            var rowHeight = collapsedHeight
+            
             
             if index >= 0 {
                 let id = ApplicationData.CurrentAssignment.Correction[index].Id
@@ -49,15 +62,15 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
 //                    }
                 }
             }
-            
-            return rowHeight
         }
-        else {
-            return 50
+        else if tableView.tag == -2 {
+            rowHeight = detailHeight
         }
+        
+        return rowHeight
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView.tag == 0 {
+        if tableView.tag == -1 {
             var tvcCorrection = tableView.dequeueReusableCell(withIdentifier: "tvcCorrection") as! CorrectionTableViewCell
             let index = ApplicationData.CurrentAssignment.Correction.count - indexPath.row
             let number = Int32(indexPath.row) + 1
@@ -87,19 +100,16 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
                 tvcCorrection.setCheckboxStatusColor(isChecked: false)
             }
             
+            tvcCorrection.setCorrectionDetailDataSourceDelegate(self, id: tvcCorrection.Id)
+            
             return tvcCorrection
         }
         else {
             let tvcCorrectionDetail = tableView.dequeueReusableCell(withIdentifier: "tvcCorrectionDetail") as! CorrectionDetailTableViewCell
             
-            return tvcCorrectionDetail
-        }
-    }
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if tableView.tag == 0 {
-            let tvcCorrection = tableView.dequeueReusableCell(withIdentifier: "tvcCorrection") as! CorrectionTableViewCell
+            tvcCorrectionDetail.lblNumber.text = String(indexPath.row)
             
-            tvcCorrection.setCorrectionDetailDataSourceDelegate(self, forRow: indexPath.row)
+            return tvcCorrectionDetail
         }
     }
     
