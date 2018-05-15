@@ -7,7 +7,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     
     var selectedIdList = [Int64]()
     var collapsedHeight: CGFloat = 50
-    var expandedHeight: CGFloat = 235
+    var detailHeaderHeight: CGFloat = 35
     var detailHeight: CGFloat = 50
 //    var seletecdRowFocused = false
 //    var selectedId:Int64 = 0
@@ -47,12 +47,11 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         if tableView.tag == -1 {
             let index = ApplicationData.CurrentAssignment.Correction.count - (indexPath.row + 1)
             
-            
             if index >= 0 {
-                let id = ApplicationData.CurrentAssignment.Correction[index].Id
+                let objCorrection = ApplicationData.CurrentAssignment.Correction[index]
                 
-                if selectedIdList.contains(id) {
-                    rowHeight = expandedHeight
+                if selectedIdList.contains(objCorrection.Id) {
+                    rowHeight = detailHeaderHeight + (detailHeight * CGFloat(objCorrection.CorrectionDetail.count))
                     
 //                    if !seletecdRowFocused && selectedId == id {
 //                        selectedId = 0
@@ -107,7 +106,27 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         else {
             let tvcCorrectionDetail = tableView.dequeueReusableCell(withIdentifier: "tvcCorrectionDetail") as! CorrectionDetailTableViewCell
             
-            tvcCorrectionDetail.lblNumber.text = String(indexPath.row)
+            tvcCorrectionDetail.btnPlayPause.isHidden = true
+            tvcCorrectionDetail.btnStop.isHidden = true
+            
+            if tableView.accessibilityLabel != nil && tableView.accessibilityLabel != "" {
+                let id = Int64(tableView.accessibilityLabel!)
+                
+                if id! > 0 {
+                    let objCorrection = ApplicationData.CurrentAssignment.Correction.filter { $0.Id == id }.first
+                    let objCorrectionDetail = objCorrection?.CorrectionDetail[indexPath.row]
+                    let number = Int32(indexPath.row) + 1
+                    
+                    tvcCorrectionDetail.lblNumber.text = String(number)
+                    tvcCorrectionDetail.lblComment.text = objCorrectionDetail?.TeacherComment
+                    
+                    if objCorrectionDetail?.TeacherAudioFile != nil &&
+                        objCorrectionDetail?.TeacherAudioFile != "" {
+                        tvcCorrectionDetail.btnPlayPause.isHidden = false
+                        tvcCorrectionDetail.btnStop.isHidden = false
+                    }
+                }
+            }
             
             return tvcCorrectionDetail
         }
@@ -151,12 +170,11 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         
         if ApplicationData.CurrentAssignment.StaffCheckDate != nil &&
             ApplicationData.CurrentAssignment.StaffCheckDate != "" {
-            let index = ApplicationData.CurrentAssignment.Correction.count - 1
-            
             tvcCorrection.lblCheckDate.isHidden = false
             tvcCorrection.lblCheckDate.text = ApplicationData.CurrentAssignment.StaffCheck
             
             if ApplicationData.CurrentAssignment.Correction.count > 0 {
+                let index = ApplicationData.CurrentAssignment.Correction.count - 1
                 let objCorrection = ApplicationData.CurrentAssignment.Correction[index]
                 
                 tvcCorrection.Id = objCorrection.Id
