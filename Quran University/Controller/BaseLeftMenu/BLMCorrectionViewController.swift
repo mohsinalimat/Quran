@@ -51,7 +51,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
                 let objCorrection = ApplicationData.CurrentAssignment.Correction[index]
                 
                 if selectedIdList.contains(objCorrection.Id) {
-                    rowHeight = detailHeaderHeight + (detailHeight * CGFloat(objCorrection.CorrectionDetail.count))
+                    rowHeight = detailHeaderHeight + detailHeight + (detailHeight * CGFloat(objCorrection.CorrectionDetail.count))
                     
 //                    if !seletecdRowFocused && selectedId == id {
 //                        selectedId = 0
@@ -74,7 +74,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
             let index = ApplicationData.CurrentAssignment.Correction.count - indexPath.row
             let number = Int32(indexPath.row) + 1
             
-            tvcCorrection.lblNumber.text = ApplicationMethods.getOrdinalNumber(num: number)
+            tvcCorrection.lblNumber.isHidden = true
             tvcCorrection.lblSubmissionDate.isHidden = true
             tvcCorrection.btnPlayPause.isHidden = true
             tvcCorrection.btnStop.isHidden = true
@@ -99,7 +99,16 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
                 tvcCorrection.setCheckboxStatusColor(isChecked: false)
             }
             
-            tvcCorrection.setCorrectionDetailDataSourceDelegate(self, id: tvcCorrection.Id)
+            if !tvcCorrection.lblSubmissionDate.isHidden ||
+                !tvcCorrection.btnPlayPause.isHidden ||
+                !tvcCorrection.btnStop.isHidden ||
+                !tvcCorrection.lblCheckDate.isHidden ||
+                !tvcCorrection.chkShowDetail.isHidden {
+                tvcCorrection.lblNumber.isHidden = false
+                tvcCorrection.lblNumber.text = ApplicationMethods.getOrdinalNumber(num: number)
+                
+                tvcCorrection.setCorrectionDetailDataSourceDelegate(self, id: tvcCorrection.Id)
+            }
             
             return tvcCorrection
         }
