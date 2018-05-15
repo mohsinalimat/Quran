@@ -66,6 +66,7 @@
 		04AE122C20235A9C00001FB7 /* TMAvailableReciterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE122B20235A9C00001FB7 /* TMAvailableReciterViewController.swift */; };
 		04BB50A32069016D008C7D70 /* RecordCompareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB50A22069016D008C7D70 /* RecordCompareView.swift */; };
 		04BBCB552032C43400D347BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCB542032C43400D347BC /* BaseViewController.swift */; };
+		04BF323020AAD95A001C7415 /* StudentMediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF322F20AAD95A001C7415 /* StudentMediaManager.swift */; };
 		04C57D7220075A25005D88F4 /* QuranUniversity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 04C57D7120075A25005D88F4 /* QuranUniversity.sqlite */; };
 		04C67B1620187E8900DDAB45 /* RecitationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C67B1520187E8900DDAB45 /* RecitationManager.swift */; };
 		04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6EC9C20109748009EE339 /* ApplicationMethods.swift */; };
@@ -780,6 +781,7 @@
 		04AE122B20235A9C00001FB7 /* TMAvailableReciterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMAvailableReciterViewController.swift; sourceTree = "<group>"; };
 		04BB50A22069016D008C7D70 /* RecordCompareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCompareView.swift; sourceTree = "<group>"; };
 		04BBCB542032C43400D347BC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		04BF322F20AAD95A001C7415 /* StudentMediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentMediaManager.swift; sourceTree = "<group>"; };
 		04C57D7120075A25005D88F4 /* QuranUniversity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuranUniversity.sqlite; sourceTree = "<group>"; };
 		04C67B1520187E8900DDAB45 /* RecitationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationManager.swift; sourceTree = "<group>"; };
 		04C6EC9C20109748009EE339 /* ApplicationMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMethods.swift; sourceTree = "<group>"; };
@@ -2241,6 +2243,7 @@
 				044F6CBB2007A4420007828A /* PageManager.swift */,
 				04CA42AE209710D900FF495E /* PermissionManager.swift */,
 				04C67B1520187E8900DDAB45 /* RecitationManager.swift */,
+				04BF322F20AAD95A001C7415 /* StudentMediaManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -3205,6 +3208,7 @@
 				04D5F429204EBD5A00E7F7B4 /* WordMeaningBook.swift in Sources */,
 				04231F02203C10FA00740A9C /* TranslationBookDetailRepository.swift in Sources */,
 				0495EA10200F65E400EC35D1 /* Protocols.swift in Sources */,
+				04BF323020AAD95A001C7415 /* StudentMediaManager.swift in Sources */,
 				04231F00203C10E700740A9C /* TranslationBookRepository.swift in Sources */,
 				04D1CBAF2075FE7100334912 /* AssignmentManager.swift in Sources */,
 				04BBCB552032C43400D347BC /* BaseViewController.swift in Sources */,

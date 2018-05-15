@@ -929,11 +929,17 @@
                                                                                                                 <rect key="frame" x="7" y="9" width="33" height="32"/>
                                                                                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                                                                 <state key="normal" image="icn_PlaySmall"/>
+                                                                                                                <connections>
+                                                                                                                    <action selector="btnPlayPause_TouchUp:" destination="70g-u7-5mX" eventType="touchUpInside" id="eAd-yd-BUp"/>
+                                                                                                                </connections>
                                                                                                             </button>
                                                                                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TX8-wW-Drf">
                                                                                                                 <rect key="frame" x="48" y="9" width="33" height="32"/>
                                                                                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                                                                 <state key="normal" image="icn_StopSmall"/>
+                                                                                                                <connections>
+                                                                                                                    <action selector="btnStop_TouchUp:" destination="70g-u7-5mX" eventType="touchUpInside" id="hwt-Qf-tm3"/>
+                                                                                                                </connections>
                                                                                                             </button>
                                                                                                         </subviews>
                                                                                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>

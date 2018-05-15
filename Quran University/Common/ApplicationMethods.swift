@@ -178,4 +178,10 @@ class ApplicationMethods {
         
         return numString
     }
+    static func getStudentAssignmentMediaPath(mediaName: String) -> String {
+        return DirectoryStructure.StudentAssignmentRecording + mediaName
+    }
+    static func getStudentAssignmentRecordingWebUrl(mediaName: String) -> String {
+        return QuranLink.StudentAssignmentUrl + mediaName
+    }
 }

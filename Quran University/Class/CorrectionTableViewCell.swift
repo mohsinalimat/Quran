@@ -12,6 +12,7 @@ class CorrectionTableViewCell: UITableViewCell {
     @IBOutlet weak var tvCorrectionDetail: UITableView!
     
     var Id: Int64 = 0
+    var AudioFile: String = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,6 +38,7 @@ class CorrectionTableViewCell: UITableViewCell {
     }
     
     @IBAction func btnPlayPause_TouchUp(_ sender: Any) {
+        StudentMediaManager.playPauseMedia(audioFile: AudioFile, btnPlayPause: btnPlayPause)
     }
     @IBAction func btnStop_TouchUp(_ sender: Any) {
     }

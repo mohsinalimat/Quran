@@ -1,7 +1,8 @@
 import UIKit
 import BEMCheckBox
+import AVFoundation
 
-class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate {
     @IBOutlet weak var vMain: UIView!
     @IBOutlet weak var tvCorrection: UITableView!
     
@@ -19,6 +20,12 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         tvCorrection.dataSource = self
         
         setViewPosition()
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        StudentMediaManager.mediaPlayMode = AudioPlayMode.Paused
+        
+        StudentMediaManager.btnMediaPlayPause.setImage(#imageLiteral(resourceName: "icn_PlaySmall"), for: .normal)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -131,6 +138,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
                     
                     if objCorrectionDetail?.TeacherAudioFile != nil &&
                         objCorrectionDetail?.TeacherAudioFile != "" {
+                        tvcCorrectionDetail.AudioFile = (objCorrectionDetail?.TeacherAudioFile)!
                         tvcCorrectionDetail.btnPlayPause.isHidden = false
                         tvcCorrectionDetail.btnStop.isHidden = false
                     }
@@ -172,6 +180,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
             
             if ApplicationData.CurrentAssignment.StudentAudioFile != nil &&
                 ApplicationData.CurrentAssignment.StudentAudioFile != "" {
+                tvcCorrection.AudioFile = ApplicationData.CurrentAssignment.StudentAudioFile!
                 tvcCorrection.btnPlayPause.isHidden = false
                 tvcCorrection.btnStop.isHidden = false
             }
@@ -206,6 +215,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
             
             if objCorrection.StudentAudioFile != nil &&
                 objCorrection.StudentAudioFile != "" {
+                tvcCorrection.AudioFile = objCorrection.StudentAudioFile!
                 tvcCorrection.btnPlayPause.isHidden = false
                 tvcCorrection.btnStop.isHidden = false
             }
@@ -231,11 +241,25 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         
         return tvcCorrection
     }
-    
-    @IBAction func btnTopClose_TouchUp(_ sender: Any) {
+    func closePopUp() {
+        StudentMediaManager.mediaPlayMode = AudioPlayMode.Paused
+        StudentMediaManager.mediaLoaded = false
+        
+        if StudentMediaManager.btnMediaPlayPause != nil {
+            StudentMediaManager.btnMediaPlayPause.setImage(#imageLiteral(resourceName: "icn_PlaySmall"), for: .normal)
+        }
+        
+        if StudentMediaManager.mediaPlayer != nil {
+            StudentMediaManager.mediaPlayer.stop()
+        }
+        
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func btnTopClose_TouchUp(_ sender: Any) {
+        closePopUp()
+    }
     @IBAction func btnClose_TouchUp(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        closePopUp()
     }
 }
