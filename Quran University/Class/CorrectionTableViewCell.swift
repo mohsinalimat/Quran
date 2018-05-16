@@ -13,28 +13,29 @@ class CorrectionTableViewCell: UITableViewCell {
     @IBOutlet weak var tvCorrectionDetail: UITableView!
     
     var Id: Int64 = 0
+    var Number: Int32 = 0
     var AudioFile: String = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        setCheckboxStatusColor(isChecked: false)
+        setCheckboxStatusColor(isChecked: false, number: Number)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func setCheckboxStatusColor(isChecked: Bool) {
+    func setCheckboxStatusColor(isChecked: Bool, number: Int32) {
         chkShowDetail.boxType = BEMBoxType.square
-        chkShowDetail.onCheckColor = AssignmentStatusColor.CHECKED_BG
+        chkShowDetail.onCheckColor = ApplicationMethods.getCorrectionBGColor(number: number)
         
         if isChecked {
-            chkShowDetail.onTintColor = AssignmentStatusColor.CHECKED_BG
-            chkShowDetail.onFillColor = AssignmentStatusColor.CHECKED_B
+            chkShowDetail.onTintColor = ApplicationMethods.getCorrectionBGColor(number: number)
+            chkShowDetail.onFillColor = ApplicationMethods.getCorrectionBColor(number: number)
         }
         else {
-            chkShowDetail.tintColor = AssignmentStatusColor.CHECKED_B
-            chkShowDetail.offFillColor = AssignmentStatusColor.CHECKED_BG
+            chkShowDetail.tintColor = ApplicationMethods.getCorrectionBColor(number: number)
+            chkShowDetail.offFillColor = ApplicationMethods.getCorrectionBGColor(number: number)
         }
     }
     
@@ -49,7 +50,7 @@ class CorrectionTableViewCell: UITableViewCell {
         StudentMediaManager.stopMedia(audioFile: AudioFile, btnPlayPause: btnPlayPause)
     }
     @IBAction func chkShowDetail_TouchUp(_ sender: Any) {
-        setCheckboxStatusColor(isChecked: chkShowDetail.on)
+        setCheckboxStatusColor(isChecked: chkShowDetail.on, number: Number)
         (ApplicationObject.CurrentViewController as! BLMCorrectionViewController).setSelectedRow(showDetail: chkShowDetail.on, id: Id)
     }
 }

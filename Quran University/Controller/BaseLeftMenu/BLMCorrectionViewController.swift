@@ -89,6 +89,8 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
             tvcCorrection.lblMarks.isHidden = true
             tvcCorrection.chkShowDetail.isHidden = true
             
+            tvcCorrection.Number = number
+            
             if indexPath.row <= 0 {
                 tvcCorrection = setFirstCorrectionCell(tvcCorrection: tvcCorrection)
             }
@@ -99,12 +101,12 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
             if selectedIdList.contains(tvcCorrection.Id) {
                 tvcCorrection.chkShowDetail.on = true
                 
-                tvcCorrection.setCheckboxStatusColor(isChecked: true)
+                tvcCorrection.setCheckboxStatusColor(isChecked: true, number: number)
             }
             else {
                 tvcCorrection.chkShowDetail.on = false
                 
-                tvcCorrection.setCheckboxStatusColor(isChecked: false)
+                tvcCorrection.setCheckboxStatusColor(isChecked: false, number: number)
             }
             
             if !tvcCorrection.lblSubmissionDate.isHidden ||
