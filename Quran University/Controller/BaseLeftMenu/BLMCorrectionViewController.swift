@@ -90,6 +90,12 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
             tvcCorrection.chkShowDetail.isHidden = true
             
             tvcCorrection.Number = number
+            tvcCorrection.vHMistake.backgroundColor = ApplicationMethods.getCorrectionBGColor(number: number)
+            tvcCorrection.vHComment.backgroundColor = ApplicationMethods.getCorrectionBGColor(number: number)
+            tvcCorrection.vHAudio.backgroundColor = ApplicationMethods.getCorrectionBGColor(number: number)
+            tvcCorrection.lblHMistake.textColor = ApplicationMethods.getCorrectionBColor(number: number)
+            tvcCorrection.lblHComment.textColor = ApplicationMethods.getCorrectionBColor(number: number)
+            tvcCorrection.lblHAudio.textColor = ApplicationMethods.getCorrectionBColor(number: number)
             
             if indexPath.row <= 0 {
                 tvcCorrection = setFirstCorrectionCell(tvcCorrection: tvcCorrection)

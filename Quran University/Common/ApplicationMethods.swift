@@ -190,144 +190,168 @@ class ApplicationMethods {
     static func getTeacherAssignmentRecordingWebUrl(mediaName: String) -> String {
         return QuranLink.TeacherAssignmentUrl + mediaName
     }
-    static func getCorrectionBGColor(number: Int32) -> UIColor {
-        var correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-        
-        switch number {
-        case 1:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 2:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 3:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 4:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 5:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 6:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 7:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 8:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 9:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 10:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 11:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 12:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 13:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 14:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        case 15:
-            correctionBGColor = UIColor(red: 219.0/255, green: 217.0/255, blue: 220.0/255, alpha: 1.0)
-            
-            break
-        default:
-            break
-        }
-        
-        return correctionBGColor
-    }
     static func getCorrectionBColor(number: Int32) -> UIColor {
-        var correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+        var correctionColor = UIColor(red: 96.0/255, green: 125.0/255, blue: 139.0/255, alpha: 1.0)
         
         switch number {
         case 1:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 244.0/255, green: 67.0/255, blue: 54.0/255, alpha: 1.0)
             
             break
         case 2:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 233.0/255, green: 30.0/255, blue: 99.0/255, alpha: 1.0)
             
             break
         case 3:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 156.0/255, green: 39.0/255, blue: 176.0/255, alpha: 1.0)
             
             break
         case 4:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 103.0/255, green: 58.0/255, blue: 183.0/255, alpha: 1.0)
             
             break
         case 5:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 63.0/255, green: 81.0/255, blue: 181.0/255, alpha: 1.0)
             
             break
         case 6:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 33.0/255, green: 150.0/255, blue: 243.0/255, alpha: 1.0)
             
             break
         case 7:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 3.0/255, green: 169.0/255, blue: 244.0/255, alpha: 1.0)
             
             break
         case 8:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 0.0/255, green: 188.0/255, blue: 212.0/255, alpha: 1.0)
             
             break
         case 9:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 0.0/255, green: 150.0/255, blue: 136.0/255, alpha: 1.0)
             
             break
         case 10:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 76.0/255, green: 175.0/255, blue: 80.0/255, alpha: 1.0)
             
             break
         case 11:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 139.0/255, green: 195.0/255, blue: 74.0/255, alpha: 1.0)
             
             break
         case 12:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 205.0/255, green: 220.0/255, blue: 57.0/255, alpha: 1.0)
             
             break
         case 13:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 255.0/255, green: 235.0/255, blue: 59.0/255, alpha: 1.0)
             
             break
         case 14:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 255.0/255, green: 193.0/255, blue: 7.0/255, alpha: 1.0)
             
             break
         case 15:
-            correctionBColor = UIColor(red: 166.0/255, green: 163.0/255, blue: 171.0/255, alpha: 1.0)
+            correctionColor = UIColor(red: 255.0/255, green: 152.0/255, blue: 0.0/255, alpha: 1.0)
+            
+            break
+        case 16:
+            correctionColor = UIColor(red: 255.0/255, green: 87.0/255, blue: 34.0/255, alpha: 1.0)
+            
+            break
+        case 17:
+            correctionColor = UIColor(red: 121.0/255, green: 85.0/255, blue: 72.0/255, alpha: 1.0)
+            
+            break
+        case 18:
+            correctionColor = UIColor(red: 158.0/255, green: 158.0/255, blue: 158.0/255, alpha: 1.0)
             
             break
         default:
             break
         }
         
-        return correctionBColor
+        return correctionColor
+    }
+    static func getCorrectionBGColor(number: Int32) -> UIColor {
+        var correctionColor = UIColor(red: 176.0/255, green: 190.0/255, blue: 197.0/255, alpha: 1.0)
+        
+        switch number {
+        case 1:
+            correctionColor = UIColor(red: 239.0/255, green: 154.0/255, blue: 154.0/255, alpha: 1.0)
+            
+            break
+        case 2:
+            correctionColor = UIColor(red: 244.0/255, green: 143.0/255, blue: 177.0/255, alpha: 1.0)
+            
+            break
+        case 3:
+            correctionColor = UIColor(red: 206.0/255, green: 147.0/255, blue: 216.0/255, alpha: 1.0)
+            
+            break
+        case 4:
+            correctionColor = UIColor(red: 179.0/255, green: 157.0/255, blue: 219.0/255, alpha: 1.0)
+            
+            break
+        case 5:
+            correctionColor = UIColor(red: 159.0/255, green: 168.0/255, blue: 218.0/255, alpha: 1.0)
+            
+            break
+        case 6:
+            correctionColor = UIColor(red: 144.0/255, green: 202.0/255, blue: 249.0/255, alpha: 1.0)
+            
+            break
+        case 7:
+            correctionColor = UIColor(red: 129.0/255, green: 212.0/255, blue: 250.0/255, alpha: 1.0)
+            
+            break
+        case 8:
+            correctionColor = UIColor(red: 128.0/255, green: 222.0/255, blue: 234.0/255, alpha: 1.0)
+            
+            break
+        case 9:
+            correctionColor = UIColor(red: 128.0/255, green: 203.0/255, blue: 196.0/255, alpha: 1.0)
+            
+            break
+        case 10:
+            correctionColor = UIColor(red: 165.0/255, green: 214.0/255, blue: 167.0/255, alpha: 1.0)
+            
+            break
+        case 11:
+            correctionColor = UIColor(red: 197.0/255, green: 225.0/255, blue: 165.0/255, alpha: 1.0)
+            
+            break
+        case 12:
+            correctionColor = UIColor(red: 230.0/255, green: 238.0/255, blue: 156.0/255, alpha: 1.0)
+            
+            break
+        case 13:
+            correctionColor = UIColor(red: 255.0/255, green: 249.0/255, blue: 196.0/255, alpha: 1.0)
+            
+            break
+        case 14:
+            correctionColor = UIColor(red: 255.0/255, green: 236.0/255, blue: 179.0/255, alpha: 1.0)
+            
+            break
+        case 15:
+            correctionColor = UIColor(red: 255.0/255, green: 204.0/255, blue: 128.0/255, alpha: 1.0)
+            
+            break
+        case 16:
+            correctionColor = UIColor(red: 255.0/255, green: 171.0/255, blue: 145.0/255, alpha: 1.0)
+            
+            break
+        case 17:
+            correctionColor = UIColor(red: 188.0/255, green: 170.0/255, blue: 164.0/255, alpha: 1.0)
+            
+            break
+        case 18:
+            correctionColor = UIColor(red: 238.0/255, green: 238.0/255, blue: 238.0/255, alpha: 1.0)
+            
+            break
+        default:
+            break
+        }
+        
+        return correctionColor
     }
 }

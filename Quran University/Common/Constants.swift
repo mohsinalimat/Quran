@@ -36,7 +36,7 @@ struct QuranLink {
         return URL(string: urlAddress)!
     }
     static func GetAssignment() -> URL {
-        let urlAddress = WebAPIUrl + "Student/?s=96"
+        let urlAddress = WebAPIUrl + "Student/?s=233"
         
         return URL(string: urlAddress)!
     }

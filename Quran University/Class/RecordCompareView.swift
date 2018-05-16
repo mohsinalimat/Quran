@@ -97,7 +97,7 @@ class RecordCompareView: UIView {
         self.frame.origin.y = y
         self.frame.size.height = self.frame.size.height - heightAdjustment
         
-        let ayatSelectionList = AyatSelectionManager.getAyatSelectionList(recitationName: RecitationManager.getRecitationName(recitationIndex: currentRecitationIndex))
+        let ayatSelectionList = AyatSelectionManager.getAyatSelection(recitationName: RecitationManager.getRecitationName(recitationIndex: currentRecitationIndex))
         var status = false
         
         for ayatSelection in ayatSelectionList {

@@ -3,12 +3,19 @@ import BEMCheckBox
 
 class CorrectionTableViewCell: UITableViewCell {
     @IBOutlet weak var lblNumber: UILabel!
+    @IBOutlet weak var btnPlayPause: UIButton!
+    @IBOutlet weak var btnStop: UIButton!
     @IBOutlet weak var lblSubmissionDate: UILabel!
     @IBOutlet weak var lblMarks: UILabel!
     @IBOutlet weak var lblCheckDate: UILabel!
-    @IBOutlet weak var btnPlayPause: UIButton!
-    @IBOutlet weak var btnStop: UIButton!
     @IBOutlet weak var chkShowDetail: BEMCheckBox!
+    
+    @IBOutlet weak var vHMistake: UIView!
+    @IBOutlet weak var lblHMistake: UILabel!
+    @IBOutlet weak var vHComment: UIView!
+    @IBOutlet weak var lblHComment: UILabel!
+    @IBOutlet weak var vHAudio: UIView!
+    @IBOutlet weak var lblHAudio: UILabel!
     
     @IBOutlet weak var tvCorrectionDetail: UITableView!
     

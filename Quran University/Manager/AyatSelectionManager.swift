@@ -4,6 +4,7 @@ import UIKit
 class AyatSelectionManager {
     static var ayatSelectionList = [CAShapeLayer]()
     static var assignmentBoundaryList = [CAShapeLayer]()
+    static var assignmentCorrectionList = [CAShapeLayer]()
     
     static func generateAyatSelectionForCurrentPage() {
         removeAyatSelection()
@@ -282,19 +283,6 @@ class AyatSelectionManager {
         
         RecitationManager.recitationList.removeAll()
     }
-    static func getAyatSelectionList(recitationName: String) -> [CAShapeLayer] {
-        var lstAyatSelection = [CAShapeLayer]()
-        
-        if ayatSelectionList.count > 0 {
-            ayatSelectionList.lazy.filter { $0.isHidden == false }.forEach { ayatSelection in
-                if ayatSelection.accessibilityLabel == recitationName {
-                    lstAyatSelection.append(ayatSelection)
-                }
-            }
-        }
-        
-        return lstAyatSelection
-    }
     static func markAyatSelectionRange(recitationList: [Recitation]) {
         hideAyatSelection()
         
@@ -306,5 +294,21 @@ class AyatSelectionManager {
                 RecitationManager.appendRecitation(accessibilityLabel: ayatSelection.accessibilityLabel!)
             }
         }
+    }
+    static func generateShowCorrection() {
+        
+    }
+    static func getAyatSelection(recitationName: String) -> [CAShapeLayer] {
+        var lstAyatSelection = [CAShapeLayer]()
+        
+        if ayatSelectionList.count > 0 {
+            ayatSelectionList.lazy.filter { $0.isHidden == false }.forEach { ayatSelection in
+                if ayatSelection.accessibilityLabel == recitationName {
+                    lstAyatSelection.append(ayatSelection)
+                }
+            }
+        }
+        
+        return lstAyatSelection
     }
 }
