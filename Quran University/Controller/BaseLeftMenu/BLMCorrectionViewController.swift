@@ -271,6 +271,9 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func btnShowMistakeCorrection_TouchUp(_ sender: Any) {
+        
+    }
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {
         closePopUp()
     }

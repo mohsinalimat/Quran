@@ -80,6 +80,8 @@ struct BundleFileType {
 struct ApplicationConstant {
     static let QuranPageHeight = CGFloat(585)
     static let QuranPageWidth = CGFloat(396)
+    static let CorrectionCanvasHeight = CGFloat(555)
+    static let CorrectionCanvasWidth = CGFloat(356)
     static let AyatHighlightColor = UIColor.green.cgColor
     static let AyatSelectionColor = UIColor.lightGray.cgColor
     static let AssignmentBoundaryColor = UIColor.red.cgColor

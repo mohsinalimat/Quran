@@ -4,7 +4,7 @@ import UIKit
 class AyatSelectionManager {
     static var ayatSelectionList = [CAShapeLayer]()
     static var assignmentBoundaryList = [CAShapeLayer]()
-    static var assignmentCorrectionList = [CAShapeLayer]()
+    static var correctionSelectionList = [CAShapeLayer]()
     
     static func generateAyatSelectionForCurrentPage() {
         removeAyatSelection()
@@ -17,13 +17,11 @@ class AyatSelectionManager {
             let xAxisStartPercentage = ((100 / ApplicationConstant.QuranPageWidth) * CGFloat(objAyat.StartingPointX))
             let xAxisEndPercentage = ((100 / ApplicationConstant.QuranPageWidth) * CGFloat(objAyat.EndingPointX))
             let yAxisStartPercentage = ((100 / ApplicationConstant.QuranPageHeight) * CGFloat(objAyat.StartingPointY))
-            //let yAxisEndPercentage = ((100 / ApplicationConstant.QuranPageHeight) * CGFloat(objAyat.EndingPointY))
             let startHeightPercentage = ((100 / ApplicationConstant.QuranPageHeight) * CGFloat(objAyat.StartingRowHeight))
             let endHeightPercentage = ((100 / ApplicationConstant.QuranPageHeight) * CGFloat(objAyat.EndingRowHeight))
             var xAxisStart = (canvasWidth - ((canvasWidth / 100) * xAxisEndPercentage))
             let xAxisEnd = (canvasWidth - ((canvasWidth / 100) * xAxisStartPercentage))
             var yAxisStart = ((canvasHeight / 100) * yAxisStartPercentage)
-            //let yAxisEnd = ((canvasHeight / 100) * yAxisEndPercentage)
             let startHeight = ((canvasHeight / 100) * startHeightPercentage)
             let endHeight = ((canvasHeight / 100) * endHeightPercentage)
             var width = CGFloat(xAxisEnd - xAxisStart)
@@ -295,9 +293,44 @@ class AyatSelectionManager {
             }
         }
     }
-    static func generateShowCorrection() {
+    static func generateShowCorrectionSelection(correctionDetailList: [CorrectionDetailModel]) {
+        hideAyatSelection()
         
+        for correctionSelection in correctionSelectionList {
+            correctionSelection.removeFromSuperlayer()
+        }
+        
+        let canvasHeight = ApplicationObject.QuranPageImageView.bounds.height
+        let canvasWidth = ApplicationObject.QuranPageImageView.bounds.width
+        
+        for objCorrectionDetail in correctionDetailList {
+            let xAxisStartPercentage = ((100 / ApplicationConstant.CorrectionCanvasWidth) * CGFloat(objCorrectionDetail.TopRightx))
+            let xAxisEndPercentage = ((100 / ApplicationConstant.CorrectionCanvasWidth) * CGFloat(objCorrectionDetail.BottomLeftx))
+            let yAxisStartPercentage = ((100 / ApplicationConstant.CorrectionCanvasHeight) * CGFloat(objCorrectionDetail.TopRighty))
+            let startHeightPercentage = ((100 / ApplicationConstant.CorrectionCanvasHeight) * CGFloat(objCorrectionDetail.BottomLefty - objCorrectionDetail.TopRighty))
+            let xAxisStart = (canvasWidth - ((canvasWidth / 100) * xAxisEndPercentage))
+            let xAxisEnd = (canvasWidth - ((canvasWidth / 100) * xAxisStartPercentage))
+            let yAxisStart = ((canvasHeight / 100) * yAxisStartPercentage)
+            let startHeight = ((canvasHeight / 100) * startHeightPercentage)
+            let width = CGFloat(xAxisEnd - xAxisStart)
+            let correctionSelection = CAShapeLayer()
+            let selectionRectangle = CGRect(x: xAxisStart, y: yAxisStart, width: width, height: startHeight)
+            let path = UIBezierPath(roundedRect: selectionRectangle, cornerRadius: 0).cgPath
+            
+            correctionSelection.isHidden = false
+            correctionSelection.fillColor = ApplicationConstant.AyatSelectionColor
+            correctionSelection.opacity = 0.5
+            correctionSelection.path = path
+//            ayatSelection.accessibilityLabel = ApplicationMethods.getRecitationName(surahId: objAyat.SurahId, ayatOrderId: objAyat.AyatOrder)
+            
+            correctionSelectionList.append(correctionSelection)
+        }
+        
+        for correctionSelection in correctionSelectionList {
+            ApplicationObject.QuranPageImageView.layer.addSublayer(correctionSelection)
+        }
     }
+    
     static func getAyatSelection(recitationName: String) -> [CAShapeLayer] {
         var lstAyatSelection = [CAShapeLayer]()
         
