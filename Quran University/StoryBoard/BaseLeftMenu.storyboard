@@ -810,6 +810,14 @@
                                                                                         <action selector="chkShowDetail_TouchUp:" destination="NXs-nw-Pn7" eventType="valueChanged" id="xpR-NW-Wtf"/>
                                                                                     </connections>
                                                                                 </view>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Im-fW-TPC">
+                                                                                    <rect key="frame" x="10" y="7" width="99" height="20"/>
+                                                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYh-bV-5iN">
                                                                                     <rect key="frame" x="10" y="27" width="99" height="20"/>
                                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -969,6 +977,7 @@
                                                             <outlet property="btnStop" destination="kgE-Bq-wy9" id="Ctf-cJ-5uP"/>
                                                             <outlet property="chkShowDetail" destination="ar2-Mg-GzT" id="yWU-F0-f7Y"/>
                                                             <outlet property="lblCheckDate" destination="VYh-bV-5iN" id="6ez-5O-YKT"/>
+                                                            <outlet property="lblMarks" destination="8Im-fW-TPC" id="HNw-cS-Azs"/>
                                                             <outlet property="lblNumber" destination="mkO-Fh-GfN" id="G5X-VW-GX4"/>
                                                             <outlet property="lblSubmissionDate" destination="qSV-Ei-ORl" id="ig6-1Q-KHT"/>
                                                             <outlet property="tvCorrectionDetail" destination="DvA-yl-UgC" id="tID-lD-2um"/>

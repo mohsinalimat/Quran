@@ -14,8 +14,13 @@ class CorrectionDetailTableViewCell: UITableViewCell {
     }
     
     @IBAction func btnPlayPause_TouchUp(_ sender: Any) {
-        StudentMediaManager.playPauseMedia(audioFile: AudioFile, btnPlayPause: btnPlayPause)
+        StudentMediaManager.checkDownloadTeacherMedia(audioFile: AudioFile, btnPlayPause: btnPlayPause, completionHandler: { status in
+            if status {
+                StudentMediaManager.playPauseTeacherMedia(audioFile: self.AudioFile, btnPlayPause: self.btnPlayPause)
+            }
+        })
     }
     @IBAction func btnStop_TouchUp(_ sender: Any) {
+        StudentMediaManager.stopMedia(audioFile: AudioFile, btnPlayPause: btnPlayPause)
     }
 }

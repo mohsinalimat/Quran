@@ -4,6 +4,7 @@ import BEMCheckBox
 class CorrectionTableViewCell: UITableViewCell {
     @IBOutlet weak var lblNumber: UILabel!
     @IBOutlet weak var lblSubmissionDate: UILabel!
+    @IBOutlet weak var lblMarks: UILabel!
     @IBOutlet weak var lblCheckDate: UILabel!
     @IBOutlet weak var btnPlayPause: UIButton!
     @IBOutlet weak var btnStop: UIButton!
@@ -38,9 +39,14 @@ class CorrectionTableViewCell: UITableViewCell {
     }
     
     @IBAction func btnPlayPause_TouchUp(_ sender: Any) {
-        StudentMediaManager.playPauseMedia(audioFile: AudioFile, btnPlayPause: btnPlayPause)
+        StudentMediaManager.checkDownloadStudentMedia(audioFile: AudioFile, btnPlayPause: btnPlayPause, completionHandler: { status in
+            if status {
+                StudentMediaManager.playPauseStudentMedia(audioFile: self.AudioFile, btnPlayPause: self.btnPlayPause)
+            }
+        })
     }
     @IBAction func btnStop_TouchUp(_ sender: Any) {
+        StudentMediaManager.stopMedia(audioFile: AudioFile, btnPlayPause: btnPlayPause)
     }
     @IBAction func chkShowDetail_TouchUp(_ sender: Any) {
         setCheckboxStatusColor(isChecked: chkShowDetail.on)

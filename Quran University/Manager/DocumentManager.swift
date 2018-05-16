@@ -9,6 +9,7 @@ class DocumentManager {
         createDirectory(folderPath: DirectoryStructure.DefaultAudio)
         createDirectory(folderPath: DirectoryStructure.TempRecordingRecitation)
         createDirectory(folderPath: DirectoryStructure.StudentAssignmentRecording)
+        createDirectory(folderPath: DirectoryStructure.TeacherAssignmentRecording)
         
         copyFilesFromBundleForType(sourceFileType: BundleFileType.SQLite, targetPath: DirectoryStructure.Database)
         copyFilesFromBundleForType(sourceFileType: BundleFileType.MP3, targetPath: DirectoryStructure.DefaultAudio)

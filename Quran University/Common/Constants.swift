@@ -9,6 +9,7 @@ struct QuranLink {
     static let WebAPIUrl = BaseAddress + "QuranWebAPIs/"
     static let WebSiteUrl = BaseAddress + "QuranWeb/"
     static let StudentAssignmentUrl = WebSiteUrl + "Media/Assignments/Student/"
+    static let TeacherAssignmentUrl = WebSiteUrl + "Media/Assignments/Teacher/"
     
     static func Book(languageId: Int64, bookId: Int64, surahId: Int64) -> URL {
         var urlAddress = ""
@@ -67,6 +68,7 @@ struct DirectoryStructure {
     static let DefaultAudio = "Quran University/Audio/1/"
     static let TempRecordingRecitation = "Quran University/Temp/Recording/Recitation/"
     static let StudentAssignmentRecording = "Quran University/Student/Assignment/Recording/"
+    static let TeacherAssignmentRecording = "Quran University/Teacher/Assignment/Recording/"
 }
 
 struct BundleFileType {
@@ -123,10 +125,11 @@ struct ApplicationHeading {
     static let CAUSEOFREVELATION_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Cause of Revelation Download" : "Cause of Revelation Download"
     static let DOWNLOAD_TOTAL_WORDMEANING = ApplicationData.CurrentLanguageMode == .English ? "Download Progress for Word Meaning" : "Download Progress for Word Meaning"
     static let DOWNLOAD_TOTAL_CAUSEOFREVELATION = ApplicationData.CurrentLanguageMode == .English ? "Download Progress for Cause of Revelation" : "Download Progress for Cause of Revelation"
+    static let MARKS = ApplicationData.CurrentLanguageMode == .English ? "Marks: " : "Marks: "
 }
 
 struct ApplicationErrorMessage {
-    static let DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Download interrupted due to bad Internet Connection. Please connect to internet and try again!" : "Download interrupted due to bad Internet Connection. Please connect to internet and try again!"
+    static let DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Download interrupted due to invalid request or bad Internet Connection. Please connect to internet and try again!" : "Download interrupted due to invalid request or bad Internet Connection. Please connect to internet and try again!"
     static let INVALIDDATA = ApplicationData.CurrentLanguageMode == .English ? "Invalid data found!" : "Invalid data found!"
     static let UPLOAD = ApplicationData.CurrentLanguageMode == .English ? "Upload interrupted due to bad Internet Connection. Please connect to internet and try again!" : "Upload interrupted due to bad Internet Connection. Please connect to internet and try again!"
 }

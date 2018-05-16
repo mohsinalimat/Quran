@@ -86,6 +86,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
             tvcCorrection.btnPlayPause.isHidden = true
             tvcCorrection.btnStop.isHidden = true
             tvcCorrection.lblCheckDate.isHidden = true
+            tvcCorrection.lblMarks.isHidden = true
             tvcCorrection.chkShowDetail.isHidden = true
             
             if indexPath.row <= 0 {
@@ -115,6 +116,12 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
                 tvcCorrection.lblNumber.text = ApplicationMethods.getOrdinalNumber(num: number)
                 
                 tvcCorrection.setCorrectionDetailDataSourceDelegate(self, id: tvcCorrection.Id)
+            }
+            
+            if ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Accepted.rawValue &&
+                tvcCorrection.chkShowDetail.isHidden {
+                tvcCorrection.lblMarks.isHidden = false
+                tvcCorrection.lblMarks.text = ApplicationHeading.MARKS + ApplicationData.CurrentAssignment.MarkString
             }
             
             return tvcCorrection
