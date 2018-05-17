@@ -273,20 +273,11 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     
     @IBAction func btnShowMistakeCorrection_TouchUp(_ sender: Any) {
         if selectedIdList.count > 0 {
-            var selectedCorrectionDetailList = [Int32: [CorrectionDetailModel]]()
-            
-            for selectedObj in selectedIdList {
-                let objCorrection = ApplicationData.CurrentAssignment.Correction.filter { $0.Id == selectedObj.value }.first
-                
-                selectedCorrectionDetailList[selectedObj.key] = objCorrection?.CorrectionDetail
-            }
-            
-            self.dismiss(animated: true, completion: {
-                AyatSelectionManager.generateShowCorrectionSelection(correctionDetailDictionary: selectedCorrectionDetailList)
-            })
+            CorrectionManager.loadCorrectionMode(selectedIdList: selectedIdList)
+            self.dismiss(animated: true, completion: {})
         }
         else {
-            DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.SELECT_MISTAKE_CORRECTION, okHandler: {})
+            DialogueManager.showInfo(viewController: ApplicationObject.CurrentViewController, message: ApplicationInfoMessage.SELECT_MISTAKE_CORRECTION, okHandler: {})
         }
     }
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {

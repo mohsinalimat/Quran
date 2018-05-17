@@ -173,7 +173,9 @@ class AssignmentManager {
     static func unloadAssignmentMode(completionHandler: @escaping methodHandler1) {
         if ApplicationData.AssignmentModeOn {
             DialogueManager.showConfirmation(viewController: ApplicationObject.CurrentViewController, message: ApplicationConfirmMessage.TURN_OFF_ASSIGNMENT_MODE, yesHandler: {
-                unloadAssignment(completionHandler: completionHandler)
+                unloadAssignment(completionHandler: {
+                    completionHandler()
+                })
             })
         }
         else {
@@ -185,7 +187,7 @@ class AssignmentManager {
         
         AyatSelectionManager.hideAyatSelection()
         AyatSelectionManager.removeAssignmentBoundary()
-        AyatSelectionManager.removeCorrectionSelection()
+        CorrectionManager.unloadCorrectionMode()
         ApplicationObject.MainViewController.btnLMenu.setImage(#imageLiteral(resourceName: "img_LeftAssignmentPlainCircle"), for: .normal)
         ApplicationObject.MainViewController.hideMenu()
         ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)

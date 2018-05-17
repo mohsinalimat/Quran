@@ -67,6 +67,7 @@
 		04BB50A32069016D008C7D70 /* RecordCompareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB50A22069016D008C7D70 /* RecordCompareView.swift */; };
 		04BBCB552032C43400D347BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCB542032C43400D347BC /* BaseViewController.swift */; };
 		04BF323020AAD95A001C7415 /* StudentMediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF322F20AAD95A001C7415 /* StudentMediaManager.swift */; };
+		04C2BA8D20AD9557004DB7AB /* CorrectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2BA8C20AD9557004DB7AB /* CorrectionManager.swift */; };
 		04C57D7220075A25005D88F4 /* QuranUniversity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 04C57D7120075A25005D88F4 /* QuranUniversity.sqlite */; };
 		04C67B1620187E8900DDAB45 /* RecitationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C67B1520187E8900DDAB45 /* RecitationManager.swift */; };
 		04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6EC9C20109748009EE339 /* ApplicationMethods.swift */; };
@@ -782,6 +783,7 @@
 		04BB50A22069016D008C7D70 /* RecordCompareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCompareView.swift; sourceTree = "<group>"; };
 		04BBCB542032C43400D347BC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		04BF322F20AAD95A001C7415 /* StudentMediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentMediaManager.swift; sourceTree = "<group>"; };
+		04C2BA8C20AD9557004DB7AB /* CorrectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionManager.swift; sourceTree = "<group>"; };
 		04C57D7120075A25005D88F4 /* QuranUniversity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuranUniversity.sqlite; sourceTree = "<group>"; };
 		04C67B1520187E8900DDAB45 /* RecitationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationManager.swift; sourceTree = "<group>"; };
 		04C6EC9C20109748009EE339 /* ApplicationMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMethods.swift; sourceTree = "<group>"; };
@@ -2236,6 +2238,7 @@
 				04D1CBAE2075FE7100334912 /* AssignmentManager.swift */,
 				04D2D70420035878006D1342 /* AyatSelectionManager.swift */,
 				048D662B204FDEA9007185EC /* BookManager.swift */,
+				04C2BA8C20AD9557004DB7AB /* CorrectionManager.swift */,
 				04DD43A52006206300F5BA91 /* DialogueManager.swift */,
 				04CD817D2004EDE900E34444 /* DocumentManager.swift */,
 				0476BBA02005ECB5002697B6 /* DownloadManager.swift */,
@@ -3209,6 +3212,7 @@
 				04231F02203C10FA00740A9C /* TranslationBookDetailRepository.swift in Sources */,
 				0495EA10200F65E400EC35D1 /* Protocols.swift in Sources */,
 				04BF323020AAD95A001C7415 /* StudentMediaManager.swift in Sources */,
+				04C2BA8D20AD9557004DB7AB /* CorrectionManager.swift in Sources */,
 				04231F00203C10E700740A9C /* TranslationBookRepository.swift in Sources */,
 				04D1CBAF2075FE7100334912 /* AssignmentManager.swift in Sources */,
 				04BBCB552032C43400D347BC /* BaseViewController.swift in Sources */,
