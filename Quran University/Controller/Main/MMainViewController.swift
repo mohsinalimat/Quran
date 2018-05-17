@@ -96,9 +96,12 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                 
                 if touch.view == ivQuranPage {
                     startTouchPoint = touch.location(in: self.ivQuranPage)
-                    RecitationManager.resetPlayer()
-                    RecitationManager.setPlayerMode(mode: .None)
-                    AyatSelectionManager.showHideAyatSelection(startTouchPoint: startTouchPoint, lastTouchPoint: startTouchPoint, touchMoving: false)
+                    
+                    if !ApplicationData.CorrectionModeOn {
+                        RecitationManager.resetPlayer()
+                        RecitationManager.setPlayerMode(mode: .None)
+                        AyatSelectionManager.showHideAyatSelection(startTouchPoint: startTouchPoint, lastTouchPoint: startTouchPoint, touchMoving: false)
+                    }
                 }
             }
         }
@@ -106,7 +109,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !pageLocked {
             if let touch = touches.first {
-                if touch.view == ivQuranPage {
+                if touch.view == ivQuranPage && !ApplicationData.CorrectionModeOn {
                     let currentTouchPoint = touch.location(in: self.ivQuranPage)
                     
                     AyatSelectionManager.showHideAyatSelection(startTouchPoint: startTouchPoint, lastTouchPoint: currentTouchPoint, touchMoving: true)
@@ -117,10 +120,19 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !pageLocked {
             if let touch = touches.first {
-                if touch.view == ivQuranPage && RecitationManager.recitationList.first != nil {
-                    setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
-                    RecitationManager.setPlayerMode(mode: .Ready)
-                    AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
+                if touch.view == ivQuranPage {
+                    if ApplicationData.CorrectionModeOn {
+                        let touchPoint = touch.location(in: self.ivQuranPage)
+                        
+                        if startTouchPoint == touchPoint {
+                            DialogueManager.showInfo(viewController: self, message: "Alert", okHandler: {})
+                        }
+                    }
+                    else if RecitationManager.recitationList.first != nil {
+                        setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
+                        RecitationManager.setPlayerMode(mode: .Ready)
+                        AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
+                    }
                 }
             }
         }
