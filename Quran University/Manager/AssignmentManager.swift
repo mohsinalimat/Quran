@@ -185,6 +185,7 @@ class AssignmentManager {
         
         AyatSelectionManager.hideAyatSelection()
         AyatSelectionManager.removeAssignmentBoundary()
+        AyatSelectionManager.removeCorrectionSelection()
         ApplicationObject.MainViewController.btnLMenu.setImage(#imageLiteral(resourceName: "img_LeftAssignmentPlainCircle"), for: .normal)
         ApplicationObject.MainViewController.hideMenu()
         ApplicationObject.MainViewController.setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)

@@ -6,7 +6,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     @IBOutlet weak var vMain: UIView!
     @IBOutlet weak var tvCorrection: UITableView!
     
-    var selectedIdList = [Int64]()
+    var selectedIdList = [Int32: Int64]()
     var collapsedHeight: CGFloat = 50
     var detailHeaderHeight: CGFloat = 35
     var detailHeight: CGFloat = 50
@@ -57,7 +57,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
             if index >= 0 {
                 let objCorrection = ApplicationData.CurrentAssignment.Correction[index]
                 
-                if selectedIdList.contains(objCorrection.Id) {
+                if selectedIdList.values.contains(objCorrection.Id) {
                     rowHeight = detailHeaderHeight + detailHeight + (detailHeight * CGFloat(objCorrection.CorrectionDetail.count))
                     
 //                    if !seletecdRowFocused && selectedId == id {
@@ -104,7 +104,7 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
                 tvcCorrection = setOtherCorrectionCell(tvcCorrection: tvcCorrection, index: index)
             }
             
-            if selectedIdList.contains(tvcCorrection.Id) {
+            if selectedIdList.values.contains(tvcCorrection.Id) {
                 tvcCorrection.chkShowDetail.on = true
                 
                 tvcCorrection.setCheckboxStatusColor(isChecked: true, number: number)
@@ -174,15 +174,15 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
         
         vMain.frame = CGRect(x: x, y: y, width: width, height: height)
     }
-    func setSelectedRow(showDetail: Bool, id: Int64) {
+    func setSelectedRow(showDetail: Bool, id: Int64, number: Int32) {
         if !showDetail {
-            selectedIdList = selectedIdList.filter { $0 != id }
+            selectedIdList = selectedIdList.filter { $0.value != id }
         }
         else {
 //            selectedId = id
 //            seletecdRowFocused = false
             
-            selectedIdList.append(id)
+            selectedIdList[number] = id
         }
         
         self.tvCorrection.reloadData()
@@ -272,7 +272,22 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
     }
     
     @IBAction func btnShowMistakeCorrection_TouchUp(_ sender: Any) {
-        
+        if selectedIdList.count > 0 {
+            var selectedCorrectionDetailList = [Int32: [CorrectionDetailModel]]()
+            
+            for selectedObj in selectedIdList {
+                let objCorrection = ApplicationData.CurrentAssignment.Correction.filter { $0.Id == selectedObj.value }.first
+                
+                selectedCorrectionDetailList[selectedObj.key] = objCorrection?.CorrectionDetail
+            }
+            
+            self.dismiss(animated: true, completion: {
+                AyatSelectionManager.generateShowCorrectionSelection(correctionDetailDictionary: selectedCorrectionDetailList)
+            })
+        }
+        else {
+            DialogueManager.showInfo(viewController: self, message: ApplicationInfoMessage.SELECT_MISTAKE_CORRECTION, okHandler: {})
+        }
     }
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {
         closePopUp()

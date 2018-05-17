@@ -681,6 +681,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     @IBAction func btnCorrection_TouchUp(_ sender: Any) {
         self.hideMenu()
+        AyatSelectionManager.removeCorrectionSelection()
         
         self.performSegue(withIdentifier: "SegueCorrection", sender: nil)
     }

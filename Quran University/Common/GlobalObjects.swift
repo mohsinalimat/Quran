@@ -36,4 +36,5 @@ struct ApplicationData {
     static var CurrentPageGroup = PageRepository().getPageGroup(pageId: 600)
     static var CurrentAssignment = AssignmentModel()
     static var AssignmentModeOn = false
+    static var CorrectionModeOn = false
 }

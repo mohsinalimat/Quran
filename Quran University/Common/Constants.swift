@@ -160,6 +160,7 @@ struct ApplicationInfoMessage {
     static let MAX_RECORDING_LIMIT = ApplicationData.CurrentLanguageMode == .English ? "Maximum recording limit is reached" : "Maximum recording limit is reached"
     static let SELECT_PREFERENCE = ApplicationData.CurrentLanguageMode == .English ? "Please select at least one preference to save" : "Please select at least one preference to save"
     static let ACCESS_MICROPHONE = ApplicationData.CurrentLanguageMode == .English ? "Please allow app to access Microphone" : "Please allow app to access Microphone"
+    static let SELECT_MISTAKE_CORRECTION = ApplicationData.CurrentLanguageMode == .English ? "Please select Mistake/Correction" : "Please select Mistake/Correction"
     
     static var DEFAULT_RECITER_RECITATION_NOT_AVAILABLE: String {
         return (ApplicationData.CurrentLanguageMode == .English ? "Reciter '\(ApplicationData.CurrentReciter.Name)' Recitations for this page are not available!" : "Reciter '\(ApplicationData.CurrentReciter.Name)' Recitations for this page are not available!")

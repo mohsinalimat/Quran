@@ -58,7 +58,7 @@ class CorrectionTableViewCell: UITableViewCell {
     }
     @IBAction func chkShowDetail_TouchUp(_ sender: Any) {
         setCheckboxStatusColor(isChecked: chkShowDetail.on, number: Number)
-        (ApplicationObject.CurrentViewController as! BLMCorrectionViewController).setSelectedRow(showDetail: chkShowDetail.on, id: Id)
+        (ApplicationObject.CurrentViewController as! BLMCorrectionViewController).setSelectedRow(showDetail: chkShowDetail.on, id: Id, number: Number)
     }
 }
 

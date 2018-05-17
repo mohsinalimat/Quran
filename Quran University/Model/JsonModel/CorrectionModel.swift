@@ -14,7 +14,6 @@ struct CorrectionModel: Decodable {
         self.Id = 0
         self.DeadLineDate = ""
         self.DelayedDaysString = ""
-        self.StudentAudioFile = ""
         
         self.CorrectionDetail = [CorrectionDetailModel]()
     }

@@ -194,6 +194,8 @@ class AyatSelectionManager {
         for assignmentBoundary in assignmentBoundaryList {
             assignmentBoundary.removeFromSuperlayer()
         }
+        
+        assignmentBoundaryList.removeAll()
     }
     static func showHideAyatSelection(startTouchPoint: CGPoint, lastTouchPoint: CGPoint, touchMoving: Bool) {
         hideAyatSelection()
@@ -293,37 +295,45 @@ class AyatSelectionManager {
             }
         }
     }
-    static func generateShowCorrectionSelection(correctionDetailList: [CorrectionDetailModel]) {
-        hideAyatSelection()
-        
+    static func removeCorrectionSelection() {
         for correctionSelection in correctionSelectionList {
             correctionSelection.removeFromSuperlayer()
         }
         
+        correctionSelectionList.removeAll()
+    }
+    static func generateShowCorrectionSelection(correctionDetailDictionary: [Int32: [CorrectionDetailModel]]) {
+        hideAyatSelection()
+        removeCorrectionSelection()
+        
         let canvasHeight = ApplicationObject.QuranPageImageView.bounds.height
         let canvasWidth = ApplicationObject.QuranPageImageView.bounds.width
         
-        for objCorrectionDetail in correctionDetailList {
-            let xAxisStartPercentage = ((100 / ApplicationConstant.CorrectionCanvasWidth) * CGFloat(objCorrectionDetail.TopRightx))
-            let xAxisEndPercentage = ((100 / ApplicationConstant.CorrectionCanvasWidth) * CGFloat(objCorrectionDetail.BottomLeftx))
-            let yAxisStartPercentage = ((100 / ApplicationConstant.CorrectionCanvasHeight) * CGFloat(objCorrectionDetail.TopRighty))
-            let startHeightPercentage = ((100 / ApplicationConstant.CorrectionCanvasHeight) * CGFloat(objCorrectionDetail.BottomLefty - objCorrectionDetail.TopRighty))
-            let xAxisStart = (canvasWidth - ((canvasWidth / 100) * xAxisEndPercentage))
-            let xAxisEnd = (canvasWidth - ((canvasWidth / 100) * xAxisStartPercentage))
-            let yAxisStart = ((canvasHeight / 100) * yAxisStartPercentage)
-            let startHeight = ((canvasHeight / 100) * startHeightPercentage)
-            let width = CGFloat(xAxisEnd - xAxisStart)
-            let correctionSelection = CAShapeLayer()
-            let selectionRectangle = CGRect(x: xAxisStart, y: yAxisStart, width: width, height: startHeight)
-            let path = UIBezierPath(roundedRect: selectionRectangle, cornerRadius: 0).cgPath
+        for objCorrectionDetailDictionary in correctionDetailDictionary {
+            let correctionDetailList = objCorrectionDetailDictionary.value
             
-            correctionSelection.isHidden = false
-            correctionSelection.fillColor = ApplicationConstant.AyatSelectionColor
-            correctionSelection.opacity = 0.5
-            correctionSelection.path = path
-//            ayatSelection.accessibilityLabel = ApplicationMethods.getRecitationName(surahId: objAyat.SurahId, ayatOrderId: objAyat.AyatOrder)
-            
-            correctionSelectionList.append(correctionSelection)
+            for objCorrectionDetail in correctionDetailList {
+                let xAxisStartPercentage = ((100 / ApplicationConstant.CorrectionCanvasWidth) * CGFloat(objCorrectionDetail.TopRightx))
+                let xAxisEndPercentage = ((100 / ApplicationConstant.CorrectionCanvasWidth) * CGFloat(objCorrectionDetail.BottomLeftx))
+                let yAxisStartPercentage = ((100 / ApplicationConstant.CorrectionCanvasHeight) * CGFloat(objCorrectionDetail.TopRighty))
+                let startHeightPercentage = ((100 / ApplicationConstant.CorrectionCanvasHeight) * CGFloat(objCorrectionDetail.BottomLefty - objCorrectionDetail.TopRighty))
+                let xAxisStart = (canvasWidth - ((canvasWidth / 100) * xAxisEndPercentage))
+                let xAxisEnd = (canvasWidth - ((canvasWidth / 100) * xAxisStartPercentage))
+                let yAxisStart = ((canvasHeight / 100) * yAxisStartPercentage)
+                let startHeight = ((canvasHeight / 100) * startHeightPercentage)
+                let width = CGFloat(xAxisEnd - xAxisStart)
+                let correctionSelection = CAShapeLayer()
+                let selectionRectangle = CGRect(x: xAxisStart, y: yAxisStart, width: width, height: startHeight)
+                let path = UIBezierPath(roundedRect: selectionRectangle, cornerRadius: 0).cgPath
+                
+                correctionSelection.isHidden = false
+                correctionSelection.fillColor = ApplicationMethods.getCorrectionBGColor(number: objCorrectionDetailDictionary.key).cgColor
+                correctionSelection.opacity = 0.5
+                correctionSelection.path = path
+                //            ayatSelection.accessibilityLabel = ApplicationMethods.getRecitationName(surahId: objAyat.SurahId, ayatOrderId: objAyat.AyatOrder)
+                
+                correctionSelectionList.append(correctionSelection)
+            }
         }
         
         for correctionSelection in correctionSelectionList {
