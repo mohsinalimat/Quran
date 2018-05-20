@@ -20,5 +20,6 @@ class CorrectionManager {
         ApplicationData.CorrectionModeOn = false
         
         AyatSelectionManager.removeCorrectionSelection()
+        AyatSelectionManager.removeCorrectionBoundary()
     }
 }

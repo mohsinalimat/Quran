@@ -5,6 +5,7 @@ class AyatSelectionManager {
     static var ayatSelectionList = [CAShapeLayer]()
     static var assignmentBoundaryList = [CAShapeLayer]()
     static var correctionSelectionList = [CAShapeLayer]()
+    static var correctionBoundaryList = [CAShapeLayer]()
     
     static func generateAyatSelectionForCurrentPage() {
         removeAyatSelection()
@@ -330,7 +331,7 @@ class AyatSelectionManager {
                 correctionSelection.fillColor = ApplicationMethods.getCorrectionBGColor(number: objCorrectionDetailDictionary.key).cgColor
                 correctionSelection.opacity = 0.5
                 correctionSelection.path = path
-                //            ayatSelection.accessibilityLabel = ApplicationMethods.getRecitationName(surahId: objAyat.SurahId, ayatOrderId: objAyat.AyatOrder)
+                correctionSelection.accessibilityLabel = String(objCorrectionDetailDictionary.key)
                 
                 correctionSelectionList.append(correctionSelection)
             }
@@ -338,6 +339,52 @@ class AyatSelectionManager {
         
         for correctionSelection in correctionSelectionList {
             ApplicationObject.QuranPageImageView.layer.addSublayer(correctionSelection)
+        }
+    }
+    static func resetCorrectionSelection() {
+        for correctionSelection in correctionSelectionList {
+            correctionSelection.fillColor = ApplicationMethods.getCorrectionBGColor(number: Int32(correctionSelection.accessibilityLabel!)!).cgColor
+        }
+    }
+    static func removeCorrectionBoundary() {
+        for correctionBoundary in correctionBoundaryList {
+            correctionBoundary.removeFromSuperlayer()
+        }
+        
+        correctionBoundaryList.removeAll()
+    }
+    static func selectCorrection(touchPoint: CGPoint) {
+        resetCorrectionSelection()
+        removeCorrectionBoundary()
+        
+        let touchRectangle = CGRect(x: touchPoint.x, y: touchPoint.y, width: 1, height: 1)
+        
+        for correctionSelection in correctionSelectionList {
+            if (correctionSelection.path?.boundingBoxOfPath.intersects(touchRectangle))! {
+                var correctionBoundary = CAShapeLayer()
+                var selectionRect = (correctionSelection.path?.boundingBoxOfPath)!
+                var correctionRect = CGRect(x: selectionRect.minX, y: selectionRect.origin.y, width: selectionRect.size.width, height: 3)
+                var correctionPath = UIBezierPath(roundedRect: correctionRect, cornerRadius: 0).cgPath
+                
+                correctionBoundary.opacity = 1
+                correctionBoundary.path = correctionPath
+                correctionBoundary.fillColor = ApplicationConstant.CorrectionBoundaryColor
+                
+                ApplicationObject.QuranPageImageView.layer.addSublayer(correctionBoundary)
+                correctionBoundaryList.append(correctionBoundary)
+                
+                correctionBoundary = CAShapeLayer()
+                selectionRect = (correctionSelection.path?.boundingBoxOfPath)!
+                correctionRect = CGRect(x: selectionRect.minX, y: selectionRect.origin.y + selectionRect.size.height - 3, width: selectionRect.size.width, height: 3)
+                correctionPath = UIBezierPath(roundedRect: correctionRect, cornerRadius: 0).cgPath
+                
+                correctionBoundary.opacity = 1
+                correctionBoundary.path = correctionPath
+                correctionBoundary.fillColor = ApplicationConstant.CorrectionBoundaryColor
+                
+                ApplicationObject.QuranPageImageView.layer.addSublayer(correctionBoundary)
+                correctionBoundaryList.append(correctionBoundary)
+            }
         }
     }
     

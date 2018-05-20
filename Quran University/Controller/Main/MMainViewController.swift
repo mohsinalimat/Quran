@@ -125,7 +125,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                         let touchPoint = touch.location(in: self.ivQuranPage)
                         
                         if startTouchPoint == touchPoint {
-                            DialogueManager.showInfo(viewController: self, message: "Alert", okHandler: {})
+                            AyatSelectionManager.selectCorrection(touchPoint: touchPoint)
                         }
                     }
                     else if RecitationManager.recitationList.first != nil {
