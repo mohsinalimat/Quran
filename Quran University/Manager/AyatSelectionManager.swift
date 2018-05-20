@@ -353,14 +353,16 @@ class AyatSelectionManager {
         
         correctionBoundaryList.removeAll()
     }
-    static func selectCorrection(touchPoint: CGPoint) {
+    static func selectCorrection(startTouchPoint: CGPoint, endTouchPoint: CGPoint) {
         resetCorrectionSelection()
         removeCorrectionBoundary()
         
-        let touchRectangle = CGRect(x: touchPoint.x, y: touchPoint.y, width: 1, height: 1)
+        let startTouchRectangle = CGRect(x: startTouchPoint.x, y: startTouchPoint.y, width: 1, height: 1)
+        let endTouchRectangle = CGRect(x: endTouchPoint.x, y: endTouchPoint.y, width: 1, height: 1)
         
         for correctionSelection in correctionSelectionList {
-            if (correctionSelection.path?.boundingBoxOfPath.intersects(touchRectangle))! {
+            if (correctionSelection.path?.boundingBoxOfPath.intersects(startTouchRectangle))! &&
+                (correctionSelection.path?.boundingBoxOfPath.intersects(endTouchRectangle))! {
                 var correctionBoundary = CAShapeLayer()
                 var selectionRect = (correctionSelection.path?.boundingBoxOfPath)!
                 var correctionRect = CGRect(x: selectionRect.minX, y: selectionRect.origin.y, width: selectionRect.size.width, height: 3)

@@ -124,9 +124,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                     if ApplicationData.CorrectionModeOn {
                         let touchPoint = touch.location(in: self.ivQuranPage)
                         
-                        if startTouchPoint == touchPoint {
-                            AyatSelectionManager.selectCorrection(touchPoint: touchPoint)
-                        }
+                        AyatSelectionManager.selectCorrection(startTouchPoint: startTouchPoint, endTouchPoint: touchPoint)
                     }
                     else if RecitationManager.recitationList.first != nil {
                         setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
