@@ -229,8 +229,8 @@ class AssignmentManager {
                             let jsonContent = """
                             {
                             \(ApplicationData.CurrentAssignment.Correction.count > 0 ? "ClassAssignmentStudentCorrectionId" : "ClassAssignmentStudentId"): \(ApplicationData.CurrentAssignment.Correction.count > 0 ? ApplicationData.CurrentAssignment.Correction[0].Id : ApplicationData.CurrentAssignment.classAssignmentStudentId),
-                            "StudentSubmissionDate": "\(Utilities.dtJsonDateTime.string(from: Date()))",
-                            "StudentOnlineSubmissionDate": "\(Utilities.dtJsonDateTime.string(from: Date()))",
+                            "StudentSubmissionDate": "\(Utilities.dtJsonLocalDateTime.string(from: Date()))",
+                            "StudentOnlineSubmissionDate": "\(Utilities.dtJsonLocalDateTime.string(from: Date()))",
                             "StudentAudioFile": "\(ApplicationMethods.getCurrentStudentAssignmentRecordingName())",
                             "Iscorrection": \(ApplicationData.CurrentAssignment.Correction.count > 0 ? 1 : 0)
                             }
@@ -248,6 +248,7 @@ class AssignmentManager {
                                         let jResponse = try JSONDecoder().decode(JsonResponse.self, from: data!)
                                         
                                         if jResponse.Status == 2 {
+                                            _ = StudentAssignmentRecordingRepository().deleteStudentAssignmentRecording(assignmentId: ApplicationData.CurrentAssignment.Id)
                                             assignmentList.removeAll()
                                             
                                             populateStudentAssignment(completionHandler: {

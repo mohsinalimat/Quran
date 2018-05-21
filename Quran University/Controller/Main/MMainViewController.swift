@@ -305,7 +305,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         x = vFooter.frame.origin.x
         y = vFooter.frame.origin.y - vCorrectionDetail.bounds.height
         height = vCorrectionDetail.frame.size.height
-        width = vFooter.frame.size.width
+        width = vCorrectionDetail.frame.size.width
         
         vCorrectionDetail.tag = ViewTag.CorrectionDetail.rawValue
         vCorrectionDetail.frame = CGRect(x: x, y: y, width: width, height: height)
@@ -509,9 +509,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             btnAUpload.isEnabled = false
         }
     }
-    func loadCorrectionDetailView() {
-//        showMenu(tag: ViewTag.CorrectionDetail.rawValue)
-//        vCorrectionDetail.loadView()
+    func loadCorrectionDetailView(correctionDetailId: Int32, correctionKey: Int32) {
+        showMenu(tag: ViewTag.CorrectionDetail.rawValue)
+        vCorrectionDetail.loadView(correctionDetailId: correctionDetailId, correctionKey: correctionKey)
     }
     func loadAssignmentRecord() {
         showMenu(tag: ViewTag.RecordAssignment.rawValue)

@@ -279,6 +279,7 @@ class AyatSelectionManager {
     static func hideAyatSelection() {
         ayatSelectionList.lazy.forEach { ayatSelection in
             ayatSelection.isHidden = true
+            ayatSelection.opacity = 0.5
             ayatSelection.fillColor = ApplicationConstant.AyatSelectionColor
         }
         
@@ -290,6 +291,7 @@ class AyatSelectionManager {
         for recitationObject in recitationList {
             ayatSelectionList.lazy.filter { $0.accessibilityLabel == recitationObject.RecitationFileName }.forEach { ayatSelection in
                 ayatSelection.isHidden = false
+                ayatSelection.opacity = 1.0
                 ayatSelection.fillColor = ApplicationConstant.AssignmentMarkColor
                 
                 RecitationManager.appendRecitation(accessibilityLabel: ayatSelection.accessibilityLabel!)
@@ -331,7 +333,7 @@ class AyatSelectionManager {
                 correctionSelection.fillColor = ApplicationMethods.getCorrectionBGColor(number: objCorrectionDetailDictionary.key).cgColor
                 correctionSelection.opacity = 0.5
                 correctionSelection.path = path
-                correctionSelection.accessibilityLabel = String(objCorrectionDetailDictionary.key)
+                correctionSelection.accessibilityLabel = String(objCorrectionDetail.Id) + "-" + String(objCorrectionDetailDictionary.key)
                 
                 correctionSelectionList.append(correctionSelection)
             }
@@ -343,7 +345,10 @@ class AyatSelectionManager {
     }
     static func resetCorrectionSelection() {
         for correctionSelection in correctionSelectionList {
-            correctionSelection.fillColor = ApplicationMethods.getCorrectionBGColor(number: Int32(correctionSelection.accessibilityLabel!)!).cgColor
+            let arrCorrection = correctionSelection.accessibilityLabel?.components(separatedBy: "-")
+            let number = Int32(arrCorrection![1])!
+            
+            correctionSelection.fillColor = ApplicationMethods.getCorrectionBGColor(number: number).cgColor
         }
     }
     static func removeCorrectionBoundary() {
@@ -367,6 +372,7 @@ class AyatSelectionManager {
                 var selectionRect = (correctionSelection.path?.boundingBoxOfPath)!
                 var correctionRect = CGRect(x: selectionRect.minX, y: selectionRect.origin.y, width: selectionRect.size.width, height: 3)
                 var correctionPath = UIBezierPath(roundedRect: correctionRect, cornerRadius: 0).cgPath
+                let arrCorrection = correctionSelection.accessibilityLabel?.components(separatedBy: "-")
                 
                 correctionBoundary.opacity = 1
                 correctionBoundary.path = correctionPath
@@ -385,7 +391,7 @@ class AyatSelectionManager {
                 correctionBoundary.fillColor = ApplicationConstant.CorrectionBoundaryColor
                 
                 ApplicationObject.QuranPageImageView.layer.addSublayer(correctionBoundary)
-                ApplicationObject.MainViewController.loadCorrectionDetailView()
+                ApplicationObject.MainViewController.loadCorrectionDetailView(correctionDetailId: Int32(arrCorrection![0])!, correctionKey: Int32(arrCorrection![1])!)
                 correctionBoundaryList.append(correctionBoundary)
             }
         }

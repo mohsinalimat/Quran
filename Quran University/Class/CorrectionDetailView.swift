@@ -20,8 +20,15 @@ class CorrectionDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
         tvCorrectionDetailComment.delegate = self
         tvCorrectionDetailComment.dataSource = self
     }
-    func loadView() {
+    func loadView(correctionDetailId: Int32, correctionKey: Int32) {
+        let selectedCorrectionDetail = CorrectionManager.selectedCorrectionDetailList[correctionKey]
+        let objCorrectionDetailModel = selectedCorrectionDetail?.filter { $0.Id == correctionDetailId }.first
         
+        StudentMediaManager.checkDownloadTeacherMedia(audioFile: (objCorrectionDetailModel?.TeacherAudioFile)!, btnPlayPause: btnPlayPause, completionHandler: { status in
+            if status {
+                StudentMediaManager.playPauseTeacherMedia(audioFile: (objCorrectionDetailModel?.TeacherAudioFile)!, btnPlayPause: self.btnPlayPause)
+            }
+        })
     }
     
     @IBAction func btnPlayPause_TouchUp(_ sender: Any) {
