@@ -687,6 +687,8 @@
 		04D215C720A06B7B00C0325D /* UploadAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D215C620A06B7B00C0325D /* UploadAssignmentView.swift */; };
 		04D2359F20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2359E20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift */; };
 		04D2D70520035878006D1342 /* AyatSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2D70420035878006D1342 /* AyatSelectionManager.swift */; };
+		04D44C6A20B29124009F146F /* CorrectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D44C6920B29124009F146F /* CorrectionDetailView.swift */; };
+		04D44C6C20B29198009F146F /* CorrectionDetailCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D44C6B20B29198009F146F /* CorrectionDetailCommentTableViewCell.swift */; };
 		04D452AB2070ECD100715CA8 /* BaseLeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D452AA2070ECD100715CA8 /* BaseLeftMenu.storyboard */; };
 		04D452AE2070FDDA00715CA8 /* BLMAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D452AD2070FDDA00715CA8 /* BLMAssignmentViewController.swift */; };
 		04D5F425204EBD4200E7F7B4 /* CauseOfRevelationBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5F424204EBD4200E7F7B4 /* CauseOfRevelationBook.swift */; };
@@ -1403,6 +1405,8 @@
 		04D215C620A06B7B00C0325D /* UploadAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAssignmentView.swift; sourceTree = "<group>"; };
 		04D2359E20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionDetailTableViewCell.swift; sourceTree = "<group>"; };
 		04D2D70420035878006D1342 /* AyatSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyatSelectionManager.swift; sourceTree = "<group>"; };
+		04D44C6920B29124009F146F /* CorrectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionDetailView.swift; sourceTree = "<group>"; };
+		04D44C6B20B29198009F146F /* CorrectionDetailCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionDetailCommentTableViewCell.swift; sourceTree = "<group>"; };
 		04D452AA2070ECD100715CA8 /* BaseLeftMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BaseLeftMenu.storyboard; sourceTree = "<group>"; };
 		04D452AD2070FDDA00715CA8 /* BLMAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLMAssignmentViewController.swift; sourceTree = "<group>"; };
 		04D5F424204EBD4200E7F7B4 /* CauseOfRevelationBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauseOfRevelationBook.swift; sourceTree = "<group>"; };
@@ -1544,6 +1548,8 @@
 				04BBCB542032C43400D347BC /* BaseViewController.swift */,
 				048D662D20500257007185EC /* BookTableViewCell.swift */,
 				04D2359E20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift */,
+				04D44C6920B29124009F146F /* CorrectionDetailView.swift */,
+				04D44C6B20B29198009F146F /* CorrectionDetailCommentTableViewCell.swift */,
 				04D9301920A2D94E00F7EEF0 /* CorrectionTableViewCell.swift */,
 				04332590201DB201000FD494 /* QUButton.swift */,
 				0433258E201DAE4A000FD494 /* QUView.swift */,
@@ -3202,6 +3208,7 @@
 				04D5F42D204EC01300E7F7B4 /* CauseOfRevelationBookRepository.swift in Sources */,
 				04CA42AF209710D900FF495E /* PermissionManager.swift in Sources */,
 				0476BBA12005ECB5002697B6 /* DownloadManager.swift in Sources */,
+				04D44C6A20B29124009F146F /* CorrectionDetailView.swift in Sources */,
 				0495EA0D200F60BB00EC35D1 /* BaseModel.swift in Sources */,
 				0415F37B2002107600041C3D /* MLoginViewController.swift in Sources */,
 				04CE12642099C7D80026D118 /* RecordAssignmentView.swift in Sources */,
@@ -3217,6 +3224,7 @@
 				04D1CBAF2075FE7100334912 /* AssignmentManager.swift in Sources */,
 				04BBCB552032C43400D347BC /* BaseViewController.swift in Sources */,
 				049D735F2076348800E4C41B /* AssignmentModel.swift in Sources */,
+				04D44C6C20B29198009F146F /* CorrectionDetailCommentTableViewCell.swift in Sources */,
 				04CD81812004FFF700E34444 /* Enumerations.swift in Sources */,
 				04CD817E2004EDE900E34444 /* DocumentManager.swift in Sources */,
 				04CE12682099D7680026D118 /* StudentAssignmentRecording.swift in Sources */,

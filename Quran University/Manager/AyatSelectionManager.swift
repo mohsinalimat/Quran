@@ -385,6 +385,7 @@ class AyatSelectionManager {
                 correctionBoundary.fillColor = ApplicationConstant.CorrectionBoundaryColor
                 
                 ApplicationObject.QuranPageImageView.layer.addSublayer(correctionBoundary)
+                ApplicationObject.MainViewController.loadCorrectionDetailView()
                 correctionBoundaryList.append(correctionBoundary)
             }
         }

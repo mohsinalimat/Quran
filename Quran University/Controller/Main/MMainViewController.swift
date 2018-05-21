@@ -60,6 +60,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBOutlet var vRecordCompare: RecordCompareView!
     @IBOutlet weak var lblListenRepeatInfo: UILabel!
     
+    // ********** Correction Detail Section ********** //
+    @IBOutlet var vCorrectionDetail: CorrectionDetailView!
+    
     var startTouchPoint = CGPoint()
     var startDate = Date()
     var pageLocked = false
@@ -124,6 +127,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                     if ApplicationData.CorrectionModeOn {
                         let touchPoint = touch.location(in: self.ivQuranPage)
                         
+                        vCorrectionDetail.initializeView()
                         AyatSelectionManager.selectCorrection(startTouchPoint: startTouchPoint, endTouchPoint: touchPoint)
                     }
                     else if RecitationManager.recitationList.first != nil {
@@ -297,6 +301,16 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         vUploadAssignment.frame = CGRect(x: x, y: y, width: width, height: height)
         
         self.view.addSubview(vUploadAssignment)
+        
+        x = vFooter.frame.origin.x
+        y = vFooter.frame.origin.y - vCorrectionDetail.bounds.height
+        height = vCorrectionDetail.frame.size.height
+        width = vFooter.frame.size.width
+        
+        vCorrectionDetail.tag = ViewTag.CorrectionDetail.rawValue
+        vCorrectionDetail.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        self.view.addSubview(vCorrectionDetail)
     }
     func hideMenu() {
         self.view.viewWithTag(ViewTag.TopMenu.rawValue)?.isHidden = true
@@ -305,6 +319,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.view.viewWithTag(ViewTag.ListenRepeat.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.RecordAssignment.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.UploadAssignment.rawValue)?.isHidden = true
+        self.view.viewWithTag(ViewTag.CorrectionDetail.rawValue)?.isHidden = true
     }
     func hideMenu(tag: Int) {
         hideMenu()
@@ -492,6 +507,22 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             btnARecord.isEnabled = false
             btnAPlay.isEnabled = true
             btnAUpload.isEnabled = false
+        }
+    }
+    func loadCorrectionDetailView() {
+//        showMenu(tag: ViewTag.CorrectionDetail.rawValue)
+//        vCorrectionDetail.loadView()
+    }
+    func loadAssignmentRecord() {
+        showMenu(tag: ViewTag.RecordAssignment.rawValue)
+        
+        if vRecordAssignment.recordingPlayMode != .Recording {
+            vRecordAssignment.loadView(completionHandler: {
+                self.vRecordAssignment.recordStopRecording()
+            })
+        }
+        else {
+            self.vRecordAssignment.recordStopRecording()
         }
     }
     
@@ -707,15 +738,19 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Assignment Record & Upload Section ********** //
     @IBAction func btnARecord_TouchUp(_ sender: Any) {
-        showMenu(tag: ViewTag.RecordAssignment.rawValue)
+        var loadView = true
         
-        if vRecordAssignment.recordingPlayMode != .Recording {
-            vRecordAssignment.loadView(completionHandler: {
-                self.vRecordAssignment.recordStopRecording()
+        if vRecordAssignment.recordingPlayMode != .Recording &&
+            AssignmentManager.assignmentRecordingExist() {
+            loadView = false
+            
+            DialogueManager.showConfirmation(viewController: self, message: ApplicationConfirmMessage.REPLACE_ASSIGNMENT_RECORDING, yesHandler: {
+                self.loadAssignmentRecord()
             })
         }
-        else {
-            self.vRecordAssignment.recordStopRecording()
+        
+        if loadView {
+            loadAssignmentRecord()
         }
     }
     @IBAction func btnAPlay_TouchUp(_ sender: Any) {

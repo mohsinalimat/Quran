@@ -36,7 +36,7 @@ struct QuranLink {
         return URL(string: urlAddress)!
     }
     static func GetAssignment() -> URL {
-        let urlAddress = WebAPIUrl + "Student/?s=233"
+        let urlAddress = WebAPIUrl + "Student/?s=96"
         
         return URL(string: urlAddress)!
     }
@@ -180,6 +180,7 @@ struct ApplicationConfirmMessage {
     static let CANCEL_RECITATION_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Are you sure you want to cancel Recitation download?" : "Are you sure you want to cancel Recitation download?"
     static let CANCEL_BOOK_DOWNLOAD = ApplicationData.CurrentLanguageMode == .English ? "Are you sure you want to cancel Book download?" : "Are you sure you want to cancel Book download?"
     static let TURN_OFF_ASSIGNMENT_MODE = ApplicationData.CurrentLanguageMode == .English ? "Do you want to turn off assignment mode?" : "Do you want to turn off assignment mode?"
+    static let REPLACE_ASSIGNMENT_RECORDING = ApplicationData.CurrentLanguageMode == .English ? "It will replace the existing assignment Recording, Do you want to continue?" : "It will replace the existing assignment Recording, Do you want to continue?"
 }
 
 struct AssignmentStatusColor {
