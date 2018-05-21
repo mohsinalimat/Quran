@@ -45,8 +45,8 @@ class AssignmentManager {
         
         for objCourse in jResponse.Course! {
             for objAssignment in objCourse.Assignment! {
-                var assignmentStatus = AssignmentStatus.Accepted
                 var assignmentStatusString = ApplicationLabel.ACCEPTED
+                var assignmentStatus = AssignmentStatus.Accepted
                 var recordingExists = false
                 
                 objAssignment.Correction.sort(by: { $0.Id > $1.Id })
@@ -111,6 +111,14 @@ class AssignmentManager {
                         assignmentStatusString = ApplicationLabel.NOTSENT
                         assignmentStatus = AssignmentStatus.NotSent
                     }
+                }
+                
+                if assignmentStatus == AssignmentStatus.Resubmitted {
+                    assignmentStatusString = ApplicationLabel.RESUBMITTED + "-" + String(objAssignment.Correction.count)
+                }
+                
+                if assignmentStatus == AssignmentStatus.Rechecked {
+                    assignmentStatusString = ApplicationLabel.RECHECKED + "-" + String(objAssignment.Correction.count - 1)
                 }
                 
                 var addRow = true
@@ -220,7 +228,7 @@ class AssignmentManager {
                         upload.responseJSON { response in
                             let jsonContent = """
                             {
-                            "ClassAssignmentStudentId": \(ApplicationData.CurrentAssignment.classAssignmentStudentId),
+                            \(ApplicationData.CurrentAssignment.Correction.count > 0 ? "ClassAssignmentStudentCorrectionId" : "ClassAssignmentStudentId"): \(ApplicationData.CurrentAssignment.Correction.count > 0 ? ApplicationData.CurrentAssignment.Correction[0].Id : ApplicationData.CurrentAssignment.classAssignmentStudentId),
                             "StudentSubmissionDate": "\(Utilities.dtJsonDateTime.string(from: Date()))",
                             "StudentOnlineSubmissionDate": "\(Utilities.dtJsonDateTime.string(from: Date()))",
                             "StudentAudioFile": "\(ApplicationMethods.getCurrentStudentAssignmentRecordingName())",
