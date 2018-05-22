@@ -1045,6 +1045,8 @@
                         <viewLayoutGuide key="safeArea" id="bQ2-TD-e1U"/>
                     </view>
                     <connections>
+                        <outlet property="btnClose" destination="FNS-pm-WMc" id="3cw-U0-X27"/>
+                        <outlet property="btnShowMistakeCorrection" destination="dUI-FB-yEt" id="YQd-yF-ajR"/>
                         <outlet property="tvCorrection" destination="y7f-Wo-UbQ" id="qIz-rg-IiX"/>
                         <outlet property="vMain" destination="AjZ-mN-dkc" id="ZM2-Dn-yRN"/>
                     </connections>

@@ -524,6 +524,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     func loadCorrectionDetailView(correctionDetailId: Int32, correctionKey: Int32) {
         showMenu(tag: ViewTag.CorrectionDetail.rawValue)
         vCorrectionDetail.loadView(correctionDetailId: correctionDetailId, correctionKey: correctionKey)
+        
+        vCorrectionDetail.center = startTouchPoint
+        
+        let x = vCorrectionDetail.frame.origin.x
+        let y = vCorrectionDetail.frame.origin.y
     }
     func loadAssignmentRecord() {
         showMenu(tag: ViewTag.RecordAssignment.rawValue)

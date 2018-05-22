@@ -5,6 +5,8 @@ import AVFoundation
 class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, AVAudioPlayerDelegate {
     @IBOutlet weak var vMain: UIView!
     @IBOutlet weak var tvCorrection: UITableView!
+    @IBOutlet weak var btnShowMistakeCorrection: QUButton!
+    @IBOutlet weak var btnClose: QUButton!
     
     var selectedIdList = [Int32: Int64]()
     var collapsedHeight: CGFloat = 50
@@ -18,6 +20,17 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
 
         tvCorrection.delegate = self
         tvCorrection.dataSource = self
+        
+        if ApplicationData.CurrentAssignment.Correction.count <= 0 {
+            btnShowMistakeCorrection.isHidden = true
+            
+            let height = btnClose.frame.size.height
+            let width = btnClose.frame.size.width
+            let x = (vMain.frame.size.width / 2) - (btnClose.frame.size.width / 2)
+            let y = btnClose.frame.origin.y
+            
+            btnClose.frame = CGRect(x: x, y: y, width: width, height: height)
+        }
         
         setViewPosition()
     }
@@ -115,6 +128,12 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
                 tvcCorrection.setCheckboxStatusColor(isChecked: false, number: number)
             }
             
+            if ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Accepted.rawValue &&
+                tvcCorrection.chkShowDetail.isHidden {
+                tvcCorrection.lblMarks.isHidden = false
+                tvcCorrection.lblMarks.text = ApplicationHeading.MARKS + ApplicationData.CurrentAssignment.MarkString
+            }
+            
             if !tvcCorrection.lblSubmissionDate.isHidden ||
                 !tvcCorrection.btnPlayPause.isHidden ||
                 !tvcCorrection.btnStop.isHidden ||
@@ -124,12 +143,6 @@ class BLMCorrectionViewController: BaseViewController, UITableViewDelegate, UITa
                 tvcCorrection.lblNumber.text = ApplicationMethods.getOrdinalNumber(num: number)
                 
                 tvcCorrection.setCorrectionDetailDataSourceDelegate(self, id: tvcCorrection.Id)
-            }
-            
-            if ApplicationData.CurrentAssignment.AssignmentStatusId == AssignmentStatus.Accepted.rawValue &&
-                tvcCorrection.chkShowDetail.isHidden {
-                tvcCorrection.lblMarks.isHidden = false
-                tvcCorrection.lblMarks.text = ApplicationHeading.MARKS + ApplicationData.CurrentAssignment.MarkString
             }
             
             return tvcCorrection
