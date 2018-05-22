@@ -521,14 +521,30 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             btnAUpload.isEnabled = false
         }
     }
-    func loadCorrectionDetailView(correctionDetailId: Int32, correctionKey: Int32) {
+    func loadCorrectionDetailView(correctionDetailId: Int32, correctionKey: Int32, correctionHeight: CGFloat) {
         showMenu(tag: ViewTag.CorrectionDetail.rawValue)
         vCorrectionDetail.loadView(correctionDetailId: correctionDetailId, correctionKey: correctionKey)
         
-        vCorrectionDetail.center = startTouchPoint
+        let height = vCorrectionDetail.frame.size.height
+        let width = vCorrectionDetail.frame.size.width
+        var x = startTouchPoint.x - (width / 2)
+        var y = startTouchPoint.y + height
+        let xDifference = (x + width) - (ivQuranPage.frame.origin.x + ivQuranPage.frame.size.width)
+        let yDifference = (y + height) - (ivQuranPage.frame.origin.y + ivQuranPage.frame.size.height)
         
-        let x = vCorrectionDetail.frame.origin.x
-        let y = vCorrectionDetail.frame.origin.y
+        if x < ivQuranPage.frame.origin.x {
+            x = ivQuranPage.frame.origin.x
+        }
+        
+        if xDifference > 0 {
+            x = x - xDifference
+        }
+        
+        if yDifference > 0 {
+            y = y - yDifference - correctionHeight - 5
+        }
+        
+        vCorrectionDetail.frame = CGRect(x: x, y: y, width: width, height: height)
     }
     func loadAssignmentRecord() {
         showMenu(tag: ViewTag.RecordAssignment.rawValue)
