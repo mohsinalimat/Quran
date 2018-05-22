@@ -93,7 +93,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                     touch.view != vTopMenu &&
                     touch.view != vRecordAssignment &&
                     touch.view?.superview?.tag != ViewTag.RecordAssignment.rawValue &&
-                    touch.view?.superview?.superview?.tag != ViewTag.RecordAssignment.rawValue {
+                    touch.view?.superview?.superview?.tag != ViewTag.RecordAssignment.rawValue &&
+                    touch.view != vCorrectionDetail &&
+                    touch.view?.superview?.tag != ViewTag.CorrectionDetail.rawValue {
                     hideMenu()
                 }
                 
@@ -104,6 +106,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                         RecitationManager.resetPlayer()
                         RecitationManager.setPlayerMode(mode: .None)
                         AyatSelectionManager.showHideAyatSelection(startTouchPoint: startTouchPoint, lastTouchPoint: startTouchPoint, touchMoving: false)
+                    }
+                    else {
+                        vCorrectionDetail.unloadView()
                     }
                 }
             }
@@ -228,7 +233,14 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         })
     }
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        RecitationManager.nextRecitation(onAudioPlayFinish: true)
+        if ApplicationData.CorrectionModeOn {
+            StudentMediaManager.mediaPlayMode = AudioPlayMode.Paused
+            
+            StudentMediaManager.btnMediaPlayPause.setImage(#imageLiteral(resourceName: "icn_PlaySmall"), for: .normal)
+        }
+        else {
+            RecitationManager.nextRecitation(onAudioPlayFinish: true)
+        }
     }
     
     func setLayout() {

@@ -4,6 +4,8 @@ class CorrectionDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tvCorrectionDetailComment: UITableView!
     @IBOutlet weak var btnPlayPause: UIButton!
     
+    var SelectedCorrectionDetail = CorrectionDetailModel()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -22,16 +24,30 @@ class CorrectionDetailView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     func loadView(correctionDetailId: Int32, correctionKey: Int32) {
         let selectedCorrectionDetail = CorrectionManager.selectedCorrectionDetailList[correctionKey]
-        let objCorrectionDetailModel = selectedCorrectionDetail?.filter { $0.Id == correctionDetailId }.first
         
-        StudentMediaManager.checkDownloadTeacherMedia(audioFile: (objCorrectionDetailModel?.TeacherAudioFile)!, btnPlayPause: btnPlayPause, completionHandler: { status in
-            if status {
-                StudentMediaManager.playPauseTeacherMedia(audioFile: (objCorrectionDetailModel?.TeacherAudioFile)!, btnPlayPause: self.btnPlayPause)
-            }
-        })
+        SelectedCorrectionDetail = (selectedCorrectionDetail?.filter { $0.Id == correctionDetailId }.first)!
+        
+        btnPlayPause.isEnabled = false
+        
+        if SelectedCorrectionDetail.TeacherAudioFile != "" {
+            btnPlayPause.isEnabled = true
+            
+            StudentMediaManager.checkDownloadTeacherMedia(audioFile: SelectedCorrectionDetail.TeacherAudioFile, btnPlayPause: btnPlayPause, completionHandler: { status in
+                if status {
+                    StudentMediaManager.playPauseTeacherMedia(audioFile: self.SelectedCorrectionDetail.TeacherAudioFile, btnPlayPause: self.btnPlayPause)
+                }
+            })
+        }
+    }
+    func unloadView() {
+        StudentMediaManager.stopMedia(audioFile: SelectedCorrectionDetail.TeacherAudioFile, btnPlayPause: btnPlayPause)
     }
     
     @IBAction func btnPlayPause_TouchUp(_ sender: Any) {
-        
+        StudentMediaManager.checkDownloadTeacherMedia(audioFile: SelectedCorrectionDetail.TeacherAudioFile, btnPlayPause: btnPlayPause, completionHandler: { status in
+            if status {
+                StudentMediaManager.playPauseTeacherMedia(audioFile: self.SelectedCorrectionDetail.TeacherAudioFile, btnPlayPause: self.btnPlayPause)
+            }
+        })
     }
 }
