@@ -324,7 +324,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         
         self.view.addSubview(vCorrectionDetail)
     }
-    func hideMenu() {
+    func hideMenu(stopRecitation: Bool = true) {
         self.view.viewWithTag(ViewTag.TopMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseLeftMenu.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.BaseRightMenu.rawValue)?.isHidden = true
@@ -332,6 +332,14 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.view.viewWithTag(ViewTag.RecordAssignment.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.UploadAssignment.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.CorrectionDetail.rawValue)?.isHidden = true
+        
+        if stopRecitation {
+            if RecitationManager.recitationList.count > 0 {
+                RecitationManager.restartRecitation()
+            }
+            
+            RecitationManager.stopRecitation()
+        }
     }
     func hideMenu(tag: Int) {
         hideMenu()
@@ -670,19 +678,19 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     
     // ********** Footer Player Section ********** //
     @IBAction func btnRefresh_TouchUp(_ sender: UIButton) {
-        self.hideMenu()
+        self.hideMenu(stopRecitation: false)
         RecitationManager.restartRecitation()
     }
     @IBAction func btnPrevious_TouchUp(_ sender: UIButton) {
-        self.hideMenu()
+        self.hideMenu(stopRecitation: false)
         RecitationManager.previousRecitation()
     }
     @IBAction func btnStop_TouchUp(_ sender: UIButton) {
-        self.hideMenu()
+        self.hideMenu(stopRecitation: false)
         RecitationManager.stopRecitation()
     }
     @IBAction func btnPlay_TouchDown(_ sender: Any) {
-        self.hideMenu()
+        self.hideMenu(stopRecitation: false)
         
         startDate = Date()
     }
@@ -697,11 +705,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     @IBAction func btnPause_TouchUp(_ sender: UIButton) {
-        self.hideMenu()
+        self.hideMenu(stopRecitation: false)
         RecitationManager.pauseRecitation()
     }
     @IBAction func btnNext_TouchUp(_ sender: UIButton) {
-        self.hideMenu()
+        self.hideMenu(stopRecitation: false)
         RecitationManager.nextRecitation(onAudioPlayFinish: false)
     }
     
@@ -818,6 +826,10 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     @IBAction func btnHideShow_TouchUp(_ sender: Any) {
         self.hideMenu()
+        
+        if RecitationManager.validatePlayer() {
+            self.performSegue(withIdentifier: "SegueHideShow", sender: nil)
+        }
     }
     @IBAction func btnRecordCompare_TouchUp(_ sender: Any) {
         self.hideMenu()

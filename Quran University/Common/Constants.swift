@@ -87,6 +87,7 @@ struct ApplicationConstant {
     static let AssignmentBoundaryColor = UIColor.red.cgColor
     static let AssignmentMarkColor = UIColor.black.cgColor
     static let CorrectionBoundaryColor = UIColor.black.cgColor
+    static let HideMarkColor = UIColor.black.cgColor
     static let RowColor = UIColor(red: 248.0/255.0, green: 234.0/255.0, blue: 195.0/255.0, alpha: 1.0)
     static let RowSelectionColor = UIColor(red: 233.0/255.0, green: 231.0/255.0, blue: 224.0/255.0, alpha: 1.0)
     static let DatabaseFile = "QuranUniversity.sqlite"

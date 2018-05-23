@@ -687,6 +687,7 @@
 		04D215C720A06B7B00C0325D /* UploadAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D215C620A06B7B00C0325D /* UploadAssignmentView.swift */; };
 		04D2359F20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2359E20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift */; };
 		04D2D70520035878006D1342 /* AyatSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2D70420035878006D1342 /* AyatSelectionManager.swift */; };
+		04D3862F20B540BD00C5C251 /* BRMHideShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3862E20B540BD00C5C251 /* BRMHideShowViewController.swift */; };
 		04D44C6A20B29124009F146F /* CorrectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D44C6920B29124009F146F /* CorrectionDetailView.swift */; };
 		04D44C6C20B29198009F146F /* CorrectionDetailCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D44C6B20B29198009F146F /* CorrectionDetailCommentTableViewCell.swift */; };
 		04D452AB2070ECD100715CA8 /* BaseLeftMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D452AA2070ECD100715CA8 /* BaseLeftMenu.storyboard */; };
@@ -1405,6 +1406,7 @@
 		04D215C620A06B7B00C0325D /* UploadAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAssignmentView.swift; sourceTree = "<group>"; };
 		04D2359E20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionDetailTableViewCell.swift; sourceTree = "<group>"; };
 		04D2D70420035878006D1342 /* AyatSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyatSelectionManager.swift; sourceTree = "<group>"; };
+		04D3862E20B540BD00C5C251 /* BRMHideShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRMHideShowViewController.swift; sourceTree = "<group>"; };
 		04D44C6920B29124009F146F /* CorrectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionDetailView.swift; sourceTree = "<group>"; };
 		04D44C6B20B29198009F146F /* CorrectionDetailCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionDetailCommentTableViewCell.swift; sourceTree = "<group>"; };
 		04D452AA2070ECD100715CA8 /* BaseLeftMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BaseLeftMenu.storyboard; sourceTree = "<group>"; };
@@ -2204,6 +2206,7 @@
 		047CA64C2055467800DEED3A /* BaseRightMenu */ = {
 			isa = PBXGroup;
 			children = (
+				04D3862E20B540BD00C5C251 /* BRMHideShowViewController.swift */,
 				040A1D4C2057EDB3003913C2 /* BRMListenRepeatViewController.swift */,
 			);
 			path = BaseRightMenu;
@@ -3177,6 +3180,7 @@
 				04AB4D35205949490081A026 /* RecitationSilenceRepository.swift in Sources */,
 				04CE0AE920453E1D000CD6BF /* TMDownloadBookViewController.swift in Sources */,
 				04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */,
+				04D3862F20B540BD00C5C251 /* BRMHideShowViewController.swift in Sources */,
 				043429112079F8D700FB00A6 /* CorrectionModel.swift in Sources */,
 				040A0376200E119C00978E25 /* DPOptionViewController.swift in Sources */,
 				04D2D70520035878006D1342 /* AyatSelectionManager.swift in Sources */,

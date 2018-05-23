@@ -255,6 +255,8 @@ class AyatSelectionManager {
     }
     static func highlightAyatSelection(recitationName: String) {
         ayatSelectionList.lazy.filter { $0.isHidden == false }.forEach { ayatSelection in
+            ayatSelection.opacity = 0.5
+            
             if ayatSelection.accessibilityLabel == recitationName {
                 ayatSelection.fillColor = ApplicationConstant.AyatHighlightColor
             }
@@ -396,6 +398,12 @@ class AyatSelectionManager {
                 
                 break
             }
+        }
+    }
+    static func markAyatSelectionRangeForHide() {
+        ayatSelectionList.lazy.filter { $0.isHidden == false }.forEach { ayatSelection in
+            ayatSelection.opacity = 1.0
+            ayatSelection.fillColor = ApplicationConstant.HideMarkColor
         }
     }
     

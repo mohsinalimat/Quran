@@ -14,6 +14,8 @@ class RecitationManager {
     static var currentRecitationIndex = 0
     static var audioPlayerInitialized = false
     static var continuousRecitationModeOn = false
+    static var hideShowModeOn = false
+    static var hideShowPlayWithoutSound = false
     static var ayatRecitationSilence: Double = 0.0
     static var ayatRepeatFor: Int64 = 0
     static var rangeRecitationSilence: Double = 0.0
@@ -25,6 +27,7 @@ class RecitationManager {
     
     static func resetPlayer() {
         continuousRecitationModeOn = false
+        hideShowModeOn = false
         ayatRecitationSilence = 0.0
         ayatRepeatFor = 0
         rangeRecitationSilence = 0.0
@@ -215,7 +218,12 @@ class RecitationManager {
             do {
                 ApplicationObject.RecitationAudioPlayer = try AVAudioPlayer(contentsOf: fileURL)
                 ApplicationObject.RecitationAudioPlayer.delegate = ApplicationObject.MainViewController
+                ApplicationObject.RecitationAudioPlayer.volume = 1.0
                 audioPlayerInitialized = true
+                
+                if hideShowModeOn && hideShowPlayWithoutSound {
+                    ApplicationObject.RecitationAudioPlayer.volume = 0.0
+                }
                 
                 AyatSelectionManager.highlightAyatSelection(recitationName: recitationName)
             }

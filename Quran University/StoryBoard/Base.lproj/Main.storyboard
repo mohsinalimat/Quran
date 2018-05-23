@@ -383,6 +383,7 @@
                         <segue destination="Epn-Oa-rzP" kind="presentation" identifier="SegueListenRepeat" id="wQx-6X-fhH"/>
                         <segue destination="CFc-aQ-5ak" kind="presentation" identifier="SegueAssignment" id="ZNI-HL-cl2"/>
                         <segue destination="gfp-jE-wnO" kind="presentation" identifier="SegueCorrection" id="hep-Um-WVs"/>
+                        <segue destination="Zbt-8P-tyy" kind="presentation" identifier="SegueHideShow" id="eVR-lI-bin"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5FI-9r-R6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1105,6 +1106,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0H-8t-cj9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2091" y="615"/>
+        </scene>
+        <!--HideShow-->
+        <scene sceneID="c3k-5e-lEs">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BaseRightMenu" referencedIdentifier="HideShow" id="Zbt-8P-tyy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3E4-Ir-0fW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2074" y="569"/>
         </scene>
         <!--Assignment-->
         <scene sceneID="Ihj-cz-I7T">
