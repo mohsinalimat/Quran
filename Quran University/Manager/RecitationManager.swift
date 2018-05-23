@@ -407,6 +407,8 @@ class RecitationManager {
             stopRecitation()
             setPlayerMode(mode: .Ready)
             AyatSelectionManager.markAyatSelectionRangeForHideMode()
+            
+            audioPlayerInitialized = false
         }
     }
     

@@ -138,9 +138,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                     }
                     else {
                         setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
-                        RecitationManager.setPlayerMode(mode: .Ready)
                         
                         if RecitationManager.recitationList.first != nil {
+                            RecitationManager.setPlayerMode(mode: .Ready)
                             AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
                         }
                     }
@@ -339,11 +339,13 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         
         if stopRecitation {
             if RecitationManager.recitationList.first != nil {
+                RecitationManager.hideShowModeOn = false
+                
                 RecitationManager.restartRecitation()
+                RecitationManager.stopRecitation()
+                RecitationManager.setPlayerMode(mode: .Ready)
+                AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
             }
-            
-            RecitationManager.stopRecitation()
-            RecitationManager.setPlayerMode(mode: .Ready)
         }
     }
     func hideMenu(tag: Int) {
