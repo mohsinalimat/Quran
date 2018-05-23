@@ -400,10 +400,29 @@ class AyatSelectionManager {
             }
         }
     }
-    static func markAyatSelectionRangeForHide() {
+    static func markAyatSelectionRangeForHideMode() {
         ayatSelectionList.lazy.filter { $0.isHidden == false }.forEach { ayatSelection in
             ayatSelection.opacity = 1.0
             ayatSelection.fillColor = ApplicationConstant.HideMarkColor
+        }
+    }
+    static func highlightAyatSelectionForHideMode(recitationName: String) {
+        var markSelection = false
+        
+        ayatSelectionList.lazy.filter { $0.isHidden == false }.forEach { ayatSelection in
+            if ayatSelection.fillColor == ApplicationConstant.AyatHighlightColor && !markSelection {
+                ayatSelection.opacity = 0.5
+                ayatSelection.fillColor = ApplicationConstant.AyatSelectionColor
+            }
+            else if ayatSelection.accessibilityLabel == recitationName {
+                markSelection = true
+                ayatSelection.opacity = 0.5
+                ayatSelection.fillColor = ApplicationConstant.AyatHighlightColor
+            }
+            else if markSelection {
+                ayatSelection.opacity = 1.0
+                ayatSelection.fillColor = ApplicationConstant.HideMarkColor
+            }
         }
     }
     

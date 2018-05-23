@@ -91,6 +91,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             if let touch = touches.first {
                 if ivQuranPage.isUserInteractionEnabled &&
                     touch.view != vTopMenu &&
+                    touch.view != vPlayer &&
                     touch.view != vRecordAssignment &&
                     touch.view?.superview?.tag != ViewTag.RecordAssignment.rawValue &&
                     touch.view?.superview?.superview?.tag != ViewTag.RecordAssignment.rawValue &&
@@ -135,10 +136,13 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
                         vCorrectionDetail.initializeView()
                         AyatSelectionManager.selectCorrection(startTouchPoint: startTouchPoint, endTouchPoint: touchPoint)
                     }
-                    else if RecitationManager.recitationList.first != nil {
+                    else {
                         setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
                         RecitationManager.setPlayerMode(mode: .Ready)
-                        AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
+                        
+                        if RecitationManager.recitationList.first != nil {
+                            AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
+                        }
                     }
                 }
             }
@@ -334,11 +338,12 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.view.viewWithTag(ViewTag.CorrectionDetail.rawValue)?.isHidden = true
         
         if stopRecitation {
-            if RecitationManager.recitationList.count > 0 {
+            if RecitationManager.recitationList.first != nil {
                 RecitationManager.restartRecitation()
             }
             
             RecitationManager.stopRecitation()
+            RecitationManager.setPlayerMode(mode: .Ready)
         }
     }
     func hideMenu(tag: Int) {

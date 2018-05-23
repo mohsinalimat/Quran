@@ -221,11 +221,16 @@ class RecitationManager {
                 ApplicationObject.RecitationAudioPlayer.volume = 1.0
                 audioPlayerInitialized = true
                 
-                if hideShowModeOn && hideShowPlayWithoutSound {
-                    ApplicationObject.RecitationAudioPlayer.volume = 0.0
+                if hideShowModeOn {
+                    AyatSelectionManager.highlightAyatSelectionForHideMode(recitationName: recitationName)
+                    
+                    if hideShowPlayWithoutSound {
+                        ApplicationObject.RecitationAudioPlayer.volume = 0.0
+                    }
                 }
-                
-                AyatSelectionManager.highlightAyatSelection(recitationName: recitationName)
+                else {
+                    AyatSelectionManager.highlightAyatSelection(recitationName: recitationName)
+                }
             }
             catch {
                 downloadRecitationForCurrentPage()
@@ -337,7 +342,13 @@ class RecitationManager {
                 currentRecitationIndex = 0
                 
                 setPlayerMode(mode: .Ready)
-                AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
+                
+                if hideShowModeOn {
+                    AyatSelectionManager.highlightAyatSelectionForHideMode(recitationName: RecitationManager.recitationList.first!)
+                }
+                else {
+                    AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
+                }
             }
         }
         else {
@@ -391,6 +402,12 @@ class RecitationManager {
         setPlayerMode(mode: .Stop)
         playRecitation()
         setPlayerMode(mode: .Restart)
+        
+        if hideShowModeOn {
+            stopRecitation()
+            setPlayerMode(mode: .Ready)
+            AyatSelectionManager.markAyatSelectionRangeForHideMode()
+        }
     }
     
     static func setModeForContinuousRecitation(StartSurahId: Int64, EndSurahId: Int64, StartAyatOrderId: Int64, EndAyatOrderId: Int64, AyatRecitationSilence: Double, AyatRepeatFor: Int64, RangeRecitationSilence: Double, RangeRepeatFor: Int64) {

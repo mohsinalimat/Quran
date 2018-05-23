@@ -26,7 +26,7 @@ class BRMHideShowViewController: UIViewController {
         RecitationManager.hideShowPlayWithoutSound = chkWithoutSound.on
         RecitationManager.audioPlayerInitialized = false
         
-        AyatSelectionManager.markAyatSelectionRangeForHide()
+        AyatSelectionManager.markAyatSelectionRangeForHideMode()
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func btnTopClose_TouchUp(_ sender: Any) {
