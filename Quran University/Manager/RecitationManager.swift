@@ -344,7 +344,10 @@ class RecitationManager {
                 setPlayerMode(mode: .Ready)
                 
                 if hideShowModeOn {
-                    AyatSelectionManager.highlightAyatSelectionForHideMode(recitationName: RecitationManager.recitationList.first!)
+                    AyatSelectionManager.markAyatSelectionRangeForHideMode()
+                    
+                    audioPlayerInitialized = false
+//                    AyatSelectionManager.highlightAyatSelectionForHideMode(recitationName: RecitationManager.recitationList.first!)
                 }
                 else {
                     AyatSelectionManager.highlightAyatSelection(recitationName: RecitationManager.recitationList.first!)
