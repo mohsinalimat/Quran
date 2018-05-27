@@ -48,6 +48,7 @@ enum ViewTag: Int {
     case RecordAssignment = 600
     case UploadAssignment = 700
     case CorrectionDetail = 800
+    case ManageLibrary = 900
 }
 
 enum ContinuousRecitationMode: Int32 {

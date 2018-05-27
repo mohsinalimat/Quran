@@ -63,6 +63,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     // ********** Correction Detail Section ********** //
     @IBOutlet var vCorrectionDetail: CorrectionDetailView!
     
+    // ********** Manage Library Section ********** //
+    @IBOutlet var vManageLibrary: UIView!
+    
     var startTouchPoint = CGPoint()
     var startDate = Date()
     var pageLocked = false
@@ -327,6 +330,16 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         vCorrectionDetail.frame = CGRect(x: x, y: y, width: width, height: height)
         
         self.view.addSubview(vCorrectionDetail)
+        
+        x = vFooter.frame.origin.x
+        y = vFooter.frame.origin.y - vManageLibrary.bounds.height
+        height = vManageLibrary.frame.size.height
+        width = vFooter.frame.size.width
+        
+        vManageLibrary.tag = ViewTag.ManageLibrary.rawValue
+        vManageLibrary.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        self.view.addSubview(vManageLibrary)
     }
     func hideMenu(stopRecitation: Bool = true) {
         self.view.viewWithTag(ViewTag.TopMenu.rawValue)?.isHidden = true

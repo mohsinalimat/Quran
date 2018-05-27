@@ -367,6 +367,7 @@
                         <outlet property="vFooter" destination="SJS-9O-BG0" id="McY-uQ-maY"/>
                         <outlet property="vHeader" destination="56n-73-bc1" id="MdY-n4-v4s"/>
                         <outlet property="vListenRepeat" destination="Ruj-iU-cMT" id="DvF-no-Ro4"/>
+                        <outlet property="vManageLibrary" destination="IgY-yD-EHU" id="ZJ8-bi-QGl"/>
                         <outlet property="vPlayer" destination="HmC-2a-kJ6" id="zDo-rI-VgX"/>
                         <outlet property="vRecordAssignment" destination="epU-Hb-UNk" id="BIT-3X-USK"/>
                         <outlet property="vRecordCompare" destination="RZv-Ij-J1M" id="DHw-F3-Ynr"/>
@@ -983,7 +984,7 @@
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="nXd-NA-3gw" customClass="CorrectionDetailView" customModule="Quran_University" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="192" height="93"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_CorrectionDetail" translatesAutoresizingMaskIntoConstraints="NO" id="km0-E2-Sgb">
                             <rect key="frame" x="0.0" y="0.0" width="192" height="93"/>
@@ -1045,6 +1046,21 @@
                         <outlet property="btnPlayPause" destination="hzB-nc-xgl" id="uYB-sF-glA"/>
                         <outlet property="tvCorrectionDetailComment" destination="pHc-8S-Dmi" id="W41-wQ-KC6"/>
                     </connections>
+                </view>
+                <view contentMode="scaleToFill" id="IgY-yD-EHU">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PJk-jF-Qnq">
+                            <rect key="frame" x="5" y="6" width="230" height="57"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <segue destination="wz2-bl-X75" kind="embed" id="Lg3-uN-Heo"/>
+                            </connections>
+                        </containerView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="uWj-Qa-1KK"/>
                 </view>
                 <swipeGestureRecognizer direction="left" id="P1Z-F7-j9R">
                     <connections>
@@ -1146,6 +1162,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FV5-YI-N1Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1796" y="314"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ab7-MO-pHY">
+            <objects>
+                <viewController id="wz2-bl-X75" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eFQ-wV-XjW">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="57"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7q-Ug-FoW">
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="57"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTV-BV-ce5">
+                                        <rect key="frame" x="0.0" y="0.0" width="500" height="57"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTW-jD-6US" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                                                <rect key="frame" x="17" y="13" width="46" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                                                        <color key="value" red="0.97254901960784312" green="0.85882352941176465" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                                                        <color key="value" red="0.76470588235294112" green="0.61960784313725492" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuF-eu-xmf">
+                                                <rect key="frame" x="440" y="13" width="46" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="500" id="LX8-tP-HK1"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="UTV-BV-ce5" secondAttribute="bottom" id="0rz-50-idH"/>
+                                    <constraint firstAttribute="trailing" secondItem="UTV-BV-ce5" secondAttribute="trailing" id="5AK-Tl-oJH"/>
+                                    <constraint firstItem="UTV-BV-ce5" firstAttribute="top" secondItem="U7q-Ug-FoW" secondAttribute="top" id="COb-GL-vDD"/>
+                                    <constraint firstItem="UTV-BV-ce5" firstAttribute="leading" secondItem="U7q-Ug-FoW" secondAttribute="leading" id="Sdw-4G-zac"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UTV-BV-ce5" firstAttribute="height" secondItem="eFQ-wV-XjW" secondAttribute="height" id="3f4-DP-IP8"/>
+                            <constraint firstItem="U7q-Ug-FoW" firstAttribute="leading" secondItem="eFQ-wV-XjW" secondAttribute="leading" id="7if-73-UN5"/>
+                            <constraint firstAttribute="bottom" secondItem="U7q-Ug-FoW" secondAttribute="bottom" id="FUI-HP-KYt"/>
+                            <constraint firstItem="U7q-Ug-FoW" firstAttribute="top" secondItem="eFQ-wV-XjW" secondAttribute="top" id="Fis-GX-qlW"/>
+                            <constraint firstAttribute="trailing" secondItem="U7q-Ug-FoW" secondAttribute="trailing" id="gZs-gK-MtJ"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="500" height="57"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4gj-rI-oev" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3517" y="-233"/>
         </scene>
     </scenes>
     <resources>
