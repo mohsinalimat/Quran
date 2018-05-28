@@ -90,6 +90,8 @@ struct ApplicationConstant {
     static let HideMarkColor = UIColor.black.cgColor
     static let RowColor = UIColor(red: 248.0/255.0, green: 234.0/255.0, blue: 195.0/255.0, alpha: 1.0)
     static let RowSelectionColor = UIColor(red: 233.0/255.0, green: 231.0/255.0, blue: 224.0/255.0, alpha: 1.0)
+    static let ButtonTextHighlightColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    static let ButtonTextColor = UIColor(red: 103.0/255.0, green: 89.0/255.0, blue: 55.0/255.0, alpha: 1.0)
     static let DatabaseFile = "QuranUniversity.sqlite"
     static let QuranPageType = ".png"
     static let QuranRecitationType = ".mp3"

@@ -72,6 +72,8 @@
 		04C67B1620187E8900DDAB45 /* RecitationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C67B1520187E8900DDAB45 /* RecitationManager.swift */; };
 		04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6EC9C20109748009EE339 /* ApplicationMethods.swift */; };
 		04C6EC9F2010A976009EE339 /* GlobalObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6EC9E2010A976009EE339 /* GlobalObjects.swift */; };
+		04C82A0E20BBF53600885D24 /* MManageLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82A0D20BBF53600885D24 /* MManageLibraryViewController.swift */; };
+		04C82A1020BBF59C00885D24 /* ManageLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82A0F20BBF59C00885D24 /* ManageLibraryView.swift */; };
 		04CA135C20075CA600D8B494 /* 111003.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04CA111D20075C8900D8B494 /* 111003.mp3 */; };
 		04CA135D20075CA600D8B494 /* 081026.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04CA111E20075C8900D8B494 /* 081026.mp3 */; };
 		04CA135E20075CA600D8B494 /* 088021.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04CA111F20075C8900D8B494 /* 088021.mp3 */; };
@@ -791,6 +793,8 @@
 		04C67B1520187E8900DDAB45 /* RecitationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationManager.swift; sourceTree = "<group>"; };
 		04C6EC9C20109748009EE339 /* ApplicationMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMethods.swift; sourceTree = "<group>"; };
 		04C6EC9E2010A976009EE339 /* GlobalObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalObjects.swift; sourceTree = "<group>"; };
+		04C82A0D20BBF53600885D24 /* MManageLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MManageLibraryViewController.swift; sourceTree = "<group>"; };
+		04C82A0F20BBF59C00885D24 /* ManageLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageLibraryView.swift; sourceTree = "<group>"; };
 		04CA111D20075C8900D8B494 /* 111003.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 111003.mp3; sourceTree = "<group>"; };
 		04CA111E20075C8900D8B494 /* 081026.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 081026.mp3; sourceTree = "<group>"; };
 		04CA111F20075C8900D8B494 /* 088021.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 088021.mp3; sourceTree = "<group>"; };
@@ -1487,6 +1491,7 @@
 			children = (
 				0415F37A2002107600041C3D /* MLoginViewController.swift */,
 				0415F38E200210E100041C3D /* MMainViewController.swift */,
+				04C82A0D20BBF53600885D24 /* MManageLibraryViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1553,6 +1558,7 @@
 				04D44C6920B29124009F146F /* CorrectionDetailView.swift */,
 				04D44C6B20B29198009F146F /* CorrectionDetailCommentTableViewCell.swift */,
 				04D9301920A2D94E00F7EEF0 /* CorrectionTableViewCell.swift */,
+				04C82A0F20BBF59C00885D24 /* ManageLibraryView.swift */,
 				04332590201DB201000FD494 /* QUButton.swift */,
 				0433258E201DAE4A000FD494 /* QUView.swift */,
 				04CB5E2B2026E92D00BA6424 /* ReciterTableViewCell.swift */,
@@ -3175,6 +3181,7 @@
 				048D662C204FDEA9007185EC /* BookManager.swift in Sources */,
 				0433258F201DAE4A000FD494 /* QUView.swift in Sources */,
 				048D662E20500257007185EC /* BookTableViewCell.swift in Sources */,
+				04C82A0E20BBF53600885D24 /* MManageLibraryViewController.swift in Sources */,
 				04614C4F20737A65000F9922 /* AssignmentTableViewCell.swift in Sources */,
 				04AE122C20235A9C00001FB7 /* TMAvailableReciterViewController.swift in Sources */,
 				04AB4D35205949490081A026 /* RecitationSilenceRepository.swift in Sources */,
@@ -3224,6 +3231,7 @@
 				0495EA10200F65E400EC35D1 /* Protocols.swift in Sources */,
 				04BF323020AAD95A001C7415 /* StudentMediaManager.swift in Sources */,
 				04C2BA8D20AD9557004DB7AB /* CorrectionManager.swift in Sources */,
+				04C82A1020BBF59C00885D24 /* ManageLibraryView.swift in Sources */,
 				04231F00203C10E700740A9C /* TranslationBookRepository.swift in Sources */,
 				04D1CBAF2075FE7100334912 /* AssignmentManager.swift in Sources */,
 				04BBCB552032C43400D347BC /* BaseViewController.swift in Sources */,
