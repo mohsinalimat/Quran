@@ -72,7 +72,7 @@
 		04C67B1620187E8900DDAB45 /* RecitationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C67B1520187E8900DDAB45 /* RecitationManager.swift */; };
 		04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6EC9C20109748009EE339 /* ApplicationMethods.swift */; };
 		04C6EC9F2010A976009EE339 /* GlobalObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6EC9E2010A976009EE339 /* GlobalObjects.swift */; };
-		04C82A0E20BBF53600885D24 /* MManageLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82A0D20BBF53600885D24 /* MManageLibraryViewController.swift */; };
+		04C82A0E20BBF53600885D24 /* MManageLibraryHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82A0D20BBF53600885D24 /* MManageLibraryHeaderViewController.swift */; };
 		04C82A1020BBF59C00885D24 /* ManageLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82A0F20BBF59C00885D24 /* ManageLibraryView.swift */; };
 		04CA135C20075CA600D8B494 /* 111003.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04CA111D20075C8900D8B494 /* 111003.mp3 */; };
 		04CA135D20075CA600D8B494 /* 081026.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04CA111E20075C8900D8B494 /* 081026.mp3 */; };
@@ -688,6 +688,7 @@
 		04D1CBAF2075FE7100334912 /* AssignmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1CBAE2075FE7100334912 /* AssignmentManager.swift */; };
 		04D215C720A06B7B00C0325D /* UploadAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D215C620A06B7B00C0325D /* UploadAssignmentView.swift */; };
 		04D2359F20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2359E20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift */; };
+		04D2870720BD237C00BFBFBC /* LibraryBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2870620BD237C00BFBFBC /* LibraryBookTableViewCell.swift */; };
 		04D2D70520035878006D1342 /* AyatSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D2D70420035878006D1342 /* AyatSelectionManager.swift */; };
 		04D3862F20B540BD00C5C251 /* BRMHideShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D3862E20B540BD00C5C251 /* BRMHideShowViewController.swift */; };
 		04D44C6A20B29124009F146F /* CorrectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D44C6920B29124009F146F /* CorrectionDetailView.swift */; };
@@ -793,7 +794,7 @@
 		04C67B1520187E8900DDAB45 /* RecitationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationManager.swift; sourceTree = "<group>"; };
 		04C6EC9C20109748009EE339 /* ApplicationMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMethods.swift; sourceTree = "<group>"; };
 		04C6EC9E2010A976009EE339 /* GlobalObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalObjects.swift; sourceTree = "<group>"; };
-		04C82A0D20BBF53600885D24 /* MManageLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MManageLibraryViewController.swift; sourceTree = "<group>"; };
+		04C82A0D20BBF53600885D24 /* MManageLibraryHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MManageLibraryHeaderViewController.swift; sourceTree = "<group>"; };
 		04C82A0F20BBF59C00885D24 /* ManageLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageLibraryView.swift; sourceTree = "<group>"; };
 		04CA111D20075C8900D8B494 /* 111003.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 111003.mp3; sourceTree = "<group>"; };
 		04CA111E20075C8900D8B494 /* 081026.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 081026.mp3; sourceTree = "<group>"; };
@@ -1409,6 +1410,7 @@
 		04D1CBAE2075FE7100334912 /* AssignmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentManager.swift; sourceTree = "<group>"; };
 		04D215C620A06B7B00C0325D /* UploadAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAssignmentView.swift; sourceTree = "<group>"; };
 		04D2359E20A86BF600B9A22E /* CorrectionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionDetailTableViewCell.swift; sourceTree = "<group>"; };
+		04D2870620BD237C00BFBFBC /* LibraryBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBookTableViewCell.swift; sourceTree = "<group>"; };
 		04D2D70420035878006D1342 /* AyatSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyatSelectionManager.swift; sourceTree = "<group>"; };
 		04D3862E20B540BD00C5C251 /* BRMHideShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRMHideShowViewController.swift; sourceTree = "<group>"; };
 		04D44C6920B29124009F146F /* CorrectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionDetailView.swift; sourceTree = "<group>"; };
@@ -1491,7 +1493,7 @@
 			children = (
 				0415F37A2002107600041C3D /* MLoginViewController.swift */,
 				0415F38E200210E100041C3D /* MMainViewController.swift */,
-				04C82A0D20BBF53600885D24 /* MManageLibraryViewController.swift */,
+				04C82A0D20BBF53600885D24 /* MManageLibraryHeaderViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1558,6 +1560,7 @@
 				04D44C6920B29124009F146F /* CorrectionDetailView.swift */,
 				04D44C6B20B29198009F146F /* CorrectionDetailCommentTableViewCell.swift */,
 				04D9301920A2D94E00F7EEF0 /* CorrectionTableViewCell.swift */,
+				04D2870620BD237C00BFBFBC /* LibraryBookTableViewCell.swift */,
 				04C82A0F20BBF59C00885D24 /* ManageLibraryView.swift */,
 				04332590201DB201000FD494 /* QUButton.swift */,
 				0433258E201DAE4A000FD494 /* QUView.swift */,
@@ -3181,7 +3184,7 @@
 				048D662C204FDEA9007185EC /* BookManager.swift in Sources */,
 				0433258F201DAE4A000FD494 /* QUView.swift in Sources */,
 				048D662E20500257007185EC /* BookTableViewCell.swift in Sources */,
-				04C82A0E20BBF53600885D24 /* MManageLibraryViewController.swift in Sources */,
+				04C82A0E20BBF53600885D24 /* MManageLibraryHeaderViewController.swift in Sources */,
 				04614C4F20737A65000F9922 /* AssignmentTableViewCell.swift in Sources */,
 				04AE122C20235A9C00001FB7 /* TMAvailableReciterViewController.swift in Sources */,
 				04AB4D35205949490081A026 /* RecitationSilenceRepository.swift in Sources */,
@@ -3258,6 +3261,7 @@
 				048C4294200234D3003904F1 /* Ayat.swift in Sources */,
 				04D452AE2070FDDA00715CA8 /* BLMAssignmentViewController.swift in Sources */,
 				04C6EC9F2010A976009EE339 /* GlobalObjects.swift in Sources */,
+				04D2870720BD237C00BFBFBC /* LibraryBookTableViewCell.swift in Sources */,
 				048D215920162BE600F61E14 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

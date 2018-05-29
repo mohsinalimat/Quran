@@ -64,7 +64,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     @IBOutlet var vCorrectionDetail: CorrectionDetailView!
     
     // ********** Manage Library Section ********** //
-    @IBOutlet var vManageLibrary: UIView!
+    @IBOutlet var vManageLibrary: ManageLibraryView!
     
     var startTouchPoint = CGPoint()
     var startDate = Date()
@@ -888,5 +888,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     @IBAction func btnLibrary_TouchUp(_ sender: Any) {
         showHideMenu(tag: ViewTag.ManageLibrary.rawValue)
+        
+        vManageLibrary.initializeView()
     }
 }

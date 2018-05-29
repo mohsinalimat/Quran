@@ -1,6 +1,6 @@
 import UIKit
 
-class MManageLibraryViewController: UIViewController {
+class MManageLibraryHeaderViewController: UIViewController {
     @IBOutlet weak var vMainScroll: UIScrollView!
     @IBOutlet weak var btnTafseer: UIButton!
     @IBOutlet weak var btnTranslation: UIButton!

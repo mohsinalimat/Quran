@@ -1058,14 +1058,54 @@
                                 <segue destination="wz2-bl-X75" kind="embed" id="Lg3-uN-Heo"/>
                             </connections>
                         </containerView>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZYh-oA-t6Y">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pzb-LI-oc3">
                             <rect key="frame" x="2" y="59" width="346" height="139"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
+                            <prototypes>
+                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tvcLibraryBook" id="Io3-Ju-of1" customClass="LibraryBookTableViewCell" customModule="Quran_University" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="28" width="346" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Io3-Ju-of1" id="BZI-Vu-2ei">
+                                        <rect key="frame" x="0.0" y="0.0" width="346" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBj-rE-JRQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="346" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zw2-2O-Ykx">
+                                                <rect key="frame" x="0.0" y="20" width="346" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="VBj-rE-JRQ" firstAttribute="leading" secondItem="BZI-Vu-2ei" secondAttribute="leading" id="5tg-pQ-i40"/>
+                                            <constraint firstItem="VBj-rE-JRQ" firstAttribute="top" secondItem="BZI-Vu-2ei" secondAttribute="top" id="LwW-qf-ct4"/>
+                                            <constraint firstAttribute="trailing" secondItem="zw2-2O-Ykx" secondAttribute="trailing" id="R9f-TY-gmD"/>
+                                            <constraint firstItem="zw2-2O-Ykx" firstAttribute="leading" secondItem="BZI-Vu-2ei" secondAttribute="leading" id="Sci-1a-oBk"/>
+                                            <constraint firstItem="zw2-2O-Ykx" firstAttribute="top" secondItem="VBj-rE-JRQ" secondAttribute="bottom" id="ddC-8Z-K7d"/>
+                                            <constraint firstAttribute="bottom" secondItem="zw2-2O-Ykx" secondAttribute="bottom" id="rf8-dL-vUV"/>
+                                            <constraint firstAttribute="trailing" secondItem="VBj-rE-JRQ" secondAttribute="trailing" id="uAz-82-4ty"/>
+                                        </constraints>
+                                    </tableViewCellContentView>
+                                    <connections>
+                                        <outlet property="lblAyat" destination="zw2-2O-Ykx" id="0LH-EG-Srf"/>
+                                        <outlet property="lblBook" destination="VBj-rE-JRQ" id="75X-fo-5i6"/>
+                                    </connections>
+                                </tableViewCell>
+                            </prototypes>
+                        </tableView>
                     </subviews>
                     <color key="backgroundColor" red="0.66666666666666663" green="0.50196078431372548" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                     <viewLayoutGuide key="safeArea" id="uWj-Qa-1KK"/>
+                    <connections>
+                        <outlet property="tvLibraryBook" destination="pzb-LI-oc3" id="f6r-QT-hds"/>
+                    </connections>
                 </view>
                 <swipeGestureRecognizer direction="left" id="P1Z-F7-j9R">
                     <connections>
@@ -1168,10 +1208,10 @@
             </objects>
             <point key="canvasLocation" x="1796" y="314"/>
         </scene>
-        <!--Manage Library View Controller-->
+        <!--Manage Library Header View Controller-->
         <scene sceneID="ab7-MO-pHY">
             <objects>
-                <viewController id="wz2-bl-X75" customClass="MManageLibraryViewController" customModule="Quran_University" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wz2-bl-X75" customClass="MManageLibraryHeaderViewController" customModule="Quran_University" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eFQ-wV-XjW">
                         <rect key="frame" x="0.0" y="0.0" width="1100" height="57"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
