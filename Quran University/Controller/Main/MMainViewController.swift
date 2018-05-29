@@ -87,6 +87,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         ApplicationObject.PauseButton = btnPause
         ApplicationObject.NextButton = btnNext
         
+        vManageLibrary.initializeView()
+        
         PageManager.showQuranPage(scriptId: ApplicationData.CurrentScript.Id, pageId: ApplicationData.CurrentPage.Id)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -587,6 +589,11 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             self.vRecordAssignment.recordStopRecording()
         }
     }
+    func loadLibraryBook(libraryBook: LibraryBookMode) {
+        if vManageLibrary != nil {
+            vManageLibrary.loadView(libraryBookMode: libraryBook)
+        }
+    }
     
     // ********** Header Section ********** //
     @IBAction func btnMenu_TouchUp(_ sender: UIButton) {
@@ -888,7 +895,5 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     @IBAction func btnLibrary_TouchUp(_ sender: Any) {
         showHideMenu(tag: ViewTag.ManageLibrary.rawValue)
-        
-        vManageLibrary.initializeView()
     }
 }

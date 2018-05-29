@@ -13,10 +13,10 @@ class MManageLibraryHeaderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        highlightButton(btnHighlighted: btnTafseer)
+        highlightButton(btnHighlighted: btnTafseer, libraryBookMode: .Tafseer)
     }
     
-    func highlightButton(btnHighlighted: UIButton) {
+    func highlightButton(btnHighlighted: UIButton, libraryBookMode: LibraryBookMode) {
         btnTafseer.setTitleColor(ApplicationConstant.ButtonTextColor, for: .normal)
         btnTranslation.setTitleColor(ApplicationConstant.ButtonTextColor, for: .normal)
         btnWordMeaning.setTitleColor(ApplicationConstant.ButtonTextColor, for: .normal)
@@ -35,24 +35,31 @@ class MManageLibraryHeaderViewController: UIViewController {
         vHighlightBar.frame = rect
         
         vMainScroll.scrollRectToVisible(rect, animated: true)
+        
+        if libraryBookMode != .None {
+            ApplicationObject.MainViewController.loadLibraryBook(libraryBook: libraryBookMode)
+        }
+        else {
+            
+        }
     }
     
     @IBAction func btnTafseer_TouchUp(_ sender: Any) {
-        highlightButton(btnHighlighted: btnTafseer)
+        highlightButton(btnHighlighted: btnTafseer, libraryBookMode: .Tafseer)
     }
     @IBAction func btnTranslation_TouchUp(_ sender: Any) {
-        highlightButton(btnHighlighted: btnTranslation)
+        highlightButton(btnHighlighted: btnTranslation, libraryBookMode: .Translation)
     }
     @IBAction func btnWordMeaning_TouchUp(_ sender: Any) {
-        highlightButton(btnHighlighted: btnWordMeaning)
+        highlightButton(btnHighlighted: btnWordMeaning, libraryBookMode: .WordMeaning)
     }
     @IBAction func btnCausesOfRevelation_TouchUp(_ sender: Any) {
-        highlightButton(btnHighlighted: btnCausesOfRevelation)
+        highlightButton(btnHighlighted: btnCausesOfRevelation, libraryBookMode: .CauseOfRevelation)
     }
     @IBAction func btnTajwid_TouchUp(_ sender: Any) {
-        highlightButton(btnHighlighted: btnTajwid)
+        highlightButton(btnHighlighted: btnTajwid, libraryBookMode: .None)
     }
     @IBAction func btnMyNotes_TouchUp(_ sender: Any) {
-        highlightButton(btnHighlighted: btnMyNotes)
+        highlightButton(btnHighlighted: btnMyNotes, libraryBookMode: .None)
     }
 }

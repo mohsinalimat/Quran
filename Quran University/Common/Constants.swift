@@ -114,6 +114,8 @@ struct ApplicationLabel {
     static let CHECKED = ApplicationData.CurrentLanguageMode == .English ? "Checked" : "Checked"
     static let RESUBMITTED = ApplicationData.CurrentLanguageMode == .English ? "Resubmitted" : "Resubmitted"
     static let RECHECKED = ApplicationData.CurrentLanguageMode == .English ? "Rechecked" : "Rechecked"
+    static let LANGUAGE = ApplicationData.CurrentLanguageMode == .English ? "Language" : "Language"
+    static let BOOK = ApplicationData.CurrentLanguageMode == .English ? "Book" : "Book"
 }
 
 struct ApplicationHeading {

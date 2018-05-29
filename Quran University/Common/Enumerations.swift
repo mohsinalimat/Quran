@@ -129,3 +129,11 @@ enum FileMissingMode: Int32 {
     case Audio = 2
     case Script = 3
 }
+
+enum LibraryBookMode: Int32 {
+    case None = 0
+    case Tafseer = 1
+    case Translation = 2
+    case WordMeaning = 3
+    case CauseOfRevelation = 4
+}

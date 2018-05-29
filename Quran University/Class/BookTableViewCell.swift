@@ -25,7 +25,6 @@ class BookTableViewCell: UITableViewCell {
                 ApplicationData.WordMeaningBookList = ApplicationData.WordMeaningBookList.lazy.filter { $0.Id != self.Id }
             }
             
-            
             break
         case .Tafseer:
             if isSelected {
@@ -34,7 +33,6 @@ class BookTableViewCell: UITableViewCell {
             else {
                 ApplicationData.TafseerBookList = ApplicationData.TafseerBookList.lazy.filter { $0.Id != self.Id }
             }
-            
             
             break
         case .Translation:
@@ -45,7 +43,6 @@ class BookTableViewCell: UITableViewCell {
                 ApplicationData.TranslationBookList = ApplicationData.TranslationBookList.lazy.filter { $0.Id != self.Id }
             }
             
-            
             break
         case .CauseOfRevelation:
             if isSelected {
@@ -54,7 +51,6 @@ class BookTableViewCell: UITableViewCell {
             else {
                 ApplicationData.CauseOfRevelationBookList = ApplicationData.CauseOfRevelationBookList.lazy.filter { $0.Id != self.Id }
             }
-            
             
             break
         }
