@@ -178,4 +178,47 @@ class TafseerBookDetailRepository : BaseRepository {
             return false
         }
     }
+    func getTafseerBookDetail(tafseerBookId: Int64, surahId: Int64, ayatId: Int64) -> TafseerBookDetail {
+        var stmt: OpaquePointer?
+        let tafseerBookDetailObject = TafseerBookDetail()
+        let queryString = "SELECT * FROM TafseerBookDetail WHERE TafseerBookId = ? AND SurahId = ? AND AyatId = ? AND IsDeleted = 0"
+        
+        if sqlite3_prepare(database, queryString, -1, &stmt, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(database)!)
+            print("error preparing select: \(errmsg)")
+            return tafseerBookDetailObject
+        }
+        
+        if sqlite3_bind_int64(stmt, 1, tafseerBookId) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(database)!)
+            print("failure binding TafseerBookId: \(errmsg)")
+            return tafseerBookDetailObject
+        }
+        
+        if sqlite3_bind_int64(stmt, 2, surahId) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(database)!)
+            print("failure binding SurahId: \(errmsg)")
+            return tafseerBookDetailObject
+        }
+        
+        if sqlite3_bind_int64(stmt, 3, ayatId) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(database)!)
+            print("failure binding AyatId: \(errmsg)")
+            return tafseerBookDetailObject
+        }
+        
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            tafseerBookDetailObject.Id = sqlite3_column_int64(stmt, 0)
+            tafseerBookDetailObject.SurahId = sqlite3_column_int64(stmt, 1)
+            tafseerBookDetailObject.AyatOrder = sqlite3_column_int64(stmt, 2)
+            tafseerBookDetailObject.AyatId = sqlite3_column_int64(stmt, 3)
+            tafseerBookDetailObject.AyatTafseer = String(cString: sqlite3_column_text(stmt, 4)!) as String
+            tafseerBookDetailObject.TafseerBookId = sqlite3_column_int64(stmt, 5)
+            tafseerBookDetailObject.IsDeleted = sqlite3_column_int64(stmt, 6) == 1 ? true : false
+        }
+        
+        sqlite3_finalize(stmt)
+        
+        return tafseerBookDetailObject
+    }
 }

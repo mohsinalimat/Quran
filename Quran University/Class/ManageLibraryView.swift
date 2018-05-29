@@ -49,11 +49,11 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
         case .Tafseer:
             let objTafseerBook = ApplicationData.TafseerBookList[indexPath.row]
             let objLanguage = LanguageRepository().getLanguage(Id: objTafseerBook.LanguageId)
+            let objRecitation = RecitationManager.getRecitation(recitationIndex: RecitationManager.currentRecitationIndex)
+            let objTafseerBookDetail = TafseerBookDetailRepository().getTafseerBookDetail(tafseerBookId: objTafseerBook.Id, surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
             
             tvcLibraryBook.lblBook.text = ApplicationLabel.LANGUAGE + ": " + objLanguage.Name + ", " + ApplicationLabel.BOOK + ": " + objTafseerBook.Name
-            tvcLibraryBook.lblAyat.text = """
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non felis mi. Nullam et sagittis velit. Nunc vulputate sollicitudin dui sed aliquet. Aenean ut arcu iaculis, euismod libero ut, porttitor nisi. Integer ac lobortis erat, ut mollis lectus. Aliquam et libero dui. Proin sit amet eros non neque pharetra dapibus in in orci. Donec et quam molestie, tincidunt sem eu, molestie ante. Suspendisse at vulputate ipsum. Phasellus convallis lorem quis erat pellentesque, lacinia maximus metus rutrum. Nunc vitae dui ullamcorper, pulvinar nisl porta, volutpat odio.
-            """
+            tvcLibraryBook.lblAyat.text = objTafseerBookDetail.AyatTafseer
             
             break
         case .Translation:
