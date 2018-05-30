@@ -351,7 +351,6 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.view.viewWithTag(ViewTag.RecordAssignment.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.UploadAssignment.rawValue)?.isHidden = true
         self.view.viewWithTag(ViewTag.CorrectionDetail.rawValue)?.isHidden = true
-        self.view.viewWithTag(ViewTag.ManageLibrary.rawValue)?.isHidden = true
         
         if stopRecitation {
             if RecitationManager.recitationList.first != nil {

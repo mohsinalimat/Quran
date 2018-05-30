@@ -51,23 +51,75 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
             let objLanguage = LanguageRepository().getLanguage(Id: objTafseerBook.LanguageId)
             let objRecitation = RecitationManager.getRecitation(recitationIndex: RecitationManager.currentRecitationIndex)
             let objTafseerBookDetail = TafseerBookDetailRepository().getTafseerBookDetail(tafseerBookId: objTafseerBook.Id, surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
-            
-            tvcLibraryBook.lblBook.text = ApplicationLabel.LANGUAGE + ": " + objLanguage.Name + ", " + ApplicationLabel.BOOK + ": " + objTafseerBook.Name
+//            let bookText = NSMutableAttributedString(string: ApplicationLabel.LANGUAGE + ": ")
+//            var temp = NSMutableAttributedString(string: objLanguage.Name)
+//            var bookRange = NSRange(location: 0, length: 0)
+//            var startIndex = bookText.length
+//
+//            bookText.append(temp)
+//            bookRange = NSRange(location: startIndex, length: temp.length)
+//            bookText.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.gray, range: bookRange)
+//
+//            bookText.append(NSMutableAttributedString(string: ", " + ApplicationLabel.BOOK + ": "))
+//            startIndex = bookText.length
+//            temp = NSMutableAttributedString(string: objTafseerBook.Name)
+//
+//            bookText.append(temp)
+//            bookRange = NSRange(location: startIndex, length: temp.length)
+//            bookText.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.blue, range: bookRange)
+//
+//            tvcLibraryBook.lblBook.attributedText = bookText
+            tvcLibraryBook.lblBook.text = ApplicationLabel.LANGUAGE + ": '" + objLanguage.Name + "' , " + ApplicationLabel.BOOK + ": '" + objTafseerBook.Name + "'"
             tvcLibraryBook.lblAyat.text = objTafseerBookDetail.AyatTafseer
+            
+            if !objLanguage.IsLanguageLTR {
+                tvcLibraryBook.lblAyat.textAlignment = .right
+            }
             
             break
         case .Translation:
-            tvcLibraryBook.lblBook.text = "Book 1"
-            tvcLibraryBook.lblAyat.text = """
-            Sed ut magna vel arcu gravida tincidunt eget et quam. Etiam molestie eros vitae sapien varius, pretium aliquam elit luctus. Praesent faucibus justo eros, nec sagittis urna tempor in. In hac habitasse platea dictumst. Morbi quis ipsum quis metus vulputate volutpat. Sed suscipit egestas mollis. Duis ut arcu tincidunt, finibus sem ut, sollicitudin ipsum.
-            """
+            let objTranslationBook = ApplicationData.TranslationBookList[indexPath.row]
+            let objLanguage = LanguageRepository().getLanguage(Id: objTranslationBook.LanguageId)
+            let objRecitation = RecitationManager.getRecitation(recitationIndex: RecitationManager.currentRecitationIndex)
+            let objTranslationBookDetail = TranslationBookDetailRepository().getTranslationBookDetail(translationBookId: objTranslationBook.Id, surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
+            
+            tvcLibraryBook.lblBook.text = ApplicationLabel.LANGUAGE + ": '" + objLanguage.Name + "' , " + ApplicationLabel.BOOK + ": '" + objTranslationBook.Name + "'"
+            tvcLibraryBook.lblAyat.text = objTranslationBookDetail.AyatTranslation
+            
+            if !objLanguage.IsLanguageLTR {
+                tvcLibraryBook.lblAyat.textAlignment = .right
+            }
             
             break
         case .WordMeaning:
-            tvcLibraryBook.lblBook.text = "Book 1"
-            tvcLibraryBook.lblAyat.text = """
-            Mauris non quam in urna porttitor sodales. Pellentesque varius, est ac luctus pretium, nunc quam dapibus lorem, quis auctor tellus tellus eu mi. Pellentesque quis nisi quis lacus porta mollis. Pellentesque finibus lacus nec rhoncus pretium. Maecenas vitae urna sit amet purus iaculis suscipit ut quis lacus. In tempor arcu quis eros efficitur vestibulum. Mauris id mauris ut quam sollicitudin bibendum eu vel sapien. Integer malesuada sem nec sem elementum, non facilisis nunc porta. Morbi a risus ut erat euismod gravida in ac felis. Fusce feugiat ex sit amet erat sagittis imperdiet. Ut aliquet ornare massa in bibendum. Praesent lorem dui, convallis id quam vel, commodo consectetur eros. Sed sed tempor quam. Proin gravida rhoncus sapien, eu luctus urna pharetra ut. Nunc a ex in tellus convallis cursus.
-            """
+            let objWordMeaningBook = ApplicationData.WordMeaningBookList[indexPath.row]
+            let objLanguage = LanguageRepository().getLanguage(Id: objWordMeaningBook.LanguageId)
+            let objRecitation = RecitationManager.getRecitation(recitationIndex: RecitationManager.currentRecitationIndex)
+            let lstWordMeaningBookDetail = WordMeaningBookDetailRepository().getWordMeaningBookDetailList(wordMeaningBookId: objWordMeaningBook.Id, surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
+            let ayatText = NSMutableAttributedString(string: "")
+            
+            tvcLibraryBook.lblBook.text = ApplicationLabel.LANGUAGE + ": '" + objLanguage.Name + "'"
+            
+            for objWordMeaningBookDetail in lstWordMeaningBookDetail {
+                let ayatWord = NSAttributedString(string: objWordMeaningBookDetail.AyatWord + " : ")
+                let ayatMeaning = NSAttributedString(string: objWordMeaningBookDetail.AyatMeaning + "\n")
+                
+                ayatText.append(ayatWord)
+                
+                let startIndex = ayatText.length
+                
+                ayatText.append(ayatMeaning)
+                
+                let ayatMeaningRange = NSRange(location: startIndex, length: ayatMeaning.length)
+                
+                ayatText.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.blue, range: ayatMeaningRange)
+            }
+
+            tvcLibraryBook.lblAyat.attributedText = ayatText
+            
+            if !objLanguage.IsLanguageLTR {
+                tvcLibraryBook.lblAyat.textAlignment = .right
+            }
             
             break
         case .CauseOfRevelation:
