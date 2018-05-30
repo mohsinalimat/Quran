@@ -44,6 +44,10 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tvcLibraryBook = tvLibraryBook.dequeueReusableCell(withIdentifier: "tvcLibraryBook") as! LibraryBookTableViewCell
+        let number = Int32(arc4random_uniform(18)) + 1
+        
+        tvcLibraryBook.lblBook.backgroundColor = ApplicationMethods.getCorrectionBColor(number: number)
+        tvcLibraryBook.lblAyat.backgroundColor = ApplicationMethods.getCorrectionBGColor(number: number)
         
         switch currentLibraryBookMode {
         case .Tafseer:
@@ -51,26 +55,9 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
             let objLanguage = LanguageRepository().getLanguage(Id: objTafseerBook.LanguageId)
             let objRecitation = RecitationManager.getRecitation(recitationIndex: RecitationManager.currentRecitationIndex)
             let objTafseerBookDetail = TafseerBookDetailRepository().getTafseerBookDetail(tafseerBookId: objTafseerBook.Id, surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
-//            let bookText = NSMutableAttributedString(string: ApplicationLabel.LANGUAGE + ": ")
-//            var temp = NSMutableAttributedString(string: objLanguage.Name)
-//            var bookRange = NSRange(location: 0, length: 0)
-//            var startIndex = bookText.length
-//
-//            bookText.append(temp)
-//            bookRange = NSRange(location: startIndex, length: temp.length)
-//            bookText.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.gray, range: bookRange)
-//
-//            bookText.append(NSMutableAttributedString(string: ", " + ApplicationLabel.BOOK + ": "))
-//            startIndex = bookText.length
-//            temp = NSMutableAttributedString(string: objTafseerBook.Name)
-//
-//            bookText.append(temp)
-//            bookRange = NSRange(location: startIndex, length: temp.length)
-//            bookText.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.blue, range: bookRange)
-//
-//            tvcLibraryBook.lblBook.attributedText = bookText
+            
             tvcLibraryBook.lblBook.text = ApplicationLabel.LANGUAGE + ": '" + objLanguage.Name + "' , " + ApplicationLabel.BOOK + ": '" + objTafseerBook.Name + "'"
-            tvcLibraryBook.lblAyat.text = objTafseerBookDetail.AyatTafseer
+            tvcLibraryBook.lblAyat.text = objTafseerBookDetail.AyatTafseer + "\n"
             
             if !objLanguage.IsLanguageLTR {
                 tvcLibraryBook.lblAyat.textAlignment = .right
@@ -84,7 +71,7 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
             let objTranslationBookDetail = TranslationBookDetailRepository().getTranslationBookDetail(translationBookId: objTranslationBook.Id, surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
             
             tvcLibraryBook.lblBook.text = ApplicationLabel.LANGUAGE + ": '" + objLanguage.Name + "' , " + ApplicationLabel.BOOK + ": '" + objTranslationBook.Name + "'"
-            tvcLibraryBook.lblAyat.text = objTranslationBookDetail.AyatTranslation
+            tvcLibraryBook.lblAyat.text = objTranslationBookDetail.AyatTranslation + "\n"
             
             if !objLanguage.IsLanguageLTR {
                 tvcLibraryBook.lblAyat.textAlignment = .right
