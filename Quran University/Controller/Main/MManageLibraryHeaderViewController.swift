@@ -35,13 +35,7 @@ class MManageLibraryHeaderViewController: UIViewController {
         vHighlightBar.frame = rect
         
         vMainScroll.scrollRectToVisible(rect, animated: true)
-        
-        if libraryBookMode != .None {
-            ApplicationObject.MainViewController.loadLibraryBook(libraryBook: libraryBookMode)
-        }
-        else {
-            
-        }
+        ApplicationObject.MainViewController.loadLibraryBook(libraryBook: libraryBookMode)
     }
     
     @IBAction func btnTafseer_TouchUp(_ sender: Any) {
