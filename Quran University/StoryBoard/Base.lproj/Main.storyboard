@@ -385,6 +385,7 @@
                         <segue destination="CFc-aQ-5ak" kind="presentation" identifier="SegueAssignment" id="ZNI-HL-cl2"/>
                         <segue destination="gfp-jE-wnO" kind="presentation" identifier="SegueCorrection" id="hep-Um-WVs"/>
                         <segue destination="Zbt-8P-tyy" kind="presentation" identifier="SegueHideShow" id="eVR-lI-bin"/>
+                        <segue destination="SSP-Do-2xj" kind="presentation" identifier="SegueMyAyatNote" id="hA4-zQ-NsY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5FI-9r-R6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1279,7 +1280,7 @@
                 <viewControllerPlaceholder storyboardName="BaseLeftMenu" referencedIdentifier="Assignment" id="CFc-aQ-5ak" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ciI-SC-n5V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2306" y="398"/>
+            <point key="canvasLocation" x="2357" y="399"/>
         </scene>
         <!--Correction-->
         <scene sceneID="azV-RE-Dfg">
@@ -1288,6 +1289,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSw-HU-wgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2352" y="446"/>
+        </scene>
+        <!--MyAyatNote-->
+        <scene sceneID="AgX-Id-9JF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BaseRightMenu" referencedIdentifier="MyAyatNote" id="SSP-Do-2xj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZdT-7p-C1Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2358" y="494"/>
         </scene>
         <!--DualDropDown-->
         <scene sceneID="e3V-ZI-1R6">

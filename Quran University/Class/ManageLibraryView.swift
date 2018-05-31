@@ -198,6 +198,7 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func btnEditMyAyatNote_TouchUp(_ sender: Any) {
+        ApplicationObject.MainViewController.performSegue(withIdentifier: "SegueMyAyatNote", sender: nil)
     }
     @IBAction func btnZoom_TouchUp(_ sender: Any) {
         zoomInOut(zoomIn: !zoomInOut)
