@@ -353,7 +353,9 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         self.view.viewWithTag(ViewTag.CorrectionDetail.rawValue)?.isHidden = true
         
         if stopRecitation {
-            if RecitationManager.recitationList.first != nil {
+            if RecitationManager.audioPlayerInitialized &&
+                RecitationManager.recitationList.first != nil &&
+                ApplicationObject.RecitationAudioPlayer.isPlaying {
                 RecitationManager.hideShowModeOn = false
                 
                 RecitationManager.restartRecitation()
@@ -684,6 +686,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     // ********** Footer Section ********** //
     @IBAction func btnLMenu_TouchUp(_ sender: UIButton) {
         if ApplicationData.AssignmentModeOn {
+            hideMenu(tag: ViewTag.ManageLibrary.rawValue)
             showHideMenu(tag: ViewTag.BaseLeftMenu.rawValue)
         }
         else {
@@ -700,6 +703,7 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
     }
     @IBAction func btnRMenu_TouchUp(_ sender: UIButton) {
+        hideMenu(tag: ViewTag.ManageLibrary.rawValue)
         showHideMenu(tag: ViewTag.BaseRightMenu.rawValue)
     }
     

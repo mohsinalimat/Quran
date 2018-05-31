@@ -68,6 +68,8 @@
 		04BBCB552032C43400D347BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCB542032C43400D347BC /* BaseViewController.swift */; };
 		04BF323020AAD95A001C7415 /* StudentMediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF322F20AAD95A001C7415 /* StudentMediaManager.swift */; };
 		04C2BA8D20AD9557004DB7AB /* CorrectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2BA8C20AD9557004DB7AB /* CorrectionManager.swift */; };
+		04C569B620BFD72800489F67 /* MyAyatNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C569B520BFD72800489F67 /* MyAyatNote.swift */; };
+		04C569B820BFD8D200489F67 /* MyAyatNoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C569B720BFD8D200489F67 /* MyAyatNoteRepository.swift */; };
 		04C57D7220075A25005D88F4 /* QuranUniversity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 04C57D7120075A25005D88F4 /* QuranUniversity.sqlite */; };
 		04C67B1620187E8900DDAB45 /* RecitationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C67B1520187E8900DDAB45 /* RecitationManager.swift */; };
 		04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6EC9C20109748009EE339 /* ApplicationMethods.swift */; };
@@ -790,6 +792,8 @@
 		04BBCB542032C43400D347BC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		04BF322F20AAD95A001C7415 /* StudentMediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentMediaManager.swift; sourceTree = "<group>"; };
 		04C2BA8C20AD9557004DB7AB /* CorrectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionManager.swift; sourceTree = "<group>"; };
+		04C569B520BFD72800489F67 /* MyAyatNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAyatNote.swift; sourceTree = "<group>"; };
+		04C569B720BFD8D200489F67 /* MyAyatNoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAyatNoteRepository.swift; sourceTree = "<group>"; };
 		04C57D7120075A25005D88F4 /* QuranUniversity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuranUniversity.sqlite; sourceTree = "<group>"; };
 		04C67B1520187E8900DDAB45 /* RecitationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationManager.swift; sourceTree = "<group>"; };
 		04C6EC9C20109748009EE339 /* ApplicationMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMethods.swift; sourceTree = "<group>"; };
@@ -2231,6 +2235,7 @@
 				04D5F426204EBD5200E7F7B4 /* CauseOfRevelationBookDetail.swift */,
 				04A35D25200CCB190090A64F /* Juzz.swift */,
 				04231F03203C164F00740A9C /* Language.swift */,
+				04C569B520BFD72800489F67 /* MyAyatNote.swift */,
 				04AB4D3620596E150081A026 /* Number.swift */,
 				04DA8D09200CF81700513A6B /* Page.swift */,
 				0442BAAD201F587D006D5FD8 /* Recitation.swift */,
@@ -2346,6 +2351,7 @@
 				04D5F42C204EC01300E7F7B4 /* CauseOfRevelationBookRepository.swift */,
 				04F0D2BC203B0CDB002F7183 /* JuzzRepository.swift */,
 				04231EF9203C109B00740A9C /* LanguageRepository.swift */,
+				04C569B720BFD8D200489F67 /* MyAyatNoteRepository.swift */,
 				04AB4D3820596EA80081A026 /* NumberRepository.swift */,
 				04F0D2B8203B0BA2002F7183 /* PageRepository.swift */,
 				04DAF970205FEDA900BC8257 /* RecitationPreferenceRepository.swift */,
@@ -3173,6 +3179,7 @@
 				0476C17C208880C90066203E /* EndPointModel.swift in Sources */,
 				04AB4D3720596E150081A026 /* Number.swift in Sources */,
 				040A1D4D2057EDB3003913C2 /* BRMListenRepeatViewController.swift in Sources */,
+				04C569B820BFD8D200489F67 /* MyAyatNoteRepository.swift in Sources */,
 				044F6CBC2007A4420007828A /* PageManager.swift in Sources */,
 				0495EA0B200F299600EC35D1 /* UCDropDownViewController.swift in Sources */,
 				0442BAAC201F2FE5006D5FD8 /* Script.swift in Sources */,
@@ -3191,6 +3198,7 @@
 				04CE0AE920453E1D000CD6BF /* TMDownloadBookViewController.swift in Sources */,
 				04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */,
 				04D3862F20B540BD00C5C251 /* BRMHideShowViewController.swift in Sources */,
+				04C569B620BFD72800489F67 /* MyAyatNote.swift in Sources */,
 				043429112079F8D700FB00A6 /* CorrectionModel.swift in Sources */,
 				040A0376200E119C00978E25 /* DPOptionViewController.swift in Sources */,
 				04D2D70520035878006D1342 /* AyatSelectionManager.swift in Sources */,

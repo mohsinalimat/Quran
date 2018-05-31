@@ -198,4 +198,3 @@ class WordMeaningBookDetailRepository : BaseRepository {
         return wordMeaningBookDetailList
     }
 }
-

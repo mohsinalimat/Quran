@@ -1048,7 +1048,7 @@
                     </connections>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" id="IgY-yD-EHU" customClass="ManageLibraryView" customModule="Quran_University" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
+                    <rect key="frame" x="0.0" y="0.0" width="350" height="230"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PJk-jF-Qnq">
@@ -1058,8 +1058,32 @@
                                 <segue destination="wz2-bl-X75" kind="embed" id="Lg3-uN-Heo"/>
                             </connections>
                         </containerView>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wjQ-l5-CZj">
+                            <rect key="frame" x="2" y="44" width="346" height="22"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gG4-1B-gkZ" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
+                                    <rect key="frame" x="324" y="0.0" width="22" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                    <inset key="imageEdgeInsets" minX="2" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" image="icn_ZoomIn"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="gradientStartColor">
+                                            <color key="value" red="0.75294117647058822" green="0.61176470588235299" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="gradientEndColor">
+                                            <color key="value" red="0.53333333333333333" green="0.38431372549019605" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="btnZoom_TouchUp:" destination="IgY-yD-EHU" eventType="touchUpInside" id="DBW-rx-gxb"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pzb-LI-oc3">
-                            <rect key="frame" x="2" y="59" width="346" height="139"/>
+                            <rect key="frame" x="2" y="66" width="346" height="162"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <prototypes>
@@ -1109,19 +1133,36 @@
                             </prototypes>
                         </tableView>
                         <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Xb-Xb-aqI">
-                            <rect key="frame" x="2" y="59" width="346" height="139"/>
+                            <rect key="frame" x="2" y="66" width="346" height="162"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H3D-IY-qCk">
-                            <rect key="frame" x="2" y="59" width="346" height="139"/>
+                            <rect key="frame" x="2" y="66" width="346" height="162"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                            <subviews>
+                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eD1-QS-IWO">
+                                    <rect key="frame" x="0.0" y="0.0" width="346" height="162"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EoB-Ua-bUv">
+                                            <rect key="frame" x="0.0" y="0.0" width="346" height="19"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </scrollView>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.66666666666666663" green="0.50196078431372548" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                     <viewLayoutGuide key="safeArea" id="uWj-Qa-1KK"/>
                     <connections>
+                        <outlet property="btnZoom" destination="gG4-1B-gkZ" id="Les-dk-htT"/>
+                        <outlet property="lblMyAyatNote" destination="EoB-Ua-bUv" id="jXV-u1-2lP"/>
                         <outlet property="tvLibraryBook" destination="pzb-LI-oc3" id="f6r-QT-hds"/>
                         <outlet property="vMyNotes" destination="H3D-IY-qCk" id="Pav-LJ-oVl"/>
                         <outlet property="vTajwid" destination="3Xb-Xb-aqI" id="CLQ-g1-ehL"/>
@@ -1415,11 +1456,6 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.66666666669999997" green="0.50196078430000002" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dkv-Ms-7RK">
-                                                <rect key="frame" x="0.0" y="41" width="1100" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -1460,7 +1496,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gj-rI-oev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3909" y="-299"/>
+            <point key="canvasLocation" x="3909" y="-350"/>
         </scene>
     </scenes>
     <resources>
@@ -1480,6 +1516,7 @@
         <image name="icn_Schedule" width="29" height="29"/>
         <image name="icn_Search" width="20" height="20"/>
         <image name="icn_UploadCircle" width="49" height="49"/>
+        <image name="icn_ZoomIn" width="19" height="19"/>
         <image name="icn_listen" width="28" height="24"/>
         <image name="img_Back" width="35" height="44"/>
         <image name="img_Bookmark" width="17" height="20"/>
