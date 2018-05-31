@@ -4,11 +4,13 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tvLibraryBook: UITableView!
     @IBOutlet weak var vTajwid: UIView!
     @IBOutlet weak var vMyNotes: UIView!
+    @IBOutlet weak var btnEditMyAyatNote: QUButton!
     @IBOutlet weak var btnZoom: QUButton!
     
     @IBOutlet weak var lblMyAyatNote: UILabel!
     
     var currentLibraryBookMode = LibraryBookMode.Tafseer
+    var zoomInOut = false
     var count = 0
     
     func initializeView() {
@@ -20,12 +22,14 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
         tvLibraryBook.isHidden = true
         vTajwid.isHidden = true
         vMyNotes.isHidden = true
+        btnEditMyAyatNote.isHidden = true
         
         if libraryBookMode == .Tajwid {
             vTajwid.isHidden = false
         }
         else if libraryBookMode == .MyNotes {
             vMyNotes.isHidden = false
+            btnEditMyAyatNote.isHidden = false
             lblMyAyatNote.text = """
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis malesuada erat vel ultricies. Sed quam magna, interdum eu orci at, imperdiet consequat nunc. Duis condimentum pellentesque nunc at ullamcorper. Quisque ex massa, pellentesque quis accumsan in, rhoncus vitae justo. Nam accumsan, nunc quis condimentum finibus, mauris risus pretium lorem, finibus fermentum nulla enim in nibh. Cras cursus varius neque sed viverra. Donec volutpat vel nisl id pulvinar.
             
@@ -42,6 +46,30 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
             tvLibraryBook.isHidden = false
             
             tvLibraryBook.reloadData()
+        }
+    }
+    func zoomInOut(zoomIn: Bool) {
+        let vHeader = ApplicationObject.MainViewController.vHeader!
+        let vFooter = ApplicationObject.MainViewController.vFooter!
+        
+        zoomInOut = zoomIn
+        
+        if zoomIn {
+            let x = vHeader.frame.origin.x
+            let y = vHeader.frame.origin.y + vHeader.bounds.height
+            let height = vFooter.frame.origin.y - y
+            let width = vHeader.frame.size.width
+            
+            btnZoom.setImage(#imageLiteral(resourceName: "icn_ZoomOut"), for: .normal)
+            self.frame = CGRect(x: x, y: y, width: width, height: height)
+        }
+        else {
+            let x = vFooter.frame.origin.x
+            let y = vFooter.frame.origin.y - 230
+            let width = vFooter.frame.size.width
+            
+            btnZoom.setImage(#imageLiteral(resourceName: "icn_ZoomIn"), for: .normal)
+            self.frame = CGRect(x: x, y: y, width: width, height: 230)
         }
     }
     
@@ -169,7 +197,9 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
         return tvcLibraryBook
     }
     
+    @IBAction func btnEditMyAyatNote_TouchUp(_ sender: Any) {
+    }
     @IBAction func btnZoom_TouchUp(_ sender: Any) {
-        
+        zoomInOut(zoomIn: !zoomInOut)
     }
 }
