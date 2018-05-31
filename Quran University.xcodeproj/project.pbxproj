@@ -70,6 +70,7 @@
 		04C2BA8D20AD9557004DB7AB /* CorrectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C2BA8C20AD9557004DB7AB /* CorrectionManager.swift */; };
 		04C569B620BFD72800489F67 /* MyAyatNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C569B520BFD72800489F67 /* MyAyatNote.swift */; };
 		04C569B820BFD8D200489F67 /* MyAyatNoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C569B720BFD8D200489F67 /* MyAyatNoteRepository.swift */; };
+		04C569BA20C0015200489F67 /* BRMMyAyatNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C569B920C0015200489F67 /* BRMMyAyatNoteViewController.swift */; };
 		04C57D7220075A25005D88F4 /* QuranUniversity.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 04C57D7120075A25005D88F4 /* QuranUniversity.sqlite */; };
 		04C67B1620187E8900DDAB45 /* RecitationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C67B1520187E8900DDAB45 /* RecitationManager.swift */; };
 		04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6EC9C20109748009EE339 /* ApplicationMethods.swift */; };
@@ -794,6 +795,7 @@
 		04C2BA8C20AD9557004DB7AB /* CorrectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectionManager.swift; sourceTree = "<group>"; };
 		04C569B520BFD72800489F67 /* MyAyatNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAyatNote.swift; sourceTree = "<group>"; };
 		04C569B720BFD8D200489F67 /* MyAyatNoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAyatNoteRepository.swift; sourceTree = "<group>"; };
+		04C569B920C0015200489F67 /* BRMMyAyatNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRMMyAyatNoteViewController.swift; sourceTree = "<group>"; };
 		04C57D7120075A25005D88F4 /* QuranUniversity.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuranUniversity.sqlite; sourceTree = "<group>"; };
 		04C67B1520187E8900DDAB45 /* RecitationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationManager.swift; sourceTree = "<group>"; };
 		04C6EC9C20109748009EE339 /* ApplicationMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMethods.swift; sourceTree = "<group>"; };
@@ -2221,6 +2223,7 @@
 			children = (
 				04D3862E20B540BD00C5C251 /* BRMHideShowViewController.swift */,
 				040A1D4C2057EDB3003913C2 /* BRMListenRepeatViewController.swift */,
+				04C569B920C0015200489F67 /* BRMMyAyatNoteViewController.swift */,
 			);
 			path = BaseRightMenu;
 			sourceTree = "<group>";
@@ -3170,6 +3173,7 @@
 				0442BAAA201F2CC8006D5FD8 /* Reciter.swift in Sources */,
 				04CE0AE7204534EE000CD6BF /* TranslationBookDetail.swift in Sources */,
 				04231EFA203C109B00740A9C /* LanguageRepository.swift in Sources */,
+				04C569BA20C0015200489F67 /* BRMMyAyatNoteViewController.swift in Sources */,
 				04F4BC7B2029BB80006636D8 /* BMMContinuousRecitationViewController.swift in Sources */,
 				048D662A204FCC34007185EC /* MaaniMafrudat.swift in Sources */,
 				04F0D2B7203B0B24002F7183 /* AyatRepository.swift in Sources */,

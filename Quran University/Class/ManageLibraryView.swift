@@ -30,17 +30,11 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
         else if libraryBookMode == .MyNotes {
             vMyNotes.isHidden = false
             btnEditMyAyatNote.isHidden = false
-            lblMyAyatNote.text = """
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis malesuada erat vel ultricies. Sed quam magna, interdum eu orci at, imperdiet consequat nunc. Duis condimentum pellentesque nunc at ullamcorper. Quisque ex massa, pellentesque quis accumsan in, rhoncus vitae justo. Nam accumsan, nunc quis condimentum finibus, mauris risus pretium lorem, finibus fermentum nulla enim in nibh. Cras cursus varius neque sed viverra. Donec volutpat vel nisl id pulvinar.
             
-            In sollicitudin molestie nibh, ut egestas orci tempus hendrerit. Duis luctus eros a odio hendrerit mollis. Nullam ac odio velit. Aliquam lobortis, mi eget porta ultricies, nibh justo aliquam magna, eu finibus justo orci vel mauris. Aenean rutrum eros ut ligula venenatis, ut molestie eros placerat. Praesent pharetra ante in nulla interdum pharetra. Nam vel ante at ante vestibulum pretium non eu libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis et imperdiet diam. Nulla facilisi. Suspendisse ultricies posuere sem nec malesuada. In maximus eu urna non volutpat. Etiam non neque et metus rutrum dapibus eget at dui.
+            let objRecitation = RecitationManager.getRecitation(recitationIndex: RecitationManager.currentRecitationIndex)
+            let objMyAyatNote = MyAyatNoteRepository().getMyAyatNote(surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
             
-            Mauris id mauris eget quam sodales consectetur non eget erat. In ac mi vitae purus venenatis egestas. Mauris tempus vel dolor et placerat. Nam consequat maximus ex, sed lacinia lacus egestas ut. Nunc quis turpis ullamcorper tellus auctor tempus aliquet a odio. Nam quis dui et mi sodales maximus. Nulla condimentum ultrices enim, in tristique mauris venenatis venenatis. Vivamus id fermentum lectus.
-            
-            Proin scelerisque imperdiet libero, luctus pulvinar justo vehicula nec. Pellentesque sem sapien, consequat non porta ac, vestibulum sed mauris. Aenean purus nulla, porta et dui ac, sodales egestas metus. Nam nibh lectus, mattis non consectetur non, euismod sed nibh. Phasellus molestie, ipsum ut mattis fermentum, ex justo aliquam diam, eu dignissim tellus turpis quis eros. Donec dictum cursus urna, sit amet vulputate lectus volutpat fermentum. Pellentesque nec dui vel lectus viverra bibendum ut at ligula. Mauris tristique nulla nec sem vulputate malesuada. Curabitur sodales finibus felis eu viverra. Integer in erat id nulla condimentum bibendum. Pellentesque pretium consequat ex at varius.
-            
-            Nunc tempus congue quam. Sed vel venenatis ipsum. Etiam dapibus tempor eros in lobortis. Duis vitae libero accumsan, viverra ante eget, bibendum leo. Etiam elementum mollis facilisis. Nam fringilla, ligula quis mollis facilisis, massa urna aliquet sem, condimentum porttitor tortor eros ut orci. Vestibulum vulputate, est vitae sodales lacinia, nunc nunc iaculis est, quis tincidunt dolor mauris molestie erat. Fusce elit dui, tincidunt sit amet cursus vitae, sodales sit amet justo. Nunc pretium ultricies elit non eleifend. Suspendisse vitae dui tempus, imperdiet ante sed, pharetra augue.
-"""
+            lblMyAyatNote.text = objMyAyatNote.AyatNote
         }
         else {
             tvLibraryBook.isHidden = false

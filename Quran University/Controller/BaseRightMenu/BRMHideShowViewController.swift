@@ -1,7 +1,7 @@
 import UIKit
 import BEMCheckBox
 
-class BRMHideShowViewController: UIViewController {
+class BRMHideShowViewController: BaseViewController {
     @IBOutlet weak var chkWithoutSound: BEMCheckBox!
     @IBOutlet weak var chkWithSound: BEMCheckBox!
     

@@ -472,10 +472,10 @@
             </objects>
             <point key="canvasLocation" x="919.20000000000005" y="149.77511244377811"/>
         </scene>
-        <!--View Controller-->
+        <!--My Ayat Note View Controller-->
         <scene sceneID="gZx-Va-pjh">
             <objects>
-                <viewController storyboardIdentifier="MyAyatNote" modalPresentationStyle="overCurrentContext" id="lQZ-Ju-BwJ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyAyatNote" modalPresentationStyle="overCurrentContext" id="lQZ-Ju-BwJ" customClass="BRMMyAyatNoteViewController" customModule="Quran_University" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n9N-Za-qkh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -507,6 +507,9 @@
                                                         <color key="value" red="0.4941176471" green="0.2666666667" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="btnTopClose_TouchUp:" destination="lQZ-Ju-BwJ" eventType="touchUpInside" id="Ext-98-OoD"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -523,6 +526,20 @@
                                         <rect key="frame" x="2" y="40" width="303" height="194"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NVr-8c-wzw">
+                                                <rect key="frame" x="0.0" y="0.0" width="303" height="129"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="azD-zm-Bag">
+                                                        <rect key="frame" x="0.0" y="2" width="303" height="125"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.66666666669999997" green="0.50196078430000002" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiC-db-8Vd" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
                                                 <rect key="frame" x="29" y="137" width="75" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -539,6 +556,9 @@
                                                         <color key="value" red="0.92549019610000005" green="0.85490196080000003" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="btnSave_TouchUp:" destination="lQZ-Ju-BwJ" eventType="touchUpInside" id="RH3-7V-14n"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PxR-SU-2fJ" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
                                                 <rect key="frame" x="112" y="137" width="77" height="31"/>
@@ -556,6 +576,9 @@
                                                         <color key="value" red="0.92549019610000005" green="0.85490196080000003" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="btnDelete_TouchUp:" destination="lQZ-Ju-BwJ" eventType="touchUpInside" id="uYB-Du-Lch"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdj-4g-U3k" customClass="QUButton" customModule="Quran_University" customModuleProvider="target">
                                                 <rect key="frame" x="197" y="137" width="75" height="31"/>
@@ -573,14 +596,10 @@
                                                         <color key="value" red="0.92549019610000005" green="0.85490196080000003" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="btnClose_TouchUp:" destination="lQZ-Ju-BwJ" eventType="touchUpInside" id="ktG-km-O8T"/>
+                                                </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="azD-zm-Bag">
-                                                <rect key="frame" x="8" y="8" width="287" height="121"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -591,6 +610,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Tby-PN-hVx"/>
                     </view>
+                    <connections>
+                        <outlet property="btnDelete" destination="PxR-SU-2fJ" id="4gQ-Ee-emj"/>
+                        <outlet property="txtAyatNote" destination="azD-zm-Bag" id="v3F-4x-lXl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTM-mf-K5z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
