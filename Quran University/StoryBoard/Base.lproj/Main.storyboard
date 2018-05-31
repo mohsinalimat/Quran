@@ -1108,11 +1108,23 @@
                                 </tableViewCell>
                             </prototypes>
                         </tableView>
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Xb-Xb-aqI">
+                            <rect key="frame" x="2" y="59" width="346" height="139"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H3D-IY-qCk">
+                            <rect key="frame" x="2" y="59" width="346" height="139"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.66666666666666663" green="0.50196078431372548" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                     <viewLayoutGuide key="safeArea" id="uWj-Qa-1KK"/>
                     <connections>
                         <outlet property="tvLibraryBook" destination="pzb-LI-oc3" id="f6r-QT-hds"/>
+                        <outlet property="vMyNotes" destination="H3D-IY-qCk" id="Pav-LJ-oVl"/>
+                        <outlet property="vTajwid" destination="3Xb-Xb-aqI" id="CLQ-g1-ehL"/>
                     </connections>
                 </view>
                 <swipeGestureRecognizer direction="left" id="P1Z-F7-j9R">

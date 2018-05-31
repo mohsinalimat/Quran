@@ -131,9 +131,10 @@ enum FileMissingMode: Int32 {
 }
 
 enum LibraryBookMode: Int32 {
-    case None = 0
     case Tafseer = 1
     case Translation = 2
     case WordMeaning = 3
     case CauseOfRevelation = 4
+    case Tajwid = 5
+    case MyNotes = 6
 }

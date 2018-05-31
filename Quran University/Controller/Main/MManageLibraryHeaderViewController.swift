@@ -51,9 +51,9 @@ class MManageLibraryHeaderViewController: UIViewController {
         highlightButton(btnHighlighted: btnCausesOfRevelation, libraryBookMode: .CauseOfRevelation)
     }
     @IBAction func btnTajwid_TouchUp(_ sender: Any) {
-        highlightButton(btnHighlighted: btnTajwid, libraryBookMode: .None)
+        highlightButton(btnHighlighted: btnTajwid, libraryBookMode: .Tajwid)
     }
     @IBAction func btnMyNotes_TouchUp(_ sender: Any) {
-        highlightButton(btnHighlighted: btnMyNotes, libraryBookMode: .None)
+        highlightButton(btnHighlighted: btnMyNotes, libraryBookMode: .MyNotes)
     }
 }

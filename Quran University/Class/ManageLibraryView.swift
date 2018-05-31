@@ -2,6 +2,8 @@ import UIKit
 
 class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tvLibraryBook: UITableView!
+    @IBOutlet weak var vTajwid: UIView!
+    @IBOutlet weak var vMyNotes: UIView!
     
     var currentLibraryBookMode = LibraryBookMode.Tafseer
     var count = 0
@@ -12,13 +14,20 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     func loadView(libraryBookMode: LibraryBookMode) {
         currentLibraryBookMode = libraryBookMode
-        tvLibraryBook.isHidden = false
+        tvLibraryBook.isHidden = true
+        vTajwid.isHidden = true
+        vMyNotes.isHidden = true
         
-        if libraryBookMode != .None {
-            tvLibraryBook.reloadData()
+        if libraryBookMode == .Tajwid {
+            vTajwid.isHidden = false
+        }
+        else if libraryBookMode == .MyNotes {
+            vMyNotes.isHidden = false
         }
         else {
-            tvLibraryBook.isHidden = true
+            tvLibraryBook.isHidden = false
+            
+            tvLibraryBook.reloadData()
         }
     }
     
@@ -65,7 +74,7 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
             let objRecitation = RecitationManager.getRecitation(recitationIndex: RecitationManager.currentRecitationIndex)
             let objTafseerBookDetail = TafseerBookDetailRepository().getTafseerBookDetail(tafseerBookId: objTafseerBook.Id, surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
             
-            if objTafseerBookDetail.Id > 0 {
+            if objTafseerBookDetail.Id > 0 && objTafseerBookDetail.AyatTafseer != "" {
                 objLanguage = LanguageRepository().getLanguage(Id: objTafseerBook.LanguageId)
                 tvcLibraryBook.lblBook.text = ApplicationLabel.LANGUAGE + ": '" + objLanguage.Name + "' , " + ApplicationLabel.BOOK + ": '" + objTafseerBook.Name + "'"
                 tvcLibraryBook.lblAyat.text = objTafseerBookDetail.AyatTafseer + "\n"
@@ -78,7 +87,7 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
             let objRecitation = RecitationManager.getRecitation(recitationIndex: RecitationManager.currentRecitationIndex)
             let objTranslationBookDetail = TranslationBookDetailRepository().getTranslationBookDetail(translationBookId: objTranslationBook.Id, surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
             
-            if objTranslationBookDetail.Id > 0 {
+            if objTranslationBookDetail.Id > 0 && objTranslationBookDetail.AyatTranslation != "" {
                 objLanguage = LanguageRepository().getLanguage(Id: objTranslationBook.LanguageId)
                 tvcLibraryBook.lblBook.text = ApplicationLabel.LANGUAGE + ": '" + objLanguage.Name + "' , " + ApplicationLabel.BOOK + ": '" + objTranslationBook.Name + "'"
                 tvcLibraryBook.lblAyat.text = objTranslationBookDetail.AyatTranslation + "\n"
@@ -122,7 +131,7 @@ class ManageLibraryView: UIView, UITableViewDelegate, UITableViewDataSource {
             let objRecitation = RecitationManager.getRecitation(recitationIndex: RecitationManager.currentRecitationIndex)
             let objCauseOfRevelationBookDetail = CauseOfRevelationBookDetailRepository().getCauseOfRevelationBookDetail(causeOfRevelationBookId: objCauseOfRevelationBook.Id, surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
             
-            if objCauseOfRevelationBookDetail.Id > 0 {
+            if objCauseOfRevelationBookDetail.Id > 0 && objCauseOfRevelationBookDetail.AyatCauseOfRevelation != "" {
                 objLanguage = LanguageRepository().getLanguage(Id: objCauseOfRevelationBook.LanguageId)
                 tvcLibraryBook.lblBook.text = ApplicationLabel.LANGUAGE + ": '" + objLanguage.Name + "'"
                 tvcLibraryBook.lblAyat.text = objCauseOfRevelationBookDetail.AyatCauseOfRevelation + "\n"
