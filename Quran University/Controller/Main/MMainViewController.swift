@@ -96,6 +96,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
             if let touch = touches.first {
                 if ivQuranPage.isUserInteractionEnabled &&
                     touch.view != vTopMenu &&
+                    touch.view != vBaseLeftMenu &&
+                    touch.view != vBaseRightMenu &&
                     touch.view != vPlayer &&
                     touch.view != vRecordAssignment &&
                     touch.view?.superview?.tag != ViewTag.RecordAssignment.rawValue &&
@@ -591,9 +593,10 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     func loadLibraryBook(libraryBook: LibraryBookMode) {
-        if vManageLibrary != nil {
-            vManageLibrary.loadView(libraryBookMode: libraryBook)
-        }
+        vManageLibrary.loadView(libraryBookMode: libraryBook)
+    }
+    func loadCurrentLibraryBook() {
+        vManageLibrary.loadView(libraryBookMode: vManageLibrary.currentLibraryBookMode)
     }
     
     // ********** Header Section ********** //
@@ -686,7 +689,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     // ********** Footer Section ********** //
     @IBAction func btnLMenu_TouchUp(_ sender: UIButton) {
         if ApplicationData.AssignmentModeOn {
-            hideMenu(tag: ViewTag.ManageLibrary.rawValue)
+            vManageLibrary.isHidden = true
+            
             showHideMenu(tag: ViewTag.BaseLeftMenu.rawValue)
         }
         else {
@@ -703,7 +707,8 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         setFooterMode(currentFooterSectionMode: .Player, enableQuranPageUserInteraction: true)
     }
     @IBAction func btnRMenu_TouchUp(_ sender: UIButton) {
-        hideMenu(tag: ViewTag.ManageLibrary.rawValue)
+        vManageLibrary.isHidden = true
+        
         showHideMenu(tag: ViewTag.BaseRightMenu.rawValue)
     }
     

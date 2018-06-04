@@ -163,7 +163,7 @@ class StudentMediaManager {
 
                 mediaPlayer = try AVAudioPlayer(contentsOf: fileURL)
                 mediaPlayer.delegate = ApplicationObject.CurrentViewController as? AVAudioPlayerDelegate
-                mediaPlayer.volume = 1.0
+                mediaPlayer.volume = ApplicationData.ApplicationVolume
                 
                 btnMediaPlayPause = btnPlayPause
                 mediaFile = audioFile
@@ -192,7 +192,7 @@ class StudentMediaManager {
                 
                 mediaPlayer = try AVAudioPlayer(contentsOf: fileURL)
                 mediaPlayer.delegate = ApplicationObject.CurrentViewController as? AVAudioPlayerDelegate
-                mediaPlayer.volume = 1.0
+                mediaPlayer.volume = ApplicationData.ApplicationVolume
                 
                 btnMediaPlayPause = btnPlayPause
                 mediaFile = audioFile

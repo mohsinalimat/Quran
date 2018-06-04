@@ -37,4 +37,5 @@ struct ApplicationData {
     static var CurrentAssignment = AssignmentModel()
     static var AssignmentModeOn = false
     static var CorrectionModeOn = false
+    static var ApplicationVolume = Float(1.0)
 }

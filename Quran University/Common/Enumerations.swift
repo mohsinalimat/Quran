@@ -138,3 +138,14 @@ enum LibraryBookMode: Int32 {
     case Tajwid = 5
     case MyNotes = 6
 }
+
+enum AppObjectCode: Int32 {
+    case Download = 1
+}
+
+enum ObjectCode: Int32 {
+    case Tafseer = 1
+    case Translation = 2
+    case WordMeaning = 3
+    case CauseOfRevelation = 4
+}

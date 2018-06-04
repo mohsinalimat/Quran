@@ -24,6 +24,7 @@ class BRMMyAyatNoteViewController: BaseViewController {
         let status = MyAyatNoteRepository().saveMyAyatNote(myAyatNoteObject: objMyAyatNote)
         
         if status {
+            ApplicationObject.MainViewController.loadLibraryBook(libraryBook: LibraryBookMode.MyNotes)
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -31,6 +32,7 @@ class BRMMyAyatNoteViewController: BaseViewController {
         let status = MyAyatNoteRepository().deleteMyAyatNote(surahId: objRecitation.SurahId, ayatId: objRecitation.AyatId)
         
         if status {
+            ApplicationObject.MainViewController.loadLibraryBook(libraryBook: LibraryBookMode.MyNotes)
             self.dismiss(animated: true, completion: nil)
         }
     }

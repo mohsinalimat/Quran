@@ -13,10 +13,10 @@ class MManageLibraryHeaderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        highlightButton(btnHighlighted: btnTafseer, libraryBookMode: .Tafseer)
+        highlightButton(btnHighlighted: btnTafseer, libraryBookMode: .Tafseer, loadlibraryBook: false)
     }
     
-    func highlightButton(btnHighlighted: UIButton, libraryBookMode: LibraryBookMode) {
+    func highlightButton(btnHighlighted: UIButton, libraryBookMode: LibraryBookMode, loadlibraryBook: Bool = true) {
         btnTafseer.setTitleColor(ApplicationConstant.ButtonTextColor, for: .normal)
         btnTranslation.setTitleColor(ApplicationConstant.ButtonTextColor, for: .normal)
         btnWordMeaning.setTitleColor(ApplicationConstant.ButtonTextColor, for: .normal)
@@ -35,7 +35,10 @@ class MManageLibraryHeaderViewController: UIViewController {
         vHighlightBar.frame = rect
         
         vMainScroll.scrollRectToVisible(rect, animated: true)
-        ApplicationObject.MainViewController.loadLibraryBook(libraryBook: libraryBookMode)
+        
+        if loadlibraryBook {
+            ApplicationObject.MainViewController.loadLibraryBook(libraryBook: libraryBookMode)
+        }
     }
     
     @IBAction func btnTafseer_TouchUp(_ sender: Any) {

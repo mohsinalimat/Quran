@@ -64,6 +64,8 @@
 		04AB4D3920596EA80081A026 /* NumberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB4D3820596EA80081A026 /* NumberRepository.swift */; };
 		04AE122920235A1500001FB7 /* TopMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AE122820235A1500001FB7 /* TopMenu.storyboard */; };
 		04AE122C20235A9C00001FB7 /* TMAvailableReciterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE122B20235A9C00001FB7 /* TMAvailableReciterViewController.swift */; };
+		04B8C2E720C01ED6002F75EA /* AppObjectLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8C2E620C01ED6002F75EA /* AppObjectLocation.swift */; };
+		04B8C2E920C0210D002F75EA /* AppObjectLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8C2E820C0210D002F75EA /* AppObjectLocationRepository.swift */; };
 		04BB50A32069016D008C7D70 /* RecordCompareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB50A22069016D008C7D70 /* RecordCompareView.swift */; };
 		04BBCB552032C43400D347BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BBCB542032C43400D347BC /* BaseViewController.swift */; };
 		04BF323020AAD95A001C7415 /* StudentMediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF322F20AAD95A001C7415 /* StudentMediaManager.swift */; };
@@ -75,6 +77,7 @@
 		04C67B1620187E8900DDAB45 /* RecitationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C67B1520187E8900DDAB45 /* RecitationManager.swift */; };
 		04C6EC9D20109748009EE339 /* ApplicationMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6EC9C20109748009EE339 /* ApplicationMethods.swift */; };
 		04C6EC9F2010A976009EE339 /* GlobalObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C6EC9E2010A976009EE339 /* GlobalObjects.swift */; };
+		04C770D920C3C97C00089D64 /* ApplicationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C770D820C3C97C00089D64 /* ApplicationDataManager.swift */; };
 		04C82A0E20BBF53600885D24 /* MManageLibraryHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82A0D20BBF53600885D24 /* MManageLibraryHeaderViewController.swift */; };
 		04C82A1020BBF59C00885D24 /* ManageLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C82A0F20BBF59C00885D24 /* ManageLibraryView.swift */; };
 		04CA135C20075CA600D8B494 /* 111003.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04CA111D20075C8900D8B494 /* 111003.mp3 */; };
@@ -789,6 +792,8 @@
 		04AB4D3820596EA80081A026 /* NumberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberRepository.swift; sourceTree = "<group>"; };
 		04AE122820235A1500001FB7 /* TopMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TopMenu.storyboard; sourceTree = "<group>"; };
 		04AE122B20235A9C00001FB7 /* TMAvailableReciterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMAvailableReciterViewController.swift; sourceTree = "<group>"; };
+		04B8C2E620C01ED6002F75EA /* AppObjectLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppObjectLocation.swift; sourceTree = "<group>"; };
+		04B8C2E820C0210D002F75EA /* AppObjectLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppObjectLocationRepository.swift; sourceTree = "<group>"; };
 		04BB50A22069016D008C7D70 /* RecordCompareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCompareView.swift; sourceTree = "<group>"; };
 		04BBCB542032C43400D347BC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		04BF322F20AAD95A001C7415 /* StudentMediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentMediaManager.swift; sourceTree = "<group>"; };
@@ -800,6 +805,7 @@
 		04C67B1520187E8900DDAB45 /* RecitationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitationManager.swift; sourceTree = "<group>"; };
 		04C6EC9C20109748009EE339 /* ApplicationMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMethods.swift; sourceTree = "<group>"; };
 		04C6EC9E2010A976009EE339 /* GlobalObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalObjects.swift; sourceTree = "<group>"; };
+		04C770D820C3C97C00089D64 /* ApplicationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDataManager.swift; sourceTree = "<group>"; };
 		04C82A0D20BBF53600885D24 /* MManageLibraryHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MManageLibraryHeaderViewController.swift; sourceTree = "<group>"; };
 		04C82A0F20BBF59C00885D24 /* ManageLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageLibraryView.swift; sourceTree = "<group>"; };
 		04CA111D20075C8900D8B494 /* 111003.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 111003.mp3; sourceTree = "<group>"; };
@@ -2232,6 +2238,7 @@
 			isa = PBXGroup;
 			children = (
 				04E4010A204BCA6300C6F3AB /* JsonModel */,
+				04B8C2E620C01ED6002F75EA /* AppObjectLocation.swift */,
 				048C4293200234D3003904F1 /* Ayat.swift */,
 				0495EA0C200F60BB00EC35D1 /* BaseModel.swift */,
 				04D5F424204EBD4200E7F7B4 /* CauseOfRevelationBook.swift */,
@@ -2261,6 +2268,7 @@
 		048C429520023CF3003904F1 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				04C770D820C3C97C00089D64 /* ApplicationDataManager.swift */,
 				04D1CBAE2075FE7100334912 /* AssignmentManager.swift */,
 				04D2D70420035878006D1342 /* AyatSelectionManager.swift */,
 				048D662B204FDEA9007185EC /* BookManager.swift */,
@@ -2348,6 +2356,7 @@
 		04F0D2B3203AE906002F7183 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				04B8C2E820C0210D002F75EA /* AppObjectLocationRepository.swift */,
 				04F0D2B6203B0B24002F7183 /* AyatRepository.swift */,
 				04F0D2B4203B0AA2002F7183 /* BaseRepository.swift */,
 				04D5F42E204EC01B00E7F7B4 /* CauseOfRevelationBookDetailRepository.swift */,
@@ -3230,12 +3239,14 @@
 				04DAF96F205FECBB00BC8257 /* RecitationPreference.swift in Sources */,
 				04F0D2B5203B0AA2002F7183 /* BaseRepository.swift in Sources */,
 				04DD43A62006206300F5BA91 /* DialogueManager.swift in Sources */,
+				04C770D920C3C97C00089D64 /* ApplicationDataManager.swift in Sources */,
 				0476BBA32005ED59002697B6 /* Constants.swift in Sources */,
 				04D5F42D204EC01300E7F7B4 /* CauseOfRevelationBookRepository.swift in Sources */,
 				04CA42AF209710D900FF495E /* PermissionManager.swift in Sources */,
 				0476BBA12005ECB5002697B6 /* DownloadManager.swift in Sources */,
 				04D44C6A20B29124009F146F /* CorrectionDetailView.swift in Sources */,
 				0495EA0D200F60BB00EC35D1 /* BaseModel.swift in Sources */,
+				04B8C2E920C0210D002F75EA /* AppObjectLocationRepository.swift in Sources */,
 				0415F37B2002107600041C3D /* MLoginViewController.swift in Sources */,
 				04CE12642099C7D80026D118 /* RecordAssignmentView.swift in Sources */,
 				04D215C720A06B7B00C0325D /* UploadAssignmentView.swift in Sources */,
@@ -3267,6 +3278,7 @@
 				04E4010C204BCA9100C6F3AB /* QuranText.swift in Sources */,
 				0440A506200C99EB00D42754 /* Surah.swift in Sources */,
 				0415F38F200210E100041C3D /* MMainViewController.swift in Sources */,
+				04B8C2E720C01ED6002F75EA /* AppObjectLocation.swift in Sources */,
 				04231EFC203C10B600740A9C /* TafseerBookRepository.swift in Sources */,
 				04332591201DB201000FD494 /* QUButton.swift in Sources */,
 				04DAF971205FEDA900BC8257 /* RecitationPreferenceRepository.swift in Sources */,

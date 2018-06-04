@@ -264,6 +264,8 @@ class AyatSelectionManager {
                 ayatSelection.fillColor = ApplicationConstant.AyatSelectionColor
             }
         }
+        
+        ApplicationObject.MainViewController.loadCurrentLibraryBook()
     }
     static func highlightAyatSelectionRange(recitationList: [Recitation]) {
         hideAyatSelection()
@@ -424,6 +426,8 @@ class AyatSelectionManager {
                 ayatSelection.fillColor = ApplicationConstant.HideMarkColor
             }
         }
+        
+        ApplicationObject.MainViewController.loadCurrentLibraryBook()
     }
     
     static func getAyatSelection(recitationName: String) -> [CAShapeLayer] {

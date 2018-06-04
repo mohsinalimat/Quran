@@ -7,7 +7,7 @@ class MLoginViewController: UIViewController {
         super.viewDidLoad()
         
         DocumentManager.initApplicationStructure()
-        ////NetworkManager.startMonitoringInternet()
+        ApplicationDataManager.initApplicationData()
         Utilities.Initialize()
     }
 

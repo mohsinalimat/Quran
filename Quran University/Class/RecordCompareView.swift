@@ -151,6 +151,7 @@ class RecordCompareView: UIView {
                 recordingWaveform.progressColor = .orange
                 recordingWaveform.allowSpacing = false
                 recordingWaveform.translatesAutoresizingMaskIntoConstraints = false
+                recordingWaveform.audioPlayer.volume = ApplicationData.ApplicationVolume
                 recordingPlayMode = .Paused
                 
                 btnPlayRecording.setImage(#imageLiteral(resourceName: "img_PlayGreen"), for: .normal)

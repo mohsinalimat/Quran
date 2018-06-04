@@ -218,7 +218,7 @@ class RecitationManager {
             do {
                 ApplicationObject.RecitationAudioPlayer = try AVAudioPlayer(contentsOf: fileURL)
                 ApplicationObject.RecitationAudioPlayer.delegate = ApplicationObject.MainViewController
-                ApplicationObject.RecitationAudioPlayer.volume = 1.0
+                ApplicationObject.RecitationAudioPlayer.volume = ApplicationData.ApplicationVolume
                 audioPlayerInitialized = true
                 
                 if hideShowModeOn {
