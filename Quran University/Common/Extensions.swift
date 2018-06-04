@@ -54,3 +54,15 @@ extension UIView
         self.alpha = 1
     }
 }
+
+extension Date
+{
+    func toString(dateFormat: String) -> String
+    {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = dateFormat
+        
+        return dateFormatter.string(from: self)
+    }
+}

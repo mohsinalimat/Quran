@@ -13,6 +13,6 @@ class BaseRepository {
         }
         
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+        dateFormatter.timeZone = TimeZone.current//TimeZone(abbreviation: "GMT+0:00")
     }
 }

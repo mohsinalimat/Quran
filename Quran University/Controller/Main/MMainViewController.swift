@@ -593,10 +593,14 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
         }
     }
     func loadLibraryBook(libraryBook: LibraryBookMode) {
-        vManageLibrary.loadView(libraryBookMode: libraryBook)
+        if !vManageLibrary.isHidden {
+            vManageLibrary.loadView(libraryBookMode: libraryBook)
+        }
     }
     func loadCurrentLibraryBook() {
-        vManageLibrary.loadView(libraryBookMode: vManageLibrary.currentLibraryBookMode)
+        if !vManageLibrary.isHidden {
+            vManageLibrary.loadView(libraryBookMode: vManageLibrary.currentLibraryBookMode)
+        }
     }
     
     // ********** Header Section ********** //
@@ -903,5 +907,6 @@ class MMainViewController: BaseViewController, ModalDialogueProtocol, AVAudioPla
     }
     @IBAction func btnLibrary_TouchUp(_ sender: Any) {
         showHideMenu(tag: ViewTag.ManageLibrary.rawValue)
+        loadCurrentLibraryBook()
     }
 }

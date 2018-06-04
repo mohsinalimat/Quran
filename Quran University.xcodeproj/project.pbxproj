@@ -39,6 +39,8 @@
 		044F6CBC2007A4420007828A /* PageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044F6CBB2007A4420007828A /* PageManager.swift */; };
 		04614C4F20737A65000F9922 /* AssignmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04614C4E20737A65000F9922 /* AssignmentTableViewCell.swift */; };
 		046A18FA20147668006FB796 /* DPDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A18F920147668006FB796 /* DPDownloadViewController.swift */; };
+		046EC60520C51787000BC77E /* BookmarkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EC60420C51787000BC77E /* BookmarkRepository.swift */; };
+		046EC60720C51906000BC77E /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EC60620C51906000BC77E /* Bookmark.swift */; };
 		0476BBA12005ECB5002697B6 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0476BBA02005ECB5002697B6 /* DownloadManager.swift */; };
 		0476BBA32005ED59002697B6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0476BBA22005ED59002697B6 /* Constants.swift */; };
 		0476C17620887FB40066203E /* AssignmentBoundaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0476C17520887FB40066203E /* AssignmentBoundaryModel.swift */; };
@@ -767,6 +769,8 @@
 		044F6CBB2007A4420007828A /* PageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageManager.swift; sourceTree = "<group>"; };
 		04614C4E20737A65000F9922 /* AssignmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTableViewCell.swift; sourceTree = "<group>"; };
 		046A18F920147668006FB796 /* DPDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPDownloadViewController.swift; sourceTree = "<group>"; };
+		046EC60420C51787000BC77E /* BookmarkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRepository.swift; sourceTree = "<group>"; };
+		046EC60620C51906000BC77E /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		0476BBA02005ECB5002697B6 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		0476BBA22005ED59002697B6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0476C17520887FB40066203E /* AssignmentBoundaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentBoundaryModel.swift; sourceTree = "<group>"; };
@@ -2241,6 +2245,7 @@
 				04B8C2E620C01ED6002F75EA /* AppObjectLocation.swift */,
 				048C4293200234D3003904F1 /* Ayat.swift */,
 				0495EA0C200F60BB00EC35D1 /* BaseModel.swift */,
+				046EC60620C51906000BC77E /* Bookmark.swift */,
 				04D5F424204EBD4200E7F7B4 /* CauseOfRevelationBook.swift */,
 				04D5F426204EBD5200E7F7B4 /* CauseOfRevelationBookDetail.swift */,
 				04A35D25200CCB190090A64F /* Juzz.swift */,
@@ -2359,6 +2364,7 @@
 				04B8C2E820C0210D002F75EA /* AppObjectLocationRepository.swift */,
 				04F0D2B6203B0B24002F7183 /* AyatRepository.swift */,
 				04F0D2B4203B0AA2002F7183 /* BaseRepository.swift */,
+				046EC60420C51787000BC77E /* BookmarkRepository.swift */,
 				04D5F42E204EC01B00E7F7B4 /* CauseOfRevelationBookDetailRepository.swift */,
 				04D5F42C204EC01300E7F7B4 /* CauseOfRevelationBookRepository.swift */,
 				04F0D2BC203B0CDB002F7183 /* JuzzRepository.swift */,
@@ -3186,6 +3192,7 @@
 				04F4BC7B2029BB80006636D8 /* BMMContinuousRecitationViewController.swift in Sources */,
 				048D662A204FCC34007185EC /* MaaniMafrudat.swift in Sources */,
 				04F0D2B7203B0B24002F7183 /* AyatRepository.swift in Sources */,
+				046EC60520C51787000BC77E /* BookmarkRepository.swift in Sources */,
 				04D5F42F204EC01B00E7F7B4 /* CauseOfRevelationBookDetailRepository.swift in Sources */,
 				04F0D2B2203AC9D1002F7183 /* TMDownloadViewController.swift in Sources */,
 				0408A3BA2015D95C00B8A4A7 /* NetworkManager.swift in Sources */,
@@ -3269,6 +3276,7 @@
 				0415F3792002107600041C3D /* AppDelegate.swift in Sources */,
 				0415F3812002107600041C3D /* Quran_University.xcdatamodeld in Sources */,
 				04AB4D3920596EA80081A026 /* NumberRepository.swift in Sources */,
+				046EC60720C51906000BC77E /* Bookmark.swift in Sources */,
 				04C67B1620187E8900DDAB45 /* RecitationManager.swift in Sources */,
 				04F0D2BD203B0CDB002F7183 /* JuzzRepository.swift in Sources */,
 				046A18FA20147668006FB796 /* DPDownloadViewController.swift in Sources */,
